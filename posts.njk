@@ -1,0 +1,21 @@
+---
+title: My Posts
+layout: layouts/listing.njk
+pagination:
+    data: collections.post
+    size: 2
+    alias: posts
+    reverse: true
+    # addAllPagesToCollections: true
+permalink: /posts/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html
+# Does not work if it is Markdown `.md`
+# permalink: /posts/page-{{ (pagination.pageNumber + 1) }}/index.html
+---
+
+<h1>Posts</h1>
+
+<ol>
+    {% for post in posts %}
+        <li><a href="{{ post.url | url }}">{{ post.data.title | makeUppercase }}</a></li>
+    {% endfor %}
+</ol>

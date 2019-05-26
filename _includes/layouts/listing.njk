@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+</head>
+<body>
+    {{ content | safe }}
+
+    <ol>
+        {% for href in pagination.hrefs %}
+            <li><a href="{{ href | url }}">{{ href }}</a></li>
+        {% endfor %}
+    </ol>
+
+    {# --- todo: pagination logic and active states --- #}
+    {% if pagination.firstPageHref %}
+        <a href="{{ pagination.firstPageHref | url }}">First page</a>
+    {% endif %}
+
+    {% if pagination.previousPageHref %}
+        <a href="{{ pagination.previousPageHref | url }}">Previous page</a>
+    {% endif %}
+
+    {% if pagination.nextPageHref %}
+        <a href="{{ pagination.nextPageHref | url }}">Next page</a>
+    {% endif %}
+
+    {% if pagination.lastPageHref %}
+        <a href="{{ pagination.lastPageHref | url }}">Last page</a>
+    {% endif %}
+
+</body>
+</html>
