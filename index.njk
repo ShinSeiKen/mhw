@@ -20,7 +20,74 @@ title: Monster Hunter World Leaderboards
         <a href="{{ item.url | url }}">
             {{ item.data.title }}
         </a>
-        [{{ item.data.title | slug }}] [{{ item.fileSlug }}]
+        {#
+        [{{ item.data.title | slug }}]
+        [{{ item.fileSlug }}]
+        #}
+
+        {# --- hmm.... a bit overkill, but only way to get the _related_ data --- #}
+        {{ collections.lookup.location[ item.fileSlug ].data.title }}
+    </li>
+{% endfor  %}
+</ul>
+
+<h2>Quests</h2>
+<ul>
+{% for item in collections.quests %}
+    {# -- quests are sub-divided per quest type -- #}
+    <li
+        {% if page.url == item.url %} class="active"{% endif %}>
+        <a href="{{ item.url | url }}">
+            {{ item.data.title }}
+        </a>
+    </li>
+{% endfor  %}
+</ul>
+
+<h2>Monsters</h2>
+<ul>
+{% for item in collections.monsters %}
+    <li
+        {% if page.url == item.url %} class="active"{% endif %}>
+        <a href="{{ item.url | url }}">
+            {{ item.data.title }}
+        </a>
+    </li>
+{% endfor  %}
+</ul>
+
+<h2>Weapons</h2>
+<ul>
+{% for item in collections.weapons %}
+    <li
+        {% if page.url == item.url %} class="active"{% endif %}>
+        <a href="{{ item.url | url }}">
+            {{ item.data.title }}
+        </a>
+    </li>
+{% endfor  %}
+</ul>
+
+<h2>Runners</h2>
+<ul>
+{% for item in collections.runners %}
+    <li
+        {% if page.url == item.url %} class="active"{% endif %}>
+        <a href="{{ item.url | url }}">
+            {{ item.data.title }}
+        </a>
+    </li>
+{% endfor  %}
+</ul>
+
+<h2>Runs</h2>
+<ul>
+{% for item in collections.runs %}
+    <li
+        {% if page.url == item.url %} class="active"{% endif %}>
+        <a href="{{ item.url | url }}">
+            {{ item.data.title }}
+        </a>
     </li>
 {% endfor  %}
 </ul>
