@@ -1,0 +1,26 @@
+---
+title: Monster Hunter World Leaderboards
+---
+
+<h1>{{ title }}</h1>
+
+{#
+<ul>
+{% for monster in collections.monsters %}
+    <li><a href="{{ monster }}">{{ monster.title }}</a></li>
+{% endfor  %}
+<ul>
+#}
+
+<h2>Locations</h2>
+<ul>
+{% for item in collections.locations %}
+    <li
+        {% if page.url == item.url %} class="active"{% endif %}>
+        <a href="{{ item.url | url }}">
+            {{ item.data.title }}
+        </a>
+        [{{ item.data.title | slug }}] [{{ item.fileSlug }}]
+    </li>
+{% endfor  %}
+</ul>
