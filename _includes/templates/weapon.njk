@@ -1,13 +1,10 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    [Weapon]
-    {{ content | safe }}
-  </body>
-</html>
+---
+layout: layouts/base.njk
+---
 
+[Runner]
+
+{{ content | safe }}
+
+<h2>Runs</h2>
+<p>List of the best or most recent speedruns using mentioned weapon.</p>

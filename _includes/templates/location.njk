@@ -1,13 +1,13 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    [Location]
-    {{ content | safe }}
-  </body>
-</html>
+---
+layout: layouts/base.njk
+---
 
+[Location]
+
+{{ content | safe }}
+
+<h2>Quests</h2>
+<p>List of quests that appear in this location, with the best or most recent speedrun of above mentioned quests.</p>
+
+<h2>Monsters</h2>
+<p>List of monsters that appear here.</p>

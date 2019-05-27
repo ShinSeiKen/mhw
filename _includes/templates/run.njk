@@ -1,13 +1,28 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    [Run]
-    {{ content | safe }}
-  </body>
-</html>
+---
+layout: layouts/base.njk
+---
 
+[Run]
+
+{{ content | safe }}
+
+<dl>
+    <dt>Runner</dt>
+    <dd>
+        <a href="/runners/#">Runner #1</a>
+    </dd>
+    <dt>Quest</dt>
+    <dd>
+        <a href="/quests/#">Quest #1</a>
+    </dd>
+    <dt>Monster(s)</dt>
+    <dd>
+        <a href="{{ "/monsters/great-jagras" | url }}">Great Jagras</a>
+    </dd>
+    <dt>Location<dt>
+    <dd>
+        <a href="{{ "/locations/ancient-forest" | url }}">Ancient Forest</a></li>
+    </dd>
+</dl>
+
+<p>Some video + weapon + time + rules + platform + etc. etc.</p>

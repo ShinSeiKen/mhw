@@ -1,13 +1,18 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    [Monster]
-    {{ content | safe }}
-  </body>
-</html>
+---
+layout: layouts/base.njk
+---
 
+[Monster]
+
+{{ content | safe }}
+
+<dl>
+    <dt>Location<dt>
+    <dd>
+        <a href="{{ "/locations/ancient-forest" | url }}">Ancient Forest</a></li>
+    </dd>
+</dl>
+
+<h2>Quests</h2>
+<p>List of quests that appear in this location, with the best or most recent speedrun of above mentioned quests.</p>
+<p>Might be useful to make a distinction between, regular, tempered and arch-tempered variants</p>

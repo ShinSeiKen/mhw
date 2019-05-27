@@ -1,13 +1,21 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-  </head>
-  <body>
-    [Quest]
-    {{ content | safe }}
-  </body>
-</html>
+---
+layout: layouts/base.njk
+---
 
+[Quest]
+
+{{ content | safe }}
+
+<dl>
+    <dt>Monster(s)</dt>
+    <dd>
+        <a href="{{ "/monsters/great-jagras" | url }}">Great Jagras</a>
+    </dd>
+    <dt>Location<dt>
+    <dd>
+        <a href="{{ "/locations/ancient-forest" | url }}">Ancient Forest</a></li>
+    </dd>
+</dl>
+
+<h2>Top Speedruns</h2>
+<p>List of speedruns, sorted by best time, filterable per weapon.</p>
