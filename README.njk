@@ -24,7 +24,11 @@ bar: baz
     {% set typeSingular %}monster{% endset %}
     {% set typePlural %}monsters{% endset %}
     {% set itemUrl %}/{{ typePlural }}/{{ slug }}{% endset %}
-<li><a href="{{ itemUrl | url }}">{{ slug }}<a></li>
+    <li>
+        <a href="{{ itemUrl | url }}">
+            {{ collections.lookup[ typeSingular ][ slug ].data.title }}
+        <a>
+    </li>
 {% endfor %}
 </ul>
 
@@ -33,7 +37,11 @@ bar: baz
     {% set typeSingular %}weapon{% endset %}
     {% set typePlural %}weapons{% endset %}
     {% set itemUrl %}/{{ typePlural }}/{{ slug }}{% endset %}
-    <li><a href="{{ itemUrl | url }}">{{ slug }}<a></li>
+    <li>
+        <a href="{{ itemUrl | url }}">
+            {{ collections.lookup[ typeSingular ][ slug ].data.title }}
+        <a>
+    </li>
 {% endfor %}
 </ul>
 
@@ -49,4 +57,11 @@ bar: baz
         [{{ slug }}]
     </li>
 {% endfor %}
+</ul>
+
+
+<p>Dummy text for weapons were taken from:</p>
+<ul>
+    <li>http://game.capcom.com/manual/MHW_PC/en/steam/page/8/1</li>
+    <li>http://game.capcom.com/manual/MHW_PC/en/steam/page/9/1</li>
 </ul>

@@ -11,3 +11,20 @@ layout: layouts/base.njk
 
 <h2>Fluff</h2>
 <p>Leaderboard stats and achievements.</p>
+<p>Frequently used weapons, etc.</p>
+
+{% if youtube %}
+    <a href="{{ youtube }}">YouTube</a>
+{% endif %}
+
+{% if twitch %}
+    <a href="{{ twitch }}">Twitch</a>
+{% endif %}
+
+{% if twitter %}
+    <a href="{{ twitter }}">Twitter</a>
+{% endif %}
+
+{% if country %}
+    <span class="flag-icon flag-icon-{{ country }}"></span>
+{% endif %}

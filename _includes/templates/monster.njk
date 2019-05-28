@@ -1,8 +1,10 @@
 ---
 layout: layouts/base.njk
+permalink: /monsters/{{ title | slug }}/index.html
 ---
 
 [Monster]
+Test: {{ "歴戦王ゼノジーヴァ" | slug }}
 
 {{ content | safe }}
 
@@ -14,5 +16,5 @@ layout: layouts/base.njk
 </dl>
 
 <h2>Quests</h2>
-<p>List of quests that appear in this location, with the best or most recent speedrun of above mentioned quests.</p>
+<p>List of quests that have this monster, with the best or most recent speedrun of above mentioned quests.</p>
 <p>Might be useful to make a distinction between, regular, tempered and arch-tempered variants</p>

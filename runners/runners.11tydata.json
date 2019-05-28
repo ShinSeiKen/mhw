@@ -1,4 +1,7 @@
 {
     "layout": "runner",
-    "type": "runner"
+    "type": "runner",
+    "twitch": "",
+    "youtube": "",
+    "twitter": ""
 }
