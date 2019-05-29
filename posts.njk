@@ -16,6 +16,6 @@ permalink: /posts/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumbe
 
 <ol>
     {% for post in posts %}
-        <li><a href="{{ post.url | url }}">{{ post.data.title | makeUppercase }}</a></li>
+        <li><a href="{{ post.url | url }}">{{ post.data.title | uppercase }}</a></li>
     {% endfor %}
 </ol>

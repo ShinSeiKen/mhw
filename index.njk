@@ -1,8 +1,7 @@
 ---
+layout: layouts/base.njk
 title: Monster Hunter World Leaderboards
 ---
-
-<h1>{{ title }}</h1>
 
 {#
 <ul>
@@ -64,7 +63,7 @@ title: Monster Hunter World Leaderboards
     <li
         {% if page.url == item.url %} class="active"{% endif %}>
         <a href="{{ item.url | url }}">
-            {{ item.data.title }}
+            {{- item.data.title -}}
         </a>
     </li>
 {% endfor  %}
@@ -76,8 +75,16 @@ title: Monster Hunter World Leaderboards
     <li
         {% if page.url == item.url %} class="active"{% endif %}>
         <a href="{{ item.url | url }}">
-            {{ item.data.title }}
+            {{- item.data.title -}}
         </a>
+        {#
+        {% for weapon in item.data.weapons %}
+            <span class="weapon-icon weapon-icon-{{ weapon }}"></span>
+        {% endfor %}
+        #}
+        {% if item.data.country %}
+            <span class="flag-icon flag-icon-{{ item.data.country }}"></span>
+        {% endif %}
     </li>
 {% endfor  %}
 </ul>
@@ -88,8 +95,20 @@ title: Monster Hunter World Leaderboards
     <li
         {% if page.url == item.url %} class="active"{% endif %}>
         <a href="{{ item.url | url }}">
-            {{ item.data.title }}
+            {{- item.data.title -}}
         </a>
     </li>
 {% endfor  %}
 </ul>
+
+<h3>Test Times</h3>
+<pre>
+      999     {{       999 | millisFormatted }}
+     1000     {{      1000 | millisFormatted }}
+    10000     {{     10000 | millisFormatted }}
+    65000     {{     65000 | millisFormatted }}
+   100000     {{    100000 | millisFormatted }}
+  1000000     {{   1000000 | millisFormatted }}
+ 10000000     {{  10000000 | millisFormatted }}
+100000000     {{ 100000000 | millisFormatted }}
+</pre>

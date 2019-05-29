@@ -6,25 +6,36 @@ layout: layouts/base.njk
 
 {{ content | safe }}
 
+{% if country %}
+    <span class="flag-icon flag-icon-{{ country }}"></span>
+{% endif %}
+
 <h2>Runs</h2>
 <p>List of all best runs per quest.</p>
 
 <h2>Fluff</h2>
 <p>Leaderboard stats and achievements.</p>
-<p>Frequently used weapons, etc.</p>
 
-{% if youtube %}
-    <a href="{{ youtube }}">YouTube</a>
-{% endif %}
+<h2>Social</h2>
+<ul>
+    {% if youtube %}
+        <li><a href="{{ youtube }}">YouTube</a></li>
+    {% endif %}
+    {% if twitch %}
+        <li><a href="{{ twitch }}">Twitch</a></li>
+    {% endif %}
+    {% if twitter %}
+        <li><a href="{{ twitter }}">Twitter</a></li>
+    {% endif %}
+    {% if patreon %}
+        <li><a href="{{ patreon }}">Patreon</a></li>
+    {% endif %}
+</ul>
 
-{% if twitch %}
-    <a href="{{ twitch }}">Twitch</a>
-{% endif %}
-
-{% if twitter %}
-    <a href="{{ twitter }}">Twitter</a>
-{% endif %}
-
-{% if country %}
-    <span class="flag-icon flag-icon-{{ country }}"></span>
-{% endif %}
+<h2>Weapons</h2>
+<p>This hunter is known for the following weapons:</p>
+<ul>
+{% for item in weapons %}
+    <li>{{ collections.lookup.weapon[item].data.title }}</li>
+{% endfor %}
+</ul>

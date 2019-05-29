@@ -2,12 +2,44 @@
 layout: layouts/base.njk
 ---
 
-[Weapon]
-
 {{ content | safe }}
+
+{% if video %}
+<div>
+    <iframe
+        width="560"
+        height="315"
+        src="{{ video }}"
+        frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+</div>
+{% endif %}
+
+{#
+{{ page.fileSlug }}
+#}
 
 <h2>Runs</h2>
 <p>List of the best or most recent speedruns using mentioned weapon.</p>
+{#
+{% for item in collections.lookup.run__by_weapon[page.fileSlug] %}
+    {% if loop.index0 < 10 %}
+        <li>
+            <a href="{{ item.data.video }}">
+                <span>
+                    {{ collections.lookup.quest[item.data.quest].data.title }}
+                </span>
+                <span>
+                    {{ collections.lookup.quest[item.data.quest].data.time | millisFormatted }}
+                </span>
+            </a>
+
+        </li>
+    {% endif %}
+{% endfor %}
+#}
 
 <h2>Runners</h2>
 <p>A list of notable speedrunners using mentioned weapon.</p>
