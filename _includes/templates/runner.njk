@@ -2,46 +2,55 @@
 layout: layouts/base.njk
 ---
 
-<main>
+<grid columns=12 columns-s=4>
+
+<c span="row">
+    <h1>
+        {{- title }}
+        {% if country %}
+            <span class="flag-icon flag-icon-{{ country }}"></span>
+        {%- endif -%}
+    </h1>
     {{ content | safe }}
+</c>
 
-    {% if country %}
-        <span class="flag-icon flag-icon-{{ country }}"></span>
-    {% endif %}
-
+<c span=8>
     <h2>Runs</h2>
     <p>List of all best runs per quest.</p>
 
     <h2>Fluff</h2>
     <p>Leaderboard stats and achievements.</p>
-</main>
+</c>
 
-<aside>
-    <h2>Social</h2>
-    <ul class="compact">
-        {% if youtube %}
-            <li><a href="{{ youtube }}">YouTube</a></li>
-        {% endif %}
-        {% if twitch %}
-            <li><a href="{{ twitch }}">Twitch</a></li>
-        {% endif %}
-        {% if twitter %}
-            <li><a href="{{ twitter }}">Twitter</a></li>
-        {% endif %}
-        {% if patreon %}
-            <li><a href="{{ patreon }}">Patreon</a></li>
-        {% endif %}
-    </ul>
+<c span=4>
+    {% if weapons | length %}
+        <h2>Weapons</h2>
+        <ul class="compact">
+            {% for item in weapons %}
+                <li>
+                    <a href="{{ collections.lookup.weapon[item].url | url }}">
+                        {{- collections.lookup.weapon[item].data.title -}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
-    <h2>Weapons</h2>
-    <p>This hunter is known for using:</p>
-    <ul class="compact">
-        {% for item in weapons %}
-            <li>
-                <a href="{{ collections.lookup.weapon[item].url | url }}">
-                    {{- collections.lookup.weapon[item].data.title -}}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-</aside>
+    {% if youtube or twitch or twitter or patreon %}
+        <h2>Meta</h2>
+        <ul class="compact">
+            {% if youtube %}
+                <li><a href="{{ youtube }}">YouTube</a></li>
+            {% endif %}
+            {% if twitch %}
+                <li><a href="{{ twitch }}">Twitch</a></li>
+            {% endif %}
+            {% if twitter %}
+                <li><a href="{{ twitter }}">Twitter</a></li>
+            {% endif %}
+            {% if patreon %}
+                <li><a href="{{ patreon }}">Patreon</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</c>

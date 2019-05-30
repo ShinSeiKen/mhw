@@ -1,31 +1,108 @@
 ---
 layout: layouts/base.njk
+permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
 ---
 
-[Run]
+{% set _runner   = collections.lookup.runner[ runners | first ] %}
+{% set _quest    = collections.lookup.quest[ quest ] %}
+{% set _location = collections.lookup.location[ _quest.data.location ] %}
 
-{{ content | safe }}
+<grid columns=12 columns-s=4>
+<c span="row">
+    <h1>
+        {{ _quest.data.title }}
+        by {{ _runner.data.title }}
+        {% if runners | length > 1 %}
+            et al.
+        {% endif %}
+    </h1>
 
+    {{ content | safe }}
+</c>
+<c span=8>
+    {% if video_type == 'youtube' %}
+        <iframe
+            width="560"
+            height="315"
+            src="{{ video }}"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    {% elseif video_type == 'vimeo' %}
+        todo
+    {% elseif video_type == 'biliib' %}
+    {% endif %}
+</c>
+<c span=4>
 <dl>
-    <dt>Runner</dt>
+    <dt>Runner(s)</dt>
     <dd>
-        <a href="/runners/#">Runner #1</a>
+        {% for item in runners %}
+            {% set temp = collections.lookup.runner[ item ] %}
+            <a href="{{ temp.url | url }}">
+                {{- temp.data.title -}}
+            </a>
+            {%- if not loop.last -%}
+            ,
+            {% endif %}
+        {% endfor %}
     </dd>
     <dt>Quest</dt>
     <dd>
-        <a href="/quests/#">Quest #1</a>
+        <a href="{{ _quest.url | url }}">
+            {{- _quest.data.title -}}
+        </a>
     </dd>
     <dt>Monster(s)</dt>
     <dd>
-        <a href="{{ "/monsters/great-jagras" | url }}">Great Jagras</a>
+        {% for item in _quest.data.monsters %}
+            {% set temp = collections.lookup.monster[ item ] %}
+            <a href="{{ temp.url | url }}">
+                {{- temp.data.title -}}
+            </a>
+            {%- if not loop.last -%}
+            ,
+            {% endif %}
+        {% endfor %}
     </dd>
-    <dt>Location<dt>
+    <dt>Location</dt>
     <dd>
-        <a href="{{ "/locations/ancient-forest" | url }}">Ancient Forest</a></li>
+        <a href="{{ _location.url | url }}">
+            {{- _location.data.title -}}
+        </a>
     </dd>
+    <dt>Weapon(s)</dt>
+    <dd>
+        {% for item in weapons %}
+            {% set temp = collections.lookup.weapon[ item ] %}
+            <a href="{{ temp.url | url }}">
+                {{- temp.data.title -}}
+            </a>
+            {%- if not loop.last -%}
+            ,
+            {% endif %}
+        {% endfor %}
+    </dd>
+    <dt>Type</dt>
+    <dd>{{ run_type }}</dd>
+    <dt>Platform</dt>
+    <dd>{{ platform }}</dd>
+    <dt>Patch</dt>
+    <dd>{{ patch_version }}</dd>
+    <dt>Date</dt>
+    <dd>{{ date }}</dd>
+    <dt>Time</dt>
+    <dd>{{ time_in_millis | millisFormatted }}</dd>
 </dl>
-
-<p>Some video + weapon + time + rules + platform + etc. etc.</p>
-
+</c>
+</grid>
+{#
 <h2>Related runs</h2>
 <p>Other runs of the same quest and weapon</p>
+{% for item in collections.run__by_quest[quest.fileSlug] %}
+    {% if count <= 3 %}
+        collections.lookup.run[ item.fileSlug ].data.title
+    {% endif %}
+{% endfor %}
+#}

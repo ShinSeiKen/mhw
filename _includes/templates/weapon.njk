@@ -1,6 +1,13 @@
 ---
 layout: layouts/base.njk
 ---
+
+<grid columns=12 columns-s=4>
+
+<c span="row">
+    <h1>{{ title }}</h1>
+</c>
+
 <c span=4 span-s=4>
     {{ content | safe }}
 </c>
@@ -17,6 +24,8 @@ layout: layouts/base.njk
         </iframe>
     </c>
 {% endif %}
+
+<hr>
 
 <c span=4>
     <h2>Runs</h2>
@@ -62,3 +71,5 @@ layout: layouts/base.njk
     <h2>Fluff</h2>
     <p>Tips, tricks, sets/builds, tutorials.</p>
 </c>
+
+</grid>

@@ -1,20 +1,55 @@
 ---
 layout: layouts/base.njk
-permalink: /monsters/{{ title | slug }}/index.html
 ---
 
-[Monster]
-Test: {{ "歴戦王ゼノジーヴァ" | slug }}
+<grid columns=12 columns-s=4>
 
-{{ content | safe }}
+<c span="row">
+    <h1>{{ title }}</h1>
 
-<dl>
-    <dt>Location<dt>
-    <dd>
-        <a href="{{ "/locations/ancient-forest" | url }}">Ancient Forest</a></li>
-    </dd>
-</dl>
+    {{ content | safe }}
+    {#
+    <dl>
+        <dt>Locations<dt>
+        <dd>
+            <a href="{{ "/locations/ancient-forest" | url }}">Ancient Forest</a></li>
+        </dd>
+    </dl>
+    #}
+</c>
 
+{#
 <h2>Quests</h2>
 <p>List of quests that have this monster, with the best or most recent speedrun of above mentioned quests.</p>
 <p>Might be useful to make a distinction between, regular, tempered and arch-tempered variants</p>
+#}
+
+{# --- need extra layer
+<c span=6>
+    <h2>Runs</h2>
+    <ul class="compact">
+        {% for item in collections.runs__by_monster[page.fileSlug] %}
+            <li>
+                <a href="{{ item.url }}">
+                    {{- item.data.title -}} {{ item.data.time_in_millis | millisFormatted }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</c>
+#}
+
+<c span=6>
+    <h2>Quests</h2>
+    <ul class="compact">
+        {% for item in collections.quests__by_monster[page.fileSlug] %}
+            <li>
+                <a href="{{ item.url }}">
+                    {{- item.data.title -}}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</c>
+
+</grid>

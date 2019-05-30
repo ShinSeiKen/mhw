@@ -2,20 +2,78 @@
 layout: layouts/base.njk
 ---
 
-[Quest]
+{% set _location = collections.lookup.location[location] %}
+<grid columns=12 columns-s=4>
 
-{{ content | safe }}
+<c span="row">
+    <h1>{{ title }}</h1>
 
-<dl>
-    <dt>Monster(s)</dt>
-    <dd>
-        <a href="{{ "/monsters/great-jagras" | url }}">Great Jagras</a>
-    </dd>
-    <dt>Location<dt>
-    <dd>
-        <a href="{{ "/locations/ancient-forest" | url }}">Ancient Forest</a></li>
-    </dd>
-</dl>
+    {{ content | safe }}
 
-<h2>Top Speedruns</h2>
-<p>List of speedruns, sorted by best time, filterable per weapon.</p>
+    <dl>
+        <dt>Monster(s)</dt>
+        <dd>
+            {% for item in monsters %}
+                {% set temp = collections.lookup.monster[item] %}
+                <a href="{{ temp.url | url }}">{{ temp.data.title }}</a>
+                {% if not loop.last%},{% endif %}
+            {% endfor %}
+        </dd>
+        <dt>Location<dt>
+        <dd>
+            <a href="{{ _location.url | url }}">{{ _location.data.title }}</a></li>
+        </dd>
+    </dl>
+</c>
+
+<c span="row">
+    <h2>Runs</h2>
+    <ul class="compact">
+        {% for item in collections.runs__by_quest[page.fileSlug] %}
+            {% if item.data.runners.length == 1 %}
+                {% set _runner = collections.lookup.runner[item.data.runners | first] %}
+                <li
+                    data-weapons="{{ item.data.weapons|join(' ') }}"
+                    >
+                    <a href="{{ _runner.url | url }}">
+                        {{ _runner.data.title }}
+                    </a>
+                    —
+                    <a href="{{ item.url | url }}">
+                        {{- item.data.time_in_millis | millisFormatted -}}
+                    </a>
+                    —
+                    <a href="{{ item.data.video }}">▶️</a>
+                    {# -- todo: something like a lightbox -- #}
+                    —
+                    {% for weapon in item.data.weapons %}
+                        {{ collections.lookup.weapon[weapon].data.title }}
+                        {%- if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</span>
+
+<c span="row">
+    <h2>Multiplayer</h2>
+    <ul class="compact">
+        {% for item in collections.runs__by_quest[page.fileSlug] %}
+            {% if item.data.runners.length > 1 %}
+                <li>
+                    <a href="{{ item.url | url }}">
+                        {% for runner in item.data.runners %}
+                            {{ collections.lookup.runner[ runner ].data.title }}
+                            {%- if not loop.last %}, {% endif %}
+                        {% endfor %}
+                        —
+                        {{ item.data.time_in_millis | millisFormatted -}}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+</span>
+
+{# --- check for weapons, check for multiplayer, etc. --- #}

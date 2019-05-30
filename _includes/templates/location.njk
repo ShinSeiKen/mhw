@@ -2,12 +2,29 @@
 layout: layouts/base.njk
 ---
 
-[Location]
+<grid columns=12 columns-s=4>
 
-{{ content | safe }}
+<c span="row">
+    <h1>{{ title }}</h1>
+    {{ content | safe }}
+</c>
 
-<h2>Quests</h2>
-<p>List of quests that appear in this location, with the best or most recent speedrun of above mentioned quests.</p>
+<c span="row">
 
-<h2>Monsters</h2>
-<p>List of monsters that appear here.</p>
+    <h2>Quests</h2>
+    <ul class="compact">
+        {% for item in collections.quests__by_location[ page.fileSlug ] %}
+            <li>
+                <a href="{{ item.url | url }}">{{ item.data.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {#
+    <h2>Monsters</h2>
+    <p>List of monsters that appear here.</p>
+
+    <h2>Runs</h2>
+    <p>Showing runs by location is not that interesting</p>
+    #}
+</span>

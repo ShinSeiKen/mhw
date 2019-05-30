@@ -3,7 +3,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ title }}</title>
+        <meta name="description" content="{{ general.meta_description }}"/>
+
+        {% if page.url == '/' %}
+            <title>{{ general.site_name }}</title>
+        {% else %}
+            <title>{{ title }} | {{ general.site_name }}</title>
+        {% endif %}
+
         <!-- example, need to concatenate and minify later... -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css" />
         <link rel="stylesheet" href="{{ '/assets/style/raster.css' | url }}" />
@@ -13,12 +20,39 @@
         </style>
     </head>
     <body class="show-base-grid-- {{ type }}--{{ page.fileSlug }}">
-        {# -- move inside sub-template? -- #}
-        <grid columns=12 columns-s=4 columns-l=16>
-            <c span="row">
-                <h1>{{ title }}</h1>
-            </c>
-            {{ content | safe }}
-        </grid>
+        {% if page.url == '/' %}
+            <header>
+                <h1>{{ general.site_name }}</h1>
+            </header>
+        {% else %}
+            <header>
+                {{ general.site_name }}
+            </header>
+        {% endif %}
+        <nav>
+            <ul class="compact">
+                {% for url, label in general.menu %}
+                    <li{% if page.url == url %} class="active"{% endif %}>
+                        <a href="{{ url | url }}">
+                            {{- label -}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+        {{ content | safe }}
+        <footer>
+            <nav>
+                <ul class="compact">
+                {% for url, label in general.footer %}
+                    <li{% if page.url == url %} class="active"{% endif %}>
+                        <a href="{{ url | url }}">
+                            {{- label -}}
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </nav>
+        </footer>
     </body>
 </html>

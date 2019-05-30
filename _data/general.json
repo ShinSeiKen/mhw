@@ -1,0 +1,21 @@
+{
+    "site_name": "Monster Hunter World Leaderboards",
+    "meta_description": "Unofficial Monster Hunter World Iceborne Leaderboards. For shits and giggles",
+    "menu": {
+        "/"          : "Home",
+        "/runs"      : "Runs",
+        "/runners"   : "Runners",
+        "/quests"    : "Quests",
+        "/weapons"   : "Weapons",
+        "/monsters"  : "Monsters",
+        "/locations" : "Locations",
+        "https://www.github.com/shinseiken/mhw": "Github"
+    },
+    "footer": {
+        "/"        : "Home",
+        "/news"    : "News",
+        "/about"   : "About",
+        "/support" : "Support",
+        "/privacy" : "Privacy"
+    }
+}
