@@ -2,40 +2,46 @@
 layout: layouts/base.njk
 ---
 
-[Runner]
+<main>
+    {{ content | safe }}
 
-{{ content | safe }}
-
-{% if country %}
-    <span class="flag-icon flag-icon-{{ country }}"></span>
-{% endif %}
-
-<h2>Runs</h2>
-<p>List of all best runs per quest.</p>
-
-<h2>Fluff</h2>
-<p>Leaderboard stats and achievements.</p>
-
-<h2>Social</h2>
-<ul>
-    {% if youtube %}
-        <li><a href="{{ youtube }}">YouTube</a></li>
+    {% if country %}
+        <span class="flag-icon flag-icon-{{ country }}"></span>
     {% endif %}
-    {% if twitch %}
-        <li><a href="{{ twitch }}">Twitch</a></li>
-    {% endif %}
-    {% if twitter %}
-        <li><a href="{{ twitter }}">Twitter</a></li>
-    {% endif %}
-    {% if patreon %}
-        <li><a href="{{ patreon }}">Patreon</a></li>
-    {% endif %}
-</ul>
 
-<h2>Weapons</h2>
-<p>This hunter is known for the following weapons:</p>
-<ul>
-{% for item in weapons %}
-    <li>{{ collections.lookup.weapon[item].data.title }}</li>
-{% endfor %}
-</ul>
+    <h2>Runs</h2>
+    <p>List of all best runs per quest.</p>
+
+    <h2>Fluff</h2>
+    <p>Leaderboard stats and achievements.</p>
+</main>
+
+<aside>
+    <h2>Social</h2>
+    <ul class="compact">
+        {% if youtube %}
+            <li><a href="{{ youtube }}">YouTube</a></li>
+        {% endif %}
+        {% if twitch %}
+            <li><a href="{{ twitch }}">Twitch</a></li>
+        {% endif %}
+        {% if twitter %}
+            <li><a href="{{ twitter }}">Twitter</a></li>
+        {% endif %}
+        {% if patreon %}
+            <li><a href="{{ patreon }}">Patreon</a></li>
+        {% endif %}
+    </ul>
+
+    <h2>Weapons</h2>
+    <p>This hunter is known for using:</p>
+    <ul class="compact">
+        {% for item in weapons %}
+            <li>
+                <a href="{{ collections.lookup.weapon[item].url | url }}">
+                    {{- collections.lookup.weapon[item].data.title -}}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</aside>

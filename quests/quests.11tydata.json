@@ -1,4 +1,8 @@
 {
     "layout": "quest",
-    "type": "quest"
+    "type": "quest",
+    "quest_type": "",
+    "difficulty": "★",
+    "location": "",
+    "monsters": []
 }

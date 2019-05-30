@@ -3,112 +3,135 @@ layout: layouts/base.njk
 title: Monster Hunter World Leaderboards
 ---
 
-{#
-<ul>
-{% for monster in collections.monsters %}
-    <li><a href="{{ monster }}">{{ monster.title }}</a></li>
-{% endfor  %}
-<ul>
-#}
+<c span="row">
+    <h2>Locations</h2>
+</c>
 
-<h2>Locations</h2>
-<ul>
 {% for item in collections.locations %}
-    <li
-        {% if page.url == item.url %} class="active"{% endif %}>
+    <c span=3{% if page.url == item.url %} class="active"{% endif %}>
+        <img src="{{ '/assets/img/thumb.png' | url }}" class="h-6 fill" />
         <a href="{{ item.url | url }}">
-            {{ item.data.title }}
+            {{- item.data.title -}}
         </a>
-        {#
-        [{{ item.data.title | slug }}]
-        [{{ item.fileSlug }}]
-        #}
-
-        {# --- hmm.... a bit overkill, but only way to get the _related_ data --- #}
-        {#
-        {{ collections.lookup.location[ item.fileSlug ].data.title }}
-        #}
-    </li>
+    </c>
 {% endfor  %}
-</ul>
 
-<h2>Quests</h2>
-<ul>
-{% for item in collections.quests %}
-    {# -- quests are sub-divided per quest type -- #}
-    <li
-        {% if page.url == item.url %} class="active"{% endif %}>
-        <a href="{{ item.url | url }}">
-            {{ item.data.title }}
-        </a>
-    </li>
-{% endfor  %}
-</ul>
+<c span="row">
+    <h2>Weapons</h2>
+</c>
 
-<h2>Monsters</h2>
-<ul>
-{% for item in collections.monsters %}
-    <li
-        {% if page.url == item.url %} class="active"{% endif %}>
-        <a href="{{ item.url | url }}">
-            {{ item.data.title }}
-        </a>
-    </li>
-{% endfor  %}
-</ul>
-
-<h2>Weapons</h2>
-<ul>
 {% for item in collections.weapons %}
-    <li
-        {% if page.url == item.url %} class="active"{% endif %}>
+    <c span=3{% if page.url == item.url %} class="active"{% endif %}>
+        <img src="{{ '/assets/img/thumb.png' | url }}" class="h-6 fill" />
         <a href="{{ item.url | url }}">
             {{- item.data.title -}}
         </a>
-    </li>
+    </c>
 {% endfor  %}
-</ul>
 
-<h2>Runners</h2>
-<ul>
-{% for item in collections.runners %}
-    <li
-        {% if page.url == item.url %} class="active"{% endif %}>
-        <a href="{{ item.url | url }}">
-            {{- item.data.title -}}
-        </a>
-        {#
-        {% for weapon in item.data.weapons %}
-            <span class="weapon-icon weapon-icon-{{ weapon }}"></span>
-        {% endfor %}
-        #}
-        {% if item.data.country %}
-            <span class="flag-icon flag-icon-{{ item.data.country }}"></span>
-        {% endif %}
-    </li>
-{% endfor  %}
-</ul>
+<hr>
 
-<h2>Runs</h2>
-<ul>
-{% for item in collections.runs %}
-    <li
-        {% if page.url == item.url %} class="active"{% endif %}>
-        <a href="{{ item.url | url }}">
-            {{- item.data.title -}}
-        </a>
-    </li>
-{% endfor  %}
-</ul>
+{# --- footer-ish, with limits --- #}
+<c span=4>
+    <h2>Locations</h2>
+    <ul class="compact">
+        {% for item in collections.locations %}
+            <li
+                {% if page.url == item.url %} class="active"{% endif %}>
+                <a href="{{ item.url | url }}">
+                    {{- item.data.title -}}
+                </a>
+            </li>
+        {% endfor  %}
+    </ul>
+</c>
 
-<h3>Test Times</h3>
-<pre>
-      999     {{       999 | millisFormatted }}
-     1000     {{      1000 | millisFormatted }}
-    10000     {{     10000 | millisFormatted }}
-    65000     {{     65000 | millisFormatted }}
-   100000     {{    100000 | millisFormatted }}
-  1000000     {{   1000000 | millisFormatted }}
- 10000000     {{  10000000 | millisFormatted }}
-100000000     {{ 100000000 | millisFormatted }}
-</pre>
+<c span=4>
+    <h2>Quests</h2>
+    <ul class="compact">
+        {% for item in collections.quests %}
+            {# -- quests are sub-divided per quest type -- #}
+            <li
+                {% if page.url == item.url %} class="active"{% endif %}>
+                <a href="{{ item.url | url }}">
+                    {{- item.data.title -}}
+                </a>
+            </li>
+        {% endfor  %}
+    </ul>
+</c>
+
+<c span=4>
+    <h2>Monsters</h2>
+    <ul class="compact">
+        {% for item in collections.monsters %}
+            {% if loop.index0 < 14 %}
+                <li
+                    {% if page.url == item.url %} class="active"{% endif %}>
+                    <a href="{{ item.url | url }}">
+                        {{- item.data.title -}}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor  %}
+    </ul>
+</c>
+
+<c span=4>
+    <h2>Weapons</h2>
+    <ul class="compact">
+        {% for item in collections.weapons %}
+            <li
+                {% if page.url == item.url %} class="active"{% endif %}>
+                <a href="{{ item.url | url }}">
+                    {{- item.data.title -}}
+                </a>
+            </li>
+        {% endfor  %}
+    </ul>
+</c>
+
+<c span=4>
+    <h2>Runners</h2>
+    <ul class="compact">
+        {% for item in collections.runners %}
+            {% if loop.index0 < 14 %}
+                <li
+                    {% if page.url == item.url %} class="active"{% endif %}>
+                    <a href="{{ item.url | url }}">
+                        {{- item.data.title -}}
+                    </a>
+                    {#
+                    {% for weapon in item.data.weapons %}
+                        <span class="weapon-icon weapon-icon-{{ weapon }}"></span>
+                    {% endfor %}
+                    #}
+                    {% if item.data.country %}
+                        <span class="flag-icon flag-icon-{{ item.data.country }}"></span>
+                    {% endif %}
+                </li>
+            {% endif %}
+        {% endfor  %}
+    </ul>
+</c>
+
+<c span=4>
+    <h2>Runs</h2>
+    <ul class="compact">
+        {% for item in collections.runs %}
+            {% if loop.index0 < 14 %}
+                <li
+                    {% if page.url == item.url %} class="active"{% endif %}>
+                    <a href="{{ item.url | url }}">
+                        {{- item.data.title -}}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor  %}
+    </ul>
+</c>
+
+{# -- Test simple filter function -- #}
+{# -- does not work!
+{{ collections | findAll('runner', 'country', 'us') | dump }}
+#}

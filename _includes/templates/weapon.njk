@@ -1,48 +1,64 @@
 ---
 layout: layouts/base.njk
 ---
-
-{{ content | safe }}
+<c span=4 span-s=4>
+    {{ content | safe }}
+</c>
 
 {% if video %}
-<div>
-    <iframe
-        width="560"
-        height="315"
-        src="{{ video }}"
-        frameborder="0"
-        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-    </iframe>
-</div>
+    <c span="row">
+        <iframe
+            width="560"
+            height="315"
+            src="{{ video }}"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </c>
 {% endif %}
 
-{#
-{{ page.fileSlug }}
-#}
+<c span=4>
+    <h2>Runs</h2>
+    <p>List of the most recent speedruns using this weapon.</p>
+    {#
+    {% for item in collections.run__by_weapon[page.fileSlug] %}
+        {% if loop.index0 < 10 %}
+            <li>
+                <a href="{{ item.data.video }}">
+                    <span>
+                        {{ collections.lookup.quest[item.data.quest].data.title }}
+                    </span>
+                    <span>
+                        {{ collections.lookup.quest[item.data.quest].data.time | millisFormatted }}
+                    </span>
+                </a>
 
-<h2>Runs</h2>
-<p>List of the best or most recent speedruns using mentioned weapon.</p>
-{#
-{% for item in collections.lookup.run__by_weapon[page.fileSlug] %}
-    {% if loop.index0 < 10 %}
-        <li>
-            <a href="{{ item.data.video }}">
-                <span>
-                    {{ collections.lookup.quest[item.data.quest].data.title }}
-                </span>
-                <span>
-                    {{ collections.lookup.quest[item.data.quest].data.time | millisFormatted }}
-                </span>
-            </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+    #}
+</c>
 
-        </li>
+<c span=4>
+    <h2>Runners</h2>
+    <p>List of notable speedrunners using this weapon.</p>
+    {% if collections.runners__by_weapon[page.fileSlug] %}
+        <ul class="compact">
+            {% for item in collections.runners__by_weapon[page.fileSlug] %}
+                <li>
+                    <a href="{{ item.url | url }}">
+                        {{- item.data.title -}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No runners found!</p>
     {% endif %}
-{% endfor %}
-#}
+</c>
 
-<h2>Runners</h2>
-<p>A list of notable speedrunners using mentioned weapon.</p>
-
-<h2>Fluff</h2>
-<p>Tips, tricks, sets/builds, tutorials.</p>
+<c span=4>
+    <h2>Fluff</h2>
+    <p>Tips, tricks, sets/builds, tutorials.</p>
+</c>

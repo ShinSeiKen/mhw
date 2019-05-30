@@ -4,16 +4,21 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ title }}</title>
-        <!-- example -->
+        <!-- example, need to concatenate and minify later... -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css" />
+        <link rel="stylesheet" href="{{ '/assets/style/raster.css' | url }}" />
         <style>
         html, body {
-            background-color: #EEE;
-        }
+            background-color: #EEE;        }
         </style>
     </head>
-    <body>
-        <h1>{{ title }}</h1>
-        {{ content | safe }}
+    <body class="show-base-grid-- {{ type }}--{{ page.fileSlug }}">
+        {# -- move inside sub-template? -- #}
+        <grid columns=12 columns-s=4 columns-l=16>
+            <c span="row">
+                <h1>{{ title }}</h1>
+            </c>
+            {{ content | safe }}
+        </grid>
     </body>
 </html>
