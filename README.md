@@ -12,4 +12,66 @@ This is a concept for shits and giggles. You 'aving a giggle, mate?
 - [Melee Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/8/1)
 - [Ranged Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/9/1)
 - [Parallax Depth Cards by Andy Merskin](https://codepen.io/andymerskin/pen/XNMWvQ)
-- Site is heavily inspired by [GOV.UK](https://www.gov.uk) for its accessibility.
+- Inspired by [GOV.UK](https://www.gov.uk) for its accessibility.
+
+## Notes
+
+### Monsters
+
+
+### Quests
+
+Marking Tempered, Arch-Tempered, Extreme Behemoth and Ancient Leshen Quests.
+
+#### Optional
+
+|Quest | Notes |
+|:---|:---|
+| 9★ A Summons from Below            | `tempered-vaal-hazak` + `tempered-odogaron` |
+| 9★ New World Sky, New World Flower | `tempered-pink-rathian` + `tempered-azure-rathalos` |
+| 9★ Showdown: the Muck and the Maul | `tempered-barroth` + `tempered-radobaan` |
+| 9★ The Sapphire Star's Guidance    | `tempered-kushala-daora` + `tempered-teostra` + `tempered-nergigante` |
+
+The same?
+
+- Hellfire's Stronghold
+- The Fires of Hell Bite Deep
+
+The same?
+
+- The Winds of Wrath Bite Deep
+- Master of the Gale
+
+
+#### Challenge
+
+|Quest | Notes |
+|:---|:---|
+| 9★ Challenge Quest 1: Expert | Tempered Bazelgeuse + Tempered Uragaan |
+
+
+#### Event
+
+|Quest | Notes |
+|:---|:---|
+| | Arch-Tempered (...) |
+| 9★ A Visitor from Eorzea (Extreme) | Extreme Behemoth |
+| | Ancient Leshen |
+
+
+## Removed from `monsters.json`
+
+```
+"tempered-deviljho",
+"arch-tempered-kirin",
+"arch-tempered-vaal-hazak",
+"arch-tempered-teostra",
+"arch-tempered-kushala-daora",
+"arch-tempered-zorah-magdaros",
+"arch-tempered-xeno-jiiva",
+"arch-tempered-kulve-taroth",
+"arch-tempered-lunastra",
+"arch-tempered-nergigante",
+"extreme-behemoth",
+"ancient-leshen",
+```

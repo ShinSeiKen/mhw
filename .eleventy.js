@@ -27,19 +27,25 @@ module.exports = function(eleventyConfig) {
         return valueA.localeCompare(valueB);
     };
 
+    let byTimeAscending = (a, b) => {
+        let valueA = a.data.time;
+        let valueB = b.data.time;
+        return valueA.localeCompare(valueB);
+    };
+
     // Define collections
     eleventyConfig.addCollection("monsters"  , collection => collection.getFilteredByGlob("monsters/*.md"));
     eleventyConfig.addCollection("locations" , collection => collection.getFilteredByGlob("locations/*.md"));
     eleventyConfig.addCollection("weapons"   , collection => collection.getFilteredByGlob("weapons/*.md"));
-    eleventyConfig.addCollection("quests"    , collection => collection.getFilteredByGlob("quests/**/*.md"));
+    eleventyConfig.addCollection("quests"    , collection => collection.getFilteredByGlob("quests/**/*.md").sort(byTitleAlphabetically));
     eleventyConfig.addCollection("runs"      , collection => collection.getFilteredByGlob("runs/**/*.md").reverse());
     eleventyConfig.addCollection("runners"   , collection => collection.getFilteredByGlob("runners/*.md").sort(byTitleAlphabetically));
 
     // Define sub-collections for quests
-    eleventyConfig.addCollection("quests__arena"     , collection => collection.getFilteredByGlob("quests/arena-quest/*.md"));
-    eleventyConfig.addCollection("quests__challenge" , collection => collection.getFilteredByGlob("quests/challenge-quest/*.md"));
-    eleventyConfig.addCollection("quests__event"     , collection => collection.getFilteredByGlob("quests/event-quest/*.md"));
-    eleventyConfig.addCollection("quests__optional"  , collection => collection.getFilteredByGlob("quests/optional-quest/*.md"));
+    eleventyConfig.addCollection("quests__arena"     , collection => collection.getFilteredByGlob("quests/arena-quest/*.md").sort(byTitleAlphabetically));
+    eleventyConfig.addCollection("quests__challenge" , collection => collection.getFilteredByGlob("quests/challenge-quest/*.md").sort(byTitleAlphabetically));
+    eleventyConfig.addCollection("quests__event"     , collection => collection.getFilteredByGlob("quests/event-quest/*.md").sort(byTitleAlphabetically));
+    eleventyConfig.addCollection("quests__optional"  , collection => collection.getFilteredByGlob("quests/optional-quest/*.md").sort(byTitleAlphabetically));
 
     // Define a lookup table for accessing content via type and (unique) slugs
     eleventyConfig.addCollection("lookup", collection => {
@@ -74,7 +80,7 @@ module.exports = function(eleventyConfig) {
                 result[location].push(item);
             }
         });
-        return result;
+        return result.sort(byTitleAlphabetically);
     });
 
     eleventyConfig.addCollection("quests__by_monster", collection => {
@@ -89,7 +95,7 @@ module.exports = function(eleventyConfig) {
                 });
             }
         });
-        return result;
+        return result.sort(byTitleAlphabetically);
     });
 
     // locations__by_monster (via quest)
@@ -145,7 +151,7 @@ module.exports = function(eleventyConfig) {
                 result[quest].push(item);
             }
         });
-        return result;
+        return result.sort(byTimeAscending);
     });
 
     eleventyConfig.addCollection("runs__by_monster", collection => {
@@ -281,6 +287,13 @@ module.exports = function(eleventyConfig) {
         "arena-style"   : "Arena-style",
         "restricted"    : "Restricted",
         "ta-wiki-rules" : "TA Wiki Rules",
+
+        // Quest Types:
+        "optional-quest"  : "Optional Quest",
+        "arena-quest"     : "Arena Quest",
+        "challenge-quest" : "Challenge Quest",
+        "event-quest"     : "Event Quest",
+
 
         // Misc:
         "foo" : "bar"

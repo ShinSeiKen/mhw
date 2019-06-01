@@ -2,6 +2,8 @@
 title: 7★ A Fiery Convergence
 quest_type: optional-quest
 difficulty: 7★
-location: ancient-forest
-monsters: []
+location: elders-recess
+monsters:
+    - lavasioth
+    - uragaan
 ---

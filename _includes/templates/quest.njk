@@ -11,7 +11,9 @@ layout: layouts/base.njk
     {{ content | safe }}
 
     <dl>
-        <dt>Monster(s)</dt>
+        <dt>Quest Type</dt>
+        <dd>{{ quest_type | label }}</dd>
+        <dt>Monster{% if monsters | length > 1 %}s{% endif %}</dt>
         <dd>
             {% for item in monsters %}
                 {% set temp = collections.lookup.monster[item] %}

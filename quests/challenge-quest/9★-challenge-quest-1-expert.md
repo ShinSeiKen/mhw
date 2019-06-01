@@ -4,7 +4,8 @@ quest_type: challenge-quest
 difficulty: 9★
 location: arena
 monsters:
-    - tempered-bazelgeuse
-    - tempered-uragaan
+    - bazelgeuse
+    - uragaan
+    # - tempered-bazelgeuse
+    # - tempered-uragaan
 ---
-

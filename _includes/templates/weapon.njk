@@ -21,8 +21,26 @@ layout: layouts/base.njk
 <hr>
 
 <c span=4>
+    <h2>Runners</h2>
+    {# <p>List of notable speedrunners using this weapon.</p> #}
+    {% if collections.runners__by_weapon[page.fileSlug] %}
+        <ul class="compact">
+            {% for item in collections.runners__by_weapon[page.fileSlug] %}
+                <li>
+                    <a href="{{ item.url | url }}">
+                        {{- item.data.title -}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No runners found!</p>
+    {% endif %}
+</c>
+
+<c span=4>
     <h2>Runs</h2>
-    <p>List of the most recent speedruns using this weapon.</p>
+    {# <p>List of the most recent speedruns using this weapon.</p> #}
     {#
     {% for item in collections.run__by_weapon[page.fileSlug] %}
         {% if loop.index0 < 10 %}
@@ -42,27 +60,11 @@ layout: layouts/base.njk
     #}
 </c>
 
-<c span=4>
-    <h2>Runners</h2>
-    <p>List of notable speedrunners using this weapon.</p>
-    {% if collections.runners__by_weapon[page.fileSlug] %}
-        <ul class="compact">
-            {% for item in collections.runners__by_weapon[page.fileSlug] %}
-                <li>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No runners found!</p>
-    {% endif %}
-</c>
-
+{#
 <c span=4>
     <h2>Fluff</h2>
     <p>Tips, tricks, sets/builds, tutorials.</p>
 </c>
+#}
 
 </grid>

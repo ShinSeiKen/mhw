@@ -1,3 +1,62 @@
+/** -- fluffiness -- */
+/*
+.weapon--great-sword main .inner { background: url('/assets/img/weapon-character/great-sword.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--long-sword main .inner { background: url('/assets/img/weapon-character/long-sword.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--sword-and-shield main .inner { background: url('/assets/img/weapon-character/sword-and-shield.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--dual-blades main .inner { background: url('/assets/img/weapon-character/dual-blades.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--hammer main .inner { background: url('/assets/img/weapon-character/hammer.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--hunting-horn main .inner { background: url('/assets/img/weapon-character/hunting-horn.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--lance main .inner { background: url('/assets/img/weapon-character/lance.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--gunlance main .inner { background: url('/assets/img/weapon-character/gunlance.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--switch-axe main .inner { background: url('/assets/img/weapon-character/switch-axe.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--charge-blade main .inner { background: url('/assets/img/weapon-character/charge-blade.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--insect-glaive main .inner { background: url('/assets/img/weapon-character/insect-glaive.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--bow main .inner { background: url('/assets/img/weapon-character/bow.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--light-bowgun main .inner { background: url('/assets/img/weapon-character/light-bowgun.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+.weapon--heavy-bowgun main .inner { background: url('/assets/img/weapon-character/heavy-bowgun.webp') no-repeat bottom right; padding-bottom: calc(var(--lineHeight)*10); }
+/**/
+/** /
+.monster--great-jagras main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/great-jagras.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--kulu-ya-ku main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/kulu-ya-ku.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--pukei-pukei main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/pukei-pukei.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--jyuratodus main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/jyuratodus.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--barroth main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/barroth.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--tobi-kadachi main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/tobi-kadachi.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--anjanath main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/anjanath.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--rathian main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/rathian.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--tzitzi-ya-ku main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/tzitzi-ya-ku.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--paolumu main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/paolumu.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--great-girros main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/great-girros.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--radobaan main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/radobaan.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--legiana main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/legiana.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--odogaron main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/odogaron.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--rathalos main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/rathalos.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--diablos main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/diablos.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--zorah-magdaros main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/zorah-magdaros.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--dodogama main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/dodogama.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--lavasioth main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/lavasioth.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--uragaan main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/uragaan.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--azure-rathalos main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/azure-rathalos.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--bazelgeuse main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/bazelgeuse.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--black-diablos main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/black-diablos.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--kirin main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/XXX.kirin') no-repeat bottom right; pbackground-size: 30%; adding-bottom: calc(var(--lineHeight)*10); }
+.monster--nergigante main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/nergigante.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--teostra main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/teostra.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--kushala-daora main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/kushala-daora.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--deviljho main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/deviljho.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--pink-rathian main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/pink-rathian.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--vaal-hazak main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/vaal-hazak.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--xeno-jiiva main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/xeno-jiiva.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--kulve-taroth main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/kulve-taroth.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--lunastra main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/lunastra.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--behemoth main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/behemoth.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--leshen main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/leshen.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--banbaro main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/banbaro.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--beotodus main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/beotodus.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--nargacuga main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/nargacuga.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+.monster--velkhana main { background-blend-mode: darken; background: #EEE url('/assets/img/monster/velkhana.jpg') no-repeat bottom right; background-size: 30%; padding-bottom: calc(var(--lineHeight)*10); }
+/**/
+
 :root {
     --foo: bar;
 }
@@ -9,7 +68,6 @@ html {
 body {
     padding-top: 0;
 }
-
 
 [hidden] {
     display: none;
@@ -152,7 +210,7 @@ dt {
 
 dd {
     margin-bottom: calc(var(--lineHeight) * 0.5);
-    text-indent: 1em;
+    margin-left: 1em;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

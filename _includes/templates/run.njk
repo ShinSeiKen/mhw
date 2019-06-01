@@ -28,7 +28,7 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
 </c>
 <c span=4>
 <dl>
-    <dt>Runner(s)</dt>
+    <dt>Runner{% if runners | length > 1 %}s{% endif %}</dt>
     <dd>
         {% for item in runners %}
             {% set temp = collections.lookup.runner[ item ] %}
@@ -36,7 +36,7 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
                 {{- temp.data.title -}}
             </a>
             {%- if not loop.last -%}
-            ,
+            <br>
             {% endif %}
         {% endfor %}
     </dd>
@@ -46,7 +46,7 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
             {{- _quest.data.title -}}
         </a>
     </dd>
-    <dt>Monster(s)</dt>
+    <dt>Monster{% if _quest.data.monsters | length > 1 %}s{% endif %}</dt>
     <dd>
         {% for item in _quest.data.monsters %}
             {% set temp = collections.lookup.monster[ item ] %}
@@ -54,7 +54,7 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
                 {{- temp.data.title -}}
             </a>
             {%- if not loop.last -%}
-            ,
+            <br>
             {% endif %}
         {% endfor %}
     </dd>
@@ -64,7 +64,7 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
             {{- _location.data.title -}}
         </a>
     </dd>
-    <dt>Weapon(s)</dt>
+    <dt>Weapon{% if runners | length > 1 %}s{% endif %}</dt>
     <dd>
         {% for item in weapons %}
             {% set temp = collections.lookup.weapon[ item ] %}
@@ -72,7 +72,7 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
                 {{- temp.data.title -}}
             </a>
             {%- if not loop.last -%}
-            ,
+            <br>
             {% endif %}
         {% endfor %}
     </dd>
