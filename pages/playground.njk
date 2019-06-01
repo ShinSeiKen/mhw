@@ -72,6 +72,15 @@ title: Playground
     {% endfor %}
 </div>
 
+<div >
+    {% for item in weapons %}
+        <img
+            src="/assets/img/weapon-icon-2/{{ item | slug }}.png"
+            height="40px"
+            width="40px"
+            style="display:inline-block; border: 1px solid black; padding: 5px; background-color: black;" />
+    {% endfor %}
+</div>
 
 
 <h1>Achievements</h2>

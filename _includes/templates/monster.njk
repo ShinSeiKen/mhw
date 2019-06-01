@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
+{% set quests = collections.quests__by_monster[page.fileSlug] %}
 
 <grid columns=12 columns-s=4>
 
@@ -44,18 +45,18 @@ layout: layouts/base.njk
     </ul>
 </c>
 #}
-
-<c span=6>
-    <h2>Quests</h2>
-    <ul class="compact">
-        {% for item in collections.quests__by_monster[page.fileSlug] %}
-            <li>
-                <a href="{{ item.url }}">
-                    {{- item.data.title -}}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-</c>
-
+    {% if quests | length %}
+        <c span=6>
+            <h2>Quests</h2>
+            <ul class="compact">
+                {% for item in quests %}
+                    <li>
+                        <a href="{{ item.url }}">
+                            {{- item.data.title -}}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </c>
+    {% endif %}
 </grid>

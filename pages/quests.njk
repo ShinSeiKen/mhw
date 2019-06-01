@@ -36,7 +36,7 @@ title: Quests
     <c span=6>
         <h2>Arena Quests</h2>
         <ul class="compact">
-            {% for item in collections.quests__arenaptional %}
+            {% for item in collections.quests__arena %}
                 <li
                     {% if page.url == item.url %} class="active"{% endif %}>
                     <a href="{{ item.url | url }}">
