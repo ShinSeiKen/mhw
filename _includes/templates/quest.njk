@@ -18,7 +18,7 @@ layout: layouts/base.njk
             {% for item in monsters %}
                 {% set temp = collections.lookup.monster[item] %}
                 <a href="{{ temp.url | url }}">{{ temp.data.title }}</a>
-                {% if not loop.last%},{% endif %}
+                {%- if not loop.last%},{% endif %}
             {% endfor %}
         </dd>
         <dt>Location<dt>

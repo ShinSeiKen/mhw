@@ -54,9 +54,19 @@ The same?
 
 |Quest | Notes |
 |:---|:---|
-| | Arch-Tempered (...) |
+| 9★ The Heralds of Destruction Cry | `arch-tempered-nergigante` |
+| 9★ The Fury of El Dorado | `arch-tempered-kulve-taroth` |
+| 9★ Like a Moth to the Flame | `arch-tempered-xeno-jiiva` |
+| 9★ Undying Alpenglow | `arch-tempered-zorah-magdaros` Location is officialy `everstream` |
+| 9★ When Blue Dust Surpasses Red Lust | `arch-tempered-lunastra` |
+| 9★ The Eye of the Storm | `arch-tempered-kushala-daora` |
+| 9★ The Scorn of the Sun | `arch-tempered-teostra` |
+| 9★ The Deathly Quiet Curtain | `arch-tempered-vaal-hazak` |
+| 9★ A Whisper of White Mane | `arch-tempered-kirin>` |
 | 9★ A Visitor from Eorzea (Extreme) | Extreme Behemoth |
 | | Ancient Leshen |
+
+Missing a bunch like Greatest Jagras, Thronetaker, etc.
 
 
 ## Removed from `monsters.json`
