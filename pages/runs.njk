@@ -3,4 +3,28 @@ layout: layouts/base.njk
 title: Runs
 ---
 
-WIP
+<grid>
+    <c>
+        <h1>{{ title }}</h1>
+
+        <ul class="compact">
+            {% for item in collections.runs %}
+                {% if loop.index0 < 99999 and item.data.runners | length === 1 %}
+                    {% set _runner = collections.lookup.runner[item.data.runners | first] %}
+                    {% set _weapon = collections.lookup.weapon[item.data.weapons | first ] %}
+                    {% set _quest  = collections.lookup.quest[item.data.quest] %}
+                    <li
+                        {% if page.url == item.url %} class="active"{% endif %}>
+                        <a href="{{ item.url | url }}">
+                            {#--- {{- item.data.title -}} ---#}
+                            <b>{{ _quest.data.title }}</b>
+                            by <b>{{ _runner.data.title }}</b>
+                            in <b>{{ item.data.time_in_millis | millisFormatted }}</b>
+                            with <b>{{ _weapon.data.title }}</b>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor  %}
+        </ul>
+    </c>
+</grid>

@@ -13,15 +13,8 @@ layout: layouts/base.njk
 </c>
 
 {% if video %}
-    <c span="row">
-        <iframe
-            width="560"
-            height="315"
-            src="{{ video }}"
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
+    <c span=8 span-s=4>
+        {% include "components/video.njk" %}
     </c>
 {% endif %}
 

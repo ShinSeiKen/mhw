@@ -1,30 +1,41 @@
 ---
 layout: layouts/base.njk
 ---
+{% set quests in collections.quests__by_location[page.fileSlug] %}
 
 <grid columns=12 columns-s=4>
 
-<c span="row">
-    <h1>{{ title }}</h1>
-    {{ content | safe }}
-</c>
+    <c span="row">
+        <h1>{{ title }}</h1>
+    </c>
+    <c span=6>
+        {{ content | safe }}
+    </c>
+    <c span=6>
+        {% if video %}
+            {% include 'components/video.njk'%}
+        {% endif %}
+    </c>
 
-<c span="row">
+    {% if quests | length %}
+        <c span="row">
+            <h2>Quests</h2>
+            <ul class="compact">
+                {% for item in  %}
+                    <li>
+                        <a href="{{ item.url | url }}">{{ item.data.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
 
-    <h2>Quests</h2>
-    <ul class="compact">
-        {% for item in collections.quests__by_location[ page.fileSlug ] %}
-            <li>
-                <a href="{{ item.url | url }}">{{ item.data.title }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+            {#
+            <h2>Monsters</h2>
+            <p>List of monsters that appear here.</p>
 
-    {#
-    <h2>Monsters</h2>
-    <p>List of monsters that appear here.</p>
+            <h2>Runs</h2>
+            <p>Showing runs by location is not that interesting</p>
+            #}
+        </c>
+    {% endif %}
 
-    <h2>Runs</h2>
-    <p>Showing runs by location is not that interesting</p>
-    #}
-</span>
+</grid>

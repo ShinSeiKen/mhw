@@ -20,18 +20,10 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
     {{ content | safe }}
 </c>
 <c span=8>
-    {% if video_type == 'youtube' %}
-        <iframe
-            width="560"
-            height="315"
-            src="{{ video }}"
-            frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-    {% elseif video_type == 'vimeo' %}
-        todo
-    {% elseif video_type == 'biliib' %}
+    {% if video_type in [ 'youtube', 'vimeo', 'bilibili' ] %}
+        {% include "components/video.njk" %}
+    {% else %}
+        {% include "components/video.njk" %}
     {% endif %}
 </c>
 <c span=4>
@@ -91,7 +83,9 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
     <dt>Patch</dt>
     <dd>{{ patch_version }}</dd>
     <dt>Date</dt>
-    <dd>{{ date }}</dd>
+    <dd>
+        <time datetime="{{ page.date | dateTimeISO }}">{{ page.date | dateOnly }}</time>
+    </dd>
     <dt>Time</dt>
     <dd>{{ time_in_millis | millisFormatted }}</dd>
 </dl>

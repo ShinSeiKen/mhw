@@ -2,7 +2,6 @@
     "site_name": "Monster Hunter World Leaderboards",
     "meta_description": "Unofficial Monster Hunter World Iceborne Leaderboards. For shits and giggles!",
     "menu": {
-        "/"           : "Home",
         "/runs/"      : "Runs",
         "/runners/"   : "Runners",
         "/quests/"    : "Quests",

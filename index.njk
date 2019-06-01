@@ -3,157 +3,28 @@ layout: layouts/base.njk
 ---
 
 <grid columns=12 columns-s=4>
-
-<c span=6 span-s=4>
-    <h2>Welcome Hunter!</h1>
-    <p>
-        This is the place to check out speedruns for <em>Monster Hunter World</em>, an action role-playing game developed and published by Capcom.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    </p>
-</c>
-
-<c span="row">
-    <h2>Locations</h2>
-</c>
-
-{% for item in collections.locations %}
-    <c span=3 span-s=4 span-l=2{% if page.url == item.url %} class="active"{% endif %}>
-        <img src="{{ '/assets/img/thumb.png' | url }}" width="100%" class="h-6 fill" style="height: 100%;" />
-        <a href="{{ item.url | url }}">
-            {{- item.data.title -}}
-        </a>
+    <c span=6 span-s=4>
+        <h2>Welcome Hunter!</h1>
+        <p>
+            This is the place to check out speedruns for <em>Monster Hunter World</em>, an action role-playing game developed and published by Capcom.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        </p>
     </c>
-{% endfor  %}
 
-<c span="row">
-    <h2>Weapons</h2>
-</c>
-
-{# --- "/assets/img/weapons/" ~ item.fileSlug ~ ".jpg" -- #}
-{% for item in collections.weapons %}
-    <c span=3 span-s=4 span-l=2{% if page.url == item.url %} class="active"{% endif %}>
-        <img src="{{ '/assets/img/thumb.png' | url }}" width="100%" class="h-6 fill" style="height: 100%;" />
-        <a href="{{ item.url | url }}">
-            {{- item.data.title -}}
-        </a>
+    {#
+    <c span="row">
+        <h2>Leaderboards</h2>
+        <p>Coming soon!</p>
     </c>
-{% endfor  %}
 
-<c span="row">
-    <h2>Monsters</h2>
-</c>
-
-{% for item in collections.monsters %}
-    <c span=3 span-s=4 span-l=2{% if page.url == item.url %} class="active"{% endif %}>
-        <img src="{{ '/assets/img/thumb.png' | url }}" width="100%" class="h-6 fill" style="height: 100%;" />
-        <a href="{{ item.url | url }}">
-            {{- item.data.title -}}
-        </a>
-    </c>
-{% endfor %}
-
-
-<hr>
-
-
-{# --- footer-ish, with limits --- #}
-<c span=4>
-    <h2>Locations</h2>
-    <ul class="compact">
-        {% for item in collections.locations %}
-            <li
-                {% if page.url == item.url %} class="active"{% endif %}>
-                <a href="{{ item.url | url }}">
-                    {{- item.data.title -}}
-                </a>
-            </li>
-        {% endfor  %}
-    </ul>
-</c>
-
-<c span=4>
-    <h2>Quests</h2>
-    <ul class="compact">
-        {% for item in collections.quests %}
-            {# -- quests are sub-divided per quest type -- #}
-            <li
-                {% if page.url == item.url %} class="active"{% endif %}>
-                <a href="{{ item.url | url }}">
-                    {{- item.data.title -}}
-                </a>
-            </li>
-        {% endfor  %}
-    </ul>
-</c>
-
-<c span=4>
-    <h2>Monsters</h2>
-    <ul class="compact">
-        {% for item in collections.monsters %}
-            {% if loop.index0 < 14 %}
-                <li
-                    {% if page.url == item.url %} class="active"{% endif %}>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
-                </li>
-            {% endif %}
-        {% endfor  %}
-    </ul>
-</c>
-
-<c span=4>
-    <h2>Weapons</h2>
-    <ul class="compact">
-        {% for item in collections.weapons %}
-            <li
-                {% if page.url == item.url %} class="active"{% endif %}>
-                <a href="{{ item.url | url }}">
-                    {{- item.data.title -}}
-                </a>
-            </li>
-        {% endfor  %}
-    </ul>
-</c>
-
-<c span=4>
-    <h2>Runners</h2>
-    <ul class="compact">
-        {% for item in collections.runners %}
-            {% if loop.index0 < 14 %}
-                <li
-                    {% if page.url == item.url %} class="active"{% endif %}>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
-                    {#
-                    {% for weapon in item.data.weapons %}
-                        <span class="weapon-icon weapon-icon-{{ weapon }}"></span>
-                    {% endfor %}
-                    #}
-                    {% if item.data.country %}
-                        <span class="flag-icon flag-icon-{{ item.data.country }}"></span>
-                    {% endif %}
-                </li>
-            {% endif %}
-        {% endfor  %}
-    </ul>
-</c>
-
-<c span=4>
-    <h2>Runs</h2>
-    <ul class="compact">
-        {% for item in collections.runs %}
-            {% if loop.index0 < 14 %}
-                <li
-                    {% if page.url == item.url %} class="active"{% endif %}>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
-                </li>
-            {% endif %}
-        {% endfor  %}
-    </ul>
-</c>
+    {% for item in collections.locations %}
+        <c span=3 span-s=4 span-l=2{% if page.url == item.url %} class="active"{% endif %}>
+            <img src="{{ '/assets/img/thumb.png' | url }}" width="100%" class="h-6 fill" style="height: 100%;" />
+            <a href="{{ item.url | url }}">
+                {{- item.data.title -}}
+            </a>
+        </c>
+    {% endfor %}
+    #}
 
 </grid>

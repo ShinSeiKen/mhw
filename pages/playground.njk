@@ -3,7 +3,6 @@ layout: layouts/base.njk
 title: Playground
 ---
 
-
 <h1>Heading 1</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut dolor varius magna tincidunt varius. Duis quis
     enim rutrum, venenatis metus lobortis, malesuada arcu. Suspendisse in leo eget ligula venenatis iaculis ac a
@@ -35,14 +34,15 @@ title: Playground
     nisl. Aenean lacus lacus, fringilla eu consectetur nec, facilisis ut velit. Lorem ipsum dolor sit amet,
     consectetur adipiscing elit. In hac habitasse platea dictumst.</p>
 
-<h1>Weapons</h1>
+<h1>Monsters</h1>
 <grid columns=3 columns-s=1>
-{% for item in [ 'Great Sword', 'Long Sword', 'Dual Blades', 'Sword and Shield', 'Hammer', 'Hunting Horn', 'Lance', 'Gunlance', 'Switch Axe', 'Charge Blade' ] %}
+{% for slug in monsters %}
+    {% set item = collections.lookup.monster[slug] %}
     <div class="card-wrap">
         <div class="card">
-            <div class="card-bg" data-image="/assets/img/weapon-teaser/{{ item | slug }}.jpg"></div>
+            <div class="card-bg" data-image="/assets/img/monster/{{ slug }}.jpg"></div>
             <div class="card-info">
-                <h2><a href="{{ ('/weapons/' ~ (item|slug)) | url }}">{{ item }}</a></h2>
+                <h2><a href="{{ item.url | url }}">{{ item.data.title }}</a></h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             </div>
         </div>
@@ -51,10 +51,25 @@ title: Playground
 </grid>
 
 <h1>Weapons</h1>
+<grid columns=3 columns-s=1>
+    {% for item in [ 'Great Sword', 'Long Sword', 'Dual Blades', 'Sword and Shield', 'Hammer', 'Hunting Horn', 'Lance', 'Gunlance', 'Switch Axe', 'Charge Blade' ] %}
+        <div class="card-wrap">
+            <div class="card">
+                <div class="card-bg" data-image="/assets/img/weapon-character-iceborne/{{ item | slug }}.jpg"></div>
+                <div class="card-info">
+                    <h2><a href="{{ ('/weapons/' ~ (item|slug)) | url }}">{{ item }}</a></h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</grid>
+
+<h1>Weapons</h1>
 <div>
-{% for item in weapons %}
-    <img src="/assets/img/weapon-icon/{{ item | slug }}.png" height="40px" width="40px" style="display:inline-block; border: 1px solid black; padding: 5px;" />
-{% endfor %}
+    {% for item in weapons %}
+        <img src="/assets/img/weapon-icon/{{ item | slug }}.png" height="40px" width="40px" style="display:inline-block; border: 1px solid black; padding: 5px;" />
+    {% endfor %}
 </div>
 
 

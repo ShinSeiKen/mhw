@@ -1,23 +1,28 @@
 ---
 title: My Posts
-layout: layouts/listing.njk
+layout: layouts/base.njk
 pagination:
     data: collections.post
-    size: 100
+    size: 1000
     alias: posts
     reverse: true
     # addAllPagesToCollections: true
-permalink: /posts/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html
+# permalink: /posts/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html
 ---
 
-<h1>Posts</h1>
-
-<ul>
-    {% for post in posts %}
-        <li>
-            <a href="{{ post.url | url }}">
-                {{- post.data.title -}}
-            </a>
-        </li>
-    {% endfor %}
-</ul>
+<grid>
+    <c>
+        <h1>Posts</h1>
+        <ul class="compact">
+            {% for post in posts %}
+                <li>
+                    <article>
+                            <h2>{{- post.data.title -}}</h2>
+                            <p>{{ post.data.teaser }}</P>
+                            <a href="{{ post.url | url }}">Read more<span class="visually-hidden"> about {{ post.data.title }}</span></a>
+                    </article>
+                </li>
+            {% endfor %}
+        </ul>
+    </c>
+</grid>

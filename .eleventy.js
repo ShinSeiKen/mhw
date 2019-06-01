@@ -209,11 +209,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("robots.txt");
     eleventyConfig.addPassthroughCopy("humans.txt");
 
-
     eleventyConfig.addPassthroughCopy("site.webmanifest");
-    // eleventyConfig.addPassthroughCopy("icon.png");
-    // eleventyConfig.addPassthroughCopy("tile.png");
-    // eleventyConfig.addPassthroughCopy("tile-wide.png");
     eleventyConfig.addPassthroughCopy("android-chrome-192x192.png");
     eleventyConfig.addPassthroughCopy("apple-touch-icon.png");
     eleventyConfig.addPassthroughCopy("browserconfig.xml");
@@ -223,15 +219,14 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("mstile-150x150.png");
     eleventyConfig.addPassthroughCopy("safari-pinned-tab.svg");
 
+    // -- todo: service worker
+
     // --------------------------------------------------------------------------------
     // Filters and Shortcodes
     //
     // - See: https://www.11ty.io/docs/filters/
     // - See: https://www.11ty.io/docs/shortcodes/
     // --------------------------------------------------------------------------------
-
-    eleventyConfig.addFilter("uppercase", value => value.toUpperCase());
-
     /**
      * Converts milliseconds to a Monster Hunter World timer, i.e.
      * 12'34"56
@@ -294,11 +289,15 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addFilter("label", value => labelLookup[value] ? labelLookup[value] : `UNKNOWN LABEL: [${value}]`);
 
 
-    eleventyConfig.addFilter("currentDateTimeISO", value => (new Date()).toISOString());
+    let pad = number => number < 10 ? '0' + number : number;
 
+    eleventyConfig.addFilter("dateTimeISO", date => date.toISOString());
+    eleventyConfig.addFilter("dateOnly", date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())}`);
+    eleventyConfig.addFilter("dateTime", date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`);
+
+    eleventyConfig.addFilter("currentDateTimeISO", value => (new Date()).toISOString());
     eleventyConfig.addFilter("currentDateTime", value => {
         let date = new Date();
-        let pad = number => number < 10 ? '0' + number : number;
 
         /*
         return date.toLocaleDateString('en-GB', {

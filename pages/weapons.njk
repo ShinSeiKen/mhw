@@ -3,4 +3,19 @@ layout: layouts/base.njk
 title: Weapons
 ---
 
-WIP
+<grid columns=12 columns-s=6>
+    <c span="row">
+        <h1>{{ title }}</h1>
+        <ul class="compact">
+            {% for slug in weapons %}
+                {% set item = collections.lookup.weapon[slug] %}
+                <li
+                    {% if page.url == item.url %} class="active"{% endif %}>
+                    <a href="{{ item.url | url }}">
+                        {{- item.data.title -}}
+                    </a>
+                </li>
+            {% endfor  %}
+        </ul>
+    </c>
+</grid>

@@ -94,10 +94,11 @@
 
             <c span="row">
                 <h2 class="visually-hidden">Support Links</h2>
-                <img src="/assets/img/achievement/conqueror-of-the-new-world.png" height="120px" width="120px" style="float: right;" alt="">
-                <ul class="compact" style="padding-left: 0; margin-bottom: unset;">
+                {# -- move to css because decorative, saves ink on printing OMEGALUL -- #}
+                <img src="/assets/img/achievement/conqueror-of-the-new-world.png" height="120px" width="120px" style="float: right; filter: grayscale(1);" alt="">
+                <ul class="footerlinks">
                     {% for url, label in general.footer %}
-                        <li{% if page.url == url %} class="active"{% endif %} style="display: inline-block; margin-right: 1em;">
+                        <li{% if page.url == url %} class="active"{% endif %}>
                             <a href="{{ url | url }}">
                                 {{- label -}}
                             </a>

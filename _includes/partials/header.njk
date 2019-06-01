@@ -13,15 +13,15 @@
         {% if page.url == '/' %}
             <h1>{{ general.site_name }}</h1>
         {% else %}
-            {{ general.site_name }}
+            <a href="/" class="sitename">{{ general.site_name }}</span></a>
         {% endif %}
     </div>
 </header>
 
 <nav>
     <div class="inner">
-        <button aria-expanded="false" aria-controls="main-menu">Menu</button>
-        <ul id="main-menu" class="compact" hidden>
+        {# <button aria-expanded="false" aria-controls="main-menu">Menu</button> #}
+        <ul id="main-menu" class="headerlinks" {# hidden #}>
             {% for url, label in general.menu %}
                 <li{% if page.url == url %} class="active"{% endif %}>
                     <a href="{{ url | url }}">
