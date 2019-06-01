@@ -1,0 +1,34 @@
+<a href="#content" class="skiplink">Skip to main content</a>
+
+{#
+<!--[if IE]>
+    <div class="inner">
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    </div>
+<![endif]-->
+#}
+
+<header>
+    <div class="inner">
+        {% if page.url == '/' %}
+            <h1>{{ general.site_name }}</h1>
+        {% else %}
+            {{ general.site_name }}
+        {% endif %}
+    </div>
+</header>
+
+<nav>
+    <div class="inner">
+        <button aria-expanded="false" aria-controls="main-menu">Menu</button>
+        <ul id="main-menu" class="compact" hidden>
+            {% for url, label in general.menu %}
+                <li{% if page.url == url %} class="active"{% endif %}>
+                    <a href="{{ url | url }}">
+                        {{- label -}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</nav>

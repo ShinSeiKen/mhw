@@ -16,7 +16,15 @@ layout: layouts/base.njk
 
 <c span=8>
     <h2>Runs</h2>
-    <p>List of all best runs per quest.</p>
+    <ul>
+    {% for item in collections.runs__by_runner[page.fileSlug] %}
+        <li>
+            <a href="{{ item.url | url }}">
+                {{- item.data.title -}}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
 
     <h2>Fluff</h2>
     <p>Leaderboard stats and achievements.</p>

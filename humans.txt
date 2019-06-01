@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    ShinSeiKen -- Developer -- https://github.com/shinseiken
+
+# THANKS
+
+    Capcom
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5, Eleventy, 11ty

@@ -1,0 +1,115 @@
+<footer>
+    <div class="inner">
+        <grid columns=12 columns-s=4>
+            <c span=4 span-s=4>
+                <h2>Leaderboards</h2>
+                <p>Coming soon</p>
+            </c>
+            <c span=4 span-s=4>
+                <h2>Locations</h2>
+                <ul class="compact">
+                    {% for slug in locations %}
+                        {% set item = collections.lookup.location[slug] %}
+                        <li
+                            {% if page.url == item.url %} class="active"{% endif %}>
+                            <a href="{{ item.url | url }}">
+                                {{- item.data.title -}}
+                            </a>
+                        </li>
+                    {% endfor  %}
+                </ul>
+            </c>
+            {#
+            <c span=4 span-s=4>
+                <h2>Quests</h2>
+                <ul class="compact">
+                    {% for item in collections.quests__event %}
+                        <li
+                            {% if page.url == item.url %} class="active"{% endif %}>
+                            <a href="{{ item.url | url }}">
+                                {{- item.data.title -}}
+                            </a>
+                        </li>
+                    {% endfor  %}
+                </ul>
+            </c>
+            #}
+            <c span=4 span-s=4>
+                <h2>Weapons</h2>
+                <ul class="compact">
+                    {% for slug in weapons %}
+                        {% set item = collections.lookup.weapon[slug] %}
+                        <li
+                            {% if page.url == item.url %} class="active"{% endif %}>
+                            <a href="{{ item.url | url }}">
+                                {{- item.data.title -}}
+                            </a>
+                        </li>
+                    {% endfor  %}
+                </ul>
+            </c>
+
+            {#
+            <c span="row">
+                <h2>Monsters</h2>
+            </c>
+
+            {% set batchSize = ((monsters | length) / 4) | round(0, 'ceil') %}
+            {% for slugs in monsters | batch(batchSize) %}
+                <c span=4 span-s=4>
+                    <ul class="compact">
+                        {% for slug in slugs %}
+                            {% set item = collections.lookup.monster[slug] %}
+                            <li
+                                {% if page.url == item.url %} class="active"{% endif %}>
+                                <a href="{{ item.url | url }}">
+                                    {{- item.data.title -}}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </c>
+            {% endfor %}
+            #}
+
+                {#
+                <ul class="compact">
+                    {% for slug in monsters %}
+                        {% set item = collections.lookup.monster[slug] %}
+                        <li
+                            {% if page.url == item.url %} class="active"{% endif %}>
+                            <a href="{{ item.url | url }}">
+                                {{- item.data.title -}}
+                            </a>
+                        </li>
+                    {% endfor  %}
+                </ul>
+                #}
+
+            {# --- todo: runners --- #}
+            {# --- todo: runs --- #}
+            {# --- todo: quests --- #}
+
+            <hr>
+
+            <c span="row">
+                <h2 class="visually-hidden">Support Links</h2>
+                <img src="/assets/img/achievement/conqueror-of-the-new-world.png" height="120px" width="120px" style="float: right;" alt="">
+                <ul class="compact" style="padding-left: 0; margin-bottom: unset;">
+                    {% for url, label in general.footer %}
+                        <li{% if page.url == url %} class="active"{% endif %} style="display: inline-block; margin-right: 1em;">
+                            <a href="{{ url | url }}">
+                                {{- label -}}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <p class="credits">
+                    <br>
+                    Made by <a href="https://github.com/shinseiken">ShinSeiKen</a>.<br>
+                    Last build: <time datetime="{{ 'now' | currentDateTimeISO }}">{{ 'now' | currentDateTime }}</time>
+                </p>
+            </c>
+        </grid>
+    </div>
+</footer>

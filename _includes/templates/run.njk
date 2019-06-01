@@ -84,10 +84,10 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
             {% endif %}
         {% endfor %}
     </dd>
-    <dt>Type</dt>
-    <dd>{{ run_type }}</dd>
+    <dt>Ruleset:</dt>
+    <dd>{{ run_type | label }}</dd>
     <dt>Platform</dt>
-    <dd>{{ platform }}</dd>
+    <dd>{{ platform | label }}</dd>
     <dt>Patch</dt>
     <dd>{{ patch_version }}</dd>
     <dt>Date</dt>

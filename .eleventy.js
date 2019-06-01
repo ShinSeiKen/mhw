@@ -206,6 +206,22 @@ module.exports = function(eleventyConfig) {
     // --------------------------------------------------------------------------------
 
     eleventyConfig.addPassthroughCopy("assets");
+    eleventyConfig.addPassthroughCopy("robots.txt");
+    eleventyConfig.addPassthroughCopy("humans.txt");
+
+
+    eleventyConfig.addPassthroughCopy("site.webmanifest");
+    // eleventyConfig.addPassthroughCopy("icon.png");
+    // eleventyConfig.addPassthroughCopy("tile.png");
+    // eleventyConfig.addPassthroughCopy("tile-wide.png");
+    eleventyConfig.addPassthroughCopy("android-chrome-192x192.png");
+    eleventyConfig.addPassthroughCopy("apple-touch-icon.png");
+    eleventyConfig.addPassthroughCopy("browserconfig.xml");
+    eleventyConfig.addPassthroughCopy("favicon.ico");
+    eleventyConfig.addPassthroughCopy("favicon-16x16.png");
+    eleventyConfig.addPassthroughCopy("favicon-32x32.png");
+    eleventyConfig.addPassthroughCopy("mstile-150x150.png");
+    eleventyConfig.addPassthroughCopy("safari-pinned-tab.svg");
 
     // --------------------------------------------------------------------------------
     // Filters and Shortcodes
@@ -257,20 +273,72 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addFilter("arrayAsPermalink", items => items.join('-') );
 
     /**
-     * Simple filter to find all items in a collection.
+     * Convert labels to proper text.
      */
-    eleventyConfig.addFilter("findAll", (collection, type, key, value) => {
+    let labelLookup = {
+        // Platforms:
+        "ps4"  : "PS4",
+        "xbox" : "XBOX",
+        "pc"   : "PC",
+
+        // Rulesets:
+        "freestyle"     : "Freestyle",
+        "arena-style"   : "Arena-style",
+        "restricted"    : "Restricted",
+        "ta-wiki-rules" : "TA Wiki Rules",
+
+        // Misc:
+        "foo" : "bar"
+    };
+
+    eleventyConfig.addFilter("label", value => labelLookup[value] ? labelLookup[value] : `UNKNOWN LABEL: [${value}]`);
+
+
+    eleventyConfig.addFilter("currentDateTimeISO", value => (new Date()).toISOString());
+
+    eleventyConfig.addFilter("currentDateTime", value => {
+        let date = new Date();
+        let pad = number => number < 10 ? '0' + number : number;
+
         /*
+        return date.toLocaleDateString('en-GB', {
+            hour12: false,
+            day: '2-digit',
+            year: 'numeric',
+            month: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            timeZoneName: 'long'
+        });
+        */
+
+        return `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`
+    });
+
+    /*
+    eleventyConfig.addFilter("findAll", (collection, type, key, value) => {
         setTimeout(function() {
             return collection.filter(item => (item.data.type == type && item.data[key] == value));
         }, 100);
-        //*/
         //console.log(key, value);
         // console.log(collection);
         // return collection.filter(item => (item.data.type == type && item.data[key] == value));
     });
+    //*/
 
     // --------------------------------------------------------------------------------
+    // Transforms
+    // --------------------------------------------------------------------------------
+    const pretty = require("pretty");
+
+    eleventyConfig.addTransform("pretty", function(content, outputPath) {
+        if( outputPath.endsWith(".html") ) {
+            return pretty(content, {ocd: true});
+        }
+
+        return content;
+    });
 
     return {
         passthroughFileCopy: true

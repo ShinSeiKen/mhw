@@ -11,48 +11,44 @@
             <title>{{ title }} | {{ general.site_name }}</title>
         {% endif %}
 
+        {# --- https://realfavicongenerator.net/ --- #}
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#333333">
+        <link rel="shortcut icon" href="/favicon.ico">
+        <meta name="msapplication-TileColor" content="#eeeeee">
+        <meta name="theme-color" content="#eeeeee">
+
+
         <!-- example, need to concatenate and minify later... -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css" />
         <link rel="stylesheet" href="{{ '/assets/style/raster.css' | url }}" />
-        <style>
-        html, body {
-            background-color: #EEE;        }
-        </style>
+        <link rel="stylesheet" href="{{ '/assets/style/main.css' | url }}" />
     </head>
-    <body class="show-base-grid-- {{ type }}--{{ page.fileSlug }}">
-        {% if page.url == '/' %}
-            <header>
-                <h1>{{ general.site_name }}</h1>
-            </header>
-        {% else %}
-            <header>
-                {{ general.site_name }}
-            </header>
-        {% endif %}
-        <nav>
-            <ul class="compact">
-                {% for url, label in general.menu %}
-                    <li{% if page.url == url %} class="active"{% endif %}>
-                        <a href="{{ url | url }}">
-                            {{- label -}}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </nav>
-        {{ content | safe }}
-        <footer>
-            <nav>
-                <ul class="compact">
-                {% for url, label in general.footer %}
-                    <li{% if page.url == url %} class="active"{% endif %}>
-                        <a href="{{ url | url }}">
-                            {{- label -}}
-                        </a>
-                    </li>
-                {% endfor %}
-                </ul>
-            </nav>
-        </footer>
+    <body class="--show-base-grid --debug {{ type }}--{{ page.fileSlug }}">
+
+        {% include "./partials/header.njk" %}
+
+        <main id="content"role="main">
+            <div class="inner">
+                {{ content | safe }}
+            </div>
+        </main>
+
+        {% include "./partials/footer.njk" %}
+
+        <script src="{{ '/assets/script/main.js' | url }}"></script>
+        {#
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+            ga('create', 'UA-XXXXX-Y', 'auto'); ga('set','transport','beacon'); ga('send', 'pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+        #}
+
     </body>
 </html>

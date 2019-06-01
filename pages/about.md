@@ -1,5 +1,6 @@
 ---
 layout: layouts/base.njk
+title: About
 ---
 
-{{ content | safe }}
+This is a concept.
