@@ -80,7 +80,7 @@ module.exports = function(eleventyConfig) {
                 result[location].push(item);
             }
         });
-        return result.sort(byTitleAlphabetically);
+        return result;
     });
 
     eleventyConfig.addCollection("quests__by_monster", collection => {
@@ -95,11 +95,68 @@ module.exports = function(eleventyConfig) {
                 });
             }
         });
-        return result.sort(byTitleAlphabetically);
+
+        // todo: sort every sub-array by title?
+
+        return result;
     });
 
-    // locations__by_monster (via quest)
-    // monsters__by_location (via quest)
+    // --------------------------------------------------------------------------------
+    // Collections -- Locations <-> Quest <-> Monster
+    // --------------------------------------------------------------------------------
+
+    eleventyConfig.addCollection("locations__by_monster", collection => {
+        let result    = [];
+        let monsters  = [];
+        let locations = [];
+
+        collection.getAll().forEach(item => {
+            if (item.data.type == 'quest') {
+                item.data.monsters.forEach(monster => {
+                    if (! monsters[monster]) {
+                        monsters[monster] = new Set();
+                    }
+                    monsters[monster].add(item.data.location);
+                });
+            }
+            else if (item.data.type == 'location') {
+                locations[item.fileSlug] = item;
+            }
+        });
+
+        Object.keys(monsters).forEach(slug => {
+            let locationSlugs = monsters[slug];
+            result[slug] = [...locationSlugs].map(locationSlug => locations[locationSlug]);
+        });
+
+        return result;
+    });
+
+    eleventyConfig.addCollection("monsters__by_location", collection => {
+        let result    = [];
+        let monsters  = [];
+        let locations = [];
+
+        collection.getAll().forEach(item => {
+            if (item.data.type == 'quest') {
+                if (! locations[item.data.location]) {
+                    locations[item.data.location] = new Set();
+                }
+                item.data.monsters.forEach(monsterSlug => locations[item.data.location].add(monsterSlug))
+
+            }
+            else if (item.data.type == 'monster') {
+                monsters[item.fileSlug] = item;
+            }
+        });
+
+        Object.keys(locations).forEach(slug => {
+            let monsterSlugs = locations[slug];
+            result[slug] = [...monsterSlugs].map(monsterSlug => monsters[monsterSlug]);
+        });
+
+        return result;
+    });
 
     // quest__by_difficulty, as default sorting would be OK!
     // quest__by_quest_type
@@ -275,6 +332,7 @@ module.exports = function(eleventyConfig) {
 
     /**
      * Convert labels to proper text.
+     * todo: Move to external file.
      */
     let labelLookup = {
         // Platforms:
@@ -293,6 +351,7 @@ module.exports = function(eleventyConfig) {
         "arena-quest"     : "Arena Quest",
         "challenge-quest" : "Challenge Quest",
         "event-quest"     : "Event Quest",
+        "special-quest"   : "Special Quest",
 
 
         // Misc:
@@ -351,6 +410,9 @@ module.exports = function(eleventyConfig) {
 
         return content;
     });
+
+    // todo: css
+    // todo: js
 
     return {
         passthroughFileCopy: true

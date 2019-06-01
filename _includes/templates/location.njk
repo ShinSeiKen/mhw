@@ -10,6 +10,15 @@ layout: layouts/base.njk
     </c>
     <c span=6>
         {{ content | safe }}
+        <dl>
+            <dt>Monsters<dt>
+            <dd>
+                {% for item in collections.monsters__by_location[page.fileSlug] %}
+                    <a href="{{ item.url | url }}">{{- item.data.title -}}</a>
+                    {%- if not loop.last %}, {% endif %}
+                {% endfor %}
+            </dd>
+        </dl>
     </c>
     <c span=6>
         {% if video %}
