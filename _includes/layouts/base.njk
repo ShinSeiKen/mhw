@@ -5,11 +5,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="{{ general.meta_description }}"/>
 
-        {% if page.url == '/' %}
-            <title>{{ general.site_name }}</title>
-        {% else %}
-            <title>{{ title }} | {{ general.site_name }}</title>
-        {% endif %}
+        {% block title %}
+            {% if page.url == '/' %}
+                <title>{{ general.site_name }}</title>
+            {% elseif type == 'run' %}
+                <title>{% include "components/run-title.njk" %} | {{ general.site_name }}</title>
+            {% else %}
+                <title>{{ title }} | {{ general.site_name }}</title>
+            {% endif %}
+        {% endblock title %}
 
         {# --- https://realfavicongenerator.net/ --- #}
         <link rel="manifest" href="/site.webmanifest">

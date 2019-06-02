@@ -6,16 +6,9 @@ permalink: "/runs/{% if title %}{{ title | slug }}{% else %}{{ quest }}{% endif 
 {% set _runner   = collections.lookup.runner[ runners | first ] %}
 {% set _quest    = collections.lookup.quest[ quest ] %}
 {% set _location = collections.lookup.location[ _quest.data.location ] %}
-
 <grid columns=12 columns-s=4>
 <c span="row">
-    <h1>
-        {{ _quest.data.title }}
-        by {{ _runner.data.title }}
-        {% if runners | length > 1 %}
-            et al.
-        {% endif %}
-    </h1>
+    <h1>{% include "components/run-title.njk" %}</h1>
 
     {{ content | safe }}
 </c>
