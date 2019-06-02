@@ -11,9 +11,9 @@ Parameters:
     <b>{{ run.data.time -}}</b>
 </a>
 by
-{% for runner in run.data.runners %}
-    {% set runner = collections.lookup.runner[ runner ] %}
-        {% include "components/links/runner-link.njk" %}
+{%- for runner in run.data.runners %}
+    {%- set runner = collections.lookup.runner[ runner ] %}
+    {%- include "components/links/runner-link.njk" %}
     {%- if not loop.last %}, {% endif %}
 {% endfor %}
 using

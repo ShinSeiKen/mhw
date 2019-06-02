@@ -200,11 +200,12 @@ module.exports = function(eleventyConfig) {
         let result = [];
         collection.getAll().forEach(item => {
             if (item.data.type == 'run'/* && item.data.runners.length == 1*/) {
-                let runner = item.data.runners[0];
-                if (! result[runner]) {
-                    result[runner] = [];
-                }
-                result[runner].push(item);
+                item.data.runners.forEach(runner => {
+                    if (! result[runner]) {
+                        result[runner] = [];
+                    }
+                    result[runner].push(item);
+                });
             }
         });
         return result;

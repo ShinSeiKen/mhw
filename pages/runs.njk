@@ -2,19 +2,33 @@
 layout: layouts/base.njk
 title: Runs
 ---
-
+{% set count = 0 %}
 <grid>
     <c span="row">
         <h1>{{ title }}</h1>
-
         <ul class="compact">
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 1 %}
+                    {% set count = count + 1 %}
                     <li>{% include "components/links/run-link.njk" %}</li>
                 {% endif %}
             {% endfor  %}
         </ul>
     </c>
+
+    {% if count < collections.runs | length %}
+    <c span="row">
+        <h2>Multiplayer</h2>
+        <ul class="compact">
+            {% for run in collections.runs %}
+                {% if loop.index0 < 99999 and run.data.runners | length > 1 %}
+                    <li>{% include "components/links/run-link.njk" %}</li>
+                {% endif %}
+            {% endfor  %}
+        </ul>
+    </c>
+    {% endif %}
+
     {#
     <c>
         <h2>2P Runs</h2>
