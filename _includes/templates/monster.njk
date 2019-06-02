@@ -22,12 +22,27 @@ layout: layouts/base.njk
             </dd>
         {% endif %}
     </dl>
+    {% if quests | length %}
+        <h2>Quests</h2>
+        <ul class="compact">
+            {% for item in quests %}
+                <li>
+                    <a href="{{ item.url }}">
+                        {{- item.data.title -}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </c>
+
 <c span=6>
     {% if video %}
         {% include 'components/video.njk'%}
     {% endif %}
 </c>
+
+
 
 {#
 <p>List of quests that have this monster, with the best or most recent speedrun of above mentioned quests.</p>
@@ -48,20 +63,4 @@ layout: layouts/base.njk
     </ul>
 </c>
 #}
-    {% if quests | length %}
-        <hr>
-
-        <c span=6>
-            <h2>Quests</h2>
-            <ul class="compact">
-                {% for item in quests %}
-                    <li>
-                        <a href="{{ item.url }}">
-                            {{- item.data.title -}}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </c>
-    {% endif %}
 </grid>

@@ -1,6 +1,6 @@
 ---
 title: Hoarfrost Reach
-video: https://www.youtube.com/embed/dHVskGG41HU?autoplay=1
+video: https://www.youtube.com/embed/dHVskGG41HU
 ---
 
 A cold, inhospitable region, covered in snow and ice. It may look inhospitable, but it's teeming with unique endemic life.

@@ -23,7 +23,7 @@
         {# <button aria-expanded="false" aria-controls="main-menu">Menu</button> #}
         <ul id="main-menu" class="headerlinks" {# hidden #}>
             {% for url, label in general.menu %}
-                <li{% if page.url == url %} class="active"{% endif %}>
+                <li{% if page.url == url or (general.parent[ type ] is defined and url == general.parent[ type ].url) %} class="active"{% endif %}>
                     <a href="{{ url | url }}">
                         {{- label -}}
                     </a>

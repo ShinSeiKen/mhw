@@ -195,7 +195,7 @@ footer ul {
 }
 
 .breadcrumb ol>li + li:before {
-    content: '»';
+    content: '⟶';
     margin-right: 0.5em;
     margin-left: 0.5em;
 }
