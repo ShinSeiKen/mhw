@@ -265,6 +265,222 @@ module.exports = function(eleventyConfig) {
     });
 
     // --------------------------------------------------------------------------------
+    // Collections: Leaderboards
+    // --------------------------------------------------------------------------------
+
+    /**
+     * Track single-player leaderboards only!
+     */
+    eleventyConfig.addCollection('xxx', collection => {
+        let all = collection.getAll();
+
+        // lookup
+        let runners = [];
+        let runs    = [];
+        let quests  = [];
+        let weapons = [];
+
+        // leaderboard data
+        let top_runs__by_quest = [];
+        let top_runs__by_weapon__by_quest  = [];
+        let top_runs__by_runner__by_weapon = [];
+        let top_runs__by_runner = [];
+        let top_runners = [];
+        let top_runners_flat = [];
+
+        all.forEach(item => {
+
+            // (1) Collect all items for lookup first
+            switch (item.data.type) {
+                case 'runner':
+                    runners[item.fileSlug] = item;
+                    break;
+                case 'run':
+                    // Only count runs that have one runner, and a single weapon
+                    if (item.data.runners.length == 1 && item.data.weapons.length == 1) {
+                        runs[item.fileSlug] = item;
+                    }
+                    break;
+                case 'quest':
+                    /*
+                    // todo: don't count all quests, or do we?
+                    if (item.data.track_for_leaderboards == 1) {
+                        quests[item.fileSlug] = item;
+                    }
+                    //*/
+                    quests[item.fileSlug] = item;
+                    break;
+                case 'weapon':
+                    weapons[item.fileSlug] = item;
+                    break;
+            }
+
+        });
+
+        // (2) Prepare relationships between runs and quests
+        all.forEach(item => {
+            if (item.data.type == 'run') {
+                let quest = item.data.quest;
+                // Check if the quest the run belongs to is eligible
+                if (quests[quest]) {
+                    if (! top_runs__by_quest[quest]) {
+                        top_runs__by_quest[quest] = [];
+                    }
+                    top_runs__by_quest[quest].push(item);
+                }
+            }
+        });
+
+        // (3) Group runs per weapon per quest
+        Object.keys(top_runs__by_quest).forEach(questSlug => {
+            let runs = top_runs__by_quest[questSlug].sort(byTimeAscending);
+            top_runs__by_weapon__by_quest[questSlug] = [];
+
+            runs.forEach(run => {
+                let weaponSlug = run.data.weapons[0];
+                if (! top_runs__by_weapon__by_quest[questSlug][weaponSlug]) {
+                    top_runs__by_weapon__by_quest[questSlug][weaponSlug] = [];
+                }
+                top_runs__by_weapon__by_quest[questSlug][weaponSlug].push(run);
+            });
+        });
+
+        // AAA top_runs__by_weapon__by_quest
+
+        // (4) Group ranked runs (trophies) per runner per weapon
+        Object.keys(top_runs__by_weapon__by_quest).forEach(questSlug => {
+            let weapons = top_runs__by_weapon__by_quest[questSlug];
+            Object.keys(weapons).forEach(weaponSlug => {
+                let runs = weapons[weaponSlug];
+
+                if (! top_runs__by_runner__by_weapon[weaponSlug]) {
+                    top_runs__by_runner__by_weapon[weaponSlug] = [];
+                }
+                runs.forEach((run, index) => {
+                    let runner = run.data.runners[0];
+
+                    if (! top_runs__by_runner__by_weapon[weaponSlug][runner]) {
+                        top_runs__by_runner__by_weapon[weaponSlug][runner] = []
+                    }
+                    top_runs__by_runner__by_weapon[weaponSlug][runner].push({
+                        // This is a trophy
+                        rank: index + 1,
+                        run: run,
+                        quest: quests[questSlug]
+                    });
+                })
+            });
+        });
+
+        // BBB: top_runs__by_runner__by_weapon
+
+        // (5) Group ranked runs (trophies) per runner
+        Object.keys(top_runs__by_runner__by_weapon).forEach(weaponSlug => {
+            let runners = top_runs__by_runner__by_weapon[weaponSlug];
+
+            Object.keys(runners).forEach(runnerSlug => {
+                let trophies = runners[runnerSlug];
+                trophies.forEach(trophy => {
+                    if (! top_runs__by_runner[runnerSlug]) {
+                        top_runs__by_runner[runnerSlug] = [];
+                    }
+                    top_runs__by_runner[runnerSlug].push(trophy);
+                });
+            });
+        });
+
+        // CCC: top_runs__by_runner
+
+        // (6) Calculate overall score
+        // For now, count the number of gold trophies
+        Object.keys(top_runs__by_runner).forEach(runnerSlug => {
+            let trophies = top_runs__by_runner[runnerSlug];
+            let gold   = 0;
+            let silver = 0;
+            let bronze = 0;
+
+            trophies.forEach(trophy => {
+                switch (trophy.rank) {
+                    case 1:
+                        gold++;
+                        break;
+                    case 2:
+                        silver++;
+                        break;
+                    case 3:
+                        bronze++;
+                        break;
+                }
+            });
+
+            top_runners[runnerSlug] = [];
+            top_runners[runnerSlug].push({
+                gold: gold,
+                silver: silver,
+                bronze: bronze,
+                trophies: trophies
+            });
+            top_runners_flat.push({
+                runner: runners[runnerSlug],
+                gold: gold,
+                silver: silver,
+                bronze: bronze,
+                trophies: trophies
+            });
+
+            // TEST WITH SOME RANDOM VALUES
+            /*
+            top_runners_flat.push({
+                runner: runners[runnerSlug],
+                gold: gold + 1,
+                silver: silver,
+                bronze: bronze,
+                trophies: trophies
+            });
+            top_runners_flat.push({
+                runner: runners[runnerSlug],
+                gold: gold,
+                silver: silver + 1,
+                bronze: bronze,
+                trophies: trophies
+            });
+            top_runners_flat.push({
+                runner: runners[runnerSlug],
+                gold: gold,
+                silver: silver,
+                bronze: bronze + 3,
+                trophies: trophies
+            });
+            top_runners_flat.push({
+                runner: runners[runnerSlug],
+                gold: gold,
+                silver: silver + 1,
+                bronze: bronze + 1,
+                trophies: trophies
+            });
+            //*/
+
+        });
+
+// console.log(top_runners);
+        // DDD: top_runners // doesn't work when looping :/
+        // DDD: top_runners_flat
+
+        return top_runners_flat.sort((a, b) => {
+            if (a.gold === b.gold && a.silver === b.silver && a.bronze === b.bronze) {
+                return 0;
+            }
+            if (a.gold === b.gold && a.silver === b.silver) {
+                return b.bronze - a.bronze;
+            }
+            if (a.gold === b.gold) {
+                return b.silver - a.silver;
+            }
+            return b.gold - a.gold;
+        });
+    });
+
+    // --------------------------------------------------------------------------------
     // Assets
     // --------------------------------------------------------------------------------
 
@@ -411,8 +627,8 @@ module.exports = function(eleventyConfig) {
         return content;
     });
 
-    // todo: css
-    // todo: js
+    // todo: minify css
+    // todo: minify js
 
     return {
         passthroughFileCopy: true

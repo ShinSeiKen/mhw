@@ -2,6 +2,7 @@
 layout: layouts/base.njk
 ---
 {% set quests = collections.quests__by_monster[page.fileSlug] %}
+{% set locations = collections.locations__by_monster[page.fileSlug] %}
 
 <grid columns=12 columns-s=4>
 
@@ -11,13 +12,15 @@ layout: layouts/base.njk
 <c span=6>
     {{ content | safe }}
     <dl>
-        <dt>Locations<dt>
-        <dd>
-            {% for item in collections.locations__by_monster[page.fileSlug] %}
-                <a href="{{ item.url | url }}">{{- item.data.title -}}</a>
-                {%- if not loop.last %}, {% endif %}
-            {% endfor %}
-        </dd>
+        {% if locations | length %}
+            <dt>Locations<dt>
+            <dd>
+                {% for item in locations %}
+                    <a href="{{ item.url | url }}">{{- item.data.title -}}</a>
+                    {%- if not loop.last %}, {% endif %}
+                {% endfor %}
+            </dd>
+        {% endif %}
     </dl>
 </c>
 <c span=6>
@@ -27,12 +30,11 @@ layout: layouts/base.njk
 </c>
 
 {#
-<h2>Quests</h2>
 <p>List of quests that have this monster, with the best or most recent speedrun of above mentioned quests.</p>
 <p>Might be useful to make a distinction between, regular, tempered and arch-tempered variants</p>
-#}
 
-{# --- need extra layer
+--- need extra layer ---
+
 <c span=6>
     <h2>Runs</h2>
     <ul class="compact">
@@ -47,6 +49,8 @@ layout: layouts/base.njk
 </c>
 #}
     {% if quests | length %}
+        <hr>
+
         <c span=6>
             <h2>Quests</h2>
             <ul class="compact">

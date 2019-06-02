@@ -3,6 +3,7 @@ layout: layouts/base.njk
 ---
 
 {% set _location = collections.lookup.location[location] %}
+{% set runs = collections.runs__by_quest[page.fileSlug] %}
 <grid columns=12 columns-s=4>
 
 <c span="row">
@@ -28,54 +29,62 @@ layout: layouts/base.njk
     </dl>
 </c>
 
-<c span="row">
-    <h2>Runs</h2>
-    <ul class="compact">
-        {% for item in collections.runs__by_quest[page.fileSlug] %}
-            {% if item.data.runners.length == 1 %}
-                {% set _runner = collections.lookup.runner[item.data.runners | first] %}
-                <li
-                    data-weapons="{{ item.data.weapons|join(' ') }}"
-                    >
-                    <a href="{{ _runner.url | url }}">
-                        {{ _runner.data.title }}
-                    </a>
-                    —
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.time_in_millis | millisFormatted -}}
-                    </a>
-                    —
-                    <a href="{{ item.data.video }}">▶️</a>
-                    {# -- todo: something like a lightbox -- #}
-                    —
-                    {% for weapon in item.data.weapons %}
-                        {{ collections.lookup.weapon[weapon].data.title }}
-                        {%- if not loop.last %}, {% endif %}
-                    {% endfor %}
-                </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-</span>
-
-<c span="row">
-    <h2>Multiplayer</h2>
-    <ul class="compact">
-        {% for item in collections.runs__by_quest[page.fileSlug] %}
-            {% if item.data.runners.length > 1 %}
-                <li>
-                    <a href="{{ item.url | url }}">
-                        {% for runner in item.data.runners %}
-                            {{ collections.lookup.runner[ runner ].data.title }}
+{% if runs | length %}
+    {% set count = 0 %}
+    <c span="row">
+        <h2>Runs</h2>
+        <ul class="compact">
+            {% for item in runs %}
+                {% if item.data.runners.length == 1 %}
+                    {% set _runner = collections.lookup.runner[item.data.runners | first] %}
+                    {% set count = count + 1 %}
+                    <li
+                        data-weapons="{{ item.data.weapons|join(' ') }}"
+                        >
+                        <a href="{{ _runner.url | url }}">
+                            {{ _runner.data.title }}
+                        </a>
+                        —
+                        <a href="{{ item.url | url }}">
+                            {{- item.data.time_in_millis | millisFormatted -}}
+                        </a>
+                        —
+                        <a href="{{ item.data.video }}">▶️</a>
+                        {# -- todo: something like a lightbox -- #}
+                        —
+                        {% for weapon in item.data.weapons %}
+                            {{ collections.lookup.weapon[weapon].data.title }}
                             {%- if not loop.last %}, {% endif %}
                         {% endfor %}
-                        —
-                        {{ item.data.time_in_millis | millisFormatted -}}
-                    </a>
-                </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
-</span>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </span>
+
+    {% if count < runs | length %}
+        <c span="row">
+            <h2>Multiplayer</h2>
+            <ul class="compact">
+                {% for item in runs %}
+                    {% if item.data.runners.length > 1 %}
+                        <li>
+                            <a href="{{ item.url | url }}">
+                                {% for runner in item.data.runners %}
+                                    {{ collections.lookup.runner[ runner ].data.title }}
+                                    {%- if not loop.last %}, {% endif %}
+                                {% endfor %}
+                                —
+                                {{ item.data.time_in_millis | millisFormatted -}}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </span>
+    {% endif %}
+
+{% endif %}
 
 {# --- check for weapons, check for multiplayer, etc. --- #}
+</grid>

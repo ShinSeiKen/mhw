@@ -64,7 +64,7 @@ The same?
 | 9★ The Deathly Quiet Curtain | `arch-tempered-vaal-hazak` |
 | 9★ A Whisper of White Mane | `arch-tempered-kirin>` |
 | 9★ A Visitor from Eorzea (Extreme) | Extreme Behemoth |
-| | Ancient Leshen |
+| 9★ Contract: Woodland Spirit | Ancient Leshen |
 
 Missing a bunch like Greatest Jagras, Thronetaker, etc.
 

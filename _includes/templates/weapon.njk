@@ -10,19 +10,8 @@ layout: layouts/base.njk
 
 <c span=4 span-s=4>
     {{ content | safe }}
-</c>
 
-{% if video %}
-    <c span=8 span-s=4>
-        {% include "components/video.njk" %}
-    </c>
-{% endif %}
-
-<hr>
-
-<c span=4>
     <h2>Runners</h2>
-    {# <p>List of notable speedrunners using this weapon.</p> #}
     {% if collections.runners__by_weapon[page.fileSlug] %}
         <ul class="compact">
             {% for item in collections.runners__by_weapon[page.fileSlug] %}
@@ -38,10 +27,16 @@ layout: layouts/base.njk
     {% endif %}
 </c>
 
+{% if video %}
+    <c span=8 span-s=4>
+        {% include "components/video.njk" %}
+    </c>
+{% endif %}
+
+{#
 <c span=4>
     <h2>Runs</h2>
-    {# <p>List of the most recent speedruns using this weapon.</p> #}
-    {#
+    <p>List of the most recent speedruns using this weapon.</p>
     {% for item in collections.run__by_weapon[page.fileSlug] %}
         {% if loop.index0 < 10 %}
             <li>
@@ -57,8 +52,8 @@ layout: layouts/base.njk
             </li>
         {% endif %}
     {% endfor %}
-    #}
 </c>
+#}
 
 {#
 <c span=4>

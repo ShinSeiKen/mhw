@@ -1,9 +1,24 @@
 <footer>
     <div class="inner">
         <grid columns=12 columns-s=4>
+            {#
             <c span=4 span-s=4>
                 <h2>Leaderboards</h2>
                 <p>Coming soon?</p>
+            </c>
+            #}
+            <c span=4 span-s=4>
+                <h2>Event Quests</h2>
+                <ul class="compact">
+                    {% for item in collections.quests__event %}
+                        <li
+                            {% if page.url == item.url %} class="active"{% endif %}>
+                            <a href="{{ item.url | url }}">
+                                {{- item.data.title -}}
+                            </a>
+                        </li>
+                    {% endfor  %}
+                </ul>
             </c>
             <c span=4 span-s=4>
                 <h2>Locations</h2>
@@ -19,21 +34,6 @@
                     {% endfor  %}
                 </ul>
             </c>
-            {#
-            <c span=4 span-s=4>
-                <h2>Quests</h2>
-                <ul class="compact">
-                    {% for item in collections.quests__event %}
-                        <li
-                            {% if page.url == item.url %} class="active"{% endif %}>
-                            <a href="{{ item.url | url }}">
-                                {{- item.data.title -}}
-                            </a>
-                        </li>
-                    {% endfor  %}
-                </ul>
-            </c>
-            #}
             <c span=4 span-s=4>
                 <h2>Weapons</h2>
                 <ul class="compact">

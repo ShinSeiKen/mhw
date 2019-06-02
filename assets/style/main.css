@@ -175,6 +175,37 @@ footer ul {
     font-feature-settings: 'tnum' 1;
 }
 
+.breadcrumb ol {
+    list-style: none;
+    margin-bottom: unset;
+    margin: 0;
+    padding-left: 0;
+}
+
+.breadcrumb ol>li {
+    display: inline-block;
+    margin-bottom: unset;
+}
+.breadcrumb ol>li:before {
+    /* reset the ol */
+    content: none;
+    position: relative;
+    left: 0;
+    display: inline;
+}
+
+.breadcrumb ol>li + li:before {
+    content: '»';
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+}
+
+.breadcrumb [aria-current="page"] {
+    color: #000;
+    font-weight: 700;
+    text-decoration: none;
+}
+
 .headerlinks {
     line-height: calc(var(--lineHeight)*2);
 }

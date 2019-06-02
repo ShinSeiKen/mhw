@@ -10,10 +10,18 @@
         "/locations/" : "Locations"
     },
     "footer": {
-        "/"        : "Home",
+        "/"         : "Home",
         "/posts/"   : "News",
         "/about/"   : "About",
         "/support/" : "Support",
         "/privacy/" : "Privacy"
+    },
+    "parent": {
+        "monster" : { "url": "/monsters/" , "title": "Monsters" },
+        "post"    : { "url": "/posts/"    , "title": "News" },
+        "quest"   : { "url": "/quests/"   , "title": "Quests" },
+        "runner"  : { "url": "/runners/"  , "title": "Runners" },
+        "run"     : { "url": "/runs/"     , "title": "Runs" },
+        "weapon"  : { "url": "/weapons/"  , "title": "Weapons" }
     }
 }

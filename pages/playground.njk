@@ -3,6 +3,82 @@ layout: layouts/base.njk
 title: Playground
 ---
 
+    <style>
+        table, tr, td, th {
+            border : 1px solid;
+        }
+        th {
+            padding: 0.5em;
+            vertical-align: bottom;
+            text-align: center;
+        }
+        th img {
+            width: 32px;
+            height: 32px;
+        }
+        td img {
+            width: 32px;
+            height: 32px;
+        }
+        td {
+            padding: 0.5em;
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+    <h1>Leaderboards</h1>
+    <table border="1">
+        <tr>
+            <th>Rank</th>
+            <th>Runner</th>
+            <th><img src="/assets/img/achievement-small/miniature-crown-master.jpg" /></th>
+            <th><img src="/assets/img/achievement-small/miniature-crown-collector.jpg" /></th>
+            <th><img src="/assets/img/achievement-small/miniature-crown.jpg" /></th>
+            <th>Total</th>
+        </tr>
+        {% for trophyCollection in collections.xxx %}
+            {% set runner = trophyCollection.runner %}
+            <tr>
+                <td>
+                    {% if loop.index == 1 %}
+                        <img src="/assets/img/achievement-small/giant-crown-master.jpg" />
+                    {% elseif loop.index == 2 %}
+                        <img src="/assets/img/achievement-small/giant-crown-collector.jpg" />
+                    {% elseif loop.index == 3 %}
+                        <img src="/assets/img/achievement-small/giant-crown.jpg" />
+                    {% else %}
+                        {{ loop.index }}
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ runner.url | url }}">{{- runner.data.title -}}</a>
+                    {% if runner.data.country %}
+                        <span class="flag-icon flag-icon-{{ runner.data.country }}"></span>
+                    {% endif %}
+                </td>
+                <td>{{ trophyCollection.gold }}</td>
+                <td>{{ trophyCollection.silver }}</td>
+                <td>{{ trophyCollection.bronze }}</td>
+                <td>{{ trophyCollection.gold + trophyCollection.silver + trophyCollection.bronze }}</td>
+            </tr>
+            <tr hidden>
+                <td colspan=5>
+                    {% for trophy in trophyCollection.trophies %}
+                        {% set weaponSlug = trophy.run.data.weapons | first %}
+                        {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
+                        <img src="/assets/img/achievement-small/miniature-crown-master.jpg" />
+                        <a href="{{ trophy.run.url }}">
+                            Rank <strong>{{ trophy.rank }}</strong> in <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
+                        </a>
+                        {% if not loop.last %}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
 <h1>Heading 1</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut dolor varius magna tincidunt varius. Duis quis
     enim rutrum, venenatis metus lobortis, malesuada arcu. Suspendisse in leo eget ligula venenatis iaculis ac a

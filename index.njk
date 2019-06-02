@@ -16,15 +16,5 @@ layout: layouts/base.njk
         <h2>Leaderboards</h2>
         <p>Coming soon!</p>
     </c>
-
-    {% for item in collections.locations %}
-        <c span=3 span-s=4 span-l=2{% if page.url == item.url %} class="active"{% endif %}>
-            <img src="{{ '/assets/img/thumb.png' | url }}" width="100%" class="h-6 fill" style="height: 100%;" />
-            <a href="{{ item.url | url }}">
-                {{- item.data.title -}}
-            </a>
-        </c>
-    {% endfor %}
     #}
-
 </grid>
