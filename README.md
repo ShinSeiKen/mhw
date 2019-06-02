@@ -1,6 +1,24 @@
 # Monster Hunter World Leadboards Concept
 
-This is a concept for shits and giggles. You 'aving a giggle, mate?
+This is a concept for shits and giggles. You 'avin' a giggle, mate?
+
+## TODO
+
+- Minify assets
+    - JS (concat, babel, minify)
+    - CSS (concat, postcss, cssnext)
+    - Images (resize properly and compress)
+- Additional Monster data
+- Additional Location data
+- Additional (Top) Event Quests
+- Leaderboards
+- Foolproof way for people to add runs
+- Distinguish Tempered, Arch-Tempered, Extreme, Ancient variants
+- Distinguish between single-player runs and 2P/3P/4P runs
+- See if we need a separate list of runners
+    - who are known to be good at their weapons ("Weapon Masters")
+    - who just happen to have one or two runs with that weapon
+- etc.
 
 
 ## Links and Resources
@@ -18,6 +36,17 @@ This is a concept for shits and giggles. You 'aving a giggle, mate?
 
 ### Monsters
 
+- Zorah Magdaros
+- Lavasioth
+- Uragaan
+- Azure Rathalos
+- Bazelgeuse
+- Black Diablos
+- Kirin
+- Pink Rathian
+- Xeno'jiiva
+
+Plus Tempered, Arch-Tempered, Extreme Behemoth and Ancient Leshen.
 
 ### Quests
 

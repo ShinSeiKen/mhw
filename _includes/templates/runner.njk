@@ -19,11 +19,9 @@ layout: layouts/base.njk
     <h2>Runs</h2>
     {% if runs | length %}
         <ul>
-            {% for item in runs %}
+            {% for run in runs %}
                 <li>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
+                    {% include "components/links/run-link.njk" %}
                 </li>
             {% endfor %}
         </ul>

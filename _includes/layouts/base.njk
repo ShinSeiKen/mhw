@@ -30,16 +30,16 @@
     </head>
     <body class="--show-base-grid --debug {{ type }}--{{ page.fileSlug }}">
 
-        {% include "./partials/header.njk" %}
+        {% include "partials/header.njk" %}
 
         <main id="content"role="main">
             <div class="inner">
                 {{ content | safe }}
-                {% include "./components/breadcrumb.njk" %}
+                {% include "components/breadcrumb.njk" %}
             </div>
         </main>
 
-        {% include "./partials/footer.njk" %}
+        {% include "partials/footer.njk" %}
 
         <script src="{{ '/assets/script/main.js' | url }}"></script>
         {#

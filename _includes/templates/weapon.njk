@@ -14,11 +14,9 @@ layout: layouts/base.njk
     <h2>Runners</h2>
     {% if collections.runners__by_weapon[page.fileSlug] %}
         <ul class="compact">
-            {% for item in collections.runners__by_weapon[page.fileSlug] %}
+            {% for runner in collections.runners__by_weapon[ page.fileSlug ] %}
                 <li>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
+                    {% include "components/links/runner-link.njk" %}
                 </li>
             {% endfor %}
         </ul>

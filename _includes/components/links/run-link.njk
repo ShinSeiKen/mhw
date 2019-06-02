@@ -1,0 +1,26 @@
+{#
+Parameters:
+    - run
+#}
+{% set __quest = collections.lookup.quest[ run.data.quest ] %}
+
+<a href="{{ run.url | url }}">
+    <b>{{ __quest.data.title }}</b>
+    in
+    <b>{{ run.data.time_in_millis | millisFormatted -}}</b>
+</a>
+by
+{% for runner in run.data.runners %}
+    {% set runner = collections.lookup.runner[ runner ] %}
+        {% include "components/links/runner-link.njk" %}
+    {%- if not loop.last %}, {% endif %}
+{% endfor %}
+using
+{% for weapon in run.data.weapons %}
+    {% set __weapon = collections.lookup.weapon[ weapon ] %}
+    <a href="{{ __weapon.url | url }}">{{ __weapon.data.title }}</a>
+    {%- if not loop.last %}, {% endif %}
+{% endfor %}
+{#
+<a href="{{ run.data.video }}" target="_blank">Watch video</a>
+#}

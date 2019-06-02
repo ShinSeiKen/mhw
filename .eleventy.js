@@ -1,3 +1,19 @@
+//
+// Note: Using lots of manual groupBy functions, we can reduce this by using the
+//       array's reduce function.
+// See https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-a-array-of-objects
+//
+// --- Nice to have:
+// -- todo: service worker
+// -- todo: minify css
+// -- todo: minify js
+// -- todo: extract some variables to separate files, this file is getting huge
+//
+// --- Not necessary, but whatever:
+// quest__by_difficulty, as default sorting would be OK!
+// quest__by_quest_type
+//
+
 module.exports = function(eleventyConfig) {
 
     // --------------------------------------------------------------------------------
@@ -11,10 +27,6 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addLayoutAlias('quest'    , 'templates/quest.njk');
     eleventyConfig.addLayoutAlias('run'      , 'templates/run.njk');
     eleventyConfig.addLayoutAlias('runner'   , 'templates/runner.njk');
-
-    // eleventyConfig.addLayoutAlias('listing'  , 'layouts/listing.njk');
-    // listing shits out a simple list of items, the sub-template selects which
-    // component to tease and inject it!
 
 
     // --------------------------------------------------------------------------------
@@ -157,9 +169,6 @@ module.exports = function(eleventyConfig) {
 
         return result;
     });
-
-    // quest__by_difficulty, as default sorting would be OK!
-    // quest__by_quest_type
 
     // --------------------------------------------------------------------------------
     // Collections -- Runs
@@ -462,8 +471,7 @@ module.exports = function(eleventyConfig) {
 
         });
 
-// console.log(top_runners);
-        // DDD: top_runners // doesn't work when looping :/
+        // DDD: top_runners // doesn't work when looping in templates
         // DDD: top_runners_flat
 
         return top_runners_flat.sort((a, b) => {
@@ -484,28 +492,26 @@ module.exports = function(eleventyConfig) {
     // Assets
     // --------------------------------------------------------------------------------
 
-    eleventyConfig.addPassthroughCopy("assets");
-    eleventyConfig.addPassthroughCopy("robots.txt");
-    eleventyConfig.addPassthroughCopy("humans.txt");
+    [
+        "assets",
+        "robots.txt",
+        "humans.txt",
+        "site.webmanifest",
+        "android-chrome-192x192.png",
+        "apple-touch-icon.png",
+        "browserconfig.xml",
+        "favicon.ico",
+        "favicon-16x16.png",
+        "favicon-32x32.png",
+        "mstile-150x150.png",
+        "safari-pinned-tab.svg"
+    ].forEach(asset => eleventyConfig.addPassthroughCopy(asset));
 
-    eleventyConfig.addPassthroughCopy("site.webmanifest");
-    eleventyConfig.addPassthroughCopy("android-chrome-192x192.png");
-    eleventyConfig.addPassthroughCopy("apple-touch-icon.png");
-    eleventyConfig.addPassthroughCopy("browserconfig.xml");
-    eleventyConfig.addPassthroughCopy("favicon.ico");
-    eleventyConfig.addPassthroughCopy("favicon-16x16.png");
-    eleventyConfig.addPassthroughCopy("favicon-32x32.png");
-    eleventyConfig.addPassthroughCopy("mstile-150x150.png");
-    eleventyConfig.addPassthroughCopy("safari-pinned-tab.svg");
-
-    // -- todo: service worker
 
     // --------------------------------------------------------------------------------
     // Filters and Shortcodes
-    //
-    // - See: https://www.11ty.io/docs/filters/
-    // - See: https://www.11ty.io/docs/shortcodes/
     // --------------------------------------------------------------------------------
+
     /**
      * Converts milliseconds to a Monster Hunter World timer, i.e.
      * 12'34"56
@@ -578,41 +584,16 @@ module.exports = function(eleventyConfig) {
 
 
     let pad = number => number < 10 ? '0' + number : number;
+    let formatDate = date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())}`
+    let formatDateTime = date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`;
 
-    eleventyConfig.addFilter("dateTimeISO", date => date.toISOString());
-    eleventyConfig.addFilter("dateOnly", date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())}`);
-    eleventyConfig.addFilter("dateTime", date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`);
+    eleventyConfig.addFilter("dateTimeISO" , date => date.toISOString());
+    eleventyConfig.addFilter("dateOnly"    , date => formatDate(date));
+    eleventyConfig.addFilter("dateTime"    , date => formatDateTime(date));
 
-    eleventyConfig.addFilter("currentDateTimeISO", value => (new Date()).toISOString());
-    eleventyConfig.addFilter("currentDateTime", value => {
-        let date = new Date();
+    eleventyConfig.addFilter("currentDateTimeISO" , value => (new Date()).toISOString());
+    eleventyConfig.addFilter("currentDateTime"    , value => formatDateTime(new Date()));
 
-        /*
-        return date.toLocaleDateString('en-GB', {
-            hour12: false,
-            day: '2-digit',
-            year: 'numeric',
-            month: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit',
-            second: '2-digit',
-            timeZoneName: 'long'
-        });
-        */
-
-        return `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`
-    });
-
-    /*
-    eleventyConfig.addFilter("findAll", (collection, type, key, value) => {
-        setTimeout(function() {
-            return collection.filter(item => (item.data.type == type && item.data[key] == value));
-        }, 100);
-        //console.log(key, value);
-        // console.log(collection);
-        // return collection.filter(item => (item.data.type == type && item.data[key] == value));
-    });
-    //*/
 
     // --------------------------------------------------------------------------------
     // Transforms
@@ -620,15 +601,18 @@ module.exports = function(eleventyConfig) {
     const pretty = require("pretty");
 
     eleventyConfig.addTransform("pretty", function(content, outputPath) {
-        if( outputPath.endsWith(".html") ) {
+        if ( outputPath.endsWith(".html") ) {
             return pretty(content, {ocd: true});
+        }
+        else if ( outputPath.endesWith(".css") ) {
+            // minify
+        }
+        else if ( outputPath.endesWith(".js") ) {
+            // minify
         }
 
         return content;
     });
-
-    // todo: minify css
-    // todo: minify js
 
     return {
         passthroughFileCopy: true

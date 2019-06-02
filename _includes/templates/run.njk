@@ -30,11 +30,9 @@ permalink: "/runs/{{ quest }}/by/{{ runners | arrayAsPermalink }}/index.html"
 <dl>
     <dt>Runner{% if runners | length > 1 %}s{% endif %}</dt>
     <dd>
-        {% for item in runners %}
-            {% set temp = collections.lookup.runner[ item ] %}
-            <a href="{{ temp.url | url }}">
-                {{- temp.data.title -}}
-            </a>
+        {% for runnerSlug in runners %}
+            {% set runner = collections.lookup.runner[ runnerSlug ] %}
+            {% include "components/links/runner-link.njk" %}
             {%- if not loop.last -%}
             <br>
             {% endif %}

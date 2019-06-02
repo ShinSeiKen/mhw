@@ -4,21 +4,40 @@ title: Runners
 ---
 
 <grid>
-    <c>
+    <c span="row">
         <h1>{{ title }}</h1>
 
         <ul class="compact">
-            {% for item in collections.runners %}
-                <li
-                    {% if page.url == item.url %} class="active"{% endif %}>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
-                    {% if item.data.country %}
-                        <span class="flag-icon flag-icon-{{ item.data.country }}"></span>
-                    {% endif %}
+            {% for runner in collections.runners %}
+                <li {% if page.url == runner.url %} class="active"{% endif %}>
+                    {% include "components/links/runner-link.njk" %}
                 </li>
             {% endfor  %}
         </ul>
     </c>
+
+    <hr>
+
+    <c span=2>
+        <h2>Weapon Masters</h2>
+        <p>Attempting to learn a new weapon? Want to see how the best of the best handle their weapons? Check out these weapon masters!</p>
+    </c>
+    <c span=2>
+    </c>
+
+
+    {% for slug in weapons %}
+        {% set item = collections.lookup.weapon[ slug ] %}
+        <c>
+            <h3>{{ item.data.title }}</h3>
+            <ul class="compact">
+                {% for runner in collections.runners__by_weapon[ slug ] %}
+                    {% if loop.index0 < 20 %}
+                        <li>{% include "components/links/runner-link.njk" %}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </c>
+    {% endfor %}
+
 </grid>

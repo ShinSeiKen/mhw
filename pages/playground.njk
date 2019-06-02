@@ -29,12 +29,12 @@ title: Playground
     <h1>Leaderboards</h1>
     <table border="1">
         <tr>
-            <th>Rank</th>
-            <th>Runner</th>
-            <th><img src="/assets/img/achievement-small/miniature-crown-master.jpg" /></th>
-            <th><img src="/assets/img/achievement-small/miniature-crown-collector.jpg" /></th>
-            <th><img src="/assets/img/achievement-small/miniature-crown.jpg" /></th>
-            <th>Total</th>
+            <th scope="col">Rank</th>
+            <th scope="col">Runner</th>
+            <th scope="col"><img src="/assets/img/achievement-small/miniature-crown-master.jpg" alt="Gold Trophy" /></th>
+            <th scope="col"><img src="/assets/img/achievement-small/miniature-crown-collector.jpg" alt="Silver Trophy" /></th>
+            <th scope="col"><img src="/assets/img/achievement-small/miniature-crown.jpg" alt="Bronze Trophy" /></th>
+            <th scope="col">Total Trophies</th>
         </tr>
         {% for trophyCollection in collections.xxx %}
             {% set runner = trophyCollection.runner %}
@@ -50,7 +50,7 @@ title: Playground
                         {{ loop.index }}
                     {% endif %}
                 </td>
-                <td>
+                <td scope="row">
                     <a href="{{ runner.url | url }}">{{- runner.data.title -}}</a>
                     {% if runner.data.country %}
                         <span class="flag-icon flag-icon-{{ runner.data.country }}"></span>
@@ -128,7 +128,7 @@ title: Playground
 
 <h1>Weapons</h1>
 <grid columns=3 columns-s=1>
-    {% for item in [ 'Great Sword', 'Long Sword', 'Dual Blades', 'Sword and Shield', 'Hammer', 'Hunting Horn', 'Lance', 'Gunlance', 'Switch Axe', 'Charge Blade' ] %}
+    {% for item in [ 'Great Sword', 'Long Sword', 'Dual Blades', 'Sword and Shield', 'Hammer', 'Hunting Horn', 'Lance', 'Gunlance', 'Switch Axe', 'Charge Blade', 'Insect Glaive', 'Bow' ] %}
         <div class="card-wrap">
             <div class="card">
                 <div class="card-bg" data-image="/assets/img/weapon-character-iceborne/{{ item | slug }}.jpg"></div>

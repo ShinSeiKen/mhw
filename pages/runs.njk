@@ -4,27 +4,58 @@ title: Runs
 ---
 
 <grid>
-    <c>
+    <c span="row">
         <h1>{{ title }}</h1>
 
         <ul class="compact">
-            {% for item in collections.runs %}
-                {% if loop.index0 < 99999 and item.data.runners | length === 1 %}
-                    {% set _runner = collections.lookup.runner[item.data.runners | first] %}
-                    {% set _weapon = collections.lookup.weapon[item.data.weapons | first ] %}
-                    {% set _quest  = collections.lookup.quest[item.data.quest] %}
-                    <li
-                        {% if page.url == item.url %} class="active"{% endif %}>
-                        <a href="{{ item.url | url }}">
-                            {#--- {{- item.data.title -}} ---#}
-                            <b>{{ _quest.data.title }}</b>
-                            by <b>{{ _runner.data.title }}</b>
-                            in <b>{{ item.data.time_in_millis | millisFormatted }}</b>
-                            with <b>{{ _weapon.data.title }}</b>
-                        </a>
+            {% for run in collections.runs %}
+                {% if loop.index0 < 99999 and run.data.runners | length === 1 %}
+                    <li>
+                        {% include "components/links/run-link.njk" %}
                     </li>
                 {% endif %}
             {% endfor  %}
         </ul>
     </c>
+    {#
+    <c>
+        <h2>2P Runs</h2>
+
+        <ul class="compact">
+            {% for run in collections.runs %}
+                {% if loop.index0 < 99999 and run.data.runners | length === 2 %}
+                    <li>
+                        {% include "components/links/run-link.njk" %}
+                    </li>
+                {% endif %}
+            {% endfor  %}
+        </ul>
+    </c>
+    <c>
+        <h2>3P Runs</h2>
+
+        <ul class="compact">
+            {% for run in collections.runs %}
+                {% if loop.index0 < 99999 and run.data.runners | length === 3 %}
+                    <li>
+                        {% include "components/links/run-link.njk" %}
+                    </li>
+                {% endif %}
+            {% endfor  %}
+        </ul>
+    </c>
+    <c>
+        <h2>4P Runs</h2>
+
+        <ul class="compact">
+            {% for run in collections.runs %}
+                {% if loop.index0 < 99999 and run.data.runners | length === 4 %}
+                    <li>
+                        {% include "components/links/run-link.njk" %}
+                    </li>
+                {% endif %}
+            {% endfor  %}
+        </ul>
+    </c>
+    #}
 </grid>

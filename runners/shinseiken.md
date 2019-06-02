@@ -4,6 +4,6 @@ twitter:
 youtube:
 twitch:
 country: nl
-weapons:
-    - long-sword
+weapons: []
+#    - long-sword
 ---
