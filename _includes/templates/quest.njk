@@ -52,6 +52,7 @@ layout: layouts/base.njk
                 {% for run in runs %}
                     {% if run.data.runners.length > 1 %}
                         <li>
+                            [{{ run.data.runners.length }}P]
                             {% include "components/links/run-link.njk" %}
                         </li>
                     {% endif %}

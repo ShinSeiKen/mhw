@@ -10,9 +10,7 @@ title: Runs
         <ul class="compact">
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 1 %}
-                    <li>
-                        {% include "components/links/run-link.njk" %}
-                    </li>
+                    <li>{% include "components/links/run-link.njk" %}</li>
                 {% endif %}
             {% endfor  %}
         </ul>
@@ -24,9 +22,7 @@ title: Runs
         <ul class="compact">
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 2 %}
-                    <li>
-                        {% include "components/links/run-link.njk" %}
-                    </li>
+                    <li>{% include "components/links/run-link.njk" %}</li>
                 {% endif %}
             {% endfor  %}
         </ul>
@@ -37,9 +33,7 @@ title: Runs
         <ul class="compact">
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 3 %}
-                    <li>
-                        {% include "components/links/run-link.njk" %}
-                    </li>
+                    <li>{% include "components/links/run-link.njk" %}</li>
                 {% endif %}
             {% endfor  %}
         </ul>
@@ -50,9 +44,7 @@ title: Runs
         <ul class="compact">
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 4 %}
-                    <li>
-                        {% include "components/links/run-link.njk" %}
-                    </li>
+                    <li>{% include "components/links/run-link.njk" %}</li>
                 {% endif %}
             {% endfor  %}
         </ul>

@@ -53,11 +53,9 @@ layout: layouts/base.njk
 <c span=6>
     <h2>Runs</h2>
     <ul class="compact">
-        {% for item in collections.runs__by_monster[page.fileSlug] %}
+        {% for run in collections.runs__by_monster[page.fileSlug] %}
             <li>
-                <a href="{{ item.url }}">
-                    {{- item.data.title -}} {{ item.data.time_in_millis | millisFormatted }}
-                </a>
+                {% include "components/links/run-link.njk" %}
             </li>
         {% endfor %}
     </ul>

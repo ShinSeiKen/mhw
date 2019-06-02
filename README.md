@@ -4,6 +4,11 @@ This is a concept for shits and giggles. You 'avin' a giggle, mate?
 
 ## TODO
 
+- Refactor Posts -> News
+    - Make proper news articles too
+- Add a Community page with Discords and shit, maybe some Youtube channels to follow
+- Add some nice Social icons and weapon icons
+- Filtering runs, leaderboards, etc.
 - Minify assets
     - JS (concat, babel, minify)
     - CSS (concat, postcss, cssnext)
@@ -18,6 +23,7 @@ This is a concept for shits and giggles. You 'avin' a giggle, mate?
 - See if we need a separate list of runners
     - who are known to be good at their weapons ("Weapon Masters")
     - who just happen to have one or two runs with that weapon
+- Translations of Quests, Weapons, Monsters, Locations (at least go for Japanese)
 - etc.
 
 

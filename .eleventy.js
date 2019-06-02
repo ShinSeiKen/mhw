@@ -176,6 +176,10 @@ module.exports = function(eleventyConfig) {
     // Runs filtered by weapons, runners and monsters are only counted if there is
     // strictly one option. So multiplayer runs, runs with multiple weapons or weapon
     // switching, and multi-monster quests will not be featured on their specific pages.
+    //
+    // [2019-06-02] Allowing multiplayer runs to show up on runners' pages
+    //              `runs__by_weapon` and `runs__by_monster` feel a bit out of place
+    //              as of now, so they are not used at the moment.
     // --------------------------------------------------------------------------------
 
     eleventyConfig.addCollection("runs__by_weapon", collection => {
@@ -195,7 +199,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addCollection("runs__by_runner", collection => {
         let result = [];
         collection.getAll().forEach(item => {
-            if (item.data.type == 'run' && item.data.runners.length == 1) {
+            if (item.data.type == 'run'/* && item.data.runners.length == 1*/) {
                 let runner = item.data.runners[0];
                 if (! result[runner]) {
                     result[runner] = [];

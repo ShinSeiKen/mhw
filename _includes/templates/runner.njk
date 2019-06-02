@@ -18,7 +18,7 @@ layout: layouts/base.njk
 <c span=8>
     <h2>Runs</h2>
     {% if runs | length %}
-        <ul>
+        <ul class="compact">
             {% for run in runs %}
                 <li>
                     {% include "components/links/run-link.njk" %}
