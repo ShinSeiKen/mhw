@@ -10,7 +10,7 @@ title: Runs
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 1 %}
                     {% set count = count + 1 %}
-                    <li>{% include "components/links/run-link.njk" %}</li>
+                    <li>[{{ run.date | dateOnly }}] {% include "components/links/run-link.njk" %}</li>
                 {% endif %}
             {% endfor  %}
         </ul>

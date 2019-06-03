@@ -3,11 +3,11 @@ layout: layouts/base.njk
 title: Runners
 ---
 
-<grid>
+<grid columns=12 columns-s=4>
     <c span="row">
         <h1>{{ title }}</h1>
 
-        <ul class="compact">
+        <ul class="runners-full-list compact">
             {% for runner in collections.runners %}
                 <li {% if page.url == runner.url %} class="active"{% endif %}>
                     {% include "components/links/runner-link.njk" %}
@@ -18,17 +18,17 @@ title: Runners
 
     <hr>
 
-    <c span=2>
+    <c span=6>
         <h2>Weapon Masters</h2>
         <p>Attempting to learn a new weapon? Want to see how the best of the best handle their weapons? Check out these weapon masters!</p>
     </c>
-    <c span=2>
+    <c span=6>
     </c>
 
 
     {% for slug in weapons %}
         {% set item = collections.lookup.weapon[ slug ] %}
-        <c>
+        <c span=4>
             <h3>{{ item.data.title }}</h3>
             <ul class="compact">
                 {% for runner in collections.runners__by_weapon[ slug ] %}

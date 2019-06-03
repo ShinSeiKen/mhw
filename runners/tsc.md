@@ -9,5 +9,6 @@ weapons:
     - great-sword
     - heavy-bowgun
     - hammer
+    - hunting-horn
     - light-bowgun
 ---

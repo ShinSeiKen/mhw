@@ -4,6 +4,7 @@ This is a concept for shits and giggles. You 'avin' a giggle, mate?
 
 ## TODO
 
+- 404 Page
 - Refactor Posts -> News
     - Make proper news articles too
 - Add a Community page with Discords and shit, maybe some Youtube channels to follow
@@ -24,6 +25,13 @@ This is a concept for shits and giggles. You 'avin' a giggle, mate?
     - who are known to be good at their weapons ("Weapon Masters")
     - who just happen to have one or two runs with that weapon
 - Translations of Quests, Weapons, Monsters, Locations (at least go for Japanese)
+- Add automatic Edit links
+- Add special link for Adding new Runners/Runs
+- Create Feature Requests/Bugs/Issues/etc.
+- Comments??
+- Add more custom fields for Runs/Runners
+- If there's enough demand, add other quests too.
+- In the future, differentiate between MHW and MHWI runs (separate leaderboards too)
 - etc.
 
 
