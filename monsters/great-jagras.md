@@ -1,6 +1,7 @@
 ---
 title: Great Jagras
 video: https://www.youtube.com/embed/5uqKFiewFUg
+species: Fanged Wyvern
 ---
 
 The pack leader of the Jagras, the Great Jagras is known to go out of control when hungry.

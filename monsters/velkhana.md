@@ -1,5 +1,6 @@
 ---
 title: Velkhana
+species: Elder Dragon
 ---
 
 An elder dragon with the power to freeze all in its path.

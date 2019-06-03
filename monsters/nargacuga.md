@@ -1,6 +1,7 @@
 ---
 title: Nargacuga
 video: https://www.youtube.com/embed/17TTRwMENAE
+species: Flying Wyvern
 ---
 
 A flying wyvern covered in pitch black fur.

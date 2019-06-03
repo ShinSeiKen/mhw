@@ -1,6 +1,7 @@
 ---
 title: Radobaan
 video: https://www.youtube.com/embed/ub8HYGRBcAs
+species: Brute Wyvern
 ---
 
 A gigantic brute wyvern that eats the bones of carcasses found in the Rotten Vale, using some of it as armor.

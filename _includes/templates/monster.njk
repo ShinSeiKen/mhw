@@ -12,6 +12,8 @@ layout: layouts/base.njk
 <c span=6>
     {{ content | safe }}
     <dl>
+        <dt>Species</dt>
+        <dd>{{ species }}</dd>
         {% if locations | length %}
             <dt>Locations<dt>
             <dd>

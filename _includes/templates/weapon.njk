@@ -11,6 +11,11 @@ layout: layouts/base.njk
 <c span=4 span-s=4>
     {{ content | safe }}
 
+    <dl>
+        <dt>Type</dt>
+        <dd>{{ weapon_type }}</dd>
+    </dl>
+
     <h2>Runners</h2>
     {% if collections.runners__by_weapon[page.fileSlug] %}
         <ul class="compact">

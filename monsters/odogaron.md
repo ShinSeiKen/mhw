@@ -1,6 +1,7 @@
 ---
 title: Odogaron
 video: https://www.youtube.com/embed/DuAep1drqbU
+species: Fanged Wyvern
 ---
 
 A terrifying monster that scours the Rotten Vale for carrion.

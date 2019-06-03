@@ -1,6 +1,7 @@
 ---
 title: Rathalos
 video: https://www.youtube.com/embed/sGMkTGC-8eU
+species: Flying Wyvern
 ---
 
 The apex monster of the Ancient Forest.

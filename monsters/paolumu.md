@@ -1,6 +1,7 @@
 ---
 title: Paolumu
 video: https://www.youtube.com/embed/vfU_ZNum8jk
+species: Flying Wyvern
 ---
 
 Paolumu feast on eggs found in the Coral Highlands.

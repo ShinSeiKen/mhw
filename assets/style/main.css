@@ -241,12 +241,17 @@ dd {
 }
 
 .card-wrap:focus-within {
-    outline: 5px solid var(--blue);
+    outline: 5px solid black;
 }
 
 .card-wrap a:focus {
-    background-color: var(--blue);
-    outline: 5px solid var(--blue);
+    background-color: black;
+    outline: 5px solid black;
+}
+
+.card-wrap:focus-within p span {
+    background-color: black;
+    outline: 5px solid black;
 }
 
 .card-wrap:focus-within .card-info,
@@ -342,6 +347,14 @@ dd {
     transition: 5s 1s var(--returnEasing);
 }
 
-.card-info h1 {
-  text-shadow: rgba(black, 0.5) 0 10px 10px;
+.card-info h2 {
+    /* text-shadow: rgba(black, 0.5) 0 10px 10px; */
+    margin-bottom: calc(var(--lineHeight) * 0.5);
+}
+
+.card-wrap:hover .card-info h2 a,
+.card-wrap:hover .card-info p span
+{
+    background-color: black;
+    outline: 5px solid black;
 }

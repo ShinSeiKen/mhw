@@ -1,6 +1,7 @@
 ---
 title: Beotodus
 video: https://www.youtube.com/embed/cubwCc2QSt0
+species: Piscine Wyvern
 ---
 
 A piscine wyvern that uses the sharp fin on its head to cut through the frozen soil, swimming freely through the snow.

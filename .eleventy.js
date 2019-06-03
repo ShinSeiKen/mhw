@@ -92,6 +92,11 @@ module.exports = function(eleventyConfig) {
                 result[location].push(item);
             }
         });
+
+        Object.keys(result).forEach(key =>{
+            result[key].sort(byTitleAlphabetically);
+        });
+
         return result;
     });
 
@@ -108,7 +113,9 @@ module.exports = function(eleventyConfig) {
             }
         });
 
-        // todo: sort every sub-array by title?
+        Object.keys(result).forEach(key =>{
+            result[key].sort(byTitleAlphabetically);
+        });
 
         return result;
     });

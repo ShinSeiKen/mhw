@@ -110,6 +110,22 @@ title: Playground
     nisl. Aenean lacus lacus, fringilla eu consectetur nec, facilisis ut velit. Lorem ipsum dolor sit amet,
     consectetur adipiscing elit. In hac habitasse platea dictumst.</p>
 
+<h1>Locations</h1>
+<grid columns=3 columns-s=1>
+{% for slug in locations %}
+    {% set item = collections.lookup.location[slug] %}
+    <div class="card-wrap">
+        <div class="card">
+            <div class="card-bg" data-image="/assets/img/location/{{ slug }}.webp"></div>
+            <div class="card-info">
+                <h2><a href="{{ item.url | url }}">{{ item.data.title }}</a></h2>
+                <p class="h4"><span>Explore →</span></p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</grid>
+
 <h1>Monsters</h1>
 <grid columns=3 columns-s=1>
 {% for slug in monsters %}
@@ -119,7 +135,7 @@ title: Playground
             <div class="card-bg" data-image="/assets/img/monster/{{ slug }}.jpg"></div>
             <div class="card-info">
                 <h2><a href="{{ item.url | url }}">{{ item.data.title }}</a></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="h4"><span>{{ item.data.species }}</span></p>
             </div>
         </div>
     </div>
@@ -128,13 +144,14 @@ title: Playground
 
 <h1>Weapons</h1>
 <grid columns=3 columns-s=1>
-    {% for item in [ 'Great Sword', 'Long Sword', 'Dual Blades', 'Sword and Shield', 'Hammer', 'Hunting Horn', 'Lance', 'Gunlance', 'Switch Axe', 'Charge Blade', 'Insect Glaive', 'Bow' ] %}
+    {% for slug in weapons %}
+        {% set item = collections.lookup.weapon[ slug ] %}
         <div class="card-wrap">
             <div class="card">
-                <div class="card-bg" data-image="/assets/img/weapon-character-iceborne/{{ item | slug }}.jpg"></div>
+                <div class="card-bg" data-image="/assets/img/weapon-character-iceborne/{{ slug }}.jpg"></div>
                 <div class="card-info">
-                    <h2><a href="{{ ('/weapons/' ~ (item|slug)) | url }}">{{ item }}</a></h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <h2><a href="{{ item.url | url }}">{{ item.data.title }}</a></h2>
+                    <p class="h4"><span>{{ item.data.weapon_type }}</span></p>
                 </div>
             </div>
         </div>
@@ -144,7 +161,11 @@ title: Playground
 <h1>Weapons</h1>
 <div>
     {% for item in weapons %}
-        <img src="/assets/img/weapon-icon/{{ item | slug }}.png" height="40px" width="40px" style="display:inline-block; border: 1px solid black; padding: 5px;" />
+        <img
+            src="/assets/img/weapon-icon/{{ item | slug }}.png"
+            height="40px"
+            width="40px"
+            style="display:inline-block; border: 1px solid black; padding: 5px;" />
     {% endfor %}
 </div>
 
@@ -158,6 +179,15 @@ title: Playground
     {% endfor %}
 </div>
 
+<div >
+    {% for item in weapons %}
+        <img
+            src="/assets/img/weapon-icon-3/{{ item | slug }}.webp"
+            height="40px"
+            width="40px"
+            style="display:inline-block; border: 1px solid black; padding: 5px;" />
+    {% endfor %}
+</div>
 
 <h1>Achievements</h2>
 <div>

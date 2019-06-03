@@ -1,6 +1,7 @@
 ---
 title: Vaal Hazak
 video: https://www.youtube.com/embed/Jm0OUG6hxq8
+species: Elder Dragon
 ---
 
 A grotesque elder dragon that inhabits the deepest part of the Rotten Vale.

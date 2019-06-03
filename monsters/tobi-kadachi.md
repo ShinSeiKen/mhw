@@ -1,6 +1,7 @@
 ---
 title: Tobi-Kadachi
 video: https://www.youtube.com/embed/RFobco1pKII
+species: Fanged Wyvern
 ---
 
 A fanged wyvern that flies among the trees of the Ancient Forest.

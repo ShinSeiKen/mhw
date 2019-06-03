@@ -1,6 +1,7 @@
 ---
 title: Diablos
 video: https://www.youtube.com/embed/W80DNGYCQWo
+species: Brute Wyvern
 ---
 
 The apex monster of the Wildspire Waste.

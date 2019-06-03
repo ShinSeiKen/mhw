@@ -1,6 +1,7 @@
 ---
 title: Teostra
 video: https://www.youtube.com/embed/CpUKv98ureQ
+species: Elder Dragon
 ---
 
 A brutal elder dragon wreathed in flames that spits blazing fire.
