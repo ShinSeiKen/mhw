@@ -3,8 +3,6 @@
 //       array's reduce function.
 // See https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-a-array-of-objects
 //
-// -- todo: extract some variables to separate files, this file is getting huge
-//
 // --- Not necessary, but whatever:
 // quest__by_difficulty, as default sorting would be OK!
 // quest__by_quest_type
@@ -20,7 +18,7 @@ module.exports = function(config) {
     // Layouts
     // --------------------------------------------------------------------------------
 
-    config.addLayoutAlias('post'     , 'templates/post.njk');
+    config.addLayoutAlias('news'     , 'templates/news.njk');
     config.addLayoutAlias('monster'  , 'templates/monster.njk');
     config.addLayoutAlias('location' , 'templates/location.njk');
     config.addLayoutAlias('weapon'   , 'templates/weapon.njk');

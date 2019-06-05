@@ -1,9 +1,8 @@
 ---
-layout: post
 title: Bar
 tags:
     - bar
-    - post
+    - news
 date: 2019-05-27
 ---
 

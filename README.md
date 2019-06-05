@@ -24,8 +24,7 @@ npm run build
 
 ## TODO
 
-- Refactor Posts -> News
-    - Make proper news articles too
+- Extract some variables to separate files in `.eleventy.js`
 - Add a Community page with Discords and shit, maybe some Youtube channels to follow
 - Add some nice Social icons and weapon icons
 - Filtering runs, leaderboards, etc.
@@ -62,7 +61,7 @@ npm run build
 - [Ranged Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/9/1)
 - [Parallax Depth Cards by Andy Merskin](https://codepen.io/andymerskin/pen/XNMWvQ)
 - [EleventyOne by Phil Hawksworth](https://github.com/philhawksworth/eleventyone)
-- Inspired by [GOV.UK](https://www.gov.uk) for its accessibility.
+- Inspired by [GOV.UK](https://www.gov.uk)
 
 ## Notes
 

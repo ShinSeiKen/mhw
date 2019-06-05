@@ -12,7 +12,7 @@
     },
     "footer": {
         "/"         : "Home",
-        "/posts/"   : "News",
+        "/news/"    : "News",
         "/about/"   : "About",
         "/support/" : "Support",
         "/privacy/" : "Privacy"
@@ -20,7 +20,7 @@
     "parent": {
         "location" : { "url": "/locations/" , "title": "Locations" },
         "monster"  : { "url": "/monsters/"  , "title": "Monsters" },
-        "post"     : { "url": "/posts/"     , "title": "News" },
+        "news"     : { "url": "/news/"      , "title": "News" },
         "quest"    : { "url": "/quests/"    , "title": "Quests" },
         "runner"   : { "url": "/runners/"   , "title": "Runners" },
         "run"      : { "url": "/runs/"      , "title": "Runs" },

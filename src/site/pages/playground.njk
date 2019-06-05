@@ -41,11 +41,11 @@ title: Playground
             <tr>
                 <td>
                     {% if loop.index == 1 %}
-                        <img src="/assets/img/achievement-small/giant-crown-master.jpg" />
+                        <img  src="/assets/img/achievement-small/giant-crown-master.jpg" alt="" />
                     {% elseif loop.index == 2 %}
-                        <img src="/assets/img/achievement-small/giant-crown-collector.jpg" />
+                        <img src="/assets/img/achievement-small/giant-crown-collector.jpg" alt="" />
                     {% elseif loop.index == 3 %}
-                        <img src="/assets/img/achievement-small/giant-crown.jpg" />
+                        <img src="/assets/img/achievement-small/giant-crown.jpg" alt="" />
                     {% else %}
                         {{ loop.index }}
                     {% endif %}
@@ -66,7 +66,7 @@ title: Playground
                     {% for trophy in trophyCollection.trophies %}
                         {% set weaponSlug = trophy.run.data.weapons | first %}
                         {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
-                        <img src="/assets/img/achievement-small/miniature-crown-master.jpg" />
+                        <img src="/assets/img/achievement-small/miniature-crown-master.jpg" alt="" />
                         <a href="{{ trophy.run.url }}">
                             Rank <strong>{{ trophy.rank }}</strong> in <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
                         </a>
@@ -165,7 +165,9 @@ title: Playground
             src="/assets/img/weapon-icon/{{ item | slug }}.png"
             height="40px"
             width="40px"
-            style="display:inline-block; border: 1px solid black; padding: 5px;" />
+            style="display:inline-block; border: 1px solid black; padding: 5px;"
+            alt=""
+            />
     {% endfor %}
 </div>
 
@@ -175,7 +177,9 @@ title: Playground
             src="/assets/img/weapon-icon-2/{{ item | slug }}.png"
             height="40px"
             width="40px"
-            style="display:inline-block; border: 1px solid black; padding: 5px; background-color: black;" />
+            style="display:inline-block; border: 1px solid black; padding: 5px; background-color: black;"
+            alt=""
+            />
     {% endfor %}
 </div>
 
@@ -185,7 +189,9 @@ title: Playground
             src="/assets/img/weapon-icon-3/{{ item | slug }}.webp"
             height="40px"
             width="40px"
-            style="display:inline-block; border: 1px solid black; padding: 5px;" />
+            style="display:inline-block; border: 1px solid black; padding: 5px;"
+            alt=""
+            />
     {% endfor %}
 </div>
 
@@ -217,7 +223,7 @@ title: Playground
 
         'conqueror-of-the-new-world'
     ] %}
-        <img src="/assets/img/achievement/{{ item }}.png" height="120px" width="120px" style="display:inline-block;"/>
+        <img src="/assets/img/achievement/{{ item }}.png" height="120px" width="120px" style="display:inline-block;" alt="" />
     {% endfor %}
 </div>
 
@@ -249,6 +255,6 @@ title: Playground
 
         'conqueror-of-the-new-world'
     ] %}
-        <img src="/assets/img/achievement-small/{{ item }}.jpg" style="display:inline-block;"/>
+        <img src="/assets/img/achievement-small/{{ item }}.jpg" style="display:inline-block;" alt="" />
     {% endfor %}
 </div>
