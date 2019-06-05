@@ -24,7 +24,6 @@ cards.forEach(card => {
     cardBg.style.backgroundImage = `url(${bgImage})`;
 
     card.addEventListener('mousemove', e => {
-
         mouseX = e.pageX - card.offsetLeft - card.offsetWidth/2;
         mouseY = e.pageY - card.offsetTop - card.offsetHeight/2;
 
@@ -35,6 +34,8 @@ cards.forEach(card => {
         cardBg.style.transform  = `translateX(${mousePX * -40}px) translateY(${mousePY * -40}px)`;
 
     });
+
+
     card.addEventListener('mouseenter', e => clearTimeout(mouseLeaveDelay));
     card.addEventListener('mouseleave', e => {
         mouseLeaveDelay = setTimeout(()=>{
@@ -48,9 +49,10 @@ cards.forEach(card => {
 });
 
 Array.prototype.forEach.call(cards, card => {
-    let down,
-        up,
-        link = card.querySelector('h2 a');
+    let down;
+    let up;
+    let link = card.querySelector('h2 a');
+
     card.onmousedown = () => down = +new Date();
     card.onmouseup = () => {
         up = +new Date();
@@ -59,3 +61,18 @@ Array.prototype.forEach.call(cards, card => {
         }
     }
 });
+
+/**
+ * Based on Jeremy Keith's presentation "Going Offline"
+ *
+ * See: https://speaking.adactio.com/IKpZLN/going-offline
+ * See: https://developers.google.com/web/fundamentals/primers/service-workers/
+ */
+if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/serviceworker.js')
+    .then((registration) => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, (error) => {
+        console.log('ServiceWorker registration failed: ', error);
+    });
+}

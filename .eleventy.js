@@ -516,7 +516,8 @@ module.exports = function(eleventyConfig) {
         "favicon-16x16.png",
         "favicon-32x32.png",
         "mstile-150x150.png",
-        "safari-pinned-tab.svg"
+        "safari-pinned-tab.svg",
+        "serviceworker.js"
     ].forEach(asset => eleventyConfig.addPassthroughCopy(asset));
 
 
