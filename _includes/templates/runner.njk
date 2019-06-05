@@ -38,18 +38,6 @@ layout: layouts/base.njk
     {# --- aside --- #}
     {% if weapons | length or youtube or twitch or twitter or patreon %}
         <dl>
-            {% if weapons | length %}
-                <dt>Weapons</dt>
-                <dd class="compact">
-                    {% for item in weapons %}
-                        <a href="{{ collections.lookup.weapon[item].url | url }}">
-                            {{- collections.lookup.weapon[item].data.title -}}
-                        </a>
-                        {% if not loop.last %}<br>{% endif %}
-                    {% endfor %}
-                </dd>
-            {% endif %}
-
             {% if youtube or twitch or twitter or patreon %}
                     <dt>Meta</dt>
                     <dd>
@@ -66,6 +54,18 @@ layout: layouts/base.njk
                             <a href="{{ patreon }}">Patreon</a><br>
                         {% endif %}
                     </dd>
+            {% endif %}
+
+            {% if weapons | length %}
+                <dt>Weapons</dt>
+                <dd class="compact">
+                    {% for item in weapons %}
+                        <a href="{{ collections.lookup.weapon[item].url | url }}">
+                            {{- collections.lookup.weapon[item].data.title -}}
+                        </a>
+                        {% if not loop.last %}<br>{% endif %}
+                    {% endfor %}
+                </dd>
             {% endif %}
         </dl>
     {% endif %}

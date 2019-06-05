@@ -9,8 +9,12 @@ navButton && navButton.addEventListener('click', function() {
     menu.hidden = !menu.hidden;
 });
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ //
-
+/**
+ * Adapted from Parallax Depth Cards by Andy Merskin
+ * Inspired by Gwent and Magic: the Gathering Arena games
+ *
+ * See: https://codepen.io/andymerskin/pen/XNMWvQ
+ */
 let cards = document.querySelectorAll('.card-wrap');
 cards.forEach(card => {
     let mouseX  = 0;
@@ -38,7 +42,7 @@ cards.forEach(card => {
 
     card.addEventListener('mouseenter', e => clearTimeout(mouseLeaveDelay));
     card.addEventListener('mouseleave', e => {
-        mouseLeaveDelay = setTimeout(()=>{
+        mouseLeaveDelay = setTimeout(() => {
             mouseX = 0;
             mouseY = 0;
 

@@ -3,10 +3,6 @@
 //       array's reduce function.
 // See https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-a-array-of-objects
 //
-// --- Nice to have:
-// -- todo: service worker
-// -- todo: minify css
-// -- todo: minify js
 // -- todo: extract some variables to separate files, this file is getting huge
 //
 // --- Not necessary, but whatever:
@@ -14,19 +10,23 @@
 // quest__by_quest_type
 //
 
-module.exports = function(eleventyConfig) {
+const { DateTime } = require("luxon");
+
+module.exports = function(config) {
+
+    // let env = process.env.ELEVENTY_ENV
 
     // --------------------------------------------------------------------------------
     // Layouts
     // --------------------------------------------------------------------------------
 
-    eleventyConfig.addLayoutAlias('post'     , 'templates/post.njk');
-    eleventyConfig.addLayoutAlias('monster'  , 'templates/monster.njk');
-    eleventyConfig.addLayoutAlias('location' , 'templates/location.njk');
-    eleventyConfig.addLayoutAlias('weapon'   , 'templates/weapon.njk');
-    eleventyConfig.addLayoutAlias('quest'    , 'templates/quest.njk');
-    eleventyConfig.addLayoutAlias('run'      , 'templates/run.njk');
-    eleventyConfig.addLayoutAlias('runner'   , 'templates/runner.njk');
+    config.addLayoutAlias('post'     , 'templates/post.njk');
+    config.addLayoutAlias('monster'  , 'templates/monster.njk');
+    config.addLayoutAlias('location' , 'templates/location.njk');
+    config.addLayoutAlias('weapon'   , 'templates/weapon.njk');
+    config.addLayoutAlias('quest'    , 'templates/quest.njk');
+    config.addLayoutAlias('run'      , 'templates/run.njk');
+    config.addLayoutAlias('runner'   , 'templates/runner.njk');
 
 
     // --------------------------------------------------------------------------------
@@ -46,21 +46,21 @@ module.exports = function(eleventyConfig) {
     };
 
     // Define collections
-    eleventyConfig.addCollection("monsters"  , collection => collection.getFilteredByGlob("monsters/*.md"));
-    eleventyConfig.addCollection("locations" , collection => collection.getFilteredByGlob("locations/*.md"));
-    eleventyConfig.addCollection("weapons"   , collection => collection.getFilteredByGlob("weapons/*.md"));
-    eleventyConfig.addCollection("quests"    , collection => collection.getFilteredByGlob("quests/**/*.md").sort(byTitleAlphabetically));
-    eleventyConfig.addCollection("runs"      , collection => collection.getFilteredByGlob("runs/**/*.md").reverse());
-    eleventyConfig.addCollection("runners"   , collection => collection.getFilteredByGlob("runners/*.md").sort(byTitleAlphabetically));
+    config.addCollection("monsters"  , collection => collection.getFilteredByGlob("monsters/*.md"));
+    config.addCollection("locations" , collection => collection.getFilteredByGlob("locations/*.md"));
+    config.addCollection("weapons"   , collection => collection.getFilteredByGlob("weapons/*.md"));
+    config.addCollection("quests"    , collection => collection.getFilteredByGlob("quests/**/*.md").sort(byTitleAlphabetically));
+    config.addCollection("runs"      , collection => collection.getFilteredByGlob("runs/**/*.md").reverse());
+    config.addCollection("runners"   , collection => collection.getFilteredByGlob("runners/*.md").sort(byTitleAlphabetically));
 
     // Define sub-collections for quests
-    eleventyConfig.addCollection("quests__arena"     , collection => collection.getFilteredByGlob("quests/arena-quest/*.md").sort(byTitleAlphabetically));
-    eleventyConfig.addCollection("quests__challenge" , collection => collection.getFilteredByGlob("quests/challenge-quest/*.md").sort(byTitleAlphabetically));
-    eleventyConfig.addCollection("quests__event"     , collection => collection.getFilteredByGlob("quests/event-quest/*.md").sort(byTitleAlphabetically));
-    eleventyConfig.addCollection("quests__optional"  , collection => collection.getFilteredByGlob("quests/optional-quest/*.md").sort(byTitleAlphabetically));
+    config.addCollection("quests__arena"     , collection => collection.getFilteredByGlob("quests/arena-quest/*.md").sort(byTitleAlphabetically));
+    config.addCollection("quests__challenge" , collection => collection.getFilteredByGlob("quests/challenge-quest/*.md").sort(byTitleAlphabetically));
+    config.addCollection("quests__event"     , collection => collection.getFilteredByGlob("quests/event-quest/*.md").sort(byTitleAlphabetically));
+    config.addCollection("quests__optional"  , collection => collection.getFilteredByGlob("quests/optional-quest/*.md").sort(byTitleAlphabetically));
 
     // Define a lookup table for accessing content via type and (unique) slugs
-    eleventyConfig.addCollection("lookup", collection => {
+    config.addCollection("lookup", collection => {
         let lookup = [];
 
 		collection.getAll().forEach(item => {
@@ -81,7 +81,7 @@ module.exports = function(eleventyConfig) {
     // Collections -- Quests
     // --------------------------------------------------------------------------------
 
-    eleventyConfig.addCollection("quests__by_location", collection => {
+    config.addCollection("quests__by_location", collection => {
         let result = [];
         collection.getAll().forEach(item => {
             if (item.data.type == 'quest') {
@@ -100,7 +100,7 @@ module.exports = function(eleventyConfig) {
         return result;
     });
 
-    eleventyConfig.addCollection("quests__by_monster", collection => {
+    config.addCollection("quests__by_monster", collection => {
         let result = [];
         collection.getAll().forEach(item => {
             if (item.data.type == 'quest') {
@@ -124,7 +124,7 @@ module.exports = function(eleventyConfig) {
     // Collections -- Locations <-> Quest <-> Monster
     // --------------------------------------------------------------------------------
 
-    eleventyConfig.addCollection("locations__by_monster", collection => {
+    config.addCollection("locations__by_monster", collection => {
         let result    = [];
         let monsters  = [];
         let locations = [];
@@ -151,7 +151,7 @@ module.exports = function(eleventyConfig) {
         return result;
     });
 
-    eleventyConfig.addCollection("monsters__by_location", collection => {
+    config.addCollection("monsters__by_location", collection => {
         let result    = [];
         let monsters  = [];
         let locations = [];
@@ -189,7 +189,7 @@ module.exports = function(eleventyConfig) {
     //              as of now, so they are not used at the moment.
     // --------------------------------------------------------------------------------
 
-    eleventyConfig.addCollection("runs__by_weapon", collection => {
+    config.addCollection("runs__by_weapon", collection => {
         let result = [];
         collection.getAll().forEach(item => {
             if (item.data.type == 'run' && item.data.weapons.length == 1) {
@@ -203,7 +203,7 @@ module.exports = function(eleventyConfig) {
         return result;
     });
 
-    eleventyConfig.addCollection("runs__by_runner", collection => {
+    config.addCollection("runs__by_runner", collection => {
         let result = [];
         collection.getAll().forEach(item => {
             if (item.data.type == 'run'/* && item.data.runners.length == 1*/) {
@@ -218,7 +218,7 @@ module.exports = function(eleventyConfig) {
         return result;
     });
 
-    eleventyConfig.addCollection("runs__by_quest", collection => {
+    config.addCollection("runs__by_quest", collection => {
         let result = [];
         collection.getAll().forEach(item => {
             if (item.data.type == 'run') {
@@ -232,7 +232,7 @@ module.exports = function(eleventyConfig) {
         return result.sort(byTimeAscending);
     });
 
-    eleventyConfig.addCollection("runs__by_monster", collection => {
+    config.addCollection("runs__by_monster", collection => {
         let result = [];
         collection.getAll().forEach(item => {
             // TODO: run -> quest -> monster
@@ -255,7 +255,7 @@ module.exports = function(eleventyConfig) {
     // Runners
     // --------------------------------------------------------------------------------
 
-    eleventyConfig.addCollection("runners__by_country", collection => {
+    config.addCollection("runners__by_country", collection => {
         let result = [];
         collection.getAll().forEach(item => {
             if (item.data.type == 'runner' && item.data.country) {
@@ -270,7 +270,7 @@ module.exports = function(eleventyConfig) {
 
     // Theoretically, we could derive runners' weapons preferences
     // by looking at the weapons they use in their (best) speedruns.
-    eleventyConfig.addCollection("runners__by_weapon", collection => {
+    config.addCollection("runners__by_weapon", collection => {
         let result = [];
         collection.getAll().forEach(item => {
             if (item.data.type == 'runner') {
@@ -292,7 +292,7 @@ module.exports = function(eleventyConfig) {
     /**
      * Track single-player leaderboards only!
      */
-    eleventyConfig.addCollection('xxx', collection => {
+    config.addCollection('xxx', collection => {
         let all = collection.getAll();
 
         // lookup
@@ -518,7 +518,7 @@ module.exports = function(eleventyConfig) {
         "mstile-150x150.png",
         "safari-pinned-tab.svg",
         "serviceworker.js"
-    ].forEach(asset => eleventyConfig.addPassthroughCopy(asset));
+    ].forEach(asset => config.addPassthroughCopy(asset));
 
 
     // --------------------------------------------------------------------------------
@@ -533,7 +533,7 @@ module.exports = function(eleventyConfig) {
      * set in milliseconds, which makes it easier to calculate with,
      * e.g. sorting.
      */
-    eleventyConfig.addFilter("millisFormatted", milliseconds => {
+    config.addFilter("millisFormatted", milliseconds => {
         let pad = (number) => {
             let s = String(number);
             let size = 2;
@@ -563,7 +563,7 @@ module.exports = function(eleventyConfig) {
      * Using {{ ... | join('-') }} in the permalink breaks as it will always use a
      * a space as a separator. Somehow making our own works!
      */
-    eleventyConfig.addFilter("arrayAsPermalink", items => items.join('-') );
+    config.addFilter("arrayAsPermalink", items => items.join('-') );
 
     /**
      * Convert labels to proper text.
@@ -593,39 +593,52 @@ module.exports = function(eleventyConfig) {
         "foo" : "bar"
     };
 
-    eleventyConfig.addFilter("label", value => labelLookup[value] ? labelLookup[value] : `UNKNOWN LABEL: [${value}]`);
+    config.addFilter("label", value => labelLookup[value] ? labelLookup[value] : `UNKNOWN LABEL: [${value}]`);
 
 
     let pad = number => number < 10 ? '0' + number : number;
     let formatDate = date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())}`
     let formatDateTime = date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`;
 
-    eleventyConfig.addFilter("dateTimeISO" , date => date.toISOString());
-    eleventyConfig.addFilter("dateOnly"    , date => formatDate(date));
-    eleventyConfig.addFilter("dateTime"    , date => formatDateTime(date));
+    config.addFilter("dateTimeISO" , date => date.toISOString());
+    config.addFilter("dateOnly"    , date => formatDate(date));
+    config.addFilter("dateTime"    , date => formatDateTime(date));
 
-    eleventyConfig.addFilter("currentDateTimeISO" , value => (new Date()).toISOString());
-    eleventyConfig.addFilter("currentDateTime"    , value => formatDateTime(new Date()));
+    config.addFilter("currentDateTimeISO" , value => (new Date()).toISOString());
+    config.addFilter("currentDateTime"    , value => formatDateTime(new Date()));
 
+    config.addFilter("dateDisplay", (dateObj, format = "LLL d, y") => {
+        return DateTime.fromJSDate(dateObj, {
+          zone: "utc"
+        }).toFormat(format);
+    });
 
     // --------------------------------------------------------------------------------
     // Transforms
     // --------------------------------------------------------------------------------
+    const htmlmin = require("html-minifier");
+
+    config.addTransform("htmlmin", (content, outputPath) => {
+        if( outputPath.endsWith(".html") ) {
+            let minified = htmlmin.minify(content, {
+              useShortDoctype    : true,
+              removeComments     : true,
+              collapseWhitespace : true
+            });
+            return minified;
+          }
+          return content;
+    });
+
+    /*
     const pretty = require("pretty");
-
-    eleventyConfig.addTransform("pretty", function(content, outputPath) {
-        if ( outputPath.endsWith(".html") ) {
-            return pretty(content, {ocd: true});
+    config.addTransform("pretty", function(content, outputPath) {
+        if (outputPath.endsWith(".html")) {
+            return pretty(content, { ocd: true });
         }
-        else if ( outputPath.endesWith(".css") ) {
-            // minify
-        }
-        else if ( outputPath.endesWith(".js") ) {
-            // minify
-        }
-
         return content;
     });
+    */
 
     return {
         passthroughFileCopy: true
