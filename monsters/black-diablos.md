@@ -1,4 +1,4 @@
 ---
 title: Black Diablos
-species: Brute Wyvern
+species: Flying Wyvern
 ---
