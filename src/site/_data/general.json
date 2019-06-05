@@ -3,6 +3,7 @@
     "meta_description": "Unofficial Monster Hunter World Iceborne Leaderboards. For shits and giggles!",
     "repository": "https://github.com/shinseiken/mhw",
     "menu": {
+        "/news/"      : "News",
         "/runs/"      : "Runs",
         "/runners/"   : "Runners",
         "/quests/"    : "Quests",
@@ -11,11 +12,11 @@
         "/locations/" : "Locations"
     },
     "footer": {
-        "/"         : "Home",
-        "/news/"    : "News",
-        "/about/"   : "About",
-        "/support/" : "Support",
-        "/privacy/" : "Privacy"
+        "/"           : "Home",
+        "/about/"     : "About",
+        "/community/" : "Community",
+        "/support/"   : "Support",
+        "/privacy/"   : "Privacy"
     },
     "parent": {
         "location" : { "url": "/locations/" , "title": "Locations" },
