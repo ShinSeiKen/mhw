@@ -1,11 +1,13 @@
 {
   "name": "eleventy-netlify-mhw",
-  "version": "0.0.1",
-  "description": "A boilerplate for building a fast static website with the Eleventy static site generator, for deployment to Netlify.",
+  "version": "0.0.2",
+  "description": "Monster Hunter World Leaderboards site using Eleventy and Netlify!",
   "scripts": {
-    "build": "npx eleventy",
-    "watch": "npx eleventy --watch",
-    "debug": "DEBUG=* npx eleventy"
+    "start": "npx run dev",
+    "build": "gulp build & npx eleventy",
+    "dev": "gulp dev & npx eleventy --serve",
+    "debug": "DEBUG=* npx eleventy",
+    "watch": "npx eleventy --watch"
   },
   "repository": {
     "type": "git",
@@ -24,7 +26,11 @@
     "markdown-it-anchor": "^5.2.4"
   },
   "dependencies": {
-    "clean-css": "^4.2.1",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-image-resize": "^0.13.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify-es": "^1.0.4",
     "html-minifier": "^4.0.0",
     "pretty": "^2.0.0",
     "terser": "^4.0.0"

@@ -1,3 +1,11 @@
+/*
+@import url('https://rsms.me/inter/inter.css');
+html { font-family: 'Inter', sans-serif; }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+//*/
+
 :root {
     --foo: bar;
 }
@@ -241,7 +249,7 @@ dd {
 }
 
 .card-wrap:focus-within {
-    outline: 5px solid black;
+    //outline: 5px solid black;
 }
 
 .card-wrap a:focus {
@@ -287,7 +295,7 @@ dd {
     box-shadow:
     rgba(white, 0.2) 0 0 40px 5px,
     rgba(white, 1) 0 0 0 1px,
-    rgba(black, 0.66) 0 30px 60px 0,
+    // rgba(black, 0.66) 0 30px 60px 0,
     inset #333 0 0 0 5px,
     inset white 0 0 0 6px;
 }
@@ -301,7 +309,7 @@ dd {
   overflow: hidden;
   /* border-radius: 10px; */
   box-shadow:
-    rgba(black, 0.66) 0 30px 60px 0,
+    // rgba(black, 0.66) 0 30px 60px 0,
     inset #333 0 0 0 5px,
     inset rgba(white, 0.5) 0 0 0 6px;
   transition: 1s var(--returnEasing);

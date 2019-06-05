@@ -2,19 +2,36 @@
 
 This is a concept for shits and giggles. You 'avin' a giggle, mate?
 
+## Getting Started
+
+```
+git clone <repo> <folder>
+cd <folder>
+npm install
+```
+
+### Development
+
+```
+npm run dev
+```
+
+### Production
+
+```
+npm run build
+```
+
 ## TODO
 
-- 404 Page
 - Refactor Posts -> News
     - Make proper news articles too
 - Add a Community page with Discords and shit, maybe some Youtube channels to follow
 - Add some nice Social icons and weapon icons
 - Filtering runs, leaderboards, etc.
 - Minify assets
-    - JS (concat, babel, minify)
-    - CSS (concat, postcss, cssnext)
     - Images (resize properly and compress)
-- Additional Monster data
+- Additional Monster data (e.g. descriptions from Hunting)
 - Additional Location data
 - Additional (Top) Event Quests
 - Leaderboards
@@ -44,6 +61,7 @@ This is a concept for shits and giggles. You 'avin' a giggle, mate?
 - [Melee Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/8/1)
 - [Ranged Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/9/1)
 - [Parallax Depth Cards by Andy Merskin](https://codepen.io/andymerskin/pen/XNMWvQ)
+- [EleventyOne by Phil Hawksworth](https://github.com/philhawksworth/eleventyone)
 - Inspired by [GOV.UK](https://www.gov.uk) for its accessibility.
 
 ## Notes

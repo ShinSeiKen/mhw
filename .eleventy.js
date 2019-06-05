@@ -45,19 +45,24 @@ module.exports = function(config) {
         return valueA.localeCompare(valueB);
     };
 
+    /**
+     * Potential bug: Using a Glob with `**` breaks when using sub-directories.
+     *                Without it, `monsters/*.md` was sufficient.
+     */
+
     // Define collections
-    config.addCollection("monsters"  , collection => collection.getFilteredByGlob("monsters/*.md"));
-    config.addCollection("locations" , collection => collection.getFilteredByGlob("locations/*.md"));
-    config.addCollection("weapons"   , collection => collection.getFilteredByGlob("weapons/*.md"));
-    config.addCollection("quests"    , collection => collection.getFilteredByGlob("quests/**/*.md").sort(byTitleAlphabetically));
-    config.addCollection("runs"      , collection => collection.getFilteredByGlob("runs/**/*.md").reverse());
-    config.addCollection("runners"   , collection => collection.getFilteredByGlob("runners/*.md").sort(byTitleAlphabetically));
+    config.addCollection("monsters"  , collection => collection.getFilteredByGlob("src/site/monsters/*.md"));
+    config.addCollection("locations" , collection => collection.getFilteredByGlob("src/site/locations/*.md"));
+    config.addCollection("weapons"   , collection => collection.getFilteredByGlob("src/site/weapons/*.md"));
+    config.addCollection("quests"    , collection => collection.getFilteredByGlob("src/site/quests/**/*.md").sort(byTitleAlphabetically));
+    config.addCollection("runs"      , collection => collection.getFilteredByGlob("src/site/runs/**/*.md").reverse());
+    config.addCollection("runners"   , collection => collection.getFilteredByGlob("src/site/runners/*.md").sort(byTitleAlphabetically));
 
     // Define sub-collections for quests
-    config.addCollection("quests__arena"     , collection => collection.getFilteredByGlob("quests/arena-quest/*.md").sort(byTitleAlphabetically));
-    config.addCollection("quests__challenge" , collection => collection.getFilteredByGlob("quests/challenge-quest/*.md").sort(byTitleAlphabetically));
-    config.addCollection("quests__event"     , collection => collection.getFilteredByGlob("quests/event-quest/*.md").sort(byTitleAlphabetically));
-    config.addCollection("quests__optional"  , collection => collection.getFilteredByGlob("quests/optional-quest/*.md").sort(byTitleAlphabetically));
+    config.addCollection("quests__arena"     , collection => collection.getFilteredByGlob("src/site/quests/arena-quest/*.md").sort(byTitleAlphabetically));
+    config.addCollection("quests__challenge" , collection => collection.getFilteredByGlob("src/site/quests/challenge-quest/*.md").sort(byTitleAlphabetically));
+    config.addCollection("quests__event"     , collection => collection.getFilteredByGlob("src/site/quests/event-quest/*.md").sort(byTitleAlphabetically));
+    config.addCollection("quests__optional"  , collection => collection.getFilteredByGlob("src/site/quests/optional-quest/*.md").sort(byTitleAlphabetically));
 
     // Define a lookup table for accessing content via type and (unique) slugs
     config.addCollection("lookup", collection => {
@@ -501,27 +506,6 @@ module.exports = function(config) {
     });
 
     // --------------------------------------------------------------------------------
-    // Assets
-    // --------------------------------------------------------------------------------
-
-    [
-        "assets",
-        "robots.txt",
-        "humans.txt",
-        "site.webmanifest",
-        "android-chrome-192x192.png",
-        "apple-touch-icon.png",
-        "browserconfig.xml",
-        "favicon.ico",
-        "favicon-16x16.png",
-        "favicon-32x32.png",
-        "mstile-150x150.png",
-        "safari-pinned-tab.svg",
-        "serviceworker.js"
-    ].forEach(asset => config.addPassthroughCopy(asset));
-
-
-    // --------------------------------------------------------------------------------
     // Filters and Shortcodes
     // --------------------------------------------------------------------------------
 
@@ -640,7 +624,35 @@ module.exports = function(config) {
     });
     */
 
+    // --------------------------------------------------------------------------------
+    // Assets
+    // --------------------------------------------------------------------------------
+
+    [
+        "assets",
+        "robots.txt",
+        "humans.txt",
+        "site.webmanifest",
+        "android-chrome-192x192.png",
+        "apple-touch-icon.png",
+        "browserconfig.xml",
+        "favicon.ico",
+        "favicon-16x16.png",
+        "favicon-32x32.png",
+        "mstile-150x150.png",
+        "safari-pinned-tab.svg",
+        "serviceworker.js"
+    ].forEach(asset => config.addPassthroughCopy(`src/site/${asset}`));
+
+
     return {
+        dir: {
+            input: "src/site",
+            output: "_site"
+        },
+        templateFormats : ["njk", "md"],
+        // htmlTemplateEngine : "njk",
+        // markdownTemplateEngine : "njk",
         passthroughFileCopy: true
     };
 };
