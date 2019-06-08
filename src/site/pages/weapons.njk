@@ -6,7 +6,7 @@ title: Weapons
     <c span="row">
         <h1>{{ title }}</h1>
         <ul class="compact">
-            {% for slug in weapons %}
+            {% for slug in global_weapons %}
                 {% set item = collections.lookup.weapon[slug] %}
                 <li
                     {% if page.url == item.url %} class="active"{% endif %}>

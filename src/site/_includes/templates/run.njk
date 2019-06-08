@@ -57,7 +57,7 @@ permalink: "/runs/{% if title %}{{ title | slug }}{% else %}{{ quest }}{% endif 
     </dd>
     <dt>Weapon{% if runners | length > 1 %}s{% endif %}</dt>
     <dd>
-        {% for item in weapons %}
+        {% for item in global_weapons %}
             {% set temp = collections.lookup.weapon[ item ] %}
             <a href="{{ temp.url | url }}">
                 {{- temp.data.title -}}

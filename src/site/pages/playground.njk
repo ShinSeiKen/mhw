@@ -143,7 +143,7 @@ title: Playground
 
 <h1>Weapons</h1>
 <grid columns=3 columns-s=1>
-    {% for slug in weapons %}
+    {% for slug in global_weapons %}
         {% set item = collections.lookup.weapon[ slug ] %}
         <div class="card-wrap">
             <div class="card">
@@ -159,7 +159,7 @@ title: Playground
 
 <h1>Weapons</h1>
 <div>
-    {% for item in weapons %}
+    {% for item in global_weapons %}
         <img
             src="/assets/img/weapon-icon/{{ item | slug }}.png"
             height="40px"
@@ -171,7 +171,7 @@ title: Playground
 </div>
 
 <div >
-    {% for item in weapons %}
+    {% for item in global_weapons %}
         <img
             src="/assets/img/weapon-icon-2/{{ item | slug }}.png"
             height="40px"
@@ -183,7 +183,7 @@ title: Playground
 </div>
 
 <div >
-    {% for item in weapons %}
+    {% for item in global_weapons %}
         <img
             src="/assets/img/weapon-icon-3/{{ item | slug }}.webp"
             height="40px"

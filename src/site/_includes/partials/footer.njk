@@ -40,7 +40,7 @@
             <c span=4 span-s=4>
                 <h2>Weapons</h2>
                 <ul class="compact">
-                    {% for slug in weapons %}
+                    {% for slug in global_weapons %}
                         {% set item = collections.lookup.weapon[slug] %}
                         <li
                             {% if page.url == item.url %} class="active"{% endif %}>
