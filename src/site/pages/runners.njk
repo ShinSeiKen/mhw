@@ -6,7 +6,7 @@ title: Runners
     <c span="row">
         <h1>{{ title }}</h1>
 
-        <ul class="runners-full-list compact">
+        <ul class="runners-full-list">
             {% for runner in collections.runners %}
                 <li>{% include "components/links/runner-link.njk" %}</li>
             {% endfor  %}
@@ -26,7 +26,7 @@ title: Runners
         {% set item = collections.lookup.weapon[ slug ] %}
         <c span=4>
             <h3>{{ item.data.title }}</h3>
-            <ul class="compact">
+            <ul>
                 {% for runner in collections.runners__by_weapon[ slug ] %}
                     {% if loop.index0 < 20 %}
                         <li>{% include "components/links/runner-link.njk" %}</li>

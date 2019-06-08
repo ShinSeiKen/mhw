@@ -5,7 +5,7 @@ title: Locations
 <grid columns=12 columns-s=6>
     <c span="row">
         <h1>{{ title }}</h1>
-        <ul class="compact">
+        <ul>
             {% for slug in locations %}
                 {% set item = collections.lookup.location[slug] %}
                 <li

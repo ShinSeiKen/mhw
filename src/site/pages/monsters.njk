@@ -2,10 +2,10 @@
 title: Monsters
 ---
 
-<grid>
-    <c>
+<grid columns=12 columns-s=4>
+    <c span="row">
         <h1>{{ title }}</h1>
-        <ul class="compact">
+        <ul>
             {% for slug in monsters %}
                 {% set item = collections.lookup.monster[slug] %}
                 <li

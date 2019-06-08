@@ -5,7 +5,7 @@ title: Weapons
 <grid columns=12 columns-s=6>
     <c span="row">
         <h1>{{ title }}</h1>
-        <ul class="compact">
+        <ul>
             {% for slug in global_weapons %}
                 {% set item = collections.lookup.weapon[slug] %}
                 <li

@@ -2,13 +2,13 @@
 layout: layouts/base.njk
 ---
 
-<grid columns=12 columns-s=4>
+<grid columns=12>
 
 <c span="row">
     <h1>{{ title }}</h1>
 </c>
 
-<c span=4 span-s=4>
+<c span=4>
     {{ content | safe }}
 
     <dl>
@@ -18,7 +18,7 @@ layout: layouts/base.njk
 
     <h2>Runners</h2>
     {% if collections.runners__by_weapon[page.fileSlug] %}
-        <ul class="compact">
+        <ul>
             {% for runner in collections.runners__by_weapon[ page.fileSlug ] %}
                 <li>
                     {% include "components/links/runner-link.njk" %}
@@ -31,7 +31,7 @@ layout: layouts/base.njk
 </c>
 
 {% if video %}
-    <c span=8 span-s=4>
+    <c span=8>
         {% include "components/video.njk" %}
     </c>
 {% endif %}

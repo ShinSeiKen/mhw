@@ -1,7 +1,7 @@
 {# --- Only show breadcrumbs when two levels down, i.e. when three items to show --- #}
 {% if page.url != '/' and general.parent[ type ] is defined %}
     {% set parent = general.parent[ type ] %}
-    <nav aria-label="Breadcrumb" class="breadcrumb">
+    <nav aria-label="Breadcrumbs" class="breadcrumbs">
         <div class="inner">
             <span hidden>You are here:</span>
             <ol>

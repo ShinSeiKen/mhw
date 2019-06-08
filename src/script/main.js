@@ -1,5 +1,6 @@
 "use strict";
 
+/*
 let navButton = document.querySelector('nav button');
 
 navButton && navButton.addEventListener('click', function() {
@@ -8,6 +9,7 @@ navButton && navButton.addEventListener('click', function() {
     let menu = this.nextElementSibling;
     menu.hidden = !menu.hidden;
 });
+//*/
 
 /**
  * Adapted from Parallax Depth Cards by Andy Merskin
@@ -22,7 +24,7 @@ cards.forEach(card => {
     let mousePX = 0;
     let mousePY = 0;
     let theCard = card.querySelector('.card');
-    let cardBg = card.querySelector('.card-bg');
+    let cardBg  = card.querySelector('.card-bg');
     let mouseLeaveDelay;
     let bgImage = cardBg.attributes['data-image'].value;
     cardBg.style.backgroundImage = `url(${bgImage})`;

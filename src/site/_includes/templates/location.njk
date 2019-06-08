@@ -25,7 +25,7 @@ layout: layouts/base.njk
 
         {% if quests | length %}
             <h2>Quests</h2>
-            <ul class="compact">
+            <ul>
                 {% for item in quests %}
                     <li>
                         <a href="{{ item.url | url }}">{{ item.data.title }}</a>

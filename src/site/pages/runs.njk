@@ -5,7 +5,7 @@ title: Runs
 <grid>
     <c span="row">
         <h1>{{ title }}</h1>
-        <ul class="compact">
+        <ul>
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 1 %}
                     {% set count = count + 1 %}
@@ -18,7 +18,7 @@ title: Runs
     {% if count < collections.runs | length %}
     <c span="row">
         <h2>Multiplayer</h2>
-        <ul class="compact">
+        <ul>
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length > 1 %}
                     <li>{% include "components/links/run-link.njk" %}</li>
@@ -32,7 +32,7 @@ title: Runs
     <c>
         <h2>2P Runs</h2>
 
-        <ul class="compact">
+        <ul>
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 2 %}
                     <li>{% include "components/links/run-link.njk" %}</li>
@@ -43,7 +43,7 @@ title: Runs
     <c>
         <h2>3P Runs</h2>
 
-        <ul class="compact">
+        <ul>
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 3 %}
                     <li>{% include "components/links/run-link.njk" %}</li>
@@ -54,7 +54,7 @@ title: Runs
     <c>
         <h2>4P Runs</h2>
 
-        <ul class="compact">
+        <ul>
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 4 %}
                     <li>{% include "components/links/run-link.njk" %}</li>

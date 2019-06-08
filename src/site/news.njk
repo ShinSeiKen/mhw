@@ -10,19 +10,25 @@ pagination:
 # permalink: /news/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html
 ---
 
-<grid>
-    <c>
-        <h1>News</h1>
-        <ul class="compact">
-            {% for post in posts %}
-                <li>
-                    <article>
-                            <h2>{{- post.data.title -}}</h2>
-                            <p>{{ post.data.teaser }}</P>
-                            <a href="{{ post.url | url }}">Read more<span class="visually-hidden"> about {{ post.data.title }}</span></a>
-                    </article>
-                </li>
-            {% endfor %}
-        </ul>
-    </c>
-</grid>
+<h1>News</h1>
+<ul>
+    {% for post in posts %}
+        <li>
+            <a href="{{ post.url | url }}">
+                {{- post.data.title -}}
+            </a>
+            <time datetime="{{ post.date | dateTimeISO }}" class="xxsmall">{{ post.date | dateDisplay }}</time>
+            {#
+            <article>
+                <h2>
+                    <a href="{{ post.url | url }}">
+                        {{- post.data.title -}}
+                    </a>
+                </h2>
+                <p>{{ post.data.teaser }}</P>
+                <a href="{{ post.url | url }}">Read more<span class="visually-hidden"> about {{ post.data.title }}</span></a>
+            </article>
+            #}
+        </li>
+    {% endfor %}
+</ul>

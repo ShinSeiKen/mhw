@@ -1,0 +1,62 @@
+grid {
+    display: grid;
+    --grid-tc: repeat(4, 1fr);
+    grid-template-columns: var(--grid-tc);
+    --grid-cs: 1; // column start
+    --grid-ce: -1 // column end
+}
+
+/* c -- cell or column */
+grid>c {
+    display: block;
+    appearance: none;
+    -webkit-appearance: none
+}
+
+grid[columns="3"]  { --grid-tc: repeat(3, 1fr) }
+grid[columns="4"]  { --grid-tc: repeat(4, 1fr) }
+grid[columns="6"]  { --grid-tc: repeat(6, 1fr) }
+grid[columns="8"]  { --grid-tc: repeat(8, 1fr) }
+grid[columns="12"] { --grid-tc: repeat(12, 1fr) }
+
+grid>c[span^="1"] { --grid-cs: 1 }
+grid>c[span^="2"] { --grid-cs: 2 }
+grid>c[span^="3"] { --grid-cs: 3 }
+grid>c[span^="4"] { --grid-cs: 4 }
+grid>c[span^="6"] { --grid-cs: 6 }
+grid>c[span^="8"] { --grid-cs: 8 }
+grid>c[span^="12"] { --grid-cs: 12 }
+
+grid>c[span="1"] { --grid-ce: 1 }
+grid>c[span="2"] { --grid-ce: 2 }
+grid>c[span="3"] { --grid-ce: 3 }
+grid>c[span="4"] { --grid-ce: 4 }
+grid>c[span="6"] { --grid-ce: 6 }
+grid>c[span="8"] { --grid-ce: 8 }
+grid>c[span="12"] { --grid-ce: 12 }
+
+/* connect vars */
+grid>c[span] {
+    grid-column-end: span var(--grid-ce)
+}
+
+grid>c[span="row"] {
+    grid-column: 1 / -1
+}
+
+/* for window width <= 600 */
+@media only screen and (max-width: 600px) { }
+
+/* for window width >= 1600 */
+@media only screen and (min-width: 1599px) { }
+
+.debug grid > * {
+    --color: rgba(248,110,91 ,0.3);
+    background-image: linear-gradient(to bottom, var(--color) 0%, var(--color) 100%);
+}
+.debug grid > :nth-child(6n+2) { --color: rgba(103,126,208,0.3) }
+.debug grid > :nth-child(6n+3) { --color: rgba(224,174,72 ,0.3) }
+.debug grid > :nth-child(6n+4) { --color: rgba(77, 214,115,0.3) }
+.debug grid > :nth-child(6n+5) { --color: rgba(217,103,219,0.3) }
+.debug grid > :nth-child(6n+6) { --color: rgba(94, 204,211,0.3) }
+.debug grid > :nth-child(6n+7) { --color: rgba(248,110,91 ,0.3) }

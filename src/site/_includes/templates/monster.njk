@@ -26,7 +26,7 @@ layout: layouts/base.njk
     </dl>
     {% if quests | length %}
         <h2>Quests</h2>
-        <ul class="compact">
+        <ul>
             {% for item in quests %}
                 <li>
                     <a href="{{ item.url }}">
@@ -54,7 +54,7 @@ layout: layouts/base.njk
 
 <c span=6>
     <h2>Runs</h2>
-    <ul class="compact">
+    <ul>
         {% for run in collections.runs__by_monster[page.fileSlug] %}
             <li>
                 {% include "components/links/run-link.njk" %}
