@@ -4,47 +4,43 @@ layout: layouts/base.njk
 {% set quests = collections.quests__by_monster[page.fileSlug] %}
 {% set locations = collections.locations__by_monster[page.fileSlug] %}
 
-<grid columns=12 columns-s=4>
-
-<c span="row">
-    <h1>{{ title }}</h1>
-</c>
-<c span=6>
-    {{ content | safe }}
-    <dl>
-        <dt>Species</dt>
-        <dd>{{ species }}</dd>
-        {% if locations | length %}
-            <dt>Locations<dt>
-            <dd>
-                {% for item in locations %}
-                    <a href="{{ item.url | url }}">{{- item.data.title -}}</a>
-                    {%- if not loop.last %}, {% endif %}
+<div class="grid grid--monster">
+    <div class="grid__row">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="grid__content">
+        {{ content | safe }}
+        <dl>
+            <dt>Species</dt>
+            <dd>{{ species }}</dd>
+            {% if locations | length %}
+                <dt>Locations<dt>
+                <dd>
+                    {% for item in locations %}
+                        <a href="{{ item.url | url }}">{{- item.data.title -}}</a>
+                        {%- if not loop.last %}, {% endif %}
+                    {% endfor %}
+                </dd>
+            {% endif %}
+        </dl>
+        {% if quests | length %}
+            <h2>Quests</h2>
+            <ul>
+                {% for item in quests %}
+                    <li>
+                        <a href="{{ item.url }}">
+                            {{- item.data.title -}}
+                        </a>
+                    </li>
                 {% endfor %}
-            </dd>
+            </ul>
         {% endif %}
-    </dl>
-    {% if quests | length %}
-        <h2>Quests</h2>
-        <ul>
-            {% for item in quests %}
-                <li>
-                    <a href="{{ item.url }}">
-                        {{- item.data.title -}}
-                    </a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
-</c>
-
-<c span=6>
-    {% if video %}
-        {% include 'components/video.njk'%}
-    {% endif %}
-</c>
-
-
+    </div>
+    <div class="grid__media">
+        {% if video %}
+            {% include 'components/video.njk'%}
+        {% endif %}
+    </div>
 
 {#
 <p>List of quests that have this monster, with the best or most recent speedrun of above mentioned quests.</p>
@@ -52,7 +48,7 @@ layout: layouts/base.njk
 
 --- need extra layer ---
 
-<c span=6>
+<div class="grid__column">
     <h2>Runs</h2>
     <ul>
         {% for run in collections.runs__by_monster[page.fileSlug] %}
@@ -61,6 +57,6 @@ layout: layouts/base.njk
             </li>
         {% endfor %}
     </ul>
-</c>
+</div>
 #}
-</grid>
+</div>

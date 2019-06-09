@@ -2,11 +2,9 @@
 title: Quests
 ---
 
-<grid columns=12 columns-s=6>
-    <c span="row">
-        <h1>{{ title }}</h1>
-    </c>
-    <c span=6>
+<h1>{{ title }}</h1>
+<div class="grid grid--double">
+    <div class="grid__column">
         <h2>Optional Quests</h2>
         <ul>
             {% for item in collections.quests__optional %}
@@ -18,8 +16,8 @@ title: Quests
                 </li>
             {% endfor  %}
         </ul>
-    </c>
-    <c span=6>
+    </div>
+    <div class="grid__column">
         <h2>Event Quests</h2>
         <ul>
             {% for item in collections.quests__event %}
@@ -53,13 +51,5 @@ title: Quests
                 </li>
             {% endfor  %}
         </ul>
-    </c>
-    {#
-    <c span=6>
-
-    </c>
-    <c span=6>
-
-    </c>
-    #}
+    </div>
 </grid>

@@ -6,85 +6,84 @@ permalink: "/runs/{% if title %}{{ title | slug }}{% else %}{{ quest }}{% endif 
 {% set _runner   = collections.lookup.runner[ runners | first ] %}
 {% set _quest    = collections.lookup.quest[ quest ] %}
 {% set _location = collections.lookup.location[ _quest.data.location ] %}
-<grid columns=12 columns-s=4>
-<c span="row">
-    <h1>{% include "components/run-title.njk" %}</h1>
-
-    {{ content | safe }}
-</c>
-<c span=8>
-    {% if video %}
-        {% include "components/video.njk" %}
-    {% else %}
-        MISSING VIDEO
-    {% endif %}
-</c>
-<c span=4>
-<dl>
-    <dt>Runner{% if runners | length > 1 %}s{% endif %}</dt>
-    <dd>
-        {% for runnerSlug in runners %}
-            {% set runner = collections.lookup.runner[ runnerSlug ] %}
-            {% include "components/links/runner-link.njk" %}
-            {%- if not loop.last -%}
-            <br>
-            {% endif %}
-        {% endfor %}
-    </dd>
-    <dt>Quest</dt>
-    <dd>
-        <a href="{{ _quest.url | url }}">
-            {{- _quest.data.title -}}
-        </a>
-    </dd>
-    <dt>Monster{% if _quest.data.monsters | length > 1 %}s{% endif %}</dt>
-    <dd>
-        {% for item in _quest.data.monsters %}
-            {% set temp = collections.lookup.monster[ item ] %}
-            <a href="{{ temp.url | url }}">
-                {{- temp.data.title -}}
-            </a>
-            {%- if not loop.last -%}
-            <br>
-            {% endif %}
-        {% endfor %}
-    </dd>
-    <dt>Location</dt>
-    <dd>
-        <a href="{{ _location.url | url }}">
-            {{- _location.data.title -}}
-        </a>
-    </dd>
-    <dt>Weapon{% if runners | length > 1 %}s{% endif %}</dt>
-    <dd>
-        {% for item in global_weapons %}
-            {% set temp = collections.lookup.weapon[ item ] %}
-            <a href="{{ temp.url | url }}">
-                {{- temp.data.title -}}
-            </a>
-            {%- if not loop.last -%}
-            <br>
-            {% endif %}
-        {% endfor %}
-    </dd>
-    <dt>Ruleset:</dt>
-    <dd>{{ run_type | label }}</dd>
-    <dt>Platform</dt>
-    <dd>{{ platform | label }}</dd>
-    <dt>Patch</dt>
-    <dd>{{ patch_version }}</dd>
-    <dt>Date</dt>
-    <dd>
-        <time datetime="{{ page.date | dateTimeISO }}">{{ page.date | dateOnly }}</time>
-    </dd>
-    <dt>Time</dt>
-    {#
-    <dd>{{ time_in_millis | millisFormatted }}</dd>
-    #}
-    <dd>{{ time }}</dd>
-</dl>
-</c>
-</grid>
+<div class="grid">
+    <div class="grid__row">
+        <h1>{% include "components/run-title.njk" %}</h1>
+        {{ content | safe }}
+    </div>
+    <div class="grid__media">
+        {% if video %}
+            {% include "components/video.njk" %}
+        {% else %}
+            MISSING VIDEO
+        {% endif %}
+    </div>
+    <aside class="grid__aside">
+        <dl>
+            <dt>Runner{% if runners | length > 1 %}s{% endif %}</dt>
+            <dd>
+                {% for runnerSlug in runners %}
+                    {% set runner = collections.lookup.runner[ runnerSlug ] %}
+                    {% include "components/links/runner-link.njk" %}
+                    {%- if not loop.last -%}
+                    <br>
+                    {% endif %}
+                {% endfor %}
+            </dd>
+            <dt>Quest</dt>
+            <dd>
+                <a href="{{ _quest.url | url }}">
+                    {{- _quest.data.title -}}
+                </a>
+            </dd>
+            <dt>Monster{% if _quest.data.monsters | length > 1 %}s{% endif %}</dt>
+            <dd>
+                {% for item in _quest.data.monsters %}
+                    {% set temp = collections.lookup.monster[ item ] %}
+                    <a href="{{ temp.url | url }}">
+                        {{- temp.data.title -}}
+                    </a>
+                    {%- if not loop.last -%}
+                    <br>
+                    {% endif %}
+                {% endfor %}
+            </dd>
+            <dt>Location</dt>
+            <dd>
+                <a href="{{ _location.url | url }}">
+                    {{- _location.data.title -}}
+                </a>
+            </dd>
+            <dt>Weapon{% if runners | length > 1 %}s{% endif %}</dt>
+            <dd>
+                {% for item in weapons %}
+                    {% set temp = collections.lookup.weapon[ item ] %}
+                    <a href="{{ temp.url | url }}">
+                        {{- temp.data.title -}}
+                    </a>
+                    {%- if not loop.last -%}
+                    <br>
+                    {% endif %}
+                {% endfor %}
+            </dd>
+            <dt>Ruleset:</dt>
+            <dd>{{ run_type | label }}</dd>
+            <dt>Platform</dt>
+            <dd>{{ platform | label }}</dd>
+            <dt>Patch</dt>
+            <dd>{{ patch_version }}</dd>
+            <dt>Date</dt>
+            <dd>
+                <time datetime="{{ page.date | dateTimeISO }}">{{ page.date | dateOnly }}</time>
+            </dd>
+            <dt>Time</dt>
+            {#
+            <dd>{{ time_in_millis | millisFormatted }}</dd>
+            #}
+            <dd>{{ time }}</dd>
+        </dl>
+    </aside>
+</div>
 {#
 <h2>Related runs</h2>
 <p>Other runs of the same quest and weapon</p>

@@ -3,71 +3,74 @@
 
         {% include "components/breadcrumb.njk" %}
 
-        <grid columns=12>
-            <c span=4>
+        <div class="grid grid--quadra">
+            <div class="grid__column">
                 <h2>Event Quests</h2>
-                <ul>
+                <ul class="footer-list">
                     {% for item in collections.quests__event %}
                         <li
                             {% if page.url == item.url %} class="active"{% endif %}>
-                            <a href="{{ item.url | url }}">
+                            <a class="footer-list__link" href="{{ item.url | url }}">
                                 {{- item.data.title -}}
                             </a>
                         </li>
                     {% endfor  %}
                 </ul>
-            </c>
-            <c span=4>
+            </div>
+            <div class="grid__column">
                 <h2>Locations</h2>
-                <ul>
+                <ul class="footer-list">
                     {% for slug in locations %}
                         {% set item = collections.lookup.location[slug] %}
                         <li
                             {% if page.url == item.url %} class="active"{% endif %}>
-                            <a href="{{ item.url | url }}">
+                            <a class="footer-list__link" href="{{ item.url | url }}">
                                 {{- item.data.title -}}
                             </a>
                         </li>
                     {% endfor  %}
                 </ul>
-            </c>
-            <c span=4>
+            </div>
+            <div class="grid__column">
                 <h2>Weapons</h2>
-                <ul>
+                <ul class="footer-list">
                     {% for slug in global_weapons %}
                         {% set item = collections.lookup.weapon[slug] %}
                         <li
                             {% if page.url == item.url %} class="active"{% endif %}>
-                            <a href="{{ item.url | url }}">
+                            <a class="footer-list__link" href="{{ item.url | url }}">
                                 {{- item.data.title -}}
                             </a>
                         </li>
                     {% endfor  %}
                 </ul>
-            </c>
+            </div>
+        </div>
 
-            <hr>
-
-            <c span="row">
-                <h2 class="visually-hidden">Support Links</h2>
-                {# -- move to css because decorative, saves ink on printing OMEGALUL -- #}
-                <img src="/assets/img/achievement/conqueror-of-the-new-world.png" height="120px" width="120px" style="float: right; filter: grayscale(1);" alt="">
-                <ul class="footerlinks">
-                    {% for url, label in general.footer %}
-                        <li{% if page.url == url %} class="active"{% endif %}>
-                            <a href="{{ url | url }}">
-                                {{- label -}}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-                <p class="credits">
-                    <br>
-                    {# Made by <a href="https://github.com/shinseiken">ShinSeiKen</a> - <a href="{{ general.repository }}/tree/master/{{ page.inputPath }}">Edit this page on GitHub</a><br><br> #}
-                    Made by <a href="{{ '/runners/shinseiken' | url }}">ShinSeiKen</a>.<br>
-                    Last build: <time datetime="{{ 'now' | currentDateTimeISO }}">{{ 'now' | currentDateTime }}</time>
-                </p>
-            </c>
-        </grid>
+        <hr>
+        <h2 class="visually-hidden">Support Links</h2>
+        {# -- move to css because decorative, saves ink on printing OMEGALUL -- #}
+        {#
+        <img src="/assets/img/achievement/conqueror-of-the-new-world.png" height="120px" width="120px" style="float: right; filter: grayscale(1);" alt="">
+        #}
+        <ul class="footer-links">
+            {% for url, label in general.footer %}
+                {% set active = '' %}
+                {% if page.url == url %}
+                    {% set active = 'active' %}
+                {% endif %}
+                <li class="footer-links__item {{ active }}">
+                    <a class="footer-links__link" href="{{ url | url }}">
+                        {{- label -}}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        <p class="footer-credits">
+            <br>
+            {# Made by <a href="https://github.com/shinseiken">ShinSeiKen</a> - <a href="{{ general.repository }}/tree/master/{{ page.inputPath }}">Edit this page on GitHub</a><br><br> #}
+            Made by <a href="{{ '/runners/shinseiken' | url }}">ShinSeiKen</a>.<br>
+            Last build: <time datetime="{{ 'now' | currentDateTimeISO }}">{{ 'now' | currentDateTime }}</time>
+        </p>
     </div>
 </footer>

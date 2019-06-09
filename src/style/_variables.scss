@@ -1,3 +1,12 @@
+$fontSize     : 16;
+$breakpointXS : ( 400 / $fontSize) + "em";
+$breakpointS  : ( 600 / $fontSize) + "em";
+$breakpointM  : ( 960 / $fontSize) + "em";
+$breakpointL  : (1280 / $fontSize) + "em";
+$breakpointXL : (1600 / $fontSize) + "em";
+
+// 400 481 600 768 960 1280 1400 1600 1840
+
 :root {
     // Font size is the basis of all other measurements.
     --fontSize: 16px;
@@ -22,18 +31,22 @@
     --h4-size: 1.1rem;
 
     // grid spacing
-    --columnGap: var(--lineHeight);
-    --rowGap: var(--lineHeight);
+    --columnGap : var(--lineHeight);
+    --rowGap    : var(--lineHeight);
 
     // colors
-    --red:    rgb(238, 39, 17);
-    --blue:   rgb(24, 113, 233);
-    --green:  rgb(18, 192, 91);
-    --yellow: rgb(249, 191, 15);
+    --red    : rgb(238, 39, 17);
+    --blue   : rgb(24, 113, 233);
+    --green  : rgb(18, 192, 91);
+    --yellow : rgb(249, 191, 15);
 
     // 1px
     --displayScale: 1;
     --pixel: 1px;
+
+    // animations
+    --hoverEasing  : cubic-bezier(0.23, 1, 0.32, 1);
+    --returnEasing : cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),

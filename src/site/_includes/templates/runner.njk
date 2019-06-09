@@ -3,72 +3,71 @@ layout: layouts/base.njk
 ---
 {% set runs = collections.runs__by_runner[page.fileSlug] %}
 
-<grid columns=12 columns-s=4>
+<div class="grid">
+    <div class="grid__row">
+        <h1>
+            {{- title }}
+            {% if country %}
+                <span class="flag-icon flag-icon-{{ country }}"></span>
+            {%- endif -%}
+        </h1>
+        {{ content | safe }}
+    </div>
 
-<c span="row">
-    <h1>
-        {{- title }}
-        {% if country %}
-            <span class="flag-icon flag-icon-{{ country }}"></span>
-        {%- endif -%}
-    </h1>
-    {{ content | safe }}
-</c>
+    <div class="grid__content--wide">
+        <h2>Runs</h2>
+        {% if runs | length %}
+            <ul>
+                {% for run in runs %}
+                    <li>
+                        {% include "components/links/run-link.njk" %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No speedruns yet.</p>
+        {% endif %}
+        {#
+        <h2>Fluff</h2>
+        <p>Leaderboard stats and achievements.</p>
+        #}
+    </div>
 
-<c span=8>
-    <h2>Runs</h2>
-    {% if runs | length %}
-        <ul>
-            {% for run in runs %}
-                <li>
-                    {% include "components/links/run-link.njk" %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No speedruns yet.</p>
-    {% endif %}
-    {#
-    <h2>Fluff</h2>
-    <p>Leaderboard stats and achievements.</p>
-    #}
-</c>
+    <aside class="grid__aside">
+        {# --- aside --- #}
+        {% if weapons | length or youtube or twitch or twitter or patreon %}
+            <dl>
+                {% if youtube or twitch or twitter or patreon %}
+                        <dt>Meta</dt>
+                        <dd>
+                            {% if youtube %}
+                                <a href="{{ youtube }}">YouTube</a><br>
+                            {% endif %}
+                            {% if twitch %}
+                                <a href="{{ twitch }}">Twitch</a><br>
+                            {% endif %}
+                            {% if twitter %}
+                                <a href="{{ twitter }}">Twitter</a><br>
+                            {% endif %}
+                            {% if patreon %}
+                                <a href="{{ patreon }}">Patreon</a><br>
+                            {% endif %}
+                        </dd>
+                {% endif %}
 
-<c span=4>
-    {# --- aside --- #}
-    {% if weapons | length or youtube or twitch or twitter or patreon %}
-        <dl>
-            {% if youtube or twitch or twitter or patreon %}
-                    <dt>Meta</dt>
+                {% if weapons | length %}
+                    <dt>Weapons</dt>
                     <dd>
-                        {% if youtube %}
-                            <a href="{{ youtube }}">YouTube</a><br>
-                        {% endif %}
-                        {% if twitch %}
-                            <a href="{{ twitch }}">Twitch</a><br>
-                        {% endif %}
-                        {% if twitter %}
-                            <a href="{{ twitter }}">Twitter</a><br>
-                        {% endif %}
-                        {% if patreon %}
-                            <a href="{{ patreon }}">Patreon</a><br>
-                        {% endif %}
+                        {% for item in weapons %}
+                            <a href="{{ collections.lookup.weapon[item].url | url }}">
+                                {{- collections.lookup.weapon[item].data.title -}}
+                            </a>
+                            {% if not loop.last %}<br>{% endif %}
+                        {% endfor %}
                     </dd>
-            {% endif %}
-
-            {% if weapons | length %}
-                <dt>Weapons</dt>
-                <dd>
-                    {% for item in weapons %}
-                        <a href="{{ collections.lookup.weapon[item].url | url }}">
-                            {{- collections.lookup.weapon[item].data.title -}}
-                        </a>
-                        {% if not loop.last %}<br>{% endif %}
-                    {% endfor %}
-                </dd>
-            {% endif %}
-        </dl>
-    {% endif %}
-</c>
+                {% endif %}
+            </dl>
+        {% endif %}
+    </aside>
 
 </grid>

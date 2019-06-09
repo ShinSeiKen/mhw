@@ -2,19 +2,16 @@
 title: Locations
 ---
 
-<grid columns=12 columns-s=6>
-    <c span="row">
-        <h1>{{ title }}</h1>
-        <ul>
-            {% for slug in locations %}
-                {% set item = collections.lookup.location[slug] %}
-                <li
-                    {% if page.url == item.url %} class="active"{% endif %}>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
-                </li>
-            {% endfor  %}
-        </ul>
-    </c>
-</grid>
+<h1>{{ title }}</h1>
+<div class="card-list">
+    {% for slug in locations %}
+        {% set item = collections.lookup.location[ slug ] %}
+        {% set card = {
+            image    : '/assets/img/location/' + slug + '.webp',
+            url      : item.url,
+            title    : item.data.title,
+            subtitle : "Explore →"
+        } %}
+        {% include "components/card.njk" %}
+    {% endfor %}
+</div>

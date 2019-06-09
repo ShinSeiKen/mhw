@@ -1,5 +1,18 @@
 ---
 layout: layouts/base.njk
 ---
+{% set runner = collections.lookup.runner[ author ] %}
 
-{{ content | safe }}
+<div class="grid">
+    <div class="grid__content--wide">
+        <h1 style="margin-bottom: unset;">{{ title }}</h1>
+        <p class="small">
+            Written by {% include "components/links/runner-link.njk" %}
+            on <time datetime="{{ page.date | dateTimeISO }}">{{ page.date | dateDisplay }}<time>
+        </p>
+
+        {{ content | safe }}
+
+        <p>— {% include "components/links/runner-link.njk" %}</p>
+    </div>
+</div>

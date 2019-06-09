@@ -4,12 +4,11 @@ layout: layouts/base.njk
 {% set quests = collections.quests__by_location[page.fileSlug] %}
 {% set monsters = collections.monsters__by_location[page.fileSlug] %}
 
-<grid columns=12 columns-s=4>
-
-    <c span="row">
+<div class="grid grid--location">
+    <div class="grid__row">
         <h1>{{ title }}</h1>
-    </c>
-    <c span=6>
+    </div>
+    <div class="grid__content">
         {{ content | safe }}
         <dl>
             {% if monsters | length %}
@@ -38,11 +37,10 @@ layout: layouts/base.njk
             <p>Showing runs by location is not that interesting</p>
             #}
         {% endif %}
-    </c>
-    <c span=6>
+    </div>
+    <div class="grid__media">
         {% if video %}
             {% include 'components/video.njk'%}
         {% endif %}
-    </c>
-
-</grid>
+    </div>
+</div>

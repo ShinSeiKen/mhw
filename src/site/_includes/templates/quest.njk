@@ -4,64 +4,61 @@ layout: layouts/base.njk
 
 {% set _location = collections.lookup.location[location] %}
 {% set runs = collections.runs__by_quest[page.fileSlug] %}
-<grid columns=12 columns-s=4>
+<div class="grid">
+    <div class="grid__row">
+        <h1>{{ title }}</h1>
+        {{ content | safe }}
 
-<c span="row">
-    <h1>{{ title }}</h1>
+        <dl>
+            <dt>Quest Type</dt>
+            <dd>{{ quest_type | label }}</dd>
+            <dt>Monster{% if monsters | length > 1 %}s{% endif %}</dt>
+            <dd>
+                {% for item in monsters %}
+                    {% set temp = collections.lookup.monster[item] %}
+                    <a href="{{ temp.url | url }}">{{ temp.data.title }}</a>
+                    {%- if not loop.last%},{% endif %}
+                {% endfor %}
+            </dd>
+            <dt>Location<dt>
+            <dd>
+                <a href="{{ _location.url | url }}">{{ _location.data.title }}</a></li>
+            </dd>
+        </dl>
+    </div>
 
-    {{ content | safe }}
-
-    <dl>
-        <dt>Quest Type</dt>
-        <dd>{{ quest_type | label }}</dd>
-        <dt>Monster{% if monsters | length > 1 %}s{% endif %}</dt>
-        <dd>
-            {% for item in monsters %}
-                {% set temp = collections.lookup.monster[item] %}
-                <a href="{{ temp.url | url }}">{{ temp.data.title }}</a>
-                {%- if not loop.last%},{% endif %}
-            {% endfor %}
-        </dd>
-        <dt>Location<dt>
-        <dd>
-            <a href="{{ _location.url | url }}">{{ _location.data.title }}</a></li>
-        </dd>
-    </dl>
-</c>
-
-{% if runs | length %}
-    {% set count = 0 %}
-    <c span="row">
-        <h2>Runs</h2>
-        <ul>
-            {% for run in runs %}
-                {% if run.data.runners.length == 1 %}
-                    {% set count = count + 1 %}
-                    <li data-weapons="{{ run.data.weapons|join(' ') }}">
-                        {% include "components/links/run-link.njk" %}
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </span>
-
-    {% if count < runs | length %}
-        <c span="row">
-            <h2>Multiplayer</h2>
+    {% if runs | length %}
+        {% set count = 0 %}
+        <div class="grid__row">
+            <h2>Runs</h2>
             <ul>
                 {% for run in runs %}
-                    {% if run.data.runners.length > 1 %}
-                        <li>
-                            [{{ run.data.runners.length }}P]
+                    {% if run.data.runners.length == 1 %}
+                        {% set count = count + 1 %}
+                        <li data-weapons="{{ run.data.weapons|join(' ') }}">
                             {% include "components/links/run-link.njk" %}
                         </li>
                     {% endif %}
                 {% endfor %}
             </ul>
-        </span>
+        </div>
+
+        {% if count < runs | length %}
+            <div class="grid__row">
+                <h2>Multiplayer</h2>
+                <ul>
+                    {% for run in runs %}
+                        {% if run.data.runners.length > 1 %}
+                            <li>
+                                [{{ run.data.runners.length }}P]
+                                {% include "components/links/run-link.njk" %}
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
     {% endif %}
-
-{% endif %}
-
 {# --- check for weapons, check for multiplayer, etc. --- #}
-</grid>
+</div>

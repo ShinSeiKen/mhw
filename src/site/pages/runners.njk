@@ -2,29 +2,25 @@
 title: Runners
 ---
 
-<grid columns=12 columns-s=4>
-    <c span="row">
+<div class="grid grid--quadra">
+    <div class="grid__row">
         <h1>{{ title }}</h1>
 
-        <ul class="runners-full-list">
+        <ul class="multi-column-list">
             {% for runner in collections.runners %}
                 <li>{% include "components/links/runner-link.njk" %}</li>
             {% endfor  %}
         </ul>
-    </c>
+    </div>
 
-    <hr>
-
-    <c span=6>
+    <div class="grid__row">
+        <hr>
         <h2>Weapon Masters</h2>
-    </c>
-    <c span=6>
-    </c>
-
+    </div>
 
     {% for slug in global_weapons %}
         {% set item = collections.lookup.weapon[ slug ] %}
-        <c span=4>
+        <div class="grid__column">
             <h3>{{ item.data.title }}</h3>
             <ul>
                 {% for runner in collections.runners__by_weapon[ slug ] %}
@@ -33,7 +29,7 @@ title: Runners
                     {% endif %}
                 {% endfor %}
             </ul>
-        </c>
+        </div>
     {% endfor %}
 
 </grid>

@@ -6,10 +6,14 @@
 #}
 <article class="card-wrap">
     <div class="card">
-        <div class="card-bg" data-image="{{ card.image }}"></div>
-        <div class="card-info">
-            <h2><a href="{{ card.url | url }}">{{ card.title }}</a></h2>
-            <p class="h4"><span>{{ card.subtitle }}</span></p>
+        <div class="card__bg" data-image="{{ card.image }}"></div>
+        <div class="card__info">
+            <h2 class="card__title">
+                <a class="card__link" href="{{ card.url | url }}">{{ card.title }}</a>
+            </h2>
+            <p class="card__subtitle">
+                <span class="card__subtitle-outline">{{ card.subtitle }}</span>
+            </p>
         </div>
     </div>
 </article>

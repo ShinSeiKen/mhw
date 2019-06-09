@@ -1,7 +1,5 @@
 # Monster Hunter World Leadboards Concept
 
-This is a concept for shits and giggles. You 'avin' a giggle, mate?
-
 ## Getting Started
 
 ```
@@ -24,44 +22,44 @@ npm run build
 
 ## TODO
 
-- Extract some variables to separate files in `.eleventy.js`
-- Add a Community page with Discords and shit, maybe some Youtube channels to follow
-- Add some nice Social icons and weapon icons
+- Extract some variables to separate files in `.eleventy.js`.
+- Add some nice Social icons and weapon icons.
 - Filtering runs, leaderboards, etc.
-- Minify assets
-    - Images (resize properly and compress)
-- Additional Monster data (e.g. descriptions from Hunting)
-- Additional Location data
-- Additional (Top) Event Quests
-- Leaderboards
-- Foolproof way for people to add runs
-- Distinguish Tempered, Arch-Tempered, Extreme, Ancient variants
-- Distinguish between single-player runs and 2P/3P/4P runs
-- See if we need a separate list of runners
-    - who are known to be good at their weapons ("Weapon Masters")
-    - who just happen to have one or two runs with that weapon
-- Translations of Quests, Weapons, Monsters, Locations (at least go for Japanese)
-- Add automatic Edit links
-- Add special link for Adding new Runners/Runs
-- Create Feature Requests/Bugs/Issues/etc.
-- Comments??
-- Add more custom fields for Runs/Runners
+- Minify assets:
+    - Images (resize properly and compress).
+- Additional Monster data (e.g. descriptions from Hunting).
+- Additional Location data.
+- Additional (Top) Event Quests.
+- Leaderboards.
+- Foolproof way for people to add runs.
+- Distinguish Tempered, Arch-Tempered, Extreme, Ancient variants.
+- Distinguish between single-player runs and 2P/3P/4P runs.
+- See if we need a separate list of runners:
+    - who are known to be good at their weapons ("Weapon Masters").
+    - who just happen to have one or two runs with that weapon.
+- Translations of Quests, Weapons, Monsters, Locations (at least go for Japanese).
+- Add automatic Edit links.
+- Add special link for Adding new Runners/Runs.
+- Add comments feature (e.g. Disqus).
+- Add more custom fields for Runs/Runners.
 - If there's enough demand, add other quests too.
-- In the future, differentiate between MHW and MHWI runs (separate leaderboards too)
+- In the future, differentiate between MHW and MHWI runs (separate leaderboards too).
+- Add a specialized Community Events/Leagues page.
 - etc.
 
 
 ## Links and Resources
 
 - Many Assets and Resources by [Capcom](http://www.capcom.co.jp/)
-- [Monster Hunter World: Iceborne in Japanese](http://www.capcom.co.jp/monsterhunter/world-iceborne/)
-- [Monster Hunter World: Iceborne in English](https://www.monsterhunter.com/world-iceborne/)
-- [Videos by Capcom on Youtube](https://www.youtube.com/user/CapcomChannel/videos)
-- [Melee Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/8/1)
-- [Ranged Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/9/1)
+    - [Monster Hunter World: Iceborne in Japanese](http://www.capcom.co.jp/monsterhunter/world-iceborne/)
+    - [Monster Hunter World: Iceborne in English](https://www.monsterhunter.com/world-iceborne/)
+    - [Videos by Capcom on Youtube](https://www.youtube.com/user/CapcomChannel/videos)
+    - [Melee Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/8/1)
+    - [Ranged Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/9/1)
 - [Parallax Depth Cards by Andy Merskin](https://codepen.io/andymerskin/pen/XNMWvQ)
 - [EleventyOne by Phil Hawksworth](https://github.com/philhawksworth/eleventyone)
 - Inspired by [GOV.UK](https://www.gov.uk)
+
 
 ## Notes
 

@@ -2,8 +2,8 @@
 title: Runs
 ---
 {% set count = 0 %}
-<grid>
-    <c span="row">
+<div class="grid">
+    <div class="grid__row">
         <h1>{{ title }}</h1>
         <ul>
             {% for run in collections.runs %}
@@ -13,10 +13,10 @@ title: Runs
                 {% endif %}
             {% endfor  %}
         </ul>
-    </c>
+    </div>
 
     {% if count < collections.runs | length %}
-    <c span="row">
+    <div class="grid__row">
         <h2>Multiplayer</h2>
         <ul>
             {% for run in collections.runs %}
@@ -25,11 +25,11 @@ title: Runs
                 {% endif %}
             {% endfor  %}
         </ul>
-    </c>
+    </div>
     {% endif %}
 
     {#
-    <c>
+    <div class="grid__row">
         <h2>2P Runs</h2>
 
         <ul>
@@ -39,8 +39,8 @@ title: Runs
                 {% endif %}
             {% endfor  %}
         </ul>
-    </c>
-    <c>
+    </div>
+    <div class="grid__row">
         <h2>3P Runs</h2>
 
         <ul>
@@ -50,8 +50,8 @@ title: Runs
                 {% endif %}
             {% endfor  %}
         </ul>
-    </c>
-    <c>
+    </div>
+    <div class="grid__row">
         <h2>4P Runs</h2>
 
         <ul>
@@ -61,6 +61,6 @@ title: Runs
                 {% endif %}
             {% endfor  %}
         </ul>
-    </c>
+    </div>
     #}
-</grid>
+</div>

@@ -2,19 +2,16 @@
 title: Weapons
 ---
 
-<grid columns=12 columns-s=6>
-    <c span="row">
-        <h1>{{ title }}</h1>
-        <ul>
-            {% for slug in global_weapons %}
-                {% set item = collections.lookup.weapon[slug] %}
-                <li
-                    {% if page.url == item.url %} class="active"{% endif %}>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
-                </li>
-            {% endfor  %}
-        </ul>
-    </c>
-</grid>
+<h1>{{ title }}</h1>
+<div class="card-list">
+        {% for slug in global_weapons %}
+            {% set item = collections.lookup.weapon[ slug ] %}
+            {% set card = {
+                image    : '/assets/img/weapon-character-iceborne/' + slug + '.jpg',
+                url      : item.url,
+                title    : item.data.title,
+                subtitle : item.data.weapon_type
+            } %}
+            {% include "components/card.njk" %}
+        {% endfor %}
+</div>

@@ -2,42 +2,38 @@
 layout: layouts/base.njk
 ---
 
-<grid columns=12>
+<div class="grid grid--weapon">
+    <div class="grid__row">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="grid__content">
+        {{ content | safe }}
+        <dl>
+            <dt>Type</dt>
+            <dd>{{ weapon_type }}</dd>
+        </dl>
+        <h2>Runners</h2>
+        {% if collections.runners__by_weapon[page.fileSlug] %}
+            <ul>
+                {% for runner in collections.runners__by_weapon[ page.fileSlug ] %}
+                    <li>
+                        {% include "components/links/runner-link.njk" %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No runners found!</p>
+        {% endif %}
+    </div>
 
-<c span="row">
-    <h1>{{ title }}</h1>
-</c>
-
-<c span=4>
-    {{ content | safe }}
-
-    <dl>
-        <dt>Type</dt>
-        <dd>{{ weapon_type }}</dd>
-    </dl>
-
-    <h2>Runners</h2>
-    {% if collections.runners__by_weapon[page.fileSlug] %}
-        <ul>
-            {% for runner in collections.runners__by_weapon[ page.fileSlug ] %}
-                <li>
-                    {% include "components/links/runner-link.njk" %}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No runners found!</p>
-    {% endif %}
-</c>
-
-{% if video %}
-    <c span=8>
-        {% include "components/video.njk" %}
-    </c>
-{% endif %}
+    <div class="grid__media">
+        {% if video %}
+            {% include "components/video.njk" %}
+        {% endif %}
+    </div>
 
 {#
-<c span=4>
+<div class="">
     <h2>Runs</h2>
     <p>List of the most recent speedruns using this weapon.</p>
     {% for item in collections.run__by_weapon[page.fileSlug] %}
@@ -55,14 +51,14 @@ layout: layouts/base.njk
             </li>
         {% endif %}
     {% endfor %}
-</c>
+</div>
 #}
 
 {#
-<c span=4>
+<div class="">
     <h2>Fluff</h2>
     <p>Tips, tricks, sets/builds, tutorials.</p>
-</c>
+</div>
 #}
 
-</grid>
+</div>

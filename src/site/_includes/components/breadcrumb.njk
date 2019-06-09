@@ -4,16 +4,17 @@
     <nav aria-label="Breadcrumbs" class="breadcrumbs">
         <div class="inner">
             <span hidden>You are here:</span>
-            <ol>
-                <li><a href="/">Home</a></li>
-                <li><a href="{{ parent.url | url }}">{{ parent.title }}</a></li>
-                <li><a href="{{ page.url | url }}" aria-current="page">
-                    {%- if type == 'run' %}
-                        {%- include "components/run-title.njk" %}
-                    {%- else %}
-                        {{- title }}
-                    {%- endif -%}
-                </a></li>
+            <ol class="breadcrumbs__list">
+                <li class="breadcrumbs__list-item"><a href="/">Home</a></li>
+                <li class="breadcrumbs__list-item"><a href="{{ parent.url | url }}">{{ parent.title }}</a></li>
+                <li class="breadcrumbs__list-item"><a href="{{ page.url | url }}" aria-current="page">
+                        {%- if type == 'run' %}
+                            {%- include "components/run-title.njk" %}
+                        {%- else %}
+                            {{- title }}
+                        {%- endif -%}
+                    </a>
+                </li>
             </ol>
         </div>
     </nav>

@@ -2,19 +2,16 @@
 title: Monsters
 ---
 
-<grid columns=12 columns-s=4>
-    <c span="row">
-        <h1>{{ title }}</h1>
-        <ul>
-            {% for slug in monsters %}
-                {% set item = collections.lookup.monster[slug] %}
-                <li
-                    {% if page.url == item.url %} class="active"{% endif %}>
-                    <a href="{{ item.url | url }}">
-                        {{- item.data.title -}}
-                    </a>
-                </li>
-            {% endfor  %}
-        </ul>
-    </c>
-</grid>
+<h1>{{ title }}</h1>
+<div class="card-list">
+    {% for slug in monsters %}
+        {% set item = collections.lookup.monster[ slug ] %}
+        {% set card = {
+            image    : '/assets/img/monster/' + slug + '.jpg',
+            url      : item.url,
+            title    : item.data.title,
+            subtitle : item.data.species
+        } %}
+        {% include "components/card.njk" %}
+    {% endfor %}
+</div>

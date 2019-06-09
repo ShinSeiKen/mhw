@@ -1,7 +1,7 @@
 const ASSETS_CACHE = 'assets';
 const PAGES_CACHE = 'pages';
 const CACHE_WHITELIST = [ ASSETS_CACHE, PAGES_CACHE ];
-const OFFLINE_PAGE = '/offline.index.html';
+const OFFLINE_PAGE = '/offline/index.html';
 const FILES_TO_CACHE = [
     // '/assets/script/main.js',
     // '/assets/style/style.css',
