@@ -1,6 +1,6 @@
 {
     "site_name": "Monster Hunter World Leaderboards",
-    "meta_description": "Unofficial Monster Hunter World Iceborne Leaderboards. For shits and giggles!",
+    "meta_description": "Unofficial Monster Hunter World Iceborne Leaderboards.",
     "repository": "https://github.com/shinseiken/mhw",
     "menu": {
         "/news/"      : "News",

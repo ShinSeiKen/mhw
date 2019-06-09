@@ -1,7 +1,7 @@
 ---
 title   : theguywithnoaccount
-twitter :
-youtube : https://www.youtube.com/channel/UCErBbjSUv4IFJ7GbMqtPC-w
+twitter : https://twitter.com/bjdadcs
+youtube : https://www.youtube.com/user/theguywithnoaccount
 twitch  :
 patreon :
 country :

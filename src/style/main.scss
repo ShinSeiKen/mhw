@@ -31,9 +31,11 @@ body {
 
 @media only screen and (min-width: $breakpointS) {
     body {
-        padding: calc(var(--lineHeight) * 2);
+        // padding: calc(var(--lineHeight) * 2);
+        // padding-bottom: calc(var(--lineHeight) * 3);
+        padding: 48px;
         padding-top: 0;
-        padding-bottom: calc(var(--lineHeight) * 3);
+        padding-bottom: 72px;
     }
 }
 
@@ -169,27 +171,32 @@ grid:last-child {
 header {
     color: #fff;
     background-color: #333;
-    height: calc(var(--lineHeight) * 1);
-    padding: var(--lineHeight) calc(var(--lineHeight)*2);
-    margin-left: calc(var(--lineHeight)*-2);
-    margin-right: calc(var(--lineHeight)*-2);
-}
-
-.homepage header {
-    height: calc(var(--lineHeight) * 2);
+    // padding: var(--lineHeight) calc(var(--lineHeight)*2);
+    // margin-left: calc(var(--lineHeight)*-2);
+    // margin-right: calc(var(--lineHeight)*-2);
+    padding: 24px 48px;
+    margin-left: -48px;
+    margin-right: -48px;
 }
 
 main {
-    padding-top: calc(var(--lineHeight));
-    padding-bottom: calc(var(--lineHeight));
+    // padding-top: calc(var(--lineHeight));
+    // padding-bottom: calc(var(--lineHeight));
+    padding-top: 24px;
+    padding-bottom: 24px;
 }
 
 footer {
     background-color: #dee0e2;
-    padding: calc(var(--lineHeight)* 1) calc(var(--lineHeight)* 2) calc(var(--lineHeight)* 3) calc(var(--lineHeight)* 2);
-    margin-left: calc(var(--lineHeight) * -2);
-    margin-right: calc(var(--lineHeight) * -2);
-    margin-bottom: calc(var(--lineHeight) * -3);
+
+    // padding: calc(var(--lineHeight)* 1) calc(var(--lineHeight)* 2) calc(var(--lineHeight)* 3) calc(var(--lineHeight)* 2);
+    // margin-left: calc(var(--lineHeight) * -2);
+    // margin-right: calc(var(--lineHeight) * -2);
+    // margin-bottom: calc(var(--lineHeight) * -3);
+    padding: 24px 48px 72px 48px;
+    margin-left: -48px;
+    margin-right: -48px;
+    margin-bottom: -72px;
 }
 
 // ------
