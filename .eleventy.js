@@ -342,8 +342,8 @@ module.exports = function(config) {
         });
 
         // (2) Prepare relationships between runs and quests
-        all.forEach(item => {
-            if (item.data.type == 'run') {
+        Object.values(runs).forEach(item => {
+            // if (item.data.type == 'run') {
                 let quest = item.data.quest;
                 // Check if the quest the run belongs to is eligible
                 if (quests[quest]) {
@@ -352,7 +352,7 @@ module.exports = function(config) {
                     }
                     top_runs__by_quest[quest].push(item);
                 }
-            }
+            // }
         });
 
         // (3) Group runs per weapon per quest
@@ -374,8 +374,10 @@ module.exports = function(config) {
         // (4) Group ranked runs (trophies) per runner per weapon
         Object.keys(top_runs__by_weapon__by_quest).forEach(questSlug => {
             let weapons = top_runs__by_weapon__by_quest[questSlug];
+            let weaponRunnerLookup = [];
             Object.keys(weapons).forEach(weaponSlug => {
                 let runs = weapons[weaponSlug];
+                weaponRunnerLookup[weaponSlug] = new Set();
 
                 if (! top_runs__by_runner__by_weapon[weaponSlug]) {
                     top_runs__by_runner__by_weapon[weaponSlug] = [];
@@ -386,12 +388,21 @@ module.exports = function(config) {
                     if (! top_runs__by_runner__by_weapon[weaponSlug][runner]) {
                         top_runs__by_runner__by_weapon[weaponSlug][runner] = []
                     }
-                    top_runs__by_runner__by_weapon[weaponSlug][runner].push({
-                        // This is a trophy
-                        rank: index + 1,
-                        run: run,
-                        quest: quests[questSlug]
-                    });
+
+                    // A person should not hold multiple trophies within the
+                    // the same category, that is, only the best run is counted.
+                    // Using `weaponRunnerLookup` for checking duplicates.
+
+                    if (! weaponRunnerLookup[weaponSlug].has(runner)) {
+                        top_runs__by_runner__by_weapon[weaponSlug][runner].push({
+                            // This is a trophy
+                            rank: index + 1,
+                            run: run,
+                            quest: quests[questSlug]
+                        });
+                    } else {
+                        weaponRunnerLookup[weaponSlug].add(runner);
+                    }
                 })
             });
         });
