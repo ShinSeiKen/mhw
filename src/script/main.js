@@ -102,3 +102,10 @@ if (navigator.serviceWorker) {
         console.log('ServiceWorker registration failed: ', error);
     });
 }
+
+let togglers = document.querySelectorAll('.toggle-runs');
+togglers.forEach(toggler => {
+    toggler.addEventListener('click', e => {
+        toggler.nextSibling.hidden = !toggler.nextSibling.hidden;
+    })
+});

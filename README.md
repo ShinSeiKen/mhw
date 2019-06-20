@@ -27,7 +27,7 @@ npm run build
 - Filtering runs, leaderboards, etc.
 - Minify assets:
     - Images (resize properly and compress).
-- Additional Monster data (e.g. descriptions from Hunting).
+- Additional Monster data (e.g. descriptions from Hunting Log).
 - Additional Location data.
 - Additional (Top) Event Quests.
 - Leaderboards.
@@ -45,6 +45,13 @@ npm run build
 - If there's enough demand, add other quests too.
 - In the future, differentiate between MHW and MHWI runs (separate leaderboards too).
 - Add a specialized Community Events/Leagues page.
+- Quality of Life changes for filtering runs:
+    - by weapon
+    - multiplayer runs
+    - multiple weapons
+- Add custom (community) quests, such as Iceborne Entry Exam
+- Add (community) leagues, such as Utakata Cup
+- Allow multiple videos for multiplayer runs (so multiple POVs on one page)
 - etc.
 
 
@@ -112,6 +119,7 @@ The same?
 
 |Quest | Notes |
 |:---|:---|
+| 9★ The Thronetaker | `tempered-nergigante`, `tempered-lunastra`, `tempered-teostra` |
 | 9★ The Heralds of Destruction Cry | `arch-tempered-nergigante` |
 | 9★ The Fury of El Dorado | `arch-tempered-kulve-taroth` |
 | 9★ Like a Moth to the Flame | `arch-tempered-xeno-jiiva` |
@@ -120,7 +128,7 @@ The same?
 | 9★ The Eye of the Storm | `arch-tempered-kushala-daora` |
 | 9★ The Scorn of the Sun | `arch-tempered-teostra` |
 | 9★ The Deathly Quiet Curtain | `arch-tempered-vaal-hazak` |
-| 9★ A Whisper of White Mane | `arch-tempered-kirin>` |
+| 9★ A Whisper of White Mane | `arch-tempered-kirin` |
 | 9★ A Visitor from Eorzea (Extreme) | Extreme Behemoth |
 | 9★ Contract: Woodland Spirit | Ancient Leshen |
 

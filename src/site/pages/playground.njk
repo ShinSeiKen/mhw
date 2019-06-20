@@ -111,6 +111,18 @@ title: Playground
     {% endfor %}
 </div>
 
+<div >
+    {% for item in global_weapons %}
+        <img
+            src="/assets/img/weapon-icon-4/{{ item | slug }}.png"
+            height="40px"
+            width="40px"
+            style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #333;"
+            alt=""
+            />
+    {% endfor %}
+</div>
+
 <h1>Achievements</h2>
 <div>
 {# ---
@@ -254,7 +266,7 @@ title: Playground
     </tr>
     {% for trophyCollection in collections.xxx %}
         {% set runner = trophyCollection.runner %}
-        <tr>
+        <tr class="toggle-runs">
             <td>
                 {% if loop.index == 1 %}
                     <img  src="/assets/img/achievement-small/giant-crown-master.jpg" alt="" />
@@ -278,18 +290,20 @@ title: Playground
             <td>{{ trophyCollection.gold + trophyCollection.silver + trophyCollection.bronze }}</td>
         </tr>
         <tr hidden>
-            <td colspan=5>
-                {% for trophy in trophyCollection.trophies %}
-                    {% set weaponSlug = trophy.run.data.weapons | first %}
-                    {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
-                    <img src="/assets/img/achievement-small/miniature-crown-master.jpg" alt="" />
-                    <a href="{{ trophy.run.url }}">
-                        Rank <strong>{{ trophy.rank }}</strong> in <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
-                    </a>
-                    {% if not loop.last %}
-                        <br>
-                    {% endif %}
-                {% endfor %}
+            <td colspan=6 style="text-align: left;">
+                <p>
+                    {% for trophy in trophyCollection.trophies %}
+                        {% set weaponSlug = trophy.run.data.weapons | first %}
+                        {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
+                            <img src="/assets/img/achievement-small/miniature-crown-master.jpg" alt="" style="display: inline; width: 32px; height: 32px; margin: 0;"/>
+                            <a href="{{ trophy.run.url }}">
+                                Rank <strong>{{ trophy.rank }}</strong> in <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
+                            </a>
+                        {% if not loop.last %}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </p>
             </td>
         </tr>
     {% endfor %}

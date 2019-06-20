@@ -5,6 +5,7 @@ title: Runs
 <div class="grid">
     <div class="grid__row">
         <h1>{{ title }}</h1>
+        {# --- group by year-month --- #}
         <ul>
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 1 %}
@@ -21,7 +22,7 @@ title: Runs
         <ul>
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length > 1 %}
-                    <li>{% include "components/links/run-link.njk" %}</li>
+                    <li>[{{ run.date | dateOnly }}] {% include "components/links/run-link.njk" %}</li>
                 {% endif %}
             {% endfor  %}
         </ul>

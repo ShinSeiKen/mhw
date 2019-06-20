@@ -1,6 +1,6 @@
 ---
 layout: layouts/base.njk
-permalink: "/runs/{% if title %}{{ title | slug }}{% else %}{{ quest }}{% endif %}/by/{{ runners | arrayAsPermalink }}/index.html"
+permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else %}{{ quest }}{% endif %}/by/{{ runners | arrayAsPermalink }}/index.html"
 ---
 
 {% set _runner   = collections.lookup.runner[ runners | first ] %}
