@@ -218,6 +218,34 @@ module.exports = function(config) {
                 });
             }
         });
+
+        // Sort by quest on runner's page
+        for (let runner in result) {
+            let runs = result[runner];
+            runs.sort((a,b) => {
+                let valueA = a.data.runners.length;
+                let valueB = b.data.runners.length;
+                let compare = valueA - valueB;
+
+                if (compare == 0) {
+                    valueA = a.data.quest;
+                    valueB = b.data.quest;
+                    compare = valueA.localeCompare(valueB);
+                }
+                if (compare == 0) {
+                    valueA = a.data.weapons[0];
+                    valueB = b.data.weapons[0];
+                    compare = valueA.localeCompare(valueB);
+                }
+                if (compare == 0) {
+                    valueA = a.data.time;
+                    valueB = b.data.time;
+                    compare = valueA.localeCompare(valueB);
+                }
+                return compare;
+            });
+        }
+
         return result;
     });
 
@@ -322,7 +350,8 @@ module.exports = function(config) {
                 case 'run':
                     // Only count runs that have one runner, and a single weapon
                     if (item.data.runners.length == 1 && item.data.weapons.length == 1) {
-                        runs[item.fileSlug] = item;
+                        // NOTE: FILESLUG IS NOT UNIQUE
+                        runs.push(item);
                     }
                     break;
                 case 'quest':
@@ -342,17 +371,15 @@ module.exports = function(config) {
         });
 
         // (2) Prepare relationships between runs and quests
-        Object.values(runs).forEach(item => {
-            // if (item.data.type == 'run') {
-                let quest = item.data.quest;
-                // Check if the quest the run belongs to is eligible
-                if (quests[quest]) {
-                    if (! top_runs__by_quest[quest]) {
-                        top_runs__by_quest[quest] = [];
-                    }
-                    top_runs__by_quest[quest].push(item);
+        runs.forEach(item => {
+            let quest = item.data.quest;
+            // Check if the quest the run belongs to is eligible
+            if (quests[quest]) {
+                if (! top_runs__by_quest[quest]) {
+                    top_runs__by_quest[quest] = [];
                 }
-            // }
+                top_runs__by_quest[quest].push(item);
+            }
         });
 
         // (3) Group runs per weapon per quest
@@ -375,6 +402,7 @@ module.exports = function(config) {
         Object.keys(top_runs__by_weapon__by_quest).forEach(questSlug => {
             let weapons = top_runs__by_weapon__by_quest[questSlug];
             let weaponRunnerLookup = [];
+
             Object.keys(weapons).forEach(weaponSlug => {
                 let runs = weapons[weaponSlug];
                 weaponRunnerLookup[weaponSlug] = new Set();
@@ -382,7 +410,9 @@ module.exports = function(config) {
                 if (! top_runs__by_runner__by_weapon[weaponSlug]) {
                     top_runs__by_runner__by_weapon[weaponSlug] = [];
                 }
-                runs.forEach((run, index) => {
+
+                let rank = 1;
+                runs.forEach((run) => {
                     let runner = run.data.runners[0];
 
                     if (! top_runs__by_runner__by_weapon[weaponSlug][runner]) {
@@ -396,12 +426,12 @@ module.exports = function(config) {
                     if (! weaponRunnerLookup[weaponSlug].has(runner)) {
                         top_runs__by_runner__by_weapon[weaponSlug][runner].push({
                             // This is a trophy
-                            rank: index + 1,
+                            rank: rank,
                             run: run,
                             quest: quests[questSlug]
                         });
-                    } else {
                         weaponRunnerLookup[weaponSlug].add(runner);
+                        rank++;
                     }
                 })
             });

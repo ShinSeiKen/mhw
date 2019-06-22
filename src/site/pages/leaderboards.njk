@@ -1,0 +1,108 @@
+---
+title: Leaderboards
+---
+<h1>Leaderboards</h1>
+<p>Click on a row to expand the collected trophies!</p>
+
+<style>
+    table {
+        width: 100%;
+    }
+    table, tr, td, th {
+        border : 1px solid;
+    }
+    th {
+        padding: 0.5em;
+        vertical-align: bottom;
+        text-align: center;
+    }
+    th img {
+        width: 32px;
+        height: 32px;
+        display: inline-block !important;
+        vertical-align: middle;
+    }
+    td img,
+    td img:first-child,
+    td img:last-child {
+        width: 32px;
+        height: 32px;
+        display: inline-block !important;
+        vertical-align: middle;
+        margin: 0.2em 0 !important;
+    }
+    td {
+        padding: 0.5em;
+        vertical-align: middle;
+        text-align: center;
+    }
+
+</style>
+{% set crown_a_1 = "/assets/img/achievement-small/giant-crown-master.jpg" %}
+{% set crown_a_2 = "/assets/img/achievement-small/giant-crown-collector.jpg" %}
+{% set crown_a_3 = "/assets/img/achievement-small/giant-crown.jpg" %}
+
+{% set crown_b_1 = "/assets/img/achievement-small/miniature-crown-master.jpg" %}
+{% set crown_b_2 = "/assets/img/achievement-small/miniature-crown-collector.jpg" %}
+{% set crown_b_3 = "/assets/img/achievement-small/miniature-crown.jpg" %}
+<table border="1">
+    <tr>
+        <th scope="col">Rank</th>
+        <th scope="col">Runner</th>
+        <th scope="col"><img src="{{ crown_a_1 }}" alt="Gold Trophy" /></th>
+        <th scope="col"><img src="{{ crown_a_2 }}" alt="Silver Trophy" /></th>
+        <th scope="col"><img src="{{ crown_a_3 }}" alt="Bronze Trophy" /></th>
+        <th scope="col">Total Trophies</th>
+    </tr>
+    {% for trophyCollection in collections.xxx %}
+        {% set runner = trophyCollection.runner %}
+        <tr class="toggle-runs">
+            <td>
+                {% if loop.index == 1 %}
+                    <img  src="{{ crown_a_1 }}" alt="" />
+                {% elseif loop.index == 2 %}
+                    <img src="{{ crown_a_2 }}" alt="" />
+                {% elseif loop.index == 3 %}
+                    <img src="{{ crown_a_3 }}" alt="" />
+                {% else %}
+                    {{ loop.index }}
+                {% endif %}
+            </td>
+            <td scope="row">
+                <a href="{{ runner.url | url }}">{{- runner.data.title -}}</a>
+                {% if runner.data.country %}
+                    <span class="flag-icon flag-icon-{{ runner.data.country }}"></span>
+                {% endif %}
+            </td>
+            <td>{{ trophyCollection.gold }}</td>
+            <td>{{ trophyCollection.silver }}</td>
+            <td>{{ trophyCollection.bronze }}</td>
+            <td>{{ trophyCollection.gold + trophyCollection.silver + trophyCollection.bronze }}</td>
+        </tr>
+        <tr hidden>
+            <td colspan=6 style="text-align: left;">
+                <p>
+                    {% for trophy in trophyCollection.trophies %}
+                        {% set weaponSlug = trophy.run.data.weapons | first %}
+                        {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
+                            {% if trophy.rank == 1 %}
+                                <img src="{{ crown_b_1 }}" alt="" />
+                            {% elseif trophy.rank == 2 %}
+                                <img src="{{ crown_b_2 }}" alt="" />
+                            {% elseif trophy.rank == 3 %}
+                                <img src="{{ crown_b_3 }}" alt="" />
+                            {% else %}
+                                [{{ trophy.rank }}]
+                            {% endif %}
+                            <a href="{{ trophy.run.url }}">
+                                <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
+                            </a>
+                        {% if not loop.last %}
+                            <br>
+                        {% endif %}
+                    {% endfor %}
+                </p>
+            </td>
+        </tr>
+    {% endfor %}
+</table>

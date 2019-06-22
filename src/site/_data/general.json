@@ -3,7 +3,6 @@
     "meta_description": "Unofficial Monster Hunter World Iceborne Leaderboards.",
     "repository": "https://github.com/shinseiken/mhw",
     "menu": {
-        "/news/"      : "News",
         "/runs/"      : "Runs",
         "/runners/"   : "Runners",
         "/quests/"    : "Quests",
