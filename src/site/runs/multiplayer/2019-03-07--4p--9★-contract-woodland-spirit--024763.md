@@ -1,14 +1,12 @@
 ---
-title          :
-video          : https://www.youtube.com/embed/xX_Qzw8_tEo
-videos         :
-    - https://www.youtube.com/embed/hkQzUd68_RU
+title          : '9★ Contract: Woodland Spirit (2)'
+video          : https://www.youtube.com/embed/BUr0ONfdxgg
 video_type     : youtube
 run_type       : freestyle
 platform       : ps4
 patch_version  :
-date           : 2019-02-18
-time           : 03'29"01
+date           : 2019-03-07
+time           : 02'47"63
 quest          : 9★-contract-woodland-spirit
 
 runners:
@@ -18,6 +16,6 @@ runners:
     - tsc
 
 weapons:
-    - hammer
     - great-sword
+    - hammer
 ---

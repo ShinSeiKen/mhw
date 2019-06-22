@@ -10,7 +10,19 @@ title: Runs
             {% for run in collections.runs %}
                 {% if loop.index0 < 99999 and run.data.runners | length === 1 %}
                     {% set count = count + 1 %}
+
+                    {% set dateNew = run.date | dateDisplay('LLLL yyyy') %}
+
+                    {% if dateCheck != dateNew %}
+                        {% if dateCheck !== false %}
+                            </ul>
+                        {% endif %}
+                        <h3>{{ dateNew }}</h3>
+                        <ul>
+                    {% endif %}
+
                     <li>[{{ run.date | dateOnly }}] {% include "components/links/run-link.njk" %}</li>
+                    {% set dateCheck = dateNew %}
                 {% endif %}
             {% endfor  %}
         </ul>
@@ -19,13 +31,24 @@ title: Runs
     {% if count < collections.runs | length %}
     <div class="grid__row">
         <h2>Multiplayer</h2>
-        <ul>
-            {% for run in collections.runs %}
-                {% if loop.index0 < 99999 and run.data.runners | length > 1 %}
-                    <li>[{{ run.date | dateOnly }}] {% include "components/links/run-link.njk" %}</li>
+        {% set dateCheck = false %}
+        {% for run in collections.runs %}
+            {% if loop.index0 < 99999 and run.data.runners | length > 1 %}
+                {% set dateNew = run.date | dateDisplay('LLLL yyyy') %}
+
+                {% if dateCheck != dateNew %}
+                    {% if dateCheck !== false %}
+                        </ul>
+                    {% endif %}
+                    <h3>{{ dateNew }}</h3>
+                    <ul>
                 {% endif %}
-            {% endfor  %}
-        </ul>
+
+                <li>[{{ run.date | dateOnly }}] {% include "components/links/run-link.njk" %}</li>
+                {% set dateCheck = dateNew %}
+
+            {% endif %}
+        {% endfor  %}
     </div>
     {% endif %}
 

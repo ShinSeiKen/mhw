@@ -17,6 +17,12 @@ permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else 
         {% else %}
             MISSING VIDEO
         {% endif %}
+
+        {% for video in videos %}
+            <div style="margin-top: 1em;">
+                {% include "components/video.njk" %}
+            </div>
+        {% endfor %}
     </div>
     <aside class="grid__aside">
         <dl>
