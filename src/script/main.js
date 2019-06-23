@@ -111,3 +111,18 @@ togglers.forEach(toggler => {
         toggler.nextSibling.hidden = !toggler.nextSibling.hidden;
     })
 });
+
+document.querySelectorAll('.tablesort').forEach(tablesort => {
+    new Tablesort(tablesort);
+});
+
+MicroModal.init({
+    onShow: modal => {
+        let iframe = modal.getElementsByTagName('iframe')[0];
+        iframe.src = iframe.src;
+    },
+    onClose: modal => {
+        let iframe = modal.getElementsByTagName('iframe')[0];
+        iframe.src = iframe.src;
+    }
+});

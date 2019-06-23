@@ -33,7 +33,9 @@
     "gulp-sass": "^3.1.0",
     "gulp-uglify-es": "^1.0.4",
     "html-minifier": "^4.0.0",
+    "micromodal": "^0.4.0",
     "pretty": "^2.0.0",
+    "tablesort": "^5.1.0",
     "terser": "^4.0.0"
   }
 }

@@ -31,6 +31,85 @@ layout: layouts/base.njk
         {% set count = 0 %}
         <div class="grid__row">
             <h2>Runs</h2>
+
+            {#
+                --- SUPER EXPERIMENTAL STUFF HERE ---
+            #}
+            <table class="tablesort">
+                <thead>
+                    <tr>
+                        <th class="no-sort" data-sort-method='none'>Runner</th>
+                        <th data-sort-default>Time</th>
+                        <th>Weapon</th>
+                        <th class="no-sort" data-sort-method='none'>Video</th>
+                    </tr>
+                </thead>
+                {% for run in runs %}
+                    {% if run.data.runners.length == 1 %}
+                        {% set count = count + 1 %}
+                        {%- set runner = collections.lookup.runner[ run.data.runners|first ] %}
+                        <tr>
+                            <td class="tablesort__runner">
+                                {%- include "components/links/runner-link.njk" %}
+                            </td>
+                            <td class="tablesort__time">
+                                <a href="{{ run.url | url }}">
+                                    {{ run.data.time }}
+                                </a>
+                            </td>
+                            <td class="tablesort__weapon">
+                                {% for weapon in run.data.weapons %}
+                                    <img
+                                        src="/assets/img/weapon-icon/{{ weapon | slug }}.png"
+                                        height="40px"
+                                        width="40px"
+                                        style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #333;"
+                                        alt="{{ collections.lookup.weapon[ weapon ].data.title }}"
+                                        />
+                                {% endfor %}
+                            </td>
+                            <td class="tablesort__video">
+                                <button
+                                    style="margin: 0; overflow: visible; border: 0; padding: 0"
+                                    data-micromodal-trigger="modal-{{ loop.index }}">
+                                    <img
+                                        src="/assets/img/ui/next.png"
+                                        height="40px"
+                                        width="40px"
+                                        style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
+                                        alt="Play video"
+                                        />
+                                </button>
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+
+            {% for run in runs %}
+                <div class="modal micromodal-slide" id="modal-{{ loop.index }}" aria-hidden="true">
+                    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-{{ loop.index }}-title" >
+                            <div class="modal__header">
+                                <h2 class="modal__title" id="modal-{{ loop.index }}-title">
+                                    {% set runners = run.data.runners %}
+                                    {% include "components/run-title.njk" %}
+                                </h2>
+                                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                            </div>
+                            <div class="modal__content"  id="modal-{{ loop.index }}-content">
+                                {% set video = run.data.video %}
+                                {% include "components/video.njk" %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {#
+                --- END ---
+            #}
+
+            {#
             <ul>
                 {% for run in runs %}
                     {% if run.data.runners.length == 1 %}
@@ -41,6 +120,7 @@ layout: layouts/base.njk
                     {% endif %}
                 {% endfor %}
             </ul>
+            #}
         </div>
 
         {% if count < runs | length %}

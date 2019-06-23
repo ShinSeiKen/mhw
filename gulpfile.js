@@ -6,7 +6,12 @@ const sass   = require("gulp-sass");
 // require('require-dir')('./gulp');
 
 gulp.task('js', function() {
-    return gulp.src("./src/script/**/*.js")
+    return gulp.src([
+            "./node_modules/tablesort/dist/tablesort.min.js",
+            "./node_modules/tablesort/dist/sorts/tablesort.number.min.js",
+            "./node_modules/micromodal/dist/micromodal.min.js",
+            "./src/script/**/*.js"
+        ])
         .pipe(concat('main.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./src/site/assets/script'));

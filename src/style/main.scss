@@ -127,7 +127,8 @@ body {
 // ELEMENTS
 // --------
 
-a:focus {
+a:focus,
+button:focus {
     background-color: #ffbf47;
     outline: 3px solid #ffbf47;
 }
@@ -234,11 +235,12 @@ footer {
 .breadcrumbs__list-item {
     display: inline-block;
     margin-bottom: unset;
+    position: static;
 }
 .breadcrumbs__list-item:before {
     /* reset the ol */
     content: none;
-    position: relative;
+    position: static;
     left: 0;
     display: inline;
 }
@@ -538,4 +540,199 @@ grid {
     padding-top: calc(var(--baseline) * 0.75);
     padding-bottom: calc(var(--baseline) * 0.25);
     margin-bottom: var(--baseline);
+}
+
+
+// --------------------------------------------------------------------------------
+// Source: http://tristen.ca/tablesort/tablesort.css
+// --------------------------------------------------------------------------------
+
+.tablesort {
+
+    table, tr, td, th {
+        border : 1px solid;
+    }
+    th {
+        padding: 0.5em 1em;
+        vertical-align: bottom;
+        text-align: left;
+    }
+    th:first-child {
+        min-width: 10em; // extra spacing for runner column
+    }
+    th img {
+        width: 32px;
+        height: 32px;
+        display: inline-block !important;
+        vertical-align: middle;
+    }
+    td img,
+    td img:first-child,
+    td img:last-child {
+        width: 32px;
+        height: 32px;
+        display: inline-block !important;
+        vertical-align: middle;
+        margin: 0;
+    }
+    td {
+        padding: 0.5em;
+        vertical-align: middle;
+        text-align: center;
+    }
+    .tablesort__runner { text-align: left; }
+    .tablesort__time   { text-align: right; }
+    .tablesort__weapon { text-align: center; }
+    .tablesort__video  { text-align: center; }
+
+
+
+    // ---
+
+    th[role=columnheader]:not(.no-sort) {
+        cursor: pointer;
+    }
+
+    th[role=columnheader]:not(.no-sort):after {
+        content: '';
+        float: right;
+        margin-top: 7px;
+        border-width: 0 4px 4px;
+        border-style: solid;
+        border-color: #404040 transparent;
+        visibility: hidden;
+        opacity: 0;
+        -ms-user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
+
+    th[aria-sort=ascending]:not(.no-sort):after {
+        border-bottom: none;
+        border-width: 4px 4px 0;
+    }
+
+    th[aria-sort]:not(.no-sort):after {
+        visibility: visible;
+        opacity: 0.4;
+    }
+
+    th[role=columnheader]:not(.no-sort):hover:after {
+        visibility: visible;
+        opacity: 1;
+    }
+
+}
+
+// ----------------
+// Micromodal
+// https://micromodal.now.sh/
+// ----------------
+
+.modal {
+    display: none;
+    z-index: 9999;
+}
+
+.modal.is-open {
+    display: block;
+}
+
+/**************************\
+  Basic Modal Styles
+\**************************/
+
+.modal__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal__container {
+    max-width: 1200px;
+    max-height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    background: #fff;
+    padding: 1em;
+
+    width: 1200px;
+    z-index: 9999;
+}
+
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+}
+
+.modal__title {
+    box-sizing: border-box;
+}
+
+.modal__close {
+    background: transparent;
+    border: 0;
+    height: 2em;
+}
+
+.modal__header .modal__close:before { content: "\2715"; }
+
+.modal__content {
+}
+
+@keyframes mmfadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+@keyframes mmfadeOut {
+from { opacity: 1; }
+to { opacity: 0; }
+}
+
+@keyframes mmslideIn {
+from { transform: translateY(15%); }
+to { transform: translateY(0); }
+}
+
+@keyframes mmslideOut {
+from { transform: translateY(0); }
+to { transform: translateY(-10%); }
+}
+
+.micromodal-slide {
+display: none;
+}
+
+.micromodal-slide.is-open {
+display: block;
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__overlay {
+    animation: mmfadeIn .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="false"] .modal__container {
+    animation: mmslideIn .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__overlay {
+    animation: mmfadeOut .3s cubic-bezier(0.0, 0.0, 0.2, 1);
+}
+
+.micromodal-slide[aria-hidden="true"] .modal__container {
+    animation: mmslideOut .3s cubic-bezier(0, 0, .2, 1);
+}
+
+.micromodal-slide .modal__container,
+.micromodal-slide .modal__overlay {
+    will-change: transform;
 }
