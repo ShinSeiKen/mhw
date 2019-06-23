@@ -22,7 +22,7 @@ self.addEventListener('fetch', event => {
         event.respondWith(
             fetch(event.request)
                 .then(response => { return reponse; })
-                .catch(error => { return caches.match(); })
+                .catch(error => { return caches.match(event.request); })
         );
     }
     event.respondWith(
