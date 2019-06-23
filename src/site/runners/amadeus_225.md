@@ -1,5 +1,5 @@
 ---
-title   : Deus_Vult225
+title   : AmaDEUS_225
 twitter :
 youtube : https://www.youtube.com/channel/UCopbIVMb0JlMRDffKoSwEAQ
 twitch  :
