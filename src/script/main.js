@@ -126,3 +126,26 @@ MicroModal.init({
         iframe.src = iframe.src;
     }
 });
+
+// Filter for runs on Quest page
+
+let filters = document.querySelectorAll('.filters select');
+let results = document.querySelectorAll('.tablesort tbody tr');
+
+filters.forEach(select => {
+    select.addEventListener('change', e => {
+        results.forEach(row => row.hidden = false);
+        filters.forEach(filter => {
+            let name  = filter.name;
+            let value = filter.value;
+
+            if (value) {
+                results.forEach(row => {
+                    if (row.dataset[name] != value) {
+                        row.hidden = true;
+                    }
+                });
+            }
+        });
+    });
+});

@@ -35,6 +35,55 @@ layout: layouts/base.njk
             {#
                 --- SUPER EXPERIMENTAL STUFF HERE ---
             #}
+            <style>
+            .filters {
+                margin-top: var(--blockSpacingTop);
+                margin-bottom: var(--blockSpacingBottom);
+                display: flex;
+                justify-content: flex-start;
+            }
+            .filters > div + div {
+                margin-left: 2em;
+            }
+            .filters label {
+                display: block;
+            }
+            .filters select {
+                display: block;
+                padding: 0.5em;
+            }
+            </style>
+            <div class="filters">
+                <div>
+                    <label for="select--ruleset">Ruleset</label>
+                    <select name="ruleset" id="select--ruleset">
+                        <option value="">Any</option>
+                        {% for rulesetSlug in rulesets %}
+                            <option value="{{ rulesetSlug }}">{{ rulesetSlug | label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="select--weapon">Weapon</label>
+                    <select name="weapon" id="select--weapon">
+                        <option value="">Any</option>
+                        {% for weaponSlug in global_weapons %}
+                            {% set weapon = collections.lookup.weapon[weaponSlug] %}
+                            <option value="{{ weaponSlug }}">{{ weapon.data.title }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="select--platform">Platform</label>
+                    <select name="platform" id="select--platform">>
+                        <option value="">Any</option>
+                        {% for platformSlug in platforms %}
+                            <option value="{{ platformSlug }}">{{ platformSlug | label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
             <table class="tablesort">
                 <thead>
                     <tr>
@@ -44,11 +93,16 @@ layout: layouts/base.njk
                         <th class="no-sort" data-sort-method='none'>Video</th>
                     </tr>
                 </thead>
+                <tbody>
                 {% for run in runs %}
                     {% if run.data.runners.length == 1 %}
                         {% set count = count + 1 %}
                         {%- set runner = collections.lookup.runner[ run.data.runners|first ] %}
-                        <tr>
+                        <tr
+                            data-ruleset="{{ run.data.run_type }}"
+                            data-weapon="{{ run.data.weapons|join(' ') }}"
+                            data-platform="{{ run.data.platform }}"
+                            >
                             <td class="tablesort__runner">
                                 {%- include "components/links/runner-link.njk" %}
                             </td>
@@ -84,6 +138,7 @@ layout: layouts/base.njk
                         </tr>
                     {% endif %}
                 {% endfor %}
+                </tbody>
             </table>
 
             {% for run in runs %}
