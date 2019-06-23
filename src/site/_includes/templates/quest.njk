@@ -57,7 +57,7 @@ layout: layouts/base.njk
                                     {{ run.data.time }}
                                 </a>
                             </td>
-                            <td class="tablesort__weapon">
+                            <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
                                 {% for weapon in run.data.weapons %}
                                     <img
                                         src="/assets/img/weapon-icon/{{ weapon | slug }}.png"
