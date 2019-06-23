@@ -61,6 +61,7 @@ module.exports = function(config) {
     config.addCollection("quests__challenge" , collection => collection.getFilteredByGlob("src/site/quests/challenge-quest/*.md").sort(byTitleAlphabetically));
     config.addCollection("quests__event"     , collection => collection.getFilteredByGlob("src/site/quests/event-quest/*.md").sort(byTitleAlphabetically));
     config.addCollection("quests__optional"  , collection => collection.getFilteredByGlob("src/site/quests/optional-quest/*.md").sort(byTitleAlphabetically));
+    config.addCollection("quests__custom"    , collection => collection.getFilteredByGlob("src/site/quests/custom-quest/*.md").sort(byTitleAlphabetically));
 
     // Define a lookup table for accessing content via type and (unique) slugs
     config.addCollection("lookup", collection => {
@@ -610,6 +611,7 @@ module.exports = function(config) {
         "challenge-quest" : "Challenge Quest",
         "event-quest"     : "Event Quest",
         "special-quest"   : "Special Quest",
+        "custom-quest"    : "Custom Quest",
 
 
         // Misc:

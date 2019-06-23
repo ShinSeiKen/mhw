@@ -51,5 +51,16 @@ title: Quests
                 </li>
             {% endfor  %}
         </ul>
+        <h2>Custom Quests</h2>
+        <ul>
+            {% for item in collections.quests__custom %}
+                <li
+                    {% if page.url == item.url %} class="active"{% endif %}>
+                    <a href="{{ item.url | url }}">
+                        {{- item.data.title -}}
+                    </a>
+                </li>
+            {% endfor  %}
+        </ul>
     </div>
 </grid>
