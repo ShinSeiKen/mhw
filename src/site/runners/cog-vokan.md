@@ -4,7 +4,7 @@ twitter :
 youtube : https://www.youtube.com/channel/UCnekzfxoZxcBtvzLM3OjcMw
 twitch  :
 patreon :
-country :
+country : tw
 weapons :
     - sword-and-shield
 ---

@@ -24,9 +24,6 @@ npm run build
 
 - Extract some variables to separate files in `.eleventy.js`.
 - Add some nice Social icons and weapon icons.
-- Filtering runs, leaderboards, etc.
-- Minify assets:
-    - Images (resize properly and compress).
 - Additional Monster data (e.g. descriptions from Hunting Log).
 - Additional Location data.
 - Additional (Top) Event Quests.
@@ -38,6 +35,7 @@ npm run build
     - who are known to be good at their weapons ("Weapon Masters").
     - who just happen to have one or two runs with that weapon.
 - Translations of Quests, Weapons, Monsters, Locations (at least go for Japanese).
+    - `{{ translations.jp.weapons['great-sword'] }}`
 - Add automatic Edit links.
 - Add special link for Adding new Runners/Runs.
 - Add comments feature (e.g. Disqus).
@@ -49,9 +47,7 @@ npm run build
     - by weapon
     - multiplayer runs
     - multiple weapons
-- Add custom (community) quests, such as Iceborne Entry Exam
 - Add (community) leagues, such as Utakata Cup
-- Allow multiple videos for multiplayer runs (so multiple POVs on one page)
 - etc.
 
 

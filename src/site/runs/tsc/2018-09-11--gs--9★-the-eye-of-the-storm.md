@@ -1,6 +1,6 @@
 ---
 title          :
-video          : https://www.youtube.com/embed/o6U2QfIpbo
+video          : https://www.youtube.com/embed/-o6U2QfIpbo
 video_type     : youtube
 run_type       : freestyle
 platform       : ps4
