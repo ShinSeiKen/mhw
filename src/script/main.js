@@ -94,6 +94,7 @@ Array.prototype.forEach.call(cards, card => {
  * See: https://speaking.adactio.com/IKpZLN/going-offline
  * See: https://developers.google.com/web/fundamentals/primers/service-workers/
  */
+/* -- still buggy`serviceworker.js`, so disable for now.
 if (navigator.serviceWorker) {
     navigator.serviceWorker.register('/serviceworker.js')
     .then((registration) => {
@@ -102,6 +103,7 @@ if (navigator.serviceWorker) {
         console.log('ServiceWorker registration failed: ', error);
     });
 }
+//*/
 
 let togglers = document.querySelectorAll('.toggle-runs');
 togglers.forEach(toggler => {
