@@ -36,3 +36,31 @@ gulp.task('dev', gulp.series(
     'build',
     'watch'
 ));
+
+/* Image resizer
+var os          = require("os");
+var parallel    = require("concurrent-transform");
+var imageResize = require('gulp-image-resize');
+
+var resizeImageTasks = [];
+[600].forEach(function(size) {
+    var resizeImageTask = 'resize_' + size;
+    gulp.task(resizeImageTask, function(done) {
+        gulp.src('./src/site/assets/img/_weapon-character-iceborne/*')
+            .pipe(parallel(
+                imageResize({ width : size }),
+                os.cpus().length
+            ))
+            .pipe(gulp.dest('./src/site/assets/img/weapon-character-iceborne/'))
+        ;
+        done();
+    });
+    resizeImageTasks.push(resizeImageTask);
+});
+
+gulp.task('images', gulp.parallel(resizeImageTasks, function copyOriginalImages(done) {
+    gulp.src('./src/site/assets/img/_weapon-character-iceborne/*')
+        .pipe(gulp.dest('./src/site/assets/img/weapon-character-iceborne/'));
+    done();
+}));
+//*/

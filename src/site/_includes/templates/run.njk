@@ -36,6 +36,8 @@ permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else 
                     {% endif %}
                 {% endfor %}
             </dd>
+            <dt>Time</dt>
+            <dd>{{ time }}</dd>
             <dt>Quest</dt>
             <dd>
                 <a href="{{ _quest.url | url }}">
@@ -77,16 +79,15 @@ permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else 
             <dt>Platform</dt>
             <dd>{{ platform | label }}</dd>
             <dt>Patch</dt>
-            <dd>{{ patch_version }}</dd>
+            {% if patch_version | length > 0 %}
+                <dd>{{ patch_version }}</dd>
+            {% else %}
+                <dd>Unknown</dd>
+            {% endif %}
             <dt>Date</dt>
             <dd>
                 <time datetime="{{ page.date | dateTimeISO }}">{{ page.date | dateOnly }}</time>
             </dd>
-            <dt>Time</dt>
-            {#
-            <dd>{{ time_in_millis | millisFormatted }}</dd>
-            #}
-            <dd>{{ time }}</dd>
         </dl>
     </aside>
 </div>
