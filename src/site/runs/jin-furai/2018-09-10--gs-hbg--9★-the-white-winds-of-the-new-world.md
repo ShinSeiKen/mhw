@@ -14,4 +14,5 @@ runners:
 
 weapons:
     - great-sword
+    - heavy-bowgun
 ---
