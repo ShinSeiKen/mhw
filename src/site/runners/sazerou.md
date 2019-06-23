@@ -4,7 +4,7 @@ twitter :
 youtube : https://www.youtube.com/channel/UCsoT-Wuu9cjkhKrmG7hrDSA
 twitch  :
 patreon :
-country :
+country : pr
 weapons :
     - great-sword
     - long-sword

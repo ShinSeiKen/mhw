@@ -4,7 +4,7 @@ twitter :
 youtube : https://www.youtube.com/channel/UCopbIVMb0JlMRDffKoSwEAQ
 twitch  :
 patreon :
-country :
+country : fr
 weapons :
     - hunting-horn
 ---

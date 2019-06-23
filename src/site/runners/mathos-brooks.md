@@ -5,7 +5,7 @@ twitter :
 youtube : https://www.youtube.com/channel/UCMwgbDwAMWNy_KmXYioTLrg
 twitch  :
 patreon :
-country :
+country : us
 weapons :
     - charge-blade
 ---

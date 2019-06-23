@@ -5,7 +5,7 @@ twitter : https://twitter.com/IDeVaste
 youtube : https://www.youtube.com/idevaste
 twitch  : https://www.twitch.tv/idevaste
 patreon :
-country :
+country : de
 weapons :
     - dual-blades
     - charge-blade

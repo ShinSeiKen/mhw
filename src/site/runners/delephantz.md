@@ -4,7 +4,7 @@ twitter :
 youtube : https://www.youtube.com/user/delephantz
 twitch  :
 patreon :
-country :
+country : us
 weapons :
     - great-sword
     - heavy-bowgun

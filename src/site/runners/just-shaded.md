@@ -4,7 +4,7 @@ twitter :
 youtube : https://www.youtube.com/channel/UCNsAKXDCy1TYf6rf-HGsDlA
 twitch  :
 patreon :
-country :
+country : us
 weapons :
     - bow
 ---
