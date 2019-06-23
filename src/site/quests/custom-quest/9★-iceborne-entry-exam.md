@@ -8,8 +8,8 @@ monsters:
     - vaal-hazak
     - teostra
     - lunastra
-    - nergignate
+    - nergigante
     # all arch-tempered
 ---
 
-Download [Iceborne Entry Exam](https://www.nexusmods.com/monsterhunterworld/mods/1306) mod.
+Download the [Iceborne Entry Exam](https://www.nexusmods.com/monsterhunterworld/mods/1306) mod.
