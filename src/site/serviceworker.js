@@ -1,3 +1,5 @@
+// https://developers.google.com/web/fundamentals/primers/service-workers/
+
 const ASSETS_CACHE = 'assets';
 const PAGES_CACHE = 'pages';
 const CACHE_WHITELIST = [ ASSETS_CACHE, PAGES_CACHE ];
@@ -43,7 +45,7 @@ self.addEventListener('fetch', event => {
                         // to clone it so we have two streams.
                         let responseToCache = response.clone();
 
-                        caches.open(PAGES_CACHE).then(cache => cache.put(event.request, responseToCache));
+                        caches.open(PAGES_CACHE).then(cache => { cache.put(event.request, responseToCache) });
 
                         return response;
                     }
