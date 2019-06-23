@@ -69,7 +69,7 @@ layout: layouts/base.njk
                         <option value="">Any</option>
                         {% for weaponSlug in global_weapons %}
                             {% set weapon = collections.lookup.weapon[weaponSlug] %}
-                            <option value="{{ weaponSlug }}">{{ weapon.data.title }}</option>
+                            <option value="{{ weaponSlug }}">{{ weapon.data.title }} · {{ translations.jp.weapons[weaponSlug] }}</option>
                         {% endfor %}
                     </select>
                 </div>
