@@ -1,7 +1,7 @@
 ---
-title   : CL (utakata)
-twitter : https://twitter.com/CieL573
-youtube : https://www.youtube.com/c/utakataMH
+title   : CL
+twitter :
+youtube : https://www.youtube.com/channel/UCd6gpVWTPGGVZ9dcKFawItw
 twitch  :
 patreon :
 country : jp

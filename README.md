@@ -22,33 +22,33 @@ npm run build
 
 ## TODO
 
-- Extract some variables to separate files in `.eleventy.js`.
-- Add some nice Social icons and weapon icons.
-- Additional Monster data (e.g. descriptions from Hunting Log).
-- Additional Location data.
-- Additional (Top) Event Quests.
-- Leaderboards.
-- Foolproof way for people to add runs.
-- Distinguish Tempered, Arch-Tempered, Extreme, Ancient variants.
-- Distinguish between single-player runs and 2P/3P/4P runs.
-- See if we need a separate list of runners:
-    - who are known to be good at their weapons ("Weapon Masters").
-    - who just happen to have one or two runs with that weapon.
-- Translations of Quests, Weapons, Monsters, Locations (at least go for Japanese).
-    - `{{ translations.jp.weapons['great-sword'] }}`
-- Add automatic Edit links.
-- Add special link for Adding new Runners/Runs.
-- Add comments feature (e.g. Disqus).
-- Add more custom fields for Runs/Runners.
-- If there's enough demand, add other quests too.
-- In the future, differentiate between MHW and MHWI runs (separate leaderboards too).
-- Add a specialized Community Events/Leagues page.
-- Quality of Life changes for filtering runs:
-    - by weapon
-    - multiplayer runs
-    - multiple weapons
-- Add (community) leagues, such as Utakata Cup
-- etc.
+- Refactoring
+    - Extract some variables to separate files in `.eleventy.js`.
+- Features:
+    - Add some nice Social icons and weapon icons.
+    - Additional Monster data (e.g. descriptions from Hunting Log).
+    - Additional Location data.
+    - Additional (Top) Event Quests (if enough demand).
+    - Leaderboards.
+    - Foolproof way for people to add runners/runs.
+    - Distinguish Tempered, Arch-Tempered, Extreme, Ancient variants.
+    - Distinguish between single-player runs and 2P/3P/4P runs.
+    - See if we need a separate list of runners:
+        - who are known to be good at their weapons ("Weapon Masters").
+        - who just happen to have one or two runs with that weapon.
+    - Translations of Quests, Weapons, Monsters, Locations (at least go for Japanese).
+        - `{{ translations.jp.weapons['great-sword'] }}`
+    - Add automatic Edit links.
+    - Add comments feature (e.g. Disqus).
+    - Add more custom fields for Runs/Runners.
+    - In the future, differentiate between MHW and MHWI runs
+        - Separate leaderboards
+        - Add (community) leagues, such as Utakata Cup
+    - Add a specialized Community Events/Leagues page.
+    - Quality of Life changes for filtering runs:
+        - by weapon
+        - multiplayer runs
+        - multiple weapons
 
 
 ## Links and Resources
@@ -129,6 +129,13 @@ The same?
 | 9★ Contract: Woodland Spirit | Ancient Leshen |
 
 Missing a bunch like Greatest Jagras, Thronetaker, etc.
+
+
+#### CUstom
+
+|Quest | Notes |
+|:---|:---|
+| 9★ Iceborn Entry Exam | bunch of arch tempereds |
 
 
 ## Removed from `monsters.json`

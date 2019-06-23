@@ -21,7 +21,16 @@ title: Runners
     {% for slug in global_weapons %}
         {% set item = collections.lookup.weapon[ slug ] %}
         <div class="grid__column">
-            <h3>{{ item.data.title }}</h3>
+            <h3>
+                {#
+                <img
+                    src="/assets/img/weapon-icon/{{ slug }}.png"
+                    style="height: 1em; width: 1em; display: inline-block; border: 1px solid black; padding: 5px; background-color: #333;"
+                    alt="{{ collections.lookup.weapon[ weapon ].data.title }}"
+                    />
+                #}
+                {{ item.data.title }}
+            </h3>
             <ul>
                 {% for runner in collections.runners__by_weapon[ slug ] %}
                     {% if loop.index0 < 20 %}
