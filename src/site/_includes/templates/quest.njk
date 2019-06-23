@@ -41,9 +41,13 @@ layout: layouts/base.njk
                 margin-bottom: var(--blockSpacingBottom);
                 display: flex;
                 justify-content: flex-start;
+                flex-wrap: wrap;
             }
-            .filters > div + div {
-                margin-left: 2em;
+            .filters > div {
+                margin-right: 2em;
+            }
+            .filters > div:last-child {
+                margin-right: unset;
             }
             .filters label {
                 display: block;
