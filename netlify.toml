@@ -1,6 +1,6 @@
 [build]
   publish = "_site"
-  command = "npx run build"
+  command = "eleventy"
 
 # REDIRECT and HEADERS examples
 
