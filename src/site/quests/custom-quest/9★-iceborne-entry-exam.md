@@ -2,7 +2,7 @@
 title: '9★ Iceborne Entry Exam'
 quest_type: custom-quest
 difficulty: 9★
-location: arena
+location: special-arena
 monsters:
     - kirin
     - vaal-hazak
