@@ -1,0 +1,93 @@
+---
+title: Examples
+---
+
+<h1>Example Runner</h1>
+
+<ul>
+    <li>The filename is important, should be all lowercase and spaces become hyphens, so <b>Jin Furai</b> becomes <b>jin-furai</b>. This is called the "slug."</li>
+    <li>The file extension is <b>.md</b>, so it becomes <b>jin-furai.md</b>.</li>
+    <li>The filename (slug) will be used when entering a run that references this runner.</li>
+    <li>Then in the file, use formatting below.</li>
+    <li><b>title</b>: This is the (nick) name</li>
+    <li><b>twitter</b>, <b>youtube</b>, <b>twitch</b>, <b>patreon</b>: Enter full URLs (with https://), or leave empty if you don't have it.</li>
+    <li><b>country</b>: A two-letter country code for the country you wanna represent. It's a fun thing. Leave empty if you do not want a flag next to your name.</li>
+    <li><b>weapons</b>: This runner will be shown on the <a href="/runners/">Weapon Masters</a> section. Below are all weapon options.</li>
+</ul>
+
+<pre pre style="border: 1px solid black; padding: 1em;">
+---
+title   : Jin Furai
+twitter : https://twitter.com/jinfurai
+youtube : https://www.youtube.com/channel/UCcnnKzgJjtkDoHHtH2ePcMA
+twitch  : https://www.twitch.tv/jinfurai
+patreon :
+country : us
+weapons :
+    - great-sword
+    - long-sword
+    - sword-and-shield
+    - dual-blades
+    - hammer
+    - hunting-horn
+    - lance
+    - gunlance
+    - switch-axe
+    - charge-blade
+    - insect-glaive
+    - bow
+    - light-bowgun
+    - heavy-bowgun
+---
+</pre>
+
+
+<h1>Example Run</h1>
+<ul>
+    <li>The filename is not important, but it's useful for editing in the future.</li>
+    <li>My format is <b>yyyy-mm-dd--weapon--quest-name.md</b>, e.g. <b>2019-01-05--gs--8★-blue-prominence.md</b>. Then I'll put the run in a separate directory per runner.</li>
+    <li><b>title</b>: Optional. Enter a cool name for you run. Leave empty if you want it to auto-generate.</li>
+    <li><b>video</b>: Enter an embed link, like <b>https://www.youtube.com/embed/EXAMPLE</b>.</li>
+    <li><b>run_type</b>: <b>freestyle</b> or <b>ta-wiki-rules</b>. But mostly it's <b>freestyle</b>.</li>
+    <li><b>platform</b>: <b>pc</b>, <b>ps4</b>, or <b>xbox</b></li>
+    <li><b>patch_version</b>: If you still know the patch version</li>
+    <li><b>date</b>: Date in <b>yyyy-mm-dd</b> format</li>
+    <li><b>time</b>: Use the full format, like <b>01'23"45</b>.</li>
+    <li><b>quest</b>: Use the quest slug</li>
+    <li><b>runners</b>: List of runners. Use the "slugs", i.e. filenames, of the runners.</li>
+    <li><b>weapons</b>: List of all weapons used in this run.</li>
+</ul>
+
+<pre pre style="border: 1px solid black; padding: 1em;">
+---
+title          :
+video          : https://www.youtube.com/embed/EXAMPLE
+video_type     : youtube
+run_type       : freestyle
+platform       : ps4
+patch_version  :
+date           : 2019-01-01
+time           : 09'99"99
+quest          : 8★-blue-prominence
+
+runners:
+    - jin-furai
+    - tsc
+
+weapons:
+    - great-sword
+    - long-sword
+    - sword-and-shield
+    - dual-blades
+    - hammer
+    - hunting-horn
+    - lance
+    - gunlance
+    - switch-axe
+    - charge-blade
+    - insect-glaive
+    - bow
+    - light-bowgun
+    - heavy-bowgun
+---
+</pre>
