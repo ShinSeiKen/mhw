@@ -5,15 +5,17 @@
 
         <div class="grid grid--quadra">
             <div class="grid__column">
-                <h2>Event Quests</h2>
+                <h2>9★ Event Quests</h2>
                 <ul class="footer-list">
                     {% for item in collections.quests__event %}
-                        <li
-                            {% if page.url == item.url %} class="active"{% endif %}>
-                            <a class="footer-list__link" href="{{ item.url | url }}">
-                                {{- item.data.title -}}
-                            </a>
-                        </li>
+                        {% if item.data.difficulty == '9★' %}
+                            <li
+                                {% if page.url == item.url %} class="active"{% endif %}>
+                                <a class="footer-list__link" href="{{ item.url | url }}">
+                                    {{- item.data.title -}}
+                                </a>
+                            </li>
+                        {% endif %}
                     {% endfor  %}
                 </ul>
             </div>
