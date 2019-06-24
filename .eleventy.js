@@ -327,6 +327,18 @@ module.exports = function(config) {
     config.addCollection('xxx', collection => {
         let all = collection.getAll();
 
+        // ARCH-TEMPERED LEADERBOARDS!
+        let archTemperedLeague = [
+            '9★-a-whisper-of-white-mane',
+            '9★-the-deathly-quiet-curtain',
+            '9★-like-a-moth-to-the-flame',
+            '9★-the-eye-of-the-storm',
+            '9★-the-heralds-of-destruction-cry',
+            '9★-the-scorn-of-the-sun',
+            // '9★-undying-alpenglow',
+            '9★-when-blue-dust-surpasses-red-lust'
+        ];
+
         // lookup
         let runners = [];
         let runs    = [];
@@ -352,7 +364,9 @@ module.exports = function(config) {
                     // Only count runs that have one runner, and a single weapon
                     if (item.data.runners.length == 1 && item.data.weapons.length == 1) {
                         // NOTE: FILESLUG IS NOT UNIQUE
-                        runs.push(item);
+                        if (archTemperedLeague.includes(item.data.quest)) {
+                            runs.push(item);
+                        }
                     }
                     break;
                 case 'quest':
@@ -362,7 +376,9 @@ module.exports = function(config) {
                         quests[item.fileSlug] = item;
                     }
                     //*/
-                    quests[item.fileSlug] = item;
+                    if (archTemperedLeague.includes(item.fileSlug)) {
+                        quests[item.fileSlug] = item;
+                    }
                     break;
                 case 'weapon':
                     weapons[item.fileSlug] = item;
