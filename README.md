@@ -134,6 +134,7 @@ The same?
 | 9★ Relish the Moment| |
 | 9★ Snow & Cherry Blossoms | |
 | 9★ The Greatest Jagras | |
+| 9★ The Heart of the Nora | |
 | 9★ The Name's Lavasioth | |
 
 

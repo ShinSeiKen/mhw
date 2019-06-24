@@ -5,4 +5,5 @@ difficulty: 9★
 location: ancient-forest
 monsters:
     - deviljho
+    # - tempered-deviljho
 ---
