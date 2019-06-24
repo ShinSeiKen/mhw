@@ -150,16 +150,30 @@ grid:last-child {
     margin-bottom: var(--blockSpacingBottom);
 }
 
-.site-name {
-    /* take h3 styling instead */
+header h1, .site-name {
     font-weight: 700;
     letter-spacing: -0.02em;
-    font-size: var(--h3-size);
+    font-size: var(--h2-size);
     padding-top: calc(var(--baseline) * 0.75);
     padding-bottom: calc(var(--baseline) * 0.25);
     margin-bottom: var(--baseline);
     text-decoration: none;
+
+    white-space: normal; // for mobile
 }
+
+@media only screen and (min-width: $breakpointS) {
+    header h1 {
+        font-size: var(--h1-size);
+    }
+
+    .site-name {
+        /* take h3 styling instead */
+        font-size: var(--h3-size);
+    }
+}
+
+
 
 .site-name:hover {
     color: inherit;
@@ -175,9 +189,9 @@ header {
     // padding: var(--lineHeight) calc(var(--lineHeight)*2);
     // margin-left: calc(var(--lineHeight)*-2);
     // margin-right: calc(var(--lineHeight)*-2);
-    padding: 24px 48px;
-    margin-left: -48px;
-    margin-right: -48px;
+    padding: 24px;
+    margin-left: -24px;
+    margin-right: -24px;
 }
 
 main {
@@ -195,10 +209,33 @@ footer {
     // margin-right: calc(var(--lineHeight) * -2);
     // margin-bottom: calc(var(--lineHeight) * -3);
     padding: 24px 48px 72px 48px;
-    margin-left: -48px;
-    margin-right: -48px;
-    margin-bottom: -72px;
+    margin-left: -24px;
+    margin-right: -24px;
+    margin-bottom: -48px;
 }
+
+@media only screen and (min-width: $breakpointS) {
+    header {
+        padding: 24px 48px;
+        margin-left: -48px;
+        margin-right: -48px;
+    }
+
+    main {
+        padding-top: 24px;
+        padding-bottom: 24px;
+    }
+
+    footer {
+        padding: 24px 48px 72px 48px;
+        margin-left: -48px;
+        margin-right: -48px;
+        margin-bottom: -72px;
+    }
+}
+
+// .inner { border: 1px solid red; }
+// header, footer { border: 1px solid green; }
 
 // ------
 // FOOTER
@@ -352,9 +389,16 @@ grid {
 @media only screen and (min-width: $breakpointS) { .grid { --grid-tc: repeat(6, 1fr); } }
 @media only screen and (min-width: $breakpointM) { .grid { --grid-tc: repeat(12, 1fr); } }
 
-.grid.grid--double { --grid-tc: repeat(auto-fit, minmax(450px, 1fr)); }
+// Check max width with relation to minmax column size
+.grid.grid--double { --grid-tc: repeat(auto-fit, minmax(100%, 1fr)); }
+@media only screen and (min-width: $breakpointS) {
+    .grid.grid--double { --grid-tc: repeat(auto-fit, minmax(450px, 1fr)); }
+}
+
 .grid.grid--triple { --grid-tc: repeat(auto-fit, minmax(350px, 1fr)); }
 .grid.grid--quadra { --grid-tc: repeat(auto-fit, minmax(250px, 1fr)); }
+
+
 
 /* grid__item, or grid__cell?
 .grid__row,
@@ -558,8 +602,11 @@ grid {
         vertical-align: bottom;
         text-align: left;
     }
-    th:first-child {
-        min-width: 10em; // extra spacing for runner column
+
+    @media only screen and (min-width: $breakpointS) {
+        th:first-child {
+            min-width: 10em; // extra spacing for runner column
+        }
     }
     th img {
         width: 32px;
