@@ -127,9 +127,16 @@ body {
 // ELEMENTS
 // --------
 
-a:focus,
-button:focus {
+a:focus
+{
     background-color: #ffbf47;
+    outline: 3px solid #ffbf47;
+}
+
+button:focus,
+select:focus,
+input:focus,
+textarea:focus {
     outline: 3px solid #ffbf47;
 }
 
@@ -600,7 +607,6 @@ grid {
 // --------------------------------------------------------------------------------
 
 .tablesort {
-
     table, tr, td, th {
         border : 1px solid;
     }
