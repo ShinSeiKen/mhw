@@ -59,6 +59,7 @@ npm run build
     - [Videos by Capcom on Youtube](https://www.youtube.com/user/CapcomChannel/videos)
     - [Melee Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/8/1)
     - [Ranged Weapon descriptions from Game Manual](http://game.capcom.com/manual/MHW_PC/en/steam/page/9/1)
+- Data from [Monster Hunter World Wiki](https://monsterhunterworld.wiki.fextralife.com/)
 - [Parallax Depth Cards by Andy Merskin](https://codepen.io/andymerskin/pen/XNMWvQ)
 - [EleventyOne by Phil Hawksworth](https://github.com/philhawksworth/eleventyone)
 - Inspired by [GOV.UK](https://www.gov.uk)
@@ -127,11 +128,19 @@ The same?
 | 9★ A Whisper of White Mane | `arch-tempered-kirin` |
 | 9★ A Visitor from Eorzea (Extreme) | Extreme Behemoth |
 | 9★ Contract: Woodland Spirit | Ancient Leshen |
+| 9★ A Nose for an Eye | |
+| 9★ Keeper of the Otherworld| |
+| 9★ No Tomorrow for Usurpers| |
+| 9★ Relish the Moment| |
+| 9★ Snow & Cherry Blossoms | |
+| 9★ The Greatest Jagras | |
+| 9★ The Name's Lavasioth | |
 
-Missing a bunch like Greatest Jagras, Thronetaker, etc.
 
 
-#### CUstom
+
+
+#### Custom
 
 |Quest | Notes |
 |:---|:---|
