@@ -150,16 +150,24 @@ grid:last-child {
     margin-bottom: var(--blockSpacingBottom);
 }
 
-header h1, .site-name {
+header h1,
+.site-name {
     font-weight: 700;
     letter-spacing: -0.02em;
-    font-size: var(--h2-size);
     padding-top: calc(var(--baseline) * 0.75);
     padding-bottom: calc(var(--baseline) * 0.25);
     margin-bottom: var(--baseline);
     text-decoration: none;
 
     white-space: normal; // for mobile
+}
+
+header h1 {
+    font-size: var(--h2-size);
+}
+
+.site-name {
+    font-size: var(--h3-size);
 }
 
 @media only screen and (min-width: $breakpointS) {
@@ -169,7 +177,7 @@ header h1, .site-name {
 
     .site-name {
         /* take h3 styling instead */
-        font-size: var(--h3-size);
+        font-size: var(--h2-size);
     }
 }
 
