@@ -20,6 +20,12 @@ npm run dev
 npm run build
 ```
 
+or rather:
+
+```
+eleventy
+```
+
 ## TODO
 
 - Refactoring
@@ -28,7 +34,6 @@ npm run build
     - Add some nice Social icons and weapon icons.
     - Additional Monster data (e.g. descriptions from Hunting Log).
     - Additional Location data.
-    - Additional (Top) Event Quests (if enough demand).
     - Leaderboards.
     - Foolproof way for people to add runners/runs.
     - Distinguish Tempered, Arch-Tempered, Extreme, Ancient variants.
