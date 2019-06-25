@@ -119,11 +119,13 @@ document.querySelectorAll('.tablesort').forEach(tablesort => {
 MicroModal.init({
     onShow: modal => {
         let iframe = modal.getElementsByTagName('iframe')[0];
-        iframe.src = iframe.src;
+        if (! iframe.src) {
+            iframe.src = iframe.dataset['src'];
+        }
     },
     onClose: modal => {
         let iframe = modal.getElementsByTagName('iframe')[0];
-        iframe.src = iframe.src;
+        iframe.src = iframe.dataset['src'];
     }
 });
 

@@ -161,6 +161,7 @@ layout: layouts/base.njk
                             </div>
                             <div class="modal__content"  id="modal-{{ loop.index }}-content">
                                 {% set video = run.data.video %}
+                                {% set lazyload = true %}
                                 {% include "components/video.njk" %}
                             </div>
                         </div>
