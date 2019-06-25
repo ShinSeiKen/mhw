@@ -1,6 +1,8 @@
 ---
 layout: layouts/base.njk
 ---
+{% import "components/weapon-icon.njk" as weapon_icon %}
+
 
 {% set _location = collections.lookup.location[location] %}
 {% set runs = collections.runs__by_quest[page.fileSlug] %}
@@ -31,39 +33,10 @@ layout: layouts/base.njk
         {% set count = 0 %}
         <div class="grid__row">
             <h2>Runs</h2>
-
-            {#
-                --- SUPER EXPERIMENTAL STUFF HERE ---
-            #}
-            <style>
-            .filters {
-                background-color: #dee0e2;
-                padding: 1em;
-
-                margin-top: var(--blockSpacingTop);
-                margin-bottom: var(--blockSpacingBottom);
-                display: flex;
-                justify-content: flex-start;
-                flex-wrap: wrap;
-            }
-            .filters > div {
-                margin-right: 2em;
-            }
-            .filters > div:last-child {
-                margin-right: unset;
-            }
-            .filters label {
-                display: block;
-            }
-            .filters select {
-                display: block;
-                padding: 0.5em;
-            }
-            </style>
             <div class="filters">
                 <div>
-                    <label for="select--ruleset">Ruleset</label>
-                    <select name="ruleset" id="select--ruleset">
+                    <label for="filter--ruleset">Ruleset</label>
+                    <select name="ruleset" id="filter--ruleset">
                         <option value="">Any</option>
                         {% for rulesetSlug in rulesets %}
                             <option value="{{ rulesetSlug }}">{{ rulesetSlug | label }}</option>
@@ -71,8 +44,8 @@ layout: layouts/base.njk
                     </select>
                 </div>
                 <div>
-                    <label for="select--weapon">Weapon</label>
-                    <select name="weapon" id="select--weapon">
+                    <label for="filter--weapon">Weapon</label>
+                    <select name="weapon" id="filter--weapon">
                         <option value="">Any</option>
                         {% for weaponSlug in global_weapons %}
                             {% set weapon = collections.lookup.weapon[weaponSlug] %}
@@ -81,8 +54,8 @@ layout: layouts/base.njk
                     </select>
                 </div>
                 <div>
-                    <label for="select--platform">Platform</label>
-                    <select name="platform" id="select--platform">>
+                    <label for="filter--platform">Platform</label>
+                    <select name="platform" id="filter--platform">>
                         <option value="">Any</option>
                         {% for platformSlug in platforms %}
                             <option value="{{ platformSlug }}">{{ platformSlug | label }}</option>
@@ -90,7 +63,6 @@ layout: layouts/base.njk
                     </select>
                 </div>
             </div>
-
             <table class="tablesort">
                 <thead>
                     <tr>
@@ -120,13 +92,10 @@ layout: layouts/base.njk
                             </td>
                             <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
                                 {% for weapon in run.data.weapons %}
-                                    <img
-                                        src="/assets/img/weapon-icon/{{ weapon | slug }}.png"
-                                        height="40px"
-                                        width="40px"
-                                        style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #333;"
-                                        alt="{{ collections.lookup.weapon[ weapon ].data.title }}"
-                                        />
+                                    {{ weapon_icon.render(
+                                        slug = weapon,
+                                        title = collections.lookup.weapon[ weapon ].data.title
+                                    ) }}
                                 {% endfor %}
                             </td>
                             <td class="tablesort__video">
@@ -147,60 +116,93 @@ layout: layouts/base.njk
                 {% endfor %}
                 </tbody>
             </table>
-
-            {% for run in runs %}
-                <div class="modal micromodal-slide" id="modal-{{ loop.index }}" aria-hidden="true">
-                    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-                        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-{{ loop.index }}-title" >
-                            <div class="modal__header">
-                                <h3 class="modal__title" id="modal-{{ loop.index }}-title">
-                                    {% set runners = run.data.runners %}
-                                    {% include "components/run-title.njk" %}
-                                </h3>
-                                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
-                            </div>
-                            <div class="modal__content"  id="modal-{{ loop.index }}-content">
-                                {% set video = run.data.video %}
-                                {% set lazyload = true %}
-                                {% include "components/video.njk" %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-            {#
-                --- END ---
-            #}
-
-            {#
-            <ul>
-                {% for run in runs %}
-                    {% if run.data.runners.length == 1 %}
-                        {% set count = count + 1 %}
-                        <li data-weapons="{{ run.data.weapons|join(' ') }}">
-                            {% include "components/links/run-link.njk" %}
-                        </li>
-                    {% endif %}
-                {% endfor %}
-            </ul>
-            #}
         </div>
 
         {% if count < runs | length %}
             <div class="grid__row">
                 <h2>Multiplayer</h2>
-                <ul>
+                <table class="tablesort">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="no-sort" data-sort-method='none'>Runners</th>
+                            <th scope="col" data-sort-default>Time</th>
+                            <th scope="col" class="no-sort" data-sort-method='none'>Weapon</th>
+                            <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     {% for run in runs %}
                         {% if run.data.runners.length > 1 %}
-                            <li>
-                                [{{ run.data.runners.length }}P]
-                                {% include "components/links/run-link.njk" %}
-                            </li>
+                            <tr
+                                data-ruleset="{{ run.data.run_type }}"
+                                data-weapon="{{ run.data.weapons|join(' ') }}"
+                                data-platform="{{ run.data.platform }}"
+                                >
+                                <td class="tablesort__runner">
+                                    <strong>{{ run.data.runners.length }}P</strong><br>
+                                    {% for runnerSlug in run.data.runners %}
+                                        {%- set runner = collections.lookup.runner[ runnerSlug ] %}
+                                        {%- include "components/links/runner-link.njk" %}
+                                        {% if not loop.last %}
+                                        <br>
+                                        {% endif %}
+                                    {% endfor %}
+                                </td>
+                                <td class="tablesort__time">
+                                    <a href="{{ run.url | url }}">
+                                        {{ run.data.time }}
+                                    </a>
+                                </td>
+                                <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
+                                    {% for weapon in run.data.weapons %}
+                                        {{ weapon_icon.render(
+                                            slug = weapon,
+                                            title = collections.lookup.weapon[ weapon ].data.title
+                                        ) }}
+                                    {% endfor %}
+                                </td>
+                                <td class="tablesort__video">
+                                    <button
+                                        style="margin: 0; overflow: visible; border: 0; padding: 0"
+                                        data-micromodal-trigger="modal-{{ loop.index }}">
+                                        <img
+                                            src="/assets/img/ui/next.png"
+                                            height="40px"
+                                            width="40px"
+                                            style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
+                                            alt="Play video"
+                                            />
+                                    </button>
+                                </td>
+                            </tr>
                         {% endif %}
                     {% endfor %}
-                </ul>
+                    </tbody>
+                </table>
             </div>
         {% endif %}
+
+
+        {% for run in runs %}
+            <div class="modal micromodal-slide" id="modal-{{ loop.index }}" aria-hidden="true">
+                <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+                    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-{{ loop.index }}-title" >
+                        <div class="modal__header">
+                            <h3 class="modal__title" id="modal-{{ loop.index }}-title">
+                                {% set runners = run.data.runners %}
+                                {% include "components/run-title.njk" %}
+                            </h3>
+                            <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                        </div>
+                        <div class="modal__content"  id="modal-{{ loop.index }}-content">
+                            {% set video = run.data.video %}
+                            {% set lazyload = true %}
+                            {% include "components/video.njk" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
 
     {% endif %}
 {# --- check for weapons, check for multiplayer, etc. --- #}

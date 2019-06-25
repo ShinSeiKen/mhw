@@ -629,6 +629,9 @@ module.exports = function(config) {
         "special-quest"   : "Special Quest",
         "custom-quest"    : "Custom Quest",
 
+        // Expansion:
+        "mhw"  : "Monster Hunter World",
+        "mhwi" : "Monster Hunter World: Iceborne",
 
         // Misc:
         "foo" : "bar"

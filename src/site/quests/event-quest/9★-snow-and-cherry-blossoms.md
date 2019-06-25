@@ -2,7 +2,7 @@
 title: "9★ Snow & Cherry Blossoms"
 quest_type: event-quest
 difficulty: 9★
-location:
+location: coral-highlands
 monsters:
     - pink-rathian
     - legiana

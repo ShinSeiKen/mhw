@@ -1,6 +1,8 @@
 ---
 layout: layouts/base.njk
 ---
+{% import "components/weapon-icon.njk" as weapon_icon %}
+
 {% set runs = collections.runs__by_runner[page.fileSlug] %}
 
 <div class="grid">
@@ -17,13 +19,69 @@ layout: layouts/base.njk
     <div class="grid__content--wide">
         <h2>Runs</h2>
         {% if runs | length %}
-            <ul>
+            <table class="tablesort">
+                <thead>
+                    <tr>
+                        <th scope="col" data-sort-default>Quest</th>
+                        <th scope="col" >Time</th>
+                        <th scope="col" class="no-sort" data-sort-method='none'>Runners</th>
+                        <th scope="col" class="no-sort" data-sort-method='none'>Weapons</th>
+                        <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {% for run in runs %}
-                    <li>
-                        {% include "components/links/run-link.njk" %}
-                    </li>
+                    {% if run.data.runners.length %}
+                        <tr
+                            data-ruleset="{{ run.data.run_type }}"
+                            data-weapon="{{ run.data.weapons|join(' ') }}"
+                            data-platform="{{ run.data.platform }}"
+                            >
+                            <td class="tablesort__quest">
+                                {% set quest = collections.lookup.quest[ run.data.quest ] %}
+                                <a href="{{ quest.url | url }}">{{ quest.data.title }}</a>
+                            </td>
+                            <td class="tablesort__time">
+                                <a href="{{ run.url | url }}">
+                                    {{ run.data.time }}
+                                </a>
+                            </td>
+                            <td class="tablesort__runner">
+                                {% if run.data.runners.length > 1 %}
+                                    <strong>{{ run.data.runners.length }}P</strong><br>
+                                {% endif %}
+                                {% for runnerSlug in run.data.runners %}
+                                    {%- set runner = collections.lookup.runner[ runnerSlug ] %}
+                                    {%- include "components/links/runner-link.njk" %}
+                                    {% if not loop.last %}<br>{% endif %}
+                                {% endfor %}
+                            </td>
+                            <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
+                                {% for weapon in run.data.weapons %}
+                                    {{ weapon_icon.render(
+                                        slug = weapon,
+                                        title = collections.lookup.weapon[ weapon ].data.title
+                                    ) }}
+                                {% endfor %}
+                            </td>
+                            <td class="tablesort__video">
+                                <button
+                                    style="margin: 0; overflow: visible; border: 0; padding: 0"
+                                    data-micromodal-trigger="modal-{{ loop.index }}">
+                                    <img
+                                        src="/assets/img/ui/next.png"
+                                        height="40px"
+                                        width="40px"
+                                        style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
+                                        alt="Play video"
+                                        />
+                                </button>
+                            </td>
+                        </tr>
+                    {% endif %}
                 {% endfor %}
-            </ul>
+                </tbody>
+            </table>
         {% else %}
             <p>No speedruns yet.</p>
         {% endif %}
@@ -70,4 +128,29 @@ layout: layouts/base.njk
         {% endif %}
     </aside>
 
-</grid>
+</div>
+
+{% for run in runs %}
+    <div class="modal micromodal-slide" id="modal-{{ loop.index }}" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-{{ loop.index }}-title" >
+                <div class="modal__header">
+                    <h3 class="modal__title" id="modal-{{ loop.index }}-title">
+                        {% set title   = run.data.title %}
+                        {% if not title %}
+                            {% set title = collections.lookup.quest[ run.data.quest ].data.title %}
+                        {% endif %}
+                        {% set runners = run.data.runners %}
+                        {% include "components/run-title.njk" %}
+                    </h3>
+                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+                </div>
+                <div class="modal__content"  id="modal-{{ loop.index }}-content">
+                    {% set video = run.data.video %}
+                    {% set lazyload = true %}
+                    {% include "components/video.njk" %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}

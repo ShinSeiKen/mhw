@@ -3,6 +3,78 @@ title: Quests
 ---
 
 <h1>{{ title }}</h1>
+
+{# --- # }
+<div class="filters">
+    <div>
+        <label for="filter--type">Type</label>
+        <select name="type" id="filter--type">
+            <option value="">Any</option>
+            {% for questTypeSlug in quest_types %}
+                <option value="{{ questTypeSlug }}">{{ questTypeSlug | label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="filter--difficulty">Difficulty</label>
+        <select name="difficulty" id="filter--difficulty">
+            <option value="">Any</option>
+            {% for number in range(1,10) %}
+                <option value="{{ number }}★">{{ number }}★</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="filter--location">Location</label>
+        <select name="location" id="filter--location">>
+            <option value="">Any</option>
+            {% for locationSlug in locations %}
+                <option value="{{ locationSlug }}">{{ collections.lookup.location[ locationSlug ].data.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="filter--expansion">Expansion</label>
+        <select name="expansion" id="filter--expansion">>
+            <option value="">Any</option>
+            {% for expansionSlug in expansions %}
+                <option value="{{ expansionSlug }}">{{ expansionSlug | label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+<table class="tablesort">
+    <thead>
+        <tr>
+            <th scope="col" data-sort-default>Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Difficulty</th>
+            <th scope="col">Location</th>
+            <th scope="col">Expansion</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for quest in collections.quests %}
+        <tr
+            data-type="{{ quest.data.quest_type }}"
+            data-difficulty="{{ quest.data.difficulty }}"
+            data-expansion="{{ quest.data.expansion }}"
+            data-location="{{ quest.data.location }}"
+            >
+            <td class="tablesort__title"><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></td>
+            <td class="tablesort__type">{{ quest.data.quest_type | label }}</td>
+            <td class="tablesort__difficulty">{{ quest.data.difficulty }}</td>
+            <td class="tablesort__location">{{ collections.lookup.location[ quest.data.location ].data.title }}</td>
+            <td class="tablesort__expansion">{{ quest.data.expansion | label }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<hr>
+{# --- #}
+
 <div class="grid grid--double">
     <div class="grid__column">
         <h2>Optional Quests</h2>

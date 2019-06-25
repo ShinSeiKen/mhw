@@ -406,12 +406,14 @@ grid {
 
 // Check max width with relation to minmax column size
 .grid.grid--double { --grid-tc: repeat(auto-fit, minmax(100%, 1fr)); }
+.grid.grid--triple { --grid-tc: repeat(auto-fit, minmax(100%, 1fr)); }
+.grid.grid--quadra { --grid-tc: repeat(auto-fit, minmax(100%, 1fr)); }
 @media only screen and (min-width: $breakpointS) {
     .grid.grid--double { --grid-tc: repeat(auto-fit, minmax(450px, 1fr)); }
+    .grid.grid--triple { --grid-tc: repeat(auto-fit, minmax(350px, 1fr)); }
+    .grid.grid--quadra { --grid-tc: repeat(auto-fit, minmax(250px, 1fr)); }
 }
 
-.grid.grid--triple { --grid-tc: repeat(auto-fit, minmax(350px, 1fr)); }
-.grid.grid--quadra { --grid-tc: repeat(auto-fit, minmax(250px, 1fr)); }
 
 
 
@@ -469,7 +471,12 @@ grid {
     display: grid;
     // grid-template-columns: repeat(1, 1fr);
 
-    grid-template-columns: repeat(auto-fit, minmax( calc(var(--lineHeight) * 16) , 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+
+    @media only screen and (min-width: $breakpointS) {
+        grid-template-columns: repeat(auto-fit, minmax( calc(var(--lineHeight) * 16) , 1fr));
+    }
+
     grid-auto-rows: calc(var(--lineHeight) * 9);
 
     grid-column-gap: var(--columnGap);
@@ -607,7 +614,9 @@ grid {
 // --------------------------------------------------------------------------------
 
 .tablesort {
-    table, tr, td, th {
+    // font-size: 0.9rem; // experimental
+
+    tr, td, th {
         border : 1px solid;
     }
     th {
@@ -618,11 +627,13 @@ grid {
         font-weight: 700;
     }
 
+    /*
     @media only screen and (min-width: $breakpointS) {
         th:first-child {
             min-width: 10em; // extra spacing for runner column
         }
     }
+    */
     th img {
         width: 32px;
         height: 32px;
@@ -641,12 +652,20 @@ grid {
     td {
         padding: 0.5em;
         vertical-align: middle;
-        text-align: center;
+        // text-align: center;
     }
+    // runs
     .tablesort__runner { text-align: left; }
     .tablesort__time   { text-align: right; }
     .tablesort__weapon { text-align: center; }
     .tablesort__video  { text-align: center; }
+
+    // quests
+    .tablesort__title      { text-align: left; }
+    .tablesort__type       { text-align: left; }
+    .tablesort__difficulty { text-align: center; }
+    .tablesort__location   { text-align: left; }
+    .tablesort__expansion  { text-align: left; }
 
 
 
@@ -798,4 +817,41 @@ display: block;
 .micromodal-slide .modal__container,
 .micromodal-slide .modal__overlay {
     will-change: transform;
+}
+
+
+// General
+
+.weapon-icon {
+    height: 32px;
+    width: 32px;
+    display: inline-block;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #333;
+}
+
+// Filters for runs
+
+.filters {
+    background-color: #dee0e2;
+    padding: 1em;
+    margin-top: var(--blockSpacingTop);
+    margin-bottom: var(--blockSpacingBottom);
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+.filters > div {
+    margin-right: 2em;
+}
+.filters > div:last-child {
+    margin-right: unset;
+}
+.filters label {
+    display: block;
+}
+.filters select {
+    display: block;
+    padding: 0.5em;
 }

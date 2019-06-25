@@ -143,6 +143,12 @@ filters.forEach(select => {
 
             if (value) {
                 results.forEach(row => {
+                    /**
+                     * When filtering on weapons, show runs that only have that single weapon.
+                     */
+                    // if only one needs to be true:
+                    // if (! row.dataset[name].split(' ').includes(value)) {
+                    // if it needs to be exact:
                     if (row.dataset[name] != value) {
                         row.hidden = true;
                     }
