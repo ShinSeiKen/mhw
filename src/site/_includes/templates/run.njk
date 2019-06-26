@@ -9,7 +9,6 @@ permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else 
 <div class="grid">
     <div class="grid__row">
         <h1>{% include "components/run-title.njk" %}</h1>
-        {{ content | safe }}
     </div>
     <div class="grid__media">
         {% if video %}
@@ -23,6 +22,8 @@ permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else 
                 {% include "components/video.njk" %}
             </div>
         {% endfor %}
+
+        {{ content | safe }}
     </div>
     <aside class="grid__aside">
         <dl>
