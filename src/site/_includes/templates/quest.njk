@@ -190,6 +190,7 @@ layout: layouts/base.njk
                         <div class="modal__header">
                             <h3 class="modal__title" id="modal-{{ loop.index }}-title">
                                 {% set runners = run.data.runners %}
+                                {% set title = title | safe %}
                                 {% include "components/run-title.njk" %}
                             </h3>
                             <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>

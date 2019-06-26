@@ -138,7 +138,7 @@ layout: layouts/base.njk
                     <h3 class="modal__title" id="modal-{{ loop.index }}-title">
                         {% set title   = run.data.title %}
                         {% if not title %}
-                            {% set title = collections.lookup.quest[ run.data.quest ].data.title %}
+                            {% set title = collections.lookup.quest[ run.data.quest ].data.title | safe %}
                         {% endif %}
                         {% set runners = run.data.runners %}
                         {% include "components/run-title.njk" %}
