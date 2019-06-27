@@ -41,4 +41,18 @@ title: Runners
         </div>
     {% endfor %}
 
+    {#
+        <div class="grid__column">
+            <h3>
+                Variety
+            </h3>
+            <ul>
+                {% for runner in collections.runners %}
+                    {% if runner.data.weapons|length >= 3 %}
+                    <li>{% include "components/links/runner-link.njk" %}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    #}
 </grid>

@@ -3,7 +3,7 @@
 @import '_reset';
 @import '_elements';
 
-/*
+//*
 @supports (font-variation-settings: normal) {
     html { font-family: 'Inter var', -system-ui, system-ui, sans-serif; }
 }
@@ -656,7 +656,7 @@ grid {
     }
     // runs
     .tablesort__runner { text-align: left; }
-    .tablesort__time   { text-align: right; }
+    .tablesort__time   { text-align: right; font-feature-settings: 'tnum' 1; }
     .tablesort__weapon { text-align: center; }
     .tablesort__video  { text-align: center; }
 

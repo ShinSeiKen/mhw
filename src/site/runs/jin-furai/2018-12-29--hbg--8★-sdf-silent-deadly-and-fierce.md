@@ -6,7 +6,7 @@ run_type       : freestyle
 platform       : ps4
 patch_version  :
 date           : 2018-12-29
-time           : 3'12"95
+time           : 03'12"95
 quest          : 8★-sdf-silent-deadly-and-fierce
 
 runners:
