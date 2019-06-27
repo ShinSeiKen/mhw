@@ -2,7 +2,23 @@
 title: Arch-Tempered Leaderboards
 ---
 <h1>Arch-Tempered Leaderboards</h1>
-<p>Click on a row to expand the collected trophies!</p>
+<p>Only tracks the following 7 quests:</p>
+<ul>
+    {# --- see .eleventy for `archTemperedLeague` --- #}
+    {% for questSlug in [
+        '9★-a-whisper-of-white-mane',
+        '9★-the-deathly-quiet-curtain',
+        '9★-like-a-moth-to-the-flame',
+        '9★-the-eye-of-the-storm',
+        '9★-the-heralds-of-destruction-cry',
+        '9★-the-scorn-of-the-sun',
+        '9★-when-blue-dust-surpasses-red-lust'
+    ] %}
+    {% set quest = collections.lookup.quest[ questSlug ] %}
+        <li><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></li>
+    {% endfor %}
+</ul>
+<p>Note: Click on a row to expand the collected trophies!</p>
 
 <style>
     table {
@@ -83,22 +99,24 @@ title: Arch-Tempered Leaderboards
             <td colspan=6 style="text-align: left;">
                 <p>
                     {% for trophy in trophyCollection.trophies %}
-                        {% set weaponSlug = trophy.run.data.weapons | first %}
-                        {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
-                            {% if trophy.rank == 1 %}
-                                <img src="{{ crown_b_1 }}" alt="" />
-                            {% elseif trophy.rank == 2 %}
-                                <img src="{{ crown_b_2 }}" alt="" />
-                            {% elseif trophy.rank == 3 %}
-                                <img src="{{ crown_b_3 }}" alt="" />
-                            {% else %}
-                                [{{ trophy.rank }}]
+                        {% if trophy.rank == 1 or trophy.rank == 2 or trophy.rank == 3 %}
+                            {% set weaponSlug = trophy.run.data.weapons | first %}
+                            {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
+                                {% if trophy.rank == 1 %}
+                                    <img src="{{ crown_b_1 }}" alt="" />
+                                {% elseif trophy.rank == 2 %}
+                                    <img src="{{ crown_b_2 }}" alt="" />
+                                {% elseif trophy.rank == 3 %}
+                                    <img src="{{ crown_b_3 }}" alt="" />
+                                {% else %}
+                                    [{{ trophy.rank }}]
+                                {% endif %}
+                                <a href="{{ trophy.run.url }}">
+                                    <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
+                                </a>
+                            {% if not loop.last %}
+                                <br>
                             {% endif %}
-                            <a href="{{ trophy.run.url }}">
-                                <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
-                            </a>
-                        {% if not loop.last %}
-                            <br>
                         {% endif %}
                     {% endfor %}
                 </p>
