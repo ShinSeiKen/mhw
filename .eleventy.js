@@ -32,8 +32,8 @@ module.exports = function(config) {
     // --------------------------------------------------------------------------------
 
     let byTitleAlphabetically = (a, b) => {
-        let valueA = a.data.title;
-        let valueB = b.data.title;
+        let valueA = a.data.title.toLowerCase();
+        let valueB = b.data.title.toLowerCase();
         return valueA.localeCompare(valueB);
     };
 
@@ -314,7 +314,7 @@ module.exports = function(config) {
                 });
             }
         });
-        return result;
+        return result.sort(byTitleAlphabetically);
     });
 
     // --------------------------------------------------------------------------------
