@@ -169,3 +169,11 @@ The same?
 "extreme-behemoth",
 "ancient-leshen",
 ```
+
+
+## Google Forms + Sheets API
+
+More info @
+
+- https://developers.google.com/sheets/api/quickstart/nodejs
+- https://developers.google.com/sheets/api/guides/concepts
