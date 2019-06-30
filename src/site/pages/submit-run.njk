@@ -1,0 +1,154 @@
+---
+title: Submit Run
+---
+<h1>Submit Run</h1>
+
+<style>
+    {# form > div {
+        margin-top: var(--blockSpacingTop);
+        margin-bottom: var(--blockSpacingBottom);
+    }
+    form > div::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    form > div > label {
+        float: left;
+        width: 10em;
+    }
+    form > div > [type="text"] {
+        float: left;
+        width: 20em;
+    }
+
+    form > div > textarea {
+        width: 20em;
+        float: left
+    }
+
+    form > div > .checkboxes {
+        float: left;
+    } #}
+</style>
+
+<form action="" method="get" id="submit-run">
+
+    <div>
+        <label for="run__video">Video (Embed URL)</label>
+        <input id="run__video" type="text" name="video" placeholder="https://www.youtube.com/embed/XXX" />
+        <div style="clear: left">
+            <p>Other sites than Youtube are allowed (e.g. bilibili), but some may not work nice with this website.</p>
+        </div>
+    </div>
+
+    <div>
+        <label for="run__run_type">Ruleset</label>
+        <select id="run__run_type" name="run_type">
+            {% for item in rulesets %}
+                <option value="{{ item }}">{{ item | label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label for="run__platform">Platform</label>
+        <select id="run__platform" name="platform">
+            {% for item in platforms %}
+                <option value="{{ item }}">{{ item | label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label for="run__patch_version">Patch</label>
+        <input id="run__patch_version" type="text" name="patch_version" />
+    </div>
+
+    <div>
+        <label for="run__date">Date</label>
+        <input id="run__date" type="text" name="date" placeholder="yyyy-mm-dd" />
+    </div>
+
+    <div>
+        <label for="run__time">Time</label>
+        <input id="run__time" type="text" name="time" placeholder="00'00&quot;00" pattern="[0-5][0-9]\u0027[0-5][0-9]\u0022[0-9]{2}" required />
+        <div style="clear: left">
+            <p>Format like <code>00'00"00</code> or <code>59'59"99</code></p>
+        </div>
+    </div>
+
+    <div>
+        <label for="run__quest">Quest</label>
+        <select id="run__quest" name="quest">
+            {% for quest in collections.quests %}
+                <option value="{{ quest.fileSlug }}">{{ quest.data.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label for="run__runners">Runners</label>
+        {# --- Disable submissions of multiplayer runs for now --- #}
+        {# ---
+        <select id="run__runners" name="runners[]" multiple>
+        --- #}
+        <select id="run__runners" name="runners">
+            {% for runner in collections.runners %}
+                <option value="{{ runner.fileSlug }}">{{ runner.data.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="run__weapons">Weapons</label>
+        <select id="run__weapons" name="weapons">
+            {% for weaponSlug in global_weapons %}
+                {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
+                    <option value="{{ weaponSlug }}">{{ weapon.data.title }}</option>
+            {% endfor %}
+        </select>
+        {#
+        {% for weaponSlug in global_weapons %}
+            {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
+            <label for="run__weapon__{{ weaponSlug }}">
+                <input id="run__weapon__{{ weaponSlug }}" type="checkbox" name="weapons[]" value="{{ weaponSlug }}" />
+                {{ weapon.data.title }}
+            </label>
+        {% endfor %}
+        #}
+    </div>
+    <input type="submit">
+</form>
+
+<script>
+let url  = "https://script.google.com/macros/s/AKfycbzdQNXoSxpgeG4TwHV2cDcAuDmXq-ibQNSVprTTUw/exec";
+let form = document.getElementById('submit-run');
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(form);
+    // let weapons = formData.getAll('weapons[]').join(',');
+    // formData.delete('weapons[]');
+    // formData.append('weapons', weapons);
+    formData.append('type', 'run');
+    formData.append('title', '');
+    formData.append('runner2', '');
+    formData.append('runner3', '');
+    formData.append('runner4', '');
+
+    queryString = new URLSearchParams(formData).toString();
+    console.log(queryString);
+
+    fetch(url + '?' + queryString)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(myJson) {
+            console.log(JSON.stringify(myJson));
+            console.log(myJson.result);
+            alert(myJson.result);
+        });
+});
+
+</script>

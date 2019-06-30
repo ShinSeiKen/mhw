@@ -92,6 +92,38 @@ weapons:
 ---
 </pre>
 
+
+
+<style>
+    form > div {
+        margin-top: var(--blockSpacingTop);
+        margin-bottom: var(--blockSpacingBottom);
+    }
+    form > div::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    form > div > label {
+        float: left;
+        width: 10em;
+    }
+    form > div > [type="text"] {
+        float: left;
+        width: 20em;
+    }
+
+    form > div > textarea {
+        width: 20em;
+        float: left
+    }
+
+    form > div > .checkboxes {
+        float: left;
+    }
+</style>
+
 <h1>Example Runner Form</h1>
 <form action="" method="post">
 
@@ -146,35 +178,6 @@ weapons:
 </form>
 
 <h1>Example Run Form</h1>
-<style>
-    form > div {
-        margin-top: var(--blockSpacingTop);
-        margin-bottom: var(--blockSpacingBottom);
-    }
-    form > div::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
-
-    form > div > label {
-        float: left;
-        width: 10em;
-    }
-    form > div > [type="text"] {
-        float: left;
-        width: 20em;
-    }
-
-    form > div > textarea {
-        width: 20em;
-        float: left
-    }
-
-    form > div > .checkboxes {
-        float: left;
-    }
-</style>
 <form action="" method="post">
 
     <div>

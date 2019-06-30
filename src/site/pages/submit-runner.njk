@@ -1,0 +1,122 @@
+---
+title: Submit Runner
+---
+<h1>Submit Runner</h1>
+
+<style>
+    {# form > div {
+        margin-top: var(--blockSpacingTop);
+        margin-bottom: var(--blockSpacingBottom);
+    }
+    form > div::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    form > div > label {
+        float: left;
+        width: 10em;
+    }
+    form > div > [type="text"] {
+        float: left;
+        width: 20em;
+    }
+
+    form > div > textarea {
+        width: 20em;
+        float: left
+    }
+
+    form > div > .checkboxes {
+        float: left;
+    } #}
+</style>
+
+<form
+    id="submit-runner"
+    action=""
+    method="get">
+
+    <div>
+        <label for="runner__title">Name</label>
+        <input id="runner__title" type="text" name="title" required class="autocomplete__input"/>
+    </div>
+
+    <div>
+        <label for="runner__country">Country</label>
+        <select id="runner__country" name="country">
+            {% for key, label in countries %}
+            <option value="{{ key }}">{{ label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label for="runner__twitter">Twitter</label>
+        <input id="runner__twitter" type="text" name="twitter" placeholder="https://www.twitter.com/XXX"  class="autocomplete__input"/>
+    </div>
+
+    <div>
+        <label for="runner__youtube">Youtube</label>
+        <input id="runner__youtube"type="text" name="youtube" placeholder="https://www.youtube.com/XXX"  class="autocomplete__input"/>
+    </div>
+
+    <div>
+        <label for="runner__twitch">Twitch</label>
+        <input id="runner__twitch"type="text" name="twitch" placeholder="https://www.twitch.tv/XXX"  class="autocomplete__input"/>
+    </div>
+
+    <div>
+        <label for="runner__patreon">Patreon</label>
+        <input id="runner__patreon"type="text" name="patreon" placeholder="https://www.patreon.com/XXX"  class="autocomplete__input"/>
+    </div>
+
+    <div>
+        <label>Weapons</label>
+        <div class="checkboxes">
+            {% for weaponSlug in global_weapons %}
+                {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
+                <label for="runner__weapon__{{ weaponSlug }}">
+                    <input id="runner__weapon__{{ weaponSlug }}" type="checkbox" name="weapons[]" value="{{ weaponSlug }}" />
+                    {{ weapon.data.title }}
+                </label>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div>
+        <label for="runner__notes">Notes</label>
+        <textarea id="runner_notes" name="other" placeholder="Notes, comments, bilibili link, discord link, etc."></textarea>
+    </div>
+    <input type="submit">
+</form>
+
+
+<script>
+let url  = "https://script.google.com/macros/s/AKfycbzdQNXoSxpgeG4TwHV2cDcAuDmXq-ibQNSVprTTUw/exec";
+let form = document.getElementById('submit-runner');
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(form);
+    let weapons = formData.getAll('weapons[]').join(',');
+    formData.delete('weapons[]');
+    formData.append('weapons', weapons);
+    formData.append('type', 'runner');
+    queryString = new URLSearchParams(formData).toString();
+    console.log(queryString);
+
+    fetch(url + '?' + queryString)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(myJson) {
+            console.log(JSON.stringify(myJson));
+            console.log(myJson.result);
+            alert(myJson.result);
+        });
+});
+
+</script>

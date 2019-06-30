@@ -26,6 +26,7 @@
     "markdown-it-anchor": "^5.2.4"
   },
   "dependencies": {
+    "accessible-autocomplete": "^1.6.2",
     "concurrent-transform": "^1.0.0",
     "gulp": "^4.0.0",
     "gulp-concat": "^2.6.1",
