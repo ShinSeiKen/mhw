@@ -26,11 +26,8 @@
     "markdown-it-anchor": "^5.2.4"
   },
   "dependencies": {
-    "accessible-autocomplete": "^1.6.2",
-    "concurrent-transform": "^1.0.0",
     "gulp": "^4.0.0",
     "gulp-concat": "^2.6.1",
-    "gulp-image-resize": "^0.13.0",
     "gulp-sass": "^3.1.0",
     "gulp-uglify-es": "^1.0.4",
     "html-minifier": "^4.0.0",

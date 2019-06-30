@@ -19,7 +19,7 @@ gulp.task('js', function() {
 
 gulp.task('css', function() {
     return gulp
-        .src('./src/style/*.scss')
+        .src("./src/style/*.scss")
         .pipe(sass({
             outputStyle: 'compressed'
         })
@@ -43,6 +43,11 @@ gulp.task('dev', gulp.series(
 ));
 
 /* Image resizer
+
+Removed from package.json:
+- "gulp-image-resize": "^0.13.0",
+- "concurrent-transform": "^1.0.0",
+
 var os          = require("os");
 var parallel    = require("concurrent-transform");
 var imageResize = require('gulp-image-resize');
