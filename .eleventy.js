@@ -63,6 +63,10 @@ module.exports = function(config) {
     config.addCollection("quests__optional"  , collection => collection.getFilteredByGlob("src/site/quests/optional-quest/*.md").sort(byTitleAlphabetically));
     config.addCollection("quests__custom"    , collection => collection.getFilteredByGlob("src/site/quests/custom-quest/*.md").sort(byTitleAlphabetically));
 
+    // Define collections for imported runners and runs (for testing purposes)
+    // config.addCollection("runners__imported" , collection => collection.getFilteredByGlob("src/site/runs/__import/*.md").sort(byTitleAlphabetically));
+    // config.addCollection("runs__imported"    , collection => collection.getFilteredByGlob("src/site/runners/__import/*.md").sort(byTitleAlphabetically));
+
     // Define a lookup table for accessing content via type and (unique) slugs
     config.addCollection("lookup", collection => {
         let lookup = [];

@@ -93,13 +93,16 @@ layout: layouts/base.njk
 
     <aside class="grid__aside">
         {# --- aside --- #}
-        {% if weapons | length or youtube or twitch or twitter or patreon %}
+        {% if weapons | length or youtube or bilibili or twitch or twitter or patreon %}
             <dl>
-                {% if youtube or twitch or twitter or patreon %}
+                {% if youtube or bilibili or twitch or twitter or patreon %}
                         <dt>Meta</dt>
                         <dd>
                             {% if youtube %}
                                 <a href="{{ youtube }}">YouTube</a><br>
+                            {% endif %}
+                            {% if bilibili %}
+                                <a href="{{ bilibili }}">Bilibili</a><br>
                             {% endif %}
                             {% if twitch %}
                                 <a href="{{ twitch }}">Twitch</a><br>

@@ -173,6 +173,7 @@ function importRunners(auth) {
                         // console.log(JSON.stringify(response, null, 2));
                     });
                 }
+                offset++;
             });
         } else {
             console.log('No data found.');
@@ -230,6 +231,7 @@ function runnerToFile(row, offset) {
     let youtube = row[2];
     let twitch  = row[1];
     let patreon = row[4];
+    let other   = row[5];
     let country = row[6];
     let weapons = row[7];
 
@@ -248,10 +250,11 @@ country : ${country}
 weapons :
 ${weapons}
 ---
+${other}
 `
     // console.log(result);
 
-    const path = `./src/site/runners/${title}.md`;
+    const path = `./src/site/runners/__import/${title}.md`;
     fs.writeFile(path, result, (err) => {
         if (err) return console.error(err);
         console.log('Written runner:', path);
