@@ -3,7 +3,20 @@ layout: layouts/base.njk
 ---
 {% import "components/weapon-icon.njk" as weapon_icon %}
 
-{% set runs = collections.runs__by_runner[page.fileSlug] %}
+{% set troublesomeSlugs = {
+    '라료라료'    : '라료라료',
+    'だばだばどぅ' : 'だばだばどぅ',
+    'ばろ'        : 'ばろ',
+    '그테ᄅ'      : '그테ᄅ',
+    'だるまゆき'   : 'だるまゆき'
+} %}
+{% if troublesomeSlugs[ page.fileSlug ] %}
+    {% set theSlug = troublesomeSlugs[ page.fileSlug ] %}
+{% else %}
+    {% set theSlug = page.fileSlug %}
+{% endif %}
+
+{% set runs = collections.runs__by_runner[theSlug] %}
 
 <div class="grid">
     <div class="grid__row">

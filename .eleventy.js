@@ -14,6 +14,19 @@ module.exports = function(config) {
 
     // let env = process.env.ELEVENTY_ENV
 
+    /**
+     * Every runner slug lookup needs to be converted from halfwidth to fullwidth
+     * characters. otherwise they can not be matched. H-how troublesome!
+     */
+    let troublesomeSlugs = {
+        // halfwidth  => fullwidth
+        '라료라료'    : '라료라료',
+        'だばだばどぅ' : 'だばだばどぅ',
+        'ばろ'        : 'ばろ',
+        '그테ᄅ'      : '그테ᄅ',
+        'だるまゆき'   : 'だるまゆき'
+    }
+
     // --------------------------------------------------------------------------------
     // Layouts
     // --------------------------------------------------------------------------------
@@ -77,6 +90,11 @@ module.exports = function(config) {
 
             if (! lookup[type]) {
                 lookup[type] = [];
+            }
+
+            // troublesome
+            if (troublesomeSlugs[ slug ]) {
+                slug = troublesomeSlugs[ slug ];
             }
 
             lookup[type][slug] = item;
@@ -362,7 +380,12 @@ module.exports = function(config) {
             // (1) Collect all items for lookup first
             switch (item.data.type) {
                 case 'runner':
-                    runners[item.fileSlug] = item;
+                    slug = item.fileSlug
+                    // troublesome
+                    if (troublesomeSlugs[ slug ]) {
+                        slug = troublesomeSlugs[ slug ];
+                    }
+                    runners[slug] = item;
                     break;
                 case 'run':
                     // Only count runs that have one runner, and a single weapon
