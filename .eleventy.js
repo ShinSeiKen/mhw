@@ -31,13 +31,14 @@ module.exports = function(config) {
     // Layouts
     // --------------------------------------------------------------------------------
 
-    config.addLayoutAlias('news'     , 'templates/news.njk');
-    config.addLayoutAlias('monster'  , 'templates/monster.njk');
-    config.addLayoutAlias('location' , 'templates/location.njk');
-    config.addLayoutAlias('weapon'   , 'templates/weapon.njk');
-    config.addLayoutAlias('quest'    , 'templates/quest.njk');
-    config.addLayoutAlias('run'      , 'templates/run.njk');
-    config.addLayoutAlias('runner'   , 'templates/runner.njk');
+    config.addLayoutAlias('news'        , 'templates/news.njk');
+    config.addLayoutAlias('monster'     , 'templates/monster.njk');
+    config.addLayoutAlias('location'    , 'templates/location.njk');
+    config.addLayoutAlias('weapon'      , 'templates/weapon.njk');
+    config.addLayoutAlias('quest'       , 'templates/quest.njk');
+    config.addLayoutAlias('run'         , 'templates/run.njk');
+    config.addLayoutAlias('runner'      , 'templates/runner.njk');
+    config.addLayoutAlias('leaderboard' , 'templates/leaderboard.njk');
 
 
     // --------------------------------------------------------------------------------

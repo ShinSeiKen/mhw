@@ -1,0 +1,34 @@
+---
+layout: layouts/base.njk
+---
+<div class="grid">
+    <div class="grid__row">
+        <h1>{{ title }}</h1>
+    </div>
+    <div class="grid__content">
+        {{ content | safe }}
+        <dl>
+            {% if quests | length == 1 %}
+                {% set quest = collections.lookup.quest[ quests | first ] %}
+                <dt>Quest</dt>
+                <dd><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></dd>
+            {% else %}
+                <dt>Quests</dt>
+                <dd>
+                    {% for questSlug in quests %}
+                        {% set quest = collections.lookup.quest[ questSlug ] %}
+                        <a href="{{ quest.url | url }}">{{ quest.data.title }}</a>
+                        {% if not loop.last %}<br>{% endif %}
+                    {% endfor %}
+                </dd>
+            {% endif %}
+            {% for k, v in meta | default([]) %}
+                <dt>{{ k }}</dt>
+                <dd>{{ v | safe }}</dd>
+            {% endfor %}
+        </dl>
+    </div>
+    <div class="grid__content--wide">
+        <p>Work in progress!</p>
+    </div>
+</div>
