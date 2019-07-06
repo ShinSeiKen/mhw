@@ -6,7 +6,7 @@ twitch  : https://www.twitch.tv/rainyy_
 patreon :
 discord : https://discord.gg/X7EC8YF
 # donate : https://streamlabs.com/rainyy_
-country :
+country : sa
 weapons :
     - charge-blade
 ---

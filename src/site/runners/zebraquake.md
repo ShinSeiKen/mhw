@@ -5,7 +5,7 @@ youtube : https://www.youtube.com/user/ZebraQuake
 twitch  : https://www.twitch.tv/zebraquake
 patreon :
 discord : https://discord.gg/h7Fr397
-country :
+country : us
 weapons :
     - charge-blade
     - insect-glaive
