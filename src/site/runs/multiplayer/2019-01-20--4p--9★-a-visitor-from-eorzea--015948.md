@@ -17,4 +17,7 @@ runners:
 
 weapons:
     - heavy-bowgun
+    - heavy-bowgun
+    - heavy-bowgun
+    - heavy-bowgun
 ---

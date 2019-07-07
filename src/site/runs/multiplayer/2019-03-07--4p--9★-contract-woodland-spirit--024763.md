@@ -17,5 +17,7 @@ runners:
 
 weapons:
     - great-sword
+    - great-sword
+    - hammer
     - hammer
 ---

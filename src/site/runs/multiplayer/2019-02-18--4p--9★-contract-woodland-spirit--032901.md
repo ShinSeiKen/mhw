@@ -18,6 +18,8 @@ runners:
     - tsc
 
 weapons:
-    - hammer
     - great-sword
+    - great-sword
+    - hammer
+    - hammer
 ---

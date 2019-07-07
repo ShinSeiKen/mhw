@@ -19,4 +19,7 @@ runners:
 
 weapons:
     - great-sword
+    - great-sword
+    - great-sword
+    - great-sword
 ---
