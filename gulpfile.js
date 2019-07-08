@@ -181,11 +181,14 @@ function importRunners(auth) {
     });
 }
 
+let sheet = 'Runs';
+// let sheet = '20190704-TSC';
+
 function importRuns(auth) {
     const sheets = google.sheets({version: 'v4', auth});
     sheets.spreadsheets.values.get({
         spreadsheetId: runsSpreadsheetId,
-        range: 'Runs!B2:L',
+        range: `${sheet}!B2:L`,
     }, (err, res) => {
         if (err) return console.log('The API returned an error: ' + err);
         const rows = res.data.values;
@@ -199,10 +202,10 @@ function importRuns(auth) {
 
                     const request = {
                         spreadsheetId: runsSpreadsheetId,
-                        range: `L${offset}:L${offset}`,
+                        range: `${sheet}!L${offset}:L${offset}`,
                         valueInputOption: 'RAW',
                         resource: {
-                            range: `L${offset}:L${offset}`,
+                            range: `${sheet}!L${offset}:L${offset}`,
                             values: [
                                 ['OK']
                             ]
