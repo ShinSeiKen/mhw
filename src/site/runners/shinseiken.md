@@ -1,6 +1,6 @@
 ---
 title: ShinSeiKen
-twitter:
+twitter: https://twitter.com/ShinSeiKenX
 youtube:
 twitch:
 country: nl

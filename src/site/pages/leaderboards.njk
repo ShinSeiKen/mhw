@@ -18,7 +18,13 @@ title: Arch-Tempered Leaderboards
         <li><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></li>
     {% endfor %}
 </ul>
-<p>Note: Click on a row to expand the collected trophies!</p>
+<p>
+    For every quest, there are three trophies per weapon for a total of <strong>{{ 7*14*3 }}</strong> trophies!<br>
+    A runner can only have one trophy per weapon per quest combination.<br>
+    In case of multiple runs, only the fastest run is count.<br>
+    <br>
+    Note: Click on a row to expand the collected trophies!
+</p>
 
 <style>
     table {
