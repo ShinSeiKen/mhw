@@ -76,18 +76,29 @@ title: Arch-Tempered Leaderboards
         <th scope="col"><img src="{{ crown_a_3 }}" alt="Bronze Trophy" /></th>
         <th scope="col">Total Trophies</th>
     </tr>
+    {% set previousTrophyHash = false %}
+    {% set previousRank       = 1 %}
     {% for trophyCollection in collections.xxx %}
         {% set runner = trophyCollection.runner %}
+        {# -- Simple extra check for same amount of trophy holders to keep the same rank -- #}
+        {% set trophyHash = trophyCollection.gold + "--" + trophyCollection.silver + "--" + trophyCollection.bronze %}
+        {% if previousTrophyHash === trophyHash %}
+            {% set leaderboardRank = previousRank %}
+        {% else %}
+            {% set leaderboardRank    = loop.index %}
+            {% set previousTrophyHash = trophyHash %}
+            {% set previousRank       = loop.index %}
+        {% endif %}
         <tr class="toggle-runs">
             <td>
-                {% if loop.index == 1 %}
+                {% if leaderboardRank == 1 %}
                     <img  src="{{ crown_a_1 }}" alt="" />
-                {% elseif loop.index == 2 %}
+                {% elseif leaderboardRank == 2 %}
                     <img src="{{ crown_a_2 }}" alt="" />
-                {% elseif loop.index == 3 %}
+                {% elseif leaderboardRank == 3 %}
                     <img src="{{ crown_a_3 }}" alt="" />
                 {% else %}
-                    {{ loop.index }}
+                    {{ leaderboardRank }}
                 {% endif %}
             </td>
             <td scope="row">
