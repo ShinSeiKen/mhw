@@ -4,3 +4,7 @@ token.json
 _site
 node_modules
 _examples
+
+_draft
+_scrape
+src/site/assets/fonts
