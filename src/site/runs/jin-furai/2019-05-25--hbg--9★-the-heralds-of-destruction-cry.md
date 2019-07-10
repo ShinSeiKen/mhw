@@ -13,5 +13,5 @@ runners:
     - jin-furai
 
 weapons:
-    - great-sword
+    - heavy-bowgun
 ---
