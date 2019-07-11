@@ -17,6 +17,7 @@ module.exports = function(config) {
     /**
      * Every runner slug lookup needs to be converted from halfwidth to fullwidth
      * characters. otherwise they can not be matched. H-how troublesome!
+     * See also `src/site/_includes/templates/runner.njk`
      */
     let troublesomeSlugs = {
         // halfwidth  => fullwidth
@@ -24,7 +25,9 @@ module.exports = function(config) {
         'だばだばどぅ' : 'だばだばどぅ',
         'ばろ'        : 'ばろ',
         '그테ᄅ'      : '그테ᄅ',
-        'だるまゆき'   : 'だるまゆき'
+        'だるまゆき'   : 'だるまゆき',
+        'ハリウッドを許すな' : 'ハリウッドを許すな',
+        'ネコがみ'     : 'ネコがみ'
     }
 
     // --------------------------------------------------------------------------------
@@ -91,6 +94,10 @@ module.exports = function(config) {
 
             if (! lookup[type]) {
                 lookup[type] = [];
+            }
+
+            if (type == 'runner') {
+                // console.log(slug);
             }
 
             // troublesome
