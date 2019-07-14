@@ -1,5 +1,5 @@
 ---
-title   : l Noe
+title   : Noel
 twitter :
 youtube : https://www.youtube.com/channel/UCOiVuWc1pRuaGhUscsImEPA
 twitch  :

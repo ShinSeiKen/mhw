@@ -1,10 +1,12 @@
 ---
-title   : 李双
+title   : ins2
+# title: 李双
 twitter :
 youtube : https://www.youtube.com/channel/UCsnovYZ9VtxXD6tt6Bz23dQ
 twitch  :
 patreon :
-country : jp
+bilibili: https://space.bilibili.com/2647287
+country : cn
 weapons :
     - insect-glaive
 ---
