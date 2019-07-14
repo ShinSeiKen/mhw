@@ -1,5 +1,5 @@
 ---
-title   : (ﾉﾟοﾟ)ﾉ
+title   : EdgarCifer
 twitter :
 youtube :
 twitch  :

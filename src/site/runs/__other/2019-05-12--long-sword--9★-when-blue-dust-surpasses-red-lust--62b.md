@@ -9,8 +9,7 @@ time           : 04'12"40
 quest          : 9★-when-blue-dust-surpasses-red-lust
 
 runners:
-    - (ﾉﾟοﾟ)ﾉ
-    # - edgarcifer
+    - edgarcifer
 
 weapons:
     - long-sword
