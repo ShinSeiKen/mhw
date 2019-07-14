@@ -96,8 +96,9 @@ const SCOPES = [
 const TOKEN_PATH = 'token.json';
 
 // These are publicly visible data:
-const runnersSpreadsheetId = '1gkajCT_WfW_fSrQQgFOSF8_lRz_-t6CVVrNIWoPVVHc';
-const runsSpreadsheetId    = '1eX6tEDpShySfk3FhjLnZEK0q8Ulbq8iVP8aSyUIjDuo';
+const runnersSpreadsheetId     = '1gkajCT_WfW_fSrQQgFOSF8_lRz_-t6CVVrNIWoPVVHc';
+const runsSpreadsheetId        = '1eX6tEDpShySfk3FhjLnZEK0q8Ulbq8iVP8aSyUIjDuo';
+const runsGeneralSpreadsheetId = '1gXThBcbiA_w9uz8LvsP-qXTlldOXSxX2MQ_A2ppMB6o';
 
 function authorize(credentials, callback) {
   const {client_secret, client_id, redirect_uris} = credentials.installed;
@@ -228,6 +229,52 @@ function importRuns(auth) {
     });
 }
 
+let runsGeneral = 'Any Runs';
+
+function importRunsGeneral(auth) {
+    const sheets = google.sheets({version: 'v4', auth});
+    sheets.spreadsheets.values.get({
+        spreadsheetId: runsGeneralSpreadsheetId,
+        range: `${runsGeneral}!B2:V`,
+    }, (err, res) => {
+        if (err) return console.log('The API returned an error: ' + err);
+        const rows = res.data.values;
+        if (rows.length) {
+            let offset = 2;
+            rows.map((row) => {
+                // if (row[9]  == undefined) { console.log('Approved is undefined'); }
+                // if (row[10] == undefined) { console.log('Status is undefined'); }
+                if (row[19] == 'OK' && row[20] == undefined) {
+                    runGeneralToFile(row, offset);
+
+                    const request = {
+                        spreadsheetId: runsGeneralSpreadsheetId,
+                        range: `${runsGeneral}!V${offset}:V${offset}`,
+                        valueInputOption: 'RAW',
+                        resource: {
+                            range: `${runsGeneral}!V${offset}:V${offset}`,
+                            values: [
+                                ['OK']
+                            ]
+                        },
+                        auth: auth
+                    };
+                    sheets.spreadsheets.values.update(request, function(err, response) {
+                        if (err) {
+                            console.error(err);
+                            return;
+                        }
+                        // console.log(JSON.stringify(response, null, 2));
+                    });
+                }
+                offset++;
+            });
+        } else {
+            console.log('No data found.');
+        }
+    });
+}
+
 function runnerToFile(row, offset) {
     let title   = row[0];
     let twitter = row[3];
@@ -315,6 +362,63 @@ ${weaponsData}
     });
 }
 
+function runGeneralToFile(row, offset) {
+    let video    = row[2];
+    let quest    = ''; // row[1];
+    let date     = row[5];
+    let time     = row[6];
+    let weapons  = row[7];
+    let run_type = row[3];
+    let platform = row[4];
+    let patch    = ''; // row[7]; // useless to ask for patch imo
+    let runners  = row[1];
+
+    for (let i = 8; i <= 18; i++) {
+        if (row[i]) {
+            quest = row[i];
+        }
+    }
+
+    weapons = weapons.split(',');
+    weapons = weapons.map(i => i.trim());
+
+    weaponsForFilename = weapons.join('-');
+
+    weaponsData = '    - ' + weapons.join('\n    - ');
+
+    // This means runners with a comma in their names will be split up.
+    // In the future, we'll probably add 3 extra columns.
+    runners = runners.split(',');
+    runners = runners.map(i => i.trim());
+    runners = '    - ' + runners.join('\n    - ');
+
+    result =
+`---
+title          :
+video          : ${video}
+run_type       : ${run_type}
+platform       : ${platform}
+patch_version  : ${patch}
+date           : ${date}
+time           : ${time}
+quest          : ${quest}
+
+runners:
+${runners}
+
+weapons:
+${weaponsData}
+---
+`
+    // console.log(result);
+
+    const path = `./src/site/runs/__import/${date}--${weaponsForFilename}--${quest}--${offset}.md`;
+    fs.writeFile(path, result, (err) => {
+        if (err) return console.error(err);
+        console.log('Written run: ', path);
+    });
+}
+
 gulp.task('import-runners', function(){
 // Load client secrets from a local file.
     fs.readFile('credentials.json', (err, content) => {
@@ -340,3 +444,16 @@ gulp.task('import-runs', function(){
         resolve();
     });
 })
+
+gulp.task('import-runs2', function(){
+    // Load client secrets from a local file.
+        fs.readFile('credentials.json', (err, content) => {
+            if (err) return console.log('Error loading client secret file:', err);
+            // Authorize a client with credentials, then call the Google Sheets API.
+            authorize(JSON.parse(content), importRunsGeneral);
+        });
+        return new Promise(function(resolve, reject) {
+            console.log("OK");
+            resolve();
+        });
+    })
