@@ -76,7 +76,8 @@ layout: layouts/base.njk
                 {% for run in runs %}
                     {% if run.data.runners.length == 1 %}
                         {% set count = count + 1 %}
-                        {%- set runner = collections.lookup.runner[ run.data.runners|first ] %}
+                        {% set runnerSlug = run.data.runners|first %}
+                        {%- set runner = collections.lookup.runner[ runnerSlug ] %}
                         <tr
                             data-ruleset="{{ run.data.run_type }}"
                             data-weapon="{{ run.data.weapons|join(' ') }}"

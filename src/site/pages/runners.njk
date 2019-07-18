@@ -8,7 +8,10 @@ title: Runners
 
         <ul class="multi-column-list">
             {% for runner in collections.runners %}
-                <li>{% include "components/links/runner-link.njk" %}</li>
+                <li>
+                    {% include "components/links/runner-link.njk" %}
+                    <span class="small">({{ collections.runs__by_runner[runner.fileSlug] | length | default(0) }})</span>
+                </li>
             {% endfor  %}
         </ul>
     </div>
@@ -34,7 +37,10 @@ title: Runners
             <ul>
                 {% for runner in collections.runners__by_weapon[ slug ] %}
                     {% if loop.index0 < 100 %}
-                        <li>{% include "components/links/runner-link.njk" %}</li>
+                        <li>
+                            {% include "components/links/runner-link.njk" %}
+                            {# --- count how many runs with this weapon --- #}
+                        </li>
                     {% endif %}
                 {% endfor %}
             </ul>
