@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】4Gギルド大剣 テオ・テスカトル 2‘29“64 真溜め斬り、不動なし
-
-ポイント: 納刀術Lv1 見切りLv7 弱点特効Lv3 超会心Lv3 無属性強化Lv1 匠Lv3 集中Lv3.

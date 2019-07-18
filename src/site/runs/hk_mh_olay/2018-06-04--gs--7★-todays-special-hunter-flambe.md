@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 Greatsword ★7 イビルジョー 2‘14“71 捕獲
-
-ポイント: 納刀術Lv3 見切りLv5 弱点特効Lv3 渾身Lv2 超会心Lv2 無属性強化Lv1 匠Lv2 集中Lv3.

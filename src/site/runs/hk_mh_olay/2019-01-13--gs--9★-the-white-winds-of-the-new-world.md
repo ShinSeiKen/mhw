@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 ★9 新大陸の白き風 6‘37“50 (アサシン装衣使用)

@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王ネルギガンテ 5‘50“73(非段差) (UPDATED) Greatsword Arch-Tempered Nergigante Aerial
-
-PC MOD.

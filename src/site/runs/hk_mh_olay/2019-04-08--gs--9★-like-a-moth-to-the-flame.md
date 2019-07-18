@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王ゼノジーヴァ 3‘53“02 (超簡単3分台討伐!) (火事場) greatsword Arch Tempered Xeno&#39;Jiiva (それは古龍の王たらん )
-
-3分台討伐!

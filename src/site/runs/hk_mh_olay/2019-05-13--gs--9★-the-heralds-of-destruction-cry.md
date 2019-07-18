@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】【練習】大剣 歴戦王ネルギガンテ 7‘35“51 (非段差) Greatsword Arch-Tempered Nergigante Aerial
-
-BAD!

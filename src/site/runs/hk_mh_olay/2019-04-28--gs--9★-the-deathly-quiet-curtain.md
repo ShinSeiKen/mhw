@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】【MOD】大剣 歴戦王ヴァルハザク 4‘14“90 (非段差) Greatsword Arch-Tempered Vaal Hazak

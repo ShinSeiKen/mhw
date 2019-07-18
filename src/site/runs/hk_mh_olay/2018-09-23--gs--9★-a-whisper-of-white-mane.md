@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王キリン 3‘28“15 greatsword Arch Tempered Kirin
-
-攻撃Lv4 見切りLv7 弱点特効Lv3 渾身Lv2 超会心Lv3 無属性強化Lv1 集中Lv3 強化持続Lv1 達人芸(竜騎士)

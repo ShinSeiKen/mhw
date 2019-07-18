@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王キリン 0分針 4‘54“37 (まだ見ぬ白き鬣も)
-
-BEST TIME: https://www.youtube.com/watch?v=eglvSlGQ7wo&feature=youtu.be ポイント: 整備Lv2 納刀術Lv1 体力増強Lv2 見切りLv5 弱点特効Lv3 抜刀術【技】Lv1 ...

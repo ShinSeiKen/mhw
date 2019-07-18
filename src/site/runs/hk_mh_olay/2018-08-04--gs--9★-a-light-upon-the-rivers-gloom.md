@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 (ベヒーモス装備) ゼノ・ジーヴァ 3‘30“25
-
-攻撃Lv4 見切りLv7 弱点特効Lv3 超会心Lv3 無属性強化Lv1 挑戦者Lv5 強化持続Lv1 達人芸(竜騎士)

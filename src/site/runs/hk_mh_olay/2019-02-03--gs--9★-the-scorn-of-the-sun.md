@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王 テオ・テスカトル 4‘00“42 非段差 (2&quot;43 WHAT THE FXXK)

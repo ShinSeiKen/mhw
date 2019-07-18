@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王クシャルダオラ 2分台(画像) &amp; 3’01’’82(動画)
-
-シェアを2回押したら、2分台ビデオがなくしました... The 2'56''78 video hasn't been recorded because I accidentally press the share button twice...

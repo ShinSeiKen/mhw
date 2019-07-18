@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】re-upload 大剣 歴戦王テオ・テスカトル 3‘15“82 非段差 (3分台達成) Arch Tempered Teostra

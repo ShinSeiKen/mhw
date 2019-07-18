@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】麻痺地獄 大剣 ★9 新大陸の白き風 7‘23“09 （罠使用）
-
-罠使用.

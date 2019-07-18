@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】 大剣 (練習) 歴戦王ゼノジーヴァ 8‘04“69  greatsword Arch Tempered Xeno&#39;Jiiva (それは古龍の王たらん )
-
-練習.

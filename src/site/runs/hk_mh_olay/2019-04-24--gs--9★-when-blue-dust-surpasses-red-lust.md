@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】【MOD】 OLAY VS 歴戦王ナナ・テスカトリ 4‘31“54 大剣(非段差) Arch-tempered lunastra

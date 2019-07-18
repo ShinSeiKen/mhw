@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】睡眠大剣 &quot;鑑定武器&quot; 歴戦王キリン 4‘23“82
-
-納刀術Lv2 見切りLv6 弱点特効Lv3 超会心Lv3 挑戦者Lv1 匠Lv4 属性解放／装填拡張Lv2 集中Lv3.

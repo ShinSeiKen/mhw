@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 Greatsword  ゼノ・ジーヴァ 3‘53“01

@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】 大剣 歴戦イビルジョー 2‘59“88 (2分台捕獲) greatsword Tempered Deviljho
-
-納刀術Lv3 攻撃Lv4 見切りLv6 弱点特効Lv3 渾身Lv2 超会心Lv3 飛燕Lv1 無属性強化Lv1 集中Lv2 達人芸(竜騎士)

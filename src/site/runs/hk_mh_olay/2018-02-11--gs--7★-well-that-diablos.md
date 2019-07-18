@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】【PS4】大剣 ★7 ディアブロスの狩猟 2分03秒
-
-【MHW】【PS4】大剣 ☆7 ディアブロスの狩猟 2分03秒.

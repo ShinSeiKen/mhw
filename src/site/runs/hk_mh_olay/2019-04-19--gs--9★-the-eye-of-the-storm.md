@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】【MOD】 OLAY VS 歴戦王クシャルダオラ 2‘32“07 大剣(猫火事場) Arch-tempered Kushala Daora

@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王クシャルダオラ 3‘23“63 (嵐のさなかにて)

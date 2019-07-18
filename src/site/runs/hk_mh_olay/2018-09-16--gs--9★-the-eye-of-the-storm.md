@@ -15,8 +15,4 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】裸大剣 防具無し 歴戦王クシャルダオラ 4’56’’74
-
-裸大剣(防具無し)
-
-(Note: Naked run)
+Note: Naked run

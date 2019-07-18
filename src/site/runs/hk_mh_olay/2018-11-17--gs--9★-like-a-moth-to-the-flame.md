@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】 大剣 (猫無し) 歴戦王ゼノジーヴァ 6‘53“77 greatsword Arch Tempered Xeno&#39;Jiiva (それは古龍の王たらん )
-
-猫無し.

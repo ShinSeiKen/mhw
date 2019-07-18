@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 ★8 獄炎の牙城 テオ・テスカトル 1‘37“02
-
-ポイント: 気絶耐性Lv2 攻撃Lv4 見切りLv4 弱点特効Lv3 超会心Lv3 無属性強化Lv1 匠Lv2 集中Lv3.

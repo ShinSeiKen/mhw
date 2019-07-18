@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王 ヴァルハザク 5‘33“25 Arch-Tempered Vaal Hazak
-
-ポイント:瘴気耐性Lv3 体力増強Lv2 見切りLv5 弱点特効Lv3 渾身Lv2 超会心Lv2 無属性強化Lv1 匠Lv3 集中Lv2.

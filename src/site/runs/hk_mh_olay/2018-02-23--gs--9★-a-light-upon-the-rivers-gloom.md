@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 Greatsword 冥灯龍 Xeno&#39;jiiva ゼノ・ジーヴァ 4‘40“41
-
-best time 3'53“01 https://www.youtube.com/watch?v=HHS_ofELL9Q.

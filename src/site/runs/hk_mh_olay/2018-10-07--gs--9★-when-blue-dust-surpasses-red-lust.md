@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王ナナ・テスカトリ 6‘14“63 (updated) greatsword Arch Tempered lunastra
-
-攻撃Lv4 体力増強Lv1 見切りLv7 渾身Lv3 超会心Lv3 飛燕Lv1 無属性強化Lv1 力の解放Lv3 集中Lv3 達人芸(竜騎士)

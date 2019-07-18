@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】 大剣 歴戦王キリン 2‘25“77 (非段差)  greatsword Arch Tempered Kirin

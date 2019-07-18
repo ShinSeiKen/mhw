@@ -15,4 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦イビルジョー 2‘16“84 猫火事場 (捕獲) greatsword Tempered Deviljho

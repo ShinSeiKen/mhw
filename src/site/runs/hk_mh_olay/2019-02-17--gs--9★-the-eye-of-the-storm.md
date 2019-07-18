@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】猫火事場 大剣 歴戦王クシャルダオラ 2‘36“23 Arch-tempered Kushala Daora
-
-猫火事場.

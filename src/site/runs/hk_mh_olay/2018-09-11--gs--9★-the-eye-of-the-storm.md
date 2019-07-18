@@ -15,6 +15,3 @@ runners:
 weapons:
     - great-sword
 ---
-【MHW】大剣 歴戦王クシャルダオラ 2’56’’44 2分台討伐達成
-
-攻撃Lv6 見切りLv7 弱点特効Lv3 渾身Lv1 超会心Lv3 飛燕Lv1 無属性強化Lv1 フルチャージLv3 強化持続Lv1 達人芸(竜騎士)
