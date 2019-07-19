@@ -116,6 +116,7 @@ document.querySelectorAll('.tablesort').forEach(tablesort => {
     new Tablesort(tablesort);
 });
 
+/*
 MicroModal.init({
     onShow: modal => {
         let iframe = modal.getElementsByTagName('iframe')[0];
@@ -124,9 +125,31 @@ MicroModal.init({
         }
     },
     onClose: modal => {
+        alert('ok');
         let iframe = modal.getElementsByTagName('iframe')[0];
         iframe.src = iframe.dataset['src'];
     }
+});
+//*/
+
+document.querySelectorAll('[data-micromodal]').forEach(button => {
+    let micromodal = document.getElementById('micromodal');
+    let titleElem  = micromodal.getElementsByTagName('h3')[0];
+    let iframeElem = micromodal.getElementsByTagName('iframe')[0];
+
+    button.addEventListener('click', e => {
+        let button = e.currentTarget;
+        titleElem.textContent = button.dataset['micromodalTitle'];
+        iframeElem.src = button.dataset['micromodalEmbed'];
+
+        MicroModal.show('micromodal', {
+            onClose: modal => {
+                let iframe = modal.getElementsByTagName('iframe')[0];
+                iframe.src = iframe.dataset['src'];
+            }
+        });
+    });
+
 });
 
 // Filter for runs on Quest page

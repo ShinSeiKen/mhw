@@ -82,9 +82,17 @@ layout: layouts/base.njk
                                 {% endfor %}
                             </td>
                             <td class="tablesort__video">
+                                {% set title   = run.data.title %}
+                                {% if not title %}
+                                    {% set title = collections.lookup.quest[ run.data.quest ].data.title | safe %}
+                                {% endif %}
+                                {% set runners = run.data.runners %}
                                 <button
                                     style="margin: 0; overflow: visible; border: 0; padding: 0"
-                                    data-micromodal-trigger="modal-{{ loop.index }}">
+                                    data-micromodal
+                                    data-micromodal-embed="{{ run.data.video }}"
+                                    data-micromodal-title="{%- include "components/run-title.njk" -%}"
+                                    >
                                     <img
                                         src="/assets/img/ui/next.png"
                                         height="40px"
@@ -150,27 +158,18 @@ layout: layouts/base.njk
 
 </div>
 
-{% for run in runs %}
-    <div class="modal micromodal-slide" id="modal-{{ loop.index }}" aria-hidden="true">
-        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
-            <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-{{ loop.index }}-title" >
-                <div class="modal__header">
-                    <h3 class="modal__title" id="modal-{{ loop.index }}-title">
-                        {% set title   = run.data.title %}
-                        {% if not title %}
-                            {% set title = collections.lookup.quest[ run.data.quest ].data.title | safe %}
-                        {% endif %}
-                        {% set runners = run.data.runners %}
-                        {% include "components/run-title.njk" %}
-                    </h3>
-                    <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
-                </div>
-                <div class="modal__content"  id="modal-{{ loop.index }}-content">
-                    {% set video = run.data.video %}
-                    {% set lazyload = true %}
-                    {% include "components/video.njk" %}
-                </div>
+<div class="modal micromodal-slide" id="micromodal" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="micromodal-title" >
+            <div class="modal__header">
+                <h3 class="modal__title" id="micromodal-title"></h3>
+                <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </div>
+            <div class="modal__content"  id="micromodal-content">
+                {% set video    = '' %}
+                {% set lazyload = true %}
+                {% include "components/video.njk" %}
             </div>
         </div>
     </div>
-{% endfor %}
+</div>

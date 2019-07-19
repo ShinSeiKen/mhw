@@ -1,13 +1,9 @@
-{% set title %}
+{%- set title %}
     {%- if title %}
         {{- title }}
     {%- else %}
         {{- collections.lookup.quest[ quest ].data.title | safe }}
-    {% endif %}
-    by
-    {% for runner in runners %}
-        {{ collections.lookup.runner[ runner ].data.title }}
-        {%- if not loop.last%}, {% endif %}
-    {% endfor %}
-{% endset %}
-{{ title }}
+    {% endif %} by {% for runner in runners %}{{ collections.lookup.runner[ runner ].data.title }}{%- if not loop.last%}, {% endif %}
+{% endfor %}
+{% endset -%}
+{{- title -}}
