@@ -3,7 +3,7 @@
         {{- title }}
     {%- else %}
         {{- collections.lookup.quest[ quest ].data.title | safe }}
-    {% endif %} by {% for runner in runners %}{{ collections.lookup.runner[ runner ].data.title }}{%- if not loop.last%}, {% endif %}
+    {% endif %} by {% for runner in runners %}{{ collections.lookup.runner[ runner ].data.title|default(runner) }}{%- if not loop.last%}, {% endif %}
 {% endfor %}
 {% endset -%}
 {{- title -}}
