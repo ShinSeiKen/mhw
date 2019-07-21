@@ -5,7 +5,7 @@ run_type       : freestyle
 platform       : pc
 patch_version  :
 date           : 2019-07-21
-time           : 00'57"86
+time           : 00'57"36
 quest          : 8★-the-winds-of-wrath-bite-deep
 
 runners:
