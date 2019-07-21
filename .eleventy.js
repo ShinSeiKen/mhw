@@ -33,7 +33,8 @@ module.exports = function(config) {
         'ネコがみ'     : 'ネコがみ',
         'もっぽろん': 'もっぽろん',
         'チャンプ': 'チャンプ',
-        'ガース' : 'ガース'
+        'ガース' : 'ガース',
+        'ボム' : 'ボム'
     }
 
     // --------------------------------------------------------------------------------
@@ -103,7 +104,7 @@ module.exports = function(config) {
             }
 
             if (type == 'runner') {
-                //console.log(slug);
+                // console.log(slug);
             }
 
             // troublesome
