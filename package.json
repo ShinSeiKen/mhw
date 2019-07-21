@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npx run dev",
     "build": "gulp build & npx eleventy",
-    "dev": "gulp dev & npx eleventy --serve",
+    "dev": "gulp dev & npx eleventy --serve --quiet",
     "debug": "DEBUG=* npx eleventy",
     "watch": "npx eleventy --watch"
   },
