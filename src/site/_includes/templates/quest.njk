@@ -87,9 +87,15 @@ layout: layouts/base.njk
                                 {%- include "components/links/runner-link.njk" %}
                             </td>
                             <td class="tablesort__time">
-                                <a href="{{ run.url | url }}">
-                                    {{ run.data.time }}
-                                </a>
+                                <a href="{{ run.url | url }}">{{ run.data.time }}</a>
+
+                                {% if run.data.ta_wiki_link is defined and run.data.ta_wiki_link %}
+                                    <span class="small">
+                                        (<a href="{{ run.data.ta_wiki_link }}">TA</a>)
+                                    </span>
+                                {% elseif run.data.run_type == 'ta-wiki-rules' %}
+                                    <span class="small">(TA)</span>
+                                {% endif %}
                             </td>
                             <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
                                 {% for weapon in run.data.weapons %}
