@@ -1,6 +1,7 @@
 ---
 title: Runners
 ---
+{# {% include "partials/troublesome-slugs.njk" %} #}
 
 <div class="grid grid--quadra">
     <div class="grid__row">
@@ -10,7 +11,14 @@ title: Runners
             {% for runner in collections.runners %}
                 <li>
                     {% include "components/links/runner-link.njk" %}
-                    <span class="small">({{ collections.runs__by_runner[runner.fileSlug] | length | default(0) }})</span>
+
+                    {% if troublesomeSlugs[ runner.fileSlug ] %}
+                        {% set theSlug = troublesomeSlugs[ runner.fileSlug ] %}
+                    {% else %}
+                        {% set theSlug = runner.fileSlug %}
+                    {% endif %}
+
+                    <span class="small">({{ collections.runs__by_runner[theSlug] | length | default(0) }})</span>
                 </li>
             {% endfor  %}
         </ul>

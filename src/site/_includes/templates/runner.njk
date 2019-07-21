@@ -2,19 +2,8 @@
 layout: layouts/base.njk
 ---
 {% import "components/weapon-icon.njk" as weapon_icon %}
+{# {% include "partials/troublesome-slugs.njk" %} #}
 
-{% set troublesomeSlugs = {
-    '라료라료'    : '라료라료',
-    'だばだばどぅ' : 'だばだばどぅ',
-    'ばろ'        : 'ばろ',
-    '그테ᄅ'      : '그테ᄅ',
-    'だるまゆき'   : 'だるまゆき',
-    'ハリウッドを許すな' : 'ハリウッドを許すな',
-    'ネコがみ'     : 'ネコがみ',
-    'もっぽろん': 'もっぽろん',
-    'チャンプ': 'チャンプ',
-    'ガース' : 'ガース'
-} %}
 {% if troublesomeSlugs[ page.fileSlug ] %}
     {% set theSlug = troublesomeSlugs[ page.fileSlug ] %}
 {% else %}

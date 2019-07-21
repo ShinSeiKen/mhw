@@ -17,7 +17,10 @@ module.exports = function(config) {
     /**
      * Every runner slug lookup needs to be converted from halfwidth to fullwidth
      * characters. otherwise they can not be matched. H-how troublesome!
-     * See also `src/site/_includes/templates/runner.njk`
+     *
+     * See: `src/site/_data/troublesomeSlugs.json`
+     * See: `src/site/_includes/templates/runner.njk`
+     * See: `src/site/pages/runners.njk`
      */
     let troublesomeSlugs = {
         // halfwidth  => fullwidth
