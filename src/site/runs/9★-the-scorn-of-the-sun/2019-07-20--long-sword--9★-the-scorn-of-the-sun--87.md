@@ -1,9 +1,9 @@
 ---
 title          :
 video          : https://player.bilibili.com/player.html?aid=59861184
-run_type       : freestyle
+run_type       : ta-wiki-rules
 platform       : pc
-patch_version  : 
+patch_version  :
 date           : 2019-07-20
 time           : 04'01"99
 quest          : 9★-the-scorn-of-the-sun

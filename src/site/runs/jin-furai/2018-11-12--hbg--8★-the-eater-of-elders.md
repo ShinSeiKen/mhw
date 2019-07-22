@@ -6,7 +6,7 @@ run_type       : freestyle
 platform       : ps4
 patch_version  :
 date           : 2018-11-12
-time           : 01'12"05
+time           : 01'02"05
 quest          : 8★-the-eater-of-elders
 
 runners:
