@@ -10,4 +10,7 @@ weapons :
     - hammer
 ---
 
-Note: Member of [疾风猎团 (Team Jifeng)](/runners/疾风猎团/).
+<!-- Note: Member of [疾风猎团 (Team Jifeng)](/runners/疾风猎团/).
+Apparently he's not? https://h.bilibili.com/28678474
+Hahahaha
+-->

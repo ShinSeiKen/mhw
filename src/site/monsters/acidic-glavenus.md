@@ -1,5 +1,5 @@
 ---
 title: Acidic Glavenus
-# video:
+video: https://www.youtube.com/embed/ezg_6YrOpnY
 species: Brute Wyvern
 ---
