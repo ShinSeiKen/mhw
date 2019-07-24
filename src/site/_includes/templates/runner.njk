@@ -2,7 +2,6 @@
 layout: layouts/base.njk
 ---
 {% import "components/weapon-icon.njk" as weapon_icon %}
-{# {% include "partials/troublesome-slugs.njk" %} #}
 
 {% if troublesomeSlugs[ page.fileSlug ] %}
     {% set theSlug = troublesomeSlugs[ page.fileSlug ] %}
