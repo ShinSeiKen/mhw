@@ -12,6 +12,13 @@ layout: layouts/base.njk
         {{ content | safe }}
 
         <dl>
+            {% if translationsQuests[page.fileSlug]|length %}
+                <dt>Translations</dt>
+                <dd>
+                    <span class="flag-icon flag-icon-jp"></span> {{ translationsQuests[page.fileSlug]['jpn'] }}<br>
+                    <span class="flag-icon flag-icon-cn"></span> {{ translationsQuests[page.fileSlug]['chs'] }}
+                </dd>
+            {% endif %}
             <dt>Quest Type</dt>
             <dd>{{ quest_type | label }}</dd>
             <dt>Monster{% if monsters | length > 1 %}s{% endif %}</dt>
