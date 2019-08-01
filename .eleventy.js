@@ -40,7 +40,8 @@ module.exports = function(config) {
         "かげろう": "かげろう",
         "몬냥쿡크": "몬냥쿡크",
         "ハイド": "ハイド",
-        "아리아나": "아리아나"
+        "아리아나": "아리아나",
+        "おがこー": "おがこー"
     }
 
     // --------------------------------------------------------------------------------
@@ -380,6 +381,9 @@ module.exports = function(config) {
             '9★-the-scorn-of-the-sun',
             // '9★-undying-alpenglow',
             '9★-when-blue-dust-surpasses-red-lust'
+
+            //,'9★-a-visitor-from-eorzea'
+            //,'9★-a-visitor-from-eorzea-extreme'
         ];
 
         // lookup
