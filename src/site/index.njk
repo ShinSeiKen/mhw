@@ -5,6 +5,7 @@ layout: layouts/base.njk
 <div class="grid">
     <div class="grid__content--wide">
 
+        {#
         <div style="padding: 2em; background-color: #dee0e2;">
             <p>
                 Watch
@@ -16,6 +17,7 @@ layout: layouts/base.njk
                 <strong>Watch the VOD on Twitch →</strong>
             </a>
         </div>
+        #}
 
         <h2>Welcome Hunter!</h2>
         <p>
@@ -29,6 +31,12 @@ layout: layouts/base.njk
             <li><a href="/submit-runner">Submit runner</a></li>
             <li><a href="/submit-run">Submit run</a></li>
         </ul>
+        {#
+        <div style="padding: 1em; background-color: #dee0e2;">
+            {% set video = "https://www.youtube.com/embed/xP1lNA_XQLk" %}
+            {% include "components/video.njk" %}
+        </div>
+        #}
     </div>
     {#
     <div class="grid__row">
