@@ -51,6 +51,7 @@ module.exports = function(config) {
         "ポチョムキン": "ポチョムキン",
         "あさだ": "あさだ",
         "막강한부엉이": "막강한부엉이",
+        "わんだふる": "わんだふる",
         "": ""
     }
 
@@ -392,8 +393,8 @@ module.exports = function(config) {
             // '9★-undying-alpenglow',
             '9★-when-blue-dust-surpasses-red-lust'
 
-            //,'9★-a-visitor-from-eorzea'
-            //,'9★-a-visitor-from-eorzea-extreme'
+            // ,'9★-a-visitor-from-eorzea'
+            // ,'9★-a-visitor-from-eorzea-extreme'
         ];
 
         // lookup

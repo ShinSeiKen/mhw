@@ -1,6 +1,6 @@
 ---
 title   : Cooseidon
-twitter :
+twitter : https://twitter.com/mrcoos3
 youtube : https://www.youtube.com/user/CoosCoos
 twitch  :
 patreon :
