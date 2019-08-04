@@ -1,6 +1,6 @@
 ---
 title          :
-video          : http://embed.nicovideo.jp/watch/sm35386015 # https://www.nicovideo.jp/watch/sm35386015
+video          : https://embed.nicovideo.jp/watch/sm35386015 # https://www.nicovideo.jp/watch/sm35386015
 run_type       : ta-wiki-rules
 platform       : ps4
 patch_version  : 6.02
