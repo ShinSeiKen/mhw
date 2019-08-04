@@ -4,4 +4,6 @@ title: About
 
 # About
 
-This is a proof-of-concept. For shits and giggles.
+This site tracks speedruns from the Monster Hunter World game.
+It has less restrictions than TA Wiki Rules and, in addition,
+it tracks PC runs, event quests and custom quests.

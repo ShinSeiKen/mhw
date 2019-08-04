@@ -79,12 +79,14 @@ permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else 
             <dd>{{ run_type | label }}</dd>
             <dt>Platform</dt>
             <dd>{{ platform | label }}</dd>
+            {#
             <dt>Patch</dt>
             {% if patch_version | length > 0 %}
                 <dd>{{ patch_version }}</dd>
             {% else %}
                 <dd>Unknown</dd>
             {% endif %}
+            #}
             <dt>Date</dt>
             <dd>
                 <time datetime="{{ page.date | dateTimeISO }}">{{ page.date | dateOnly }}</time>
