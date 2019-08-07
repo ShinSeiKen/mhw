@@ -90,7 +90,7 @@ title: Runs
         <h2>Singleplayer</h2>
         {% set dateCheck = false %}
         {% for run in collections.runs %}
-            {% if run.data.runners | length === 1 %}
+            {% if run.data.runners | length === 1 and run.date|dateDisplay('yyyy') == '2019' %}
                 {% set count = count + 1 %}
 
                 {% set dateNew = run.date | dateDisplay('LLLL yyyy') %}
