@@ -1,7 +1,9 @@
 <div class='embed-container'>
     <iframe
         {% if lazyload|default(false) %}data-{% endif -%}
-        src='{{ video | replace("youtube.com", "youtube-nocookie.com") }}{% if "youtube" in video %}?modestbranding=1&rel=0{% endif %}'
+        src='{{ video | replace("youtube.com", "youtube-nocookie.com") -}}
+        {%- if "youtube" in video and "?" in video %}&modestbranding=1&rel=0
+        {%- elif "youtube" in video %}?modestbranding=1&rel=0{% endif %}'
         frameborder='0'
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen>
