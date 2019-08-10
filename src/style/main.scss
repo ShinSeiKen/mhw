@@ -715,11 +715,12 @@ grid {
 
     tr, td, th {
         border : 1px solid;
+        text-align: center;
     }
     th {
         padding: 0.5em;
-        vertical-align: bottom;
-        text-align: center;
+        vertical-align: middle;
+        font-weight: 700;
     }
     th img {
         width: 32px;
@@ -739,7 +740,6 @@ grid {
     td {
         padding: 0.5em;
         vertical-align: middle;
-        text-align: center;
     }
 }
 
@@ -972,4 +972,94 @@ display: block;
     [role="tabpanel"] {
         border-top: 0;
     }
+}
+
+
+// Buttons
+// -------
+
+a.button {
+    display: inline-block;
+    color: #fff;
+    background-color: #000;
+    border-color: #000;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    transition:
+        color .15s ease-in-out,
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out,
+        box-shadow .15s ease-in-out
+    ;
+}
+
+a.button:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.5);
+}
+
+
+// Quest cards on Homepage
+// -----------------------
+
+
+.quest-card {
+    background-color: white;
+    display: flex;
+    padding: 0.5em;
+    align-items: center;
+    position: relative;
+    transition:
+        color .15s ease-in-out,
+        background-color .15s ease-in-out,
+        border-color .15s ease-in-out,
+        box-shadow .15s ease-in-out
+    ;
+}
+.quest-card:hover,
+.quest-card:focus-within {
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.5);
+}
+img.quest-card__image {
+    // reset default margins
+    margin-top: 0;
+    margin-bottom: 0;
+
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    padding: 5px;
+}
+.quest-card__content {
+    margin-left: 1rem;
+    display: block;
+}
+.quest-card__content a:focus {
+    background-color: transparent;
+    outline: 0;
+}
+.quest-card__content a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+.quest-card__image.variant--tempered {
+    filter:
+        drop-shadow(1px 1px 1px #744ACC)
+        drop-shadow(-1px -1px 1px #744ACC)
+    ;
+}
+.quest-card__image.variant--arch-tempered {
+    filter:
+        drop-shadow(1px 1px 1px #FF6000)
+        drop-shadow(-1px -1px 1px #FF6000)
+    ;
 }

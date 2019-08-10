@@ -23,27 +23,52 @@ layout: layouts/base.njk
         <h2>Welcome Hunter!</h2>
         <p>
             This is the place to check out speedruns for <em>Monster Hunter World</em>, an action role-playing game developed and published by Capcom.
+            Check out these hot quests:
         </p>
-        <h2>Update</h2>
-        <p>
-            You can now submit runners and runs (Arch-Tempered, Behemoth, Ancient Leshen and <a href="/quests/custom-quest/9★-delbuster-cup/">9★ Delbuster Cup</a>):
-        <p>
-        <ul>
-            <li><a href="/submit-runner">Submit runner</a></li>
-            <li><a href="/submit-run">Submit run</a></li>
-        </ul>
-
-        {#
-        <div style="padding: 1em; background-color: #dee0e2;">
-            <p>Monster Hunter World: Iceborne revelations in V Jump Channel's video:</p>
-            {{ macros.video("https://www.youtube.com/embed/xP1lNA_XQLk") }}
-        </div>
-        #}
     </div>
-    {#
     <div class="grid__row">
-        <h2>Leaderboards</h2>
-        <p>Coming soon!</p>
+        {% set hotQuests = [
+            { slug: '9★-a-whisper-of-white-mane'           , variant: 'arch-tempered' },
+            { slug: '9★-the-deathly-quiet-curtain'         , variant: 'arch-tempered' },
+            { slug: '9★-like-a-moth-to-the-flame'          , variant: 'arch-tempered' },
+            { slug: '9★-the-eye-of-the-storm'              , variant: 'arch-tempered' },
+            { slug: '9★-the-heralds-of-destruction-cry'    , variant: 'arch-tempered' },
+            { slug: '9★-the-scorn-of-the-sun'              , variant: 'arch-tempered' },
+            { slug: '9★-when-blue-dust-surpasses-red-lust' , variant: 'arch-tempered' },
+            { slug: '9★-a-visitor-from-eorzea'             , variant: 'regular' },
+            { slug: '9★-a-visitor-from-eorzea-extreme'     , variant: 'tempered' }
+        ] %}
+        <div class="card-list" style="grid-auto-rows: unset;">
+            {% for hotquest in hotQuests %}
+                {% set quest = collections.lookup.quest[hotquest.slug] %}
+                <div class="quest-card">
+                    <img
+                        class="quest-card__image monster-icon variant--{{ hotquest.variant }}"
+                        src="/assets/img/monster-icons/{{ quest.data.monsters | first }}.png"
+                    />
+                    <div class="quest-card__content">
+                        <a href="{{ quest.url | url }}">
+                            {{ quest.data.title }}<br>
+                            {{ translationsQuests[hotquest.slug]['jpn'] }}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-    #}
+
+    <div class="grid__content--wide">
+        <h2>Submissions</h2>
+        <p>
+            You can now submit runners and runs (Arch-Tempered, Behemoth, Ancient Leshen and <a href="/quests/custom-quest/9★-delbuster-cup/">9★ Delbuster Cup</a>).
+            <br>
+            {# Personally, I find it it easier to use the external links if you want to submit more runs.<br> #}
+            Submissions are <em>not</em> added to the site automatically. I try to import them as soon as possible.<br>
+            Thanks for submitting runs!
+        <p>
+        <div>
+            <a class="button" href="/submit-runner">Submit runner ⟶</a>
+            <a class="button" href="/submit-run">Submit run ⟶</a>
+        </div>
+    </div>
 </div>

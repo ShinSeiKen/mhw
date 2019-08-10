@@ -1,12 +1,11 @@
 ---
 title   : Zelda Hunter
-twitter : 
+twitter : https://twitter.com/_ZeldaHunter
 youtube : https://www.youtube.com/channel/UCcjLmaiEYuEN4VV-nnFsaNA
-twitch  : 
-patreon : 
-country : 
+twitch  : https://www.twitch.tv/zeldahuntr
+patreon :
+country : fr
 weapons :
     - long-sword
     - insect-glaive
 ---
-

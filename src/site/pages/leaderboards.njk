@@ -4,46 +4,48 @@ title: Arch-Tempered Leaderboards
 {% import "components/macros.njk" as macros %}
 
 {% set archTemperedQuests = [
-        '9★-a-whisper-of-white-mane',
-        '9★-the-deathly-quiet-curtain',
-        '9★-like-a-moth-to-the-flame',
-        '9★-the-eye-of-the-storm',
-        '9★-the-heralds-of-destruction-cry',
-        '9★-the-scorn-of-the-sun',
-        '9★-when-blue-dust-surpasses-red-lust'
-    ] %}
+    '9★-a-whisper-of-white-mane',
+    '9★-the-deathly-quiet-curtain',
+    '9★-like-a-moth-to-the-flame',
+    '9★-the-eye-of-the-storm',
+    '9★-the-heralds-of-destruction-cry',
+    '9★-the-scorn-of-the-sun',
+    '9★-when-blue-dust-surpasses-red-lust'
+] %}
 
 <h1>Arch-Tempered Leaderboards</h1>
-<p>Only tracks the following 7 quests:</p>
-<ul>
-    {# --- see .eleventy for `archTemperedLeague` --- #}
-    {% for questSlug in archTemperedQuests %}
-    {% set quest = collections.lookup.quest[ questSlug ] %}
-        <li><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></li>
-    {% endfor %}
-</ul>
-<p>
-    For every quest, there are three trophies per weapon for a total of <strong>{{ 7*14*3 }}</strong> trophies!<br>
-    A runner can only have one trophy per weapon per quest combination.<br>
-    In case of multiple runs, only the fastest run is count.<br>
-    <br>
-    Note: Click on a row to expand the collected trophies!
-</p>
+<dl>
+    <dt>Quests</dt>
+    <dd>
+        <ul>
+            {# --- see .eleventy for `archTemperedLeague` --- #}
+            {% for questSlug in archTemperedQuests %}
+            {% set quest = collections.lookup.quest[ questSlug ] %}
+                <li><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </dd>
+    <dt>Rules</dt>
+    <dd>Freestyle</dd>
+    <dt>Notes</dt>
+    <dd>
+        <p>
+            For every quest (7), there are three trophies (3) per weapon (14) for a total of <strong>{{ 7*14*3 }}</strong> trophies!<br>
+            A runner can only have one trophy per weapon and quest combination.<br>
+            In case of multiple runs, only the fastest run is count.<br>
+            <br>
+            Note: Click on a row to expand the collected trophies!
+        </p>
+    </dd>
+</dl>
 
-{% set crown_a_1 = "/assets/img/achievement-small/giant-crown-master.jpg" %}
-{% set crown_a_2 = "/assets/img/achievement-small/giant-crown-collector.jpg" %}
-{% set crown_a_3 = "/assets/img/achievement-small/giant-crown.jpg" %}
-
-{% set crown_b_1 = "/assets/img/achievement-small/miniature-crown-master.jpg" %}
-{% set crown_b_2 = "/assets/img/achievement-small/miniature-crown-collector.jpg" %}
-{% set crown_b_3 = "/assets/img/achievement-small/miniature-crown.jpg" %}
 <table class="summary">
     <tr>
         <th scope="col">Rank</th>
         <th scope="col">Runner</th>
-        <th scope="col"><img src="{{ crown_a_1 }}" alt="Gold Trophy" /></th>
-        <th scope="col"><img src="{{ crown_a_2 }}" alt="Silver Trophy" /></th>
-        <th scope="col"><img src="{{ crown_a_3 }}" alt="Bronze Trophy" /></th>
+        <th scope="col" class="summary__head--huge">🥇</th>
+        <th scope="col" class="summary__head--huge">🥈</th>
+        <th scope="col" class="summary__head--huge">🥉</th>
         <th scope="col">Total Trophies</th>
     </tr>
     {% set previousTrophyHash   = false %}
@@ -66,11 +68,11 @@ title: Arch-Tempered Leaderboards
         <tr class="toggle-runs">
             <td>
                 {% if leaderboardRank == 1 %}
-                    <img  src="{{ crown_a_1 }}" alt="" />
+                    🥇
                 {% elseif leaderboardRank == 2 %}
-                    <img src="{{ crown_a_2 }}" alt="" />
+                    🥈
                 {% elseif leaderboardRank == 3 %}
-                    <img src="{{ crown_a_3 }}" alt="" />
+                    🥉
                 {% else %}
                     {{ leaderboardRank }}
                 {% endif %}
@@ -80,6 +82,11 @@ title: Arch-Tempered Leaderboards
                 {% if runner.data.country %}
                     <span class="flag-icon flag-icon-{{ runner.data.country }}"></span>
                 {% endif %}
+                {#
+                {% if leaderboardRank == 1 %}
+                    🏆
+                {% endif %}
+                #}
             </td>
             <td>{{ trophyCollection.gold }}</td>
             <td>{{ trophyCollection.silver }}</td>
@@ -94,11 +101,11 @@ title: Arch-Tempered Leaderboards
                             {% set weaponSlug = trophy.run.data.weapons | first %}
                             {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
                                 {% if trophy.rank == 1 %}
-                                    <img src="{{ crown_b_1 }}" alt="" />
+                                    🥇
                                 {% elseif trophy.rank == 2 %}
-                                    <img src="{{ crown_b_2 }}" alt="" />
+                                    🥈
                                 {% elseif trophy.rank == 3 %}
-                                    <img src="{{ crown_b_3 }}" alt="" />
+                                    🥉
                                 {% else %}
                                     [{{ trophy.rank }}]
                                 {% endif %}
