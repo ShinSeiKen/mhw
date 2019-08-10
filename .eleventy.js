@@ -635,6 +635,97 @@ module.exports = function(config) {
         return top_runs__by_weapon__by_quest
     });
 
+    config.addCollection('xxx3', collection => {
+        let all = collection.getAll();
+
+        // lookup
+        let runners = [];
+        let runs    = [];
+        let quests  = [];
+        let weapons = [];
+
+        // leaderboard data
+        let top_runs__by_quest = [];
+        let top_runs__by_weapon__by_quest  = [];
+
+        all.forEach(item => {
+
+            // (1) Collect all items for lookup first
+            switch (item.data.type) {
+                case 'runner':
+                    slug = item.fileSlug
+                    // troublesome
+                    if (troublesomeSlugs[ slug ]) {
+                        slug = troublesomeSlugs[ slug ];
+                    }
+                    runners[slug] = item;
+                    break;
+                case 'run':
+                    // Only count runs that have one runner, and a single weapon
+                    if (item.data.runners.length == 1 && item.data.weapons.length == 1 && item.data.run_type == 'ta-wiki-rules') {
+                        runs.push(item);
+                    }
+                    break;
+                case 'quest':
+                    /*
+                    // todo: don't count all quests, or do we?
+                    if (item.data.track_for_leaderboards == 1) {
+                        quests[item.fileSlug] = item;
+                    }
+                    //*/
+                    quests[item.fileSlug] = item;
+                    break;
+                case 'weapon':
+                    weapons[item.fileSlug] = item;
+                    break;
+            }
+
+        });
+
+        // (2) Prepare relationships between runs and quests
+        runs.forEach(item => {
+            let quest = item.data.quest;
+            // Check if the quest the run belongs to is eligible
+            if (quests[quest]) {
+                if (! top_runs__by_quest[quest]) {
+                    top_runs__by_quest[quest] = [];
+                }
+                top_runs__by_quest[quest].push(item);
+            }
+        });
+
+        // (3) Group runs per weapon per quest
+        Object.keys(top_runs__by_quest).forEach(questSlug => {
+            let runs = top_runs__by_quest[questSlug].sort(byTimeAscending);
+            top_runs__by_weapon__by_quest[questSlug] = [];
+
+            // ----- EXTRA for this function: extract duplicate runs here -----
+            let duplicateCheck = [];
+            // ----- /EXTRA -----
+
+            runs.forEach(run => {
+                let weaponSlug = run.data.weapons[0];
+                let runnerSlug = run.data.runners[0];
+
+                if (! duplicateCheck[weaponSlug]) {
+                    duplicateCheck[weaponSlug] = [];
+                }
+                if (! duplicateCheck[weaponSlug][runnerSlug]) {
+
+                    if (! top_runs__by_weapon__by_quest[questSlug][weaponSlug]) {
+                        top_runs__by_weapon__by_quest[questSlug][weaponSlug] = [];
+                    }
+                    top_runs__by_weapon__by_quest[questSlug][weaponSlug].push(run);
+
+                }
+
+                duplicateCheck[weaponSlug][runnerSlug] = true;
+            });
+        });
+
+        return top_runs__by_weapon__by_quest
+    });
+
     // --------------------------------------------------------------------------------
     // Filters and Shortcodes
     // --------------------------------------------------------------------------------
