@@ -24,17 +24,17 @@ module.exports = function(config) {
      */
     let troublesomeSlugs = {
         // halfwidth  => fullwidth
-        "라료라료"    : "라료라료",
-        "だばだばどぅ" : "だばだばどぅ",
-        "ばろ"        : "ばろ",
-        "그테ᄅ"      : "그테ᄅ",
-        "だるまゆき"   : "だるまゆき",
-        "ハリウッドを許すな" : "ハリウッドを許すな",
-        "ネコがみ"     : "ネコがみ",
+        "라료라료": "라료라료",
+        "だばだばどぅ": "だばだばどぅ",
+        "ばろ": "ばろ",
+        "그테ᄅ": "그테ᄅ",
+        "だるまゆき": "だるまゆき",
+        "ハリウッドを許すな": "ハリウッドを許すな",
+        "ネコがみ": "ネコがみ",
         "もっぽろん": "もっぽろん",
         "チャンプ": "チャンプ",
-        "ガース" : "ガース",
-        "ボム" : "ボム",
+        "ガース": "ガース",
+        "ボム": "ボム",
         "ゼロx": "ゼロx",
         "눈이즐겁구나": "눈이즐겁구나",
         "かげろう": "かげろう",
@@ -106,10 +106,6 @@ module.exports = function(config) {
     config.addCollection("quests__optional"  , collection => collection.getFilteredByGlob("src/site/quests/optional-quest/*.md").sort(byTitleAlphabetically));
     config.addCollection("quests__custom"    , collection => collection.getFilteredByGlob("src/site/quests/custom-quest/*.md").sort(byTitleAlphabetically));
 
-    // Define collections for imported runners and runs (for testing purposes)
-    // config.addCollection("runners__imported" , collection => collection.getFilteredByGlob("src/site/runs/__import/*.md").sort(byTitleAlphabetically));
-    // config.addCollection("runs__imported"    , collection => collection.getFilteredByGlob("src/site/runners/__import/*.md").sort(byTitleAlphabetically));
-
     // Define a lookup table for accessing content via type and (unique) slugs
     config.addCollection("lookup", collection => {
         let lookup = [];
@@ -173,7 +169,7 @@ module.exports = function(config) {
             }
         });
 
-        Object.keys(result).forEach(key =>{
+        Object.keys(result).forEach(key => {
             result[key].sort(byTitleAlphabetically);
         });
 
@@ -334,10 +330,6 @@ module.exports = function(config) {
         });
         return result;
     });
-
-    // runs by rules type (freestyle|arenastyle|restricted)
-    // runs by platform (xbox|ps4|pc)
-    // etc...
 
     // --------------------------------------------------------------------------------
     // Runners
@@ -628,40 +620,6 @@ module.exports = function(config) {
     // --------------------------------------------------------------------------------
     // Filters and Shortcodes
     // --------------------------------------------------------------------------------
-
-    /**
-     * Converts milliseconds to a Monster Hunter World timer, i.e.
-     * 12'34"56
-     *
-     * This is an example filter if we ask for speedrun times to be
-     * set in milliseconds, which makes it easier to calculate with,
-     * e.g. sorting.
-     */
-    config.addFilter("millisFormatted", milliseconds => {
-        let pad = (number) => {
-            let s = String(number);
-            let size = 2;
-            while (s.length < size) {
-                s = "0" + s;
-            }
-            return s;
-        };
-        let date = new Date(milliseconds);
-
-        let h = date.getUTCHours();
-        let m = date.getUTCMinutes();
-        let s = date.getUTCSeconds();
-        let z = date.getUTCMilliseconds();
-
-        // Standard Monster Hunter Word time-format: mm'ss"zz
-        let result = `${pad(m)}'${pad(s)}"${pad(Math.floor(z/10))}`;
-
-        // Gracefully handle hours, but don't handle days or whatever.
-        if (h > 0) {
-            return `${h}:${result}`;
-        }
-        return result;
-    });
 
     /**
      * Using {{ ... | join('-') }} in the permalink breaks as it will always use a

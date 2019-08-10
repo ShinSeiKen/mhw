@@ -31,34 +31,4 @@ layout: layouts/base.njk
             {% include "components/video.njk" %}
         {% endif %}
     </div>
-
-{#
-<div class="">
-    <h2>Runs</h2>
-    <p>List of the most recent speedruns using this weapon.</p>
-    {% for item in collections.run__by_weapon[page.fileSlug] %}
-        {% if loop.index0 < 10 %}
-            <li>
-                <a href="{{ item.data.video }}">
-                    <span>
-                        {{ collections.lookup.quest[item.data.quest].data.title }}
-                    </span>
-                    <span>
-                        {{ collections.lookup.quest[item.data.quest].data.time | millisFormatted }}
-                    </span>
-                </a>
-
-            </li>
-        {% endif %}
-    {% endfor %}
-</div>
-#}
-
-{#
-<div class="">
-    <h2>Fluff</h2>
-    <p>Tips, tricks, sets/builds, tutorials.</p>
-</div>
-#}
-
 </div>
