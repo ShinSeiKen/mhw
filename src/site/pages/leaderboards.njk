@@ -1,11 +1,9 @@
 ---
 title: Arch-Tempered Leaderboards
 ---
-<h1>Arch-Tempered Leaderboards</h1>
-<p>Only tracks the following 7 quests:</p>
-<ul>
-    {# --- see .eleventy for `archTemperedLeague` --- #}
-    {% for questSlug in [
+{% import "components/macros.njk" as macros %}
+
+{% set archTemperedQuests = [
         '9★-a-whisper-of-white-mane',
         '9★-the-deathly-quiet-curtain',
         '9★-like-a-moth-to-the-flame',
@@ -14,6 +12,12 @@ title: Arch-Tempered Leaderboards
         '9★-the-scorn-of-the-sun',
         '9★-when-blue-dust-surpasses-red-lust'
     ] %}
+
+<h1>Arch-Tempered Leaderboards</h1>
+<p>Only tracks the following 7 quests:</p>
+<ul>
+    {# --- see .eleventy for `archTemperedLeague` --- #}
+    {% for questSlug in archTemperedQuests %}
     {% set quest = collections.lookup.quest[ questSlug ] %}
         <li><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></li>
     {% endfor %}
@@ -154,3 +158,54 @@ title: Arch-Tempered Leaderboards
         </td>
     </tr>
 </table>
+
+
+
+{# --- see .eleventy for `archTemperedLeague` --- #}
+
+{#
+{% for theQuest in collections.quests %}
+    {% set questSlug = theQuest.fileSlug %}
+#}
+
+{#
+{% for questSlug in archTemperedQuests %}
+    {% set quest = collections.lookup.quest[ questSlug ] %}
+<h2>{{ quest.data.title }}</h2>
+<table border="1">
+    <tr>
+        <th style="width: 5%"></th>
+        <th style="width: 30%" scope="col"><img src="{{ crown_a_1 }}" alt="Gold Trophy" /></th>
+        <th style="width: 30%" scope="col"><img src="{{ crown_a_2 }}" alt="Silver Trophy" /></th>
+        <th style="width: 30%" scope="col"><img src="{{ crown_a_3 }}" alt="Bronze Trophy" /></th>
+    </tr>
+    {% for weaponSlug in global_weapons %}
+        <tr>
+            <td>
+                {{ macros.weapon_icon(
+                    slug = weaponSlug,
+                    title = collections.lookup.weapon[ weaponSlug ].data.title
+                ) }}
+            </td>
+            {% for index in range(0, 3) %}
+                <td>
+                    {% if collections.xxx2[questSlug][weaponSlug][index] is defined %}
+                        {% set run = collections.xxx2[questSlug][weaponSlug][index] %}
+                        {% set runnerSlug = run.data.runners | first %}
+                        {% set runner = collections.lookup.runner[ runnerSlug ] %}
+                            <a href="{{ run.url | url }}">
+                                <strong>{{ run.data.time }}</strong>
+                            </a>
+                            <br>
+                            {% include "components/links/runner-link.njk" %}
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </tr>
+</table>
+{% endfor %}
+#}

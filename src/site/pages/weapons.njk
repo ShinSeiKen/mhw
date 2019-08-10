@@ -1,17 +1,17 @@
 ---
 title: Weapons
 ---
+{% import "components/macros.njk" as macros %}
 
 <h1>{{ title }}</h1>
 <div class="card-list">
         {% for slug in global_weapons %}
             {% set item = collections.lookup.weapon[ slug ] %}
-            {% set card = {
-                image    : '/assets/img/weapon-character-iceborne/' + slug + '.jpg',
-                url      : item.url,
-                title    : item.data.title,
-                subtitle : item.data.weapon_type
-            } %}
-            {% include "components/card.njk" %}
+            {{ macros.card(
+                image    = '/assets/img/weapon-character-iceborne/' + slug + '.jpg',
+                url      = item.url,
+                title    = item.data.title,
+                subtitle = item.data.weapon_type
+            ) }}
         {% endfor %}
 </div>

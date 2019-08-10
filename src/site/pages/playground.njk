@@ -1,6 +1,8 @@
 ---
 title: Playground
 ---
+{% import "components/macros.njk" as macros %}
+
 <h1>Heading 1</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut dolor varius magna tincidunt varius. Duis quis
     enim rutrum, venenatis metus lobortis, malesuada arcu. Suspendisse in leo eget ligula venenatis iaculis ac a
@@ -36,13 +38,12 @@ title: Playground
 <div class="card-list">
     {% for slug in locations %}
         {% set item = collections.lookup.location[ slug ] %}
-        {% set card = {
-            image    : '/assets/img/location/' + slug + '.webp',
-            url      : item.url,
-            title    : item.data.title,
-            subtitle : "Explore →"
-        } %}
-        {% include "components/card.njk" %}
+        {{ macros.card(
+            image    = '/assets/img/location/' + slug + '.webp',
+            url      = item.url,
+            title    = item.data.title,
+            subtitle = "Explore →"
+        ) }}
     {% endfor %}
 </div>
 
@@ -50,13 +51,12 @@ title: Playground
 <div class="card-list">
     {% for slug in monsters %}
         {% set item = collections.lookup.monster[ slug ] %}
-        {% set card = {
-            image    : '/assets/img/monster/' + slug + '.jpg',
-            url      : item.url,
-            title    : item.data.title,
-            subtitle : item.data.species
-        } %}
-        {% include "components/card.njk" %}
+        {{ macros.card(
+            image    = '/assets/img/monster/' + slug + '.jpg',
+            url      = item.url,
+            title    = item.data.title,
+            subtitle = item.data.species
+        ) }}
     {% endfor %}
 </div>
 
@@ -64,14 +64,13 @@ title: Playground
 <div class="card-list">
         {% for slug in global_weapons %}
             {% set item = collections.lookup.weapon[ slug ] %}
-            {% set card = {
-                image    : '/assets/img/weapon-character-iceborne/' + slug + '.jpg',
-                url      : item.url,
-                title    : item.data.title,
-                subtitle : item.data.weapon_type
-            } %}
-            {% include "components/card.njk" %}
-        {% endfor %}
+            {{ macros.card(
+                image    = '/assets/img/weapon-character-iceborne/' + slug + '.jpg',
+                url      = item.url,
+                title    = item.data.title,
+                subtitle = item.data.weapon_type
+            ) }}
+            {% endfor %}
 </div>
 
 <h1>Weapons</h1>
@@ -217,3 +216,36 @@ title: Playground
     enim rutrum, venenatis metus lobortis, malesuada arcu. Suspendisse in leo eget ligula venenatis iaculis ac a
     nisl. Aenean lacus lacus, fringilla eu consectetur nec, facilisis ut velit. Lorem ipsum dolor sit amet,
     consectetur adipiscing elit. In hac habitasse platea dictumst.</p>
+
+<div class="tabbed">
+    <ul>
+        <li>
+            <a href="#section1">Section 1</a>
+        </li>
+        <li>
+            <a href="#section2">Section 2</a>
+        </li>
+        <li>
+            <a href="#section3">Section 3</a>
+        </li>
+        <li>
+            <a href="#section4">Section 4</a>
+        </li>
+    </ul>
+    <section id="section1">
+        <h2>Section 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. <a href="#">Nam luctus</a>, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan.</p>
+    </section>
+    <section id="section2">
+        <h2>Section 2</h2>
+        <p>Nullam at diam nec arcu suscipit auctor non a erat. Sed et magna semper, eleifend magna non, facilisis nisl. Proin et est et lorem dictum finibus ut nec turpis. Aenean nisi tortor, euismod a mauris a, mattis scelerisque tortor. Sed dolor risus, varius a nibh id, condimentum lacinia est. In lacinia cursus odio a aliquam. Curabitur tortor magna, laoreet ut rhoncus at, sodales consequat tellus.</p>
+    </section>
+    <section id="section3">
+        <h2>Section 3</h2>
+        <p>Phasellus ac tristique orci. Nulla maximus <a href="">justo nec dignissim consequat</a>. Sed vehicula diam sit amet mi efficitur vehicula in in nisl. Aliquam erat volutpat. Suspendisse lorem turpis, accumsan consequat consectetur gravida, <a href="#">pellentesque ac ante</a>. Aliquam in commodo ligula, sit amet mollis neque. Vestibulum at facilisis massa.</p>
+    </section>
+    <section id="section4">
+        <h2>Section 4</h2>
+        <p>Nam luctus, enim in interdum condimentum, nisl diam iaculis lorem, vel volutpat mi leo sit amet lectus. Praesent non odio bibendum magna bibendum accumsan. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam euismod, tortor nec pharetra ultricies, ante erat imperdiet velit, nec laoreet enim lacus a velit. </p>
+    </section>
+</div>

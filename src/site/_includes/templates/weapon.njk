@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
+{% import "components/macros.njk" as macros %}
 
 <div class="grid grid--weapon">
     <div class="grid__row">
@@ -28,7 +29,7 @@ layout: layouts/base.njk
 
     <div class="grid__media">
         {% if video %}
-            {% include "components/video.njk" %}
+            {{ macros.video(video) }}
         {% endif %}
     </div>
 </div>

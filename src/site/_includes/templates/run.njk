@@ -2,6 +2,7 @@
 layout: layouts/base.njk
 permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else %}{{ quest }}{% endif %}/by/{{ runners | arrayAsPermalink }}/index.html"
 ---
+{% import "components/macros.njk" as macros %}
 
 {% set _runner   = collections.lookup.runner[ runners | first ] %}
 {% set _quest    = collections.lookup.quest[ quest ] %}
@@ -12,14 +13,14 @@ permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else 
     </div>
     <div class="grid__media">
         {% if video %}
-            {% include "components/video.njk" %}
+            {{ macros.video(video) }}
         {% else %}
             MISSING VIDEO
         {% endif %}
 
         {% for video in videos %}
             <div style="margin-top: 1em;">
-                {% include "components/video.njk" %}
+                {{ macros.video(video) }}
             </div>
         {% endfor %}
 

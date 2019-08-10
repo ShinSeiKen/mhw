@@ -1,64 +1,8 @@
 <footer>
     <div class="inner">
-
         {% include "components/breadcrumb.njk" %}
-
         <br>
         <br>
-
-{#
-        <div class="grid grid--quadra">
-            <div class="grid__column">
-                <h2>9★ Event Quests</h2>
-                <ul class="footer-list">
-                    {% for item in collections.quests__event %}
-                        {% if item.data.difficulty == '9★' %}
-                            <li
-                                {% if page.url == item.url %} class="active"{% endif %}>
-                                <a class="footer-list__link" href="{{ item.url | url }}">
-                                    {{- item.data.title -}}
-                                </a>
-                            </li>
-                        {% endif %}
-                    {% endfor  %}
-                </ul>
-            </div>
-            <div class="grid__column">
-                <h2>Locations</h2>
-                <ul class="footer-list">
-                    {% for slug in locations %}
-                        {% set item = collections.lookup.location[slug] %}
-                        <li
-                            {% if page.url == item.url %} class="active"{% endif %}>
-                            <a class="footer-list__link" href="{{ item.url | url }}">
-                                {{- item.data.title -}}
-                            </a>
-                        </li>
-                    {% endfor  %}
-                </ul>
-            </div>
-            <div class="grid__column">
-                <h2>Weapons</h2>
-                <ul class="footer-list">
-                    {% for slug in global_weapons %}
-                        {% set item = collections.lookup.weapon[slug] %}
-                        <li
-                            {% if page.url == item.url %} class="active"{% endif %}>
-                            <a class="footer-list__link" href="{{ item.url | url }}">
-                                {{- item.data.title -}}
-                            </a>
-                        </li>
-                    {% endfor  %}
-                </ul>
-            </div>
-        </div>
-
-        <hr>
-        <h2 class="visually-hidden">Support Links</h2>
-        {# -- move to css because decorative, saves ink on printing OMEGALUL -- #}
-        {#
-        <img src="/assets/img/achievement/conqueror-of-the-new-world.png" height="120px" width="120px" style="float: right; filter: grayscale(1);" alt="">
-        #}
         <ul class="footer-links">
             {% for url, label in general.footer %}
                 {% set active = '' %}

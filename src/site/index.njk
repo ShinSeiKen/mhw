@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
+{% import "components/macros.njk" as macros %}
 
 <div class="grid">
     <div class="grid__content--wide">
@@ -35,8 +36,7 @@ layout: layouts/base.njk
         {#
         <div style="padding: 1em; background-color: #dee0e2;">
             <p>Monster Hunter World: Iceborne revelations in V Jump Channel's video:</p>
-            {% set video = "https://www.youtube.com/embed/xP1lNA_XQLk" %}
-            {% include "components/video.njk" %}
+            {{ macros.video("https://www.youtube.com/embed/xP1lNA_XQLk") }}
         </div>
         #}
     </div>

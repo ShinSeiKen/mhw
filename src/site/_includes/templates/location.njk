@@ -1,7 +1,9 @@
 ---
 layout: layouts/base.njk
 ---
-{% set quests = collections.quests__by_location[page.fileSlug] %}
+{% import "components/macros.njk" as macros %}
+
+{% set quests   = collections.quests__by_location[page.fileSlug] %}
 {% set monsters = collections.monsters__by_location[page.fileSlug] %}
 
 <div class="grid grid--location">
@@ -40,7 +42,7 @@ layout: layouts/base.njk
     </div>
     <div class="grid__media">
         {% if video %}
-            {% include 'components/video.njk'%}
+            {{ macros.video(video) }}
         {% endif %}
     </div>
 </div>

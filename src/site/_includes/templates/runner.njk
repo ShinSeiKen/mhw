@@ -1,7 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
-{% import "components/weapon-icon.njk" as weapon_icon %}
+{% import "components/macros.njk" as macros %}
 
 {% if troublesomeSlugs[ page.fileSlug ] %}
     {% set theSlug = troublesomeSlugs[ page.fileSlug ] %}
@@ -64,7 +64,7 @@ layout: layouts/base.njk
                             </td>
                             <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
                                 {% for weapon in run.data.weapons %}
-                                    {{ weapon_icon.render(
+                                    {{ macros.weapon_icon(
                                         slug = weapon,
                                         title = collections.lookup.weapon[ weapon ].data.title
                                     ) }}
@@ -155,9 +155,7 @@ layout: layouts/base.njk
                 <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
             </div>
             <div class="modal__content"  id="micromodal-content">
-                {% set video    = '' %}
-                {% set lazyload = true %}
-                {% include "components/video.njk" %}
+                {{ macros.video('', true) }}
             </div>
         </div>
     </div>

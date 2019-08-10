@@ -1,0 +1,53 @@
+{% macro button(url, label, attr = []) %}
+    TODO
+{% endmacro %}
+
+
+{% macro card(image, url, title, subtitle) %}
+    <article class="card-wrap">
+        <div class="card">
+            <div class="card__bg" data-image="{{ image }}"></div>
+            <div class="card__info">
+                <h2 class="card__title">
+                    <a class="card__link" href="{{ url | url }}">{{ title }}</a>
+                </h2>
+                <p class="card__subtitle">
+                    <span class="card__subtitle-outline">{{ subtitle }}</span>
+                </p>
+            </div>
+        </div>
+    </article>
+{% endmacro %}
+
+
+{% macro run_link(run) %}
+    TODO
+{% endmacro %}
+
+{% macro runner_link(runner) %}
+    TODO
+{% endmacro %}
+
+
+{% macro video(video, lazyload = false) %}
+    <div class='embed-container'>
+        <iframe
+            {% if lazyload|default(false) %}data-{% endif -%}
+            src='{{ video | replace("youtube.com", "youtube-nocookie.com") -}}
+            {%- if "youtube" in video and "?" in video %}&modestbranding=1&rel=0
+            {%- elif "youtube" in video %}?modestbranding=1&rel=0{% endif %}'
+            frameborder='0'
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+{% endmacro %}
+
+
+{% macro weapon_icon(slug, title) %}
+    <img
+        class="weapon-icon"
+        src="/assets/img/weapon-icon/{{ slug }}.png"
+        alt="{{ title }}"
+        />
+{% endmacro %}
