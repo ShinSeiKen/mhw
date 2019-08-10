@@ -3,6 +3,8 @@ title          :
 video          : https://www.youtube.com/embed/ZmN50AsTea4
 videos         :
     - https://www.youtube.com/embed/XBrdU2aRdGI
+    - https://www.youtube.com/embed/YjHKxsUJsQg
+    - https://www.youtube.com/embed/rei987XBd_8
 video_type     : youtube
 run_type       : freestyle
 platform       : ps4

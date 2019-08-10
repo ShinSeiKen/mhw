@@ -917,6 +917,7 @@ display: block;
 
 [role="tablist"] [aria-selected] {
     border: 1px solid;
+    border-top: 4px solid;
     background: #EEE;
     border-bottom: 0;
     position: relative;
