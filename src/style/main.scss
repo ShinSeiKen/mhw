@@ -707,6 +707,46 @@ grid {
 
 }
 
+// Leaderboards Tables
+// -------------------
+.summary {
+    width: 100%;
+    border : 1px solid;
+
+    tr, td, th {
+        border : 1px solid;
+    }
+    th {
+        padding: 0.5em;
+        vertical-align: bottom;
+        text-align: center;
+    }
+    th img {
+        width: 32px;
+        height: 32px;
+        display: inline-block !important;
+        vertical-align: middle;
+    }
+    td img,
+    td img:first-child,
+    td img:last-child {
+        width: 32px;
+        height: 32px;
+        display: inline-block !important;
+        vertical-align: middle;
+        margin: 0.2em 0 !important;
+    }
+    td {
+        padding: 0.5em;
+        vertical-align: middle;
+        text-align: center;
+    }
+}
+
+.summary__head--huge {
+    font-size: 2rem;
+}
+
 // ----------------
 // Micromodal
 // https://micromodal.now.sh/
@@ -880,12 +920,24 @@ display: block;
     background: #EEE;
     border-bottom: 0;
     position: relative;
-    top: 2px;
+    top: 1px;
 }
 
 [role="tabpanel"] {
     border: 1px solid;
     padding: 1.5rem;
+}
+
+[role="tabpanel"]:focus {
+    // outline: 1px solid #ffbf47;
+    outline: 0;
+}
+
+.tabbed--wide [role="tabpanel"] {
+    border: 0;
+    padding: 0;
+    border-top: 1px solid black;
+    padding-top: 1.5rem;
 }
 
 [role="tablist"] *:focus {

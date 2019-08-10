@@ -1,13 +1,3 @@
-//
-// Note: Using lots of manual groupBy functions, we can reduce this by using the
-//       array's reduce function.
-// See https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-a-array-of-objects
-//
-// --- Not necessary, but whatever:
-// quest__by_difficulty, as default sorting would be OK!
-// quest__by_quest_type
-//
-
 const { DateTime } = require("luxon");
 
 module.exports = function(config) {
@@ -16,45 +6,15 @@ module.exports = function(config) {
 
     /**
      * Every runner slug lookup needs to be converted from halfwidth to fullwidth
-     * characters. otherwise they can not be matched. H-how troublesome!
+     * characters. Otherwise they can not be matched. H-how troublesome!
      *
      * See: `src/site/_data/troublesomeSlugs.json`
      * See: `src/site/_includes/templates/runner.njk`
      * See: `src/site/pages/runners.njk`
      */
-    let troublesomeSlugs = {
-        // halfwidth  => fullwidth
-        "라료라료": "라료라료",
-        "だばだばどぅ": "だばだばどぅ",
-        "ばろ": "ばろ",
-        "그테ᄅ": "그테ᄅ",
-        "だるまゆき": "だるまゆき",
-        "ハリウッドを許すな": "ハリウッドを許すな",
-        "ネコがみ": "ネコがみ",
-        "もっぽろん": "もっぽろん",
-        "チャンプ": "チャンプ",
-        "ガース": "ガース",
-        "ボム": "ボム",
-        "ゼロx": "ゼロx",
-        "눈이즐겁구나": "눈이즐겁구나",
-        "かげろう": "かげろう",
-        "몬냥쿡크": "몬냥쿡크",
-        "ハイド": "ハイド",
-        "아리아나": "아리아나",
-        "おがこー": "おがこー",
-        "ゲームギア": "ゲームギア",
-        "たちばなな": "たちばなな",
-        "떼껄룩": "떼껄룩",
-        "イガグリ": "イガグリ",
-        "あぷとむ": "あぷとむ",
-        "つぶから": "つぶから",
-        "ポチョムキン": "ポチョムキン",
-        "あさだ": "あさだ",
-        "막강한부엉이": "막강한부엉이",
-        "わんだふる": "わんだふる",
-        "伊達メガネ": "伊達メガネ",
-        "": ""
-    }
+    const troublesomeSlugs = require('./src/site/_data/troublesomeSlugs.json');
+    const labels           = require('./src/site/_data/labels.json');
+
 
     // --------------------------------------------------------------------------------
     // Layouts
@@ -685,40 +645,7 @@ module.exports = function(config) {
      */
     config.addFilter("arrayAsPermalink", items => items.join('-') );
 
-    /**
-     * Convert labels to proper text.
-     * todo: Move to external file.
-     */
-    let labelLookup = {
-        // Platforms:
-        "ps4"  : "PS4",
-        "xbox" : "XBOX",
-        "pc"   : "PC",
-
-        // Rulesets:
-        "freestyle"     : "Freestyle",
-        "arena-style"   : "Arena-style",
-        "restricted"    : "Restricted",
-        "ta-wiki-rules" : "TA Wiki Rules",
-
-        // Quest Types:
-        "optional-quest"  : "Optional Quest",
-        "arena-quest"     : "Arena Quest",
-        "challenge-quest" : "Challenge Quest",
-        "event-quest"     : "Event Quest",
-        "special-quest"   : "Special Quest",
-        "custom-quest"    : "Custom Quest",
-
-        // Expansion:
-        "mhw"  : "Monster Hunter World",
-        "mhwi" : "Monster Hunter World: Iceborne",
-
-        // Misc:
-        "foo" : "bar"
-    };
-
-    config.addFilter("label", value => labelLookup[value] ? labelLookup[value] : `UNKNOWN LABEL: [${value}]`);
-
+    config.addFilter("label", value => labels[value] ? labels[value] : `UNKNOWN LABEL: [${value}]`);
 
     let pad = number => number < 10 ? '0' + number : number;
     let formatDate = date => `${date.getUTCFullYear()}-${pad(date.getUTCMonth()+1)}-${pad(date.getUTCDate())}`
@@ -762,7 +689,7 @@ module.exports = function(config) {
         }
         return content;
     });
-    */
+    //*/
 
     // --------------------------------------------------------------------------------
     // Assets

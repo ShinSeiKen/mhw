@@ -1,0 +1,22 @@
+{
+    "ps4"  : "PS4",
+    "xbox" : "XBOX",
+    "pc"   : "PC",
+
+    "freestyle"     : "Freestyle",
+    "arena-style"   : "Arena-style",
+    "restricted"    : "Restricted",
+    "ta-wiki-rules" : "TA Wiki Rules",
+
+    "optional-quest"  : "Optional Quest",
+    "arena-quest"     : "Arena Quest",
+    "challenge-quest" : "Challenge Quest",
+    "event-quest"     : "Event Quest",
+    "special-quest"   : "Special Quest",
+    "custom-quest"    : "Custom Quest",
+
+    "mhw"  : "Monster Hunter World",
+    "mhwi" : "Monster Hunter World: Iceborne",
+
+    "foo" : "bar"
+}

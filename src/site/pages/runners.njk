@@ -33,7 +33,7 @@ title: Runners
                 {% for slug in global_weapons %}
                     {% set item = collections.lookup.weapon[ slug ] %}
                     <li>
-                        <a href="#{{ slug }}">
+                        <a href="#section-{{ slug }}">
                             {{ macros.weapon_icon(slug, item.data.title) }}
                             {# {{ item.data.title }} #}
                         </a>
@@ -42,7 +42,7 @@ title: Runners
             </ul>
             {% for slug in global_weapons %}
                 {% set item = collections.lookup.weapon[ slug ] %}
-                <section id="section1">
+                <section id="section-{{ slug }}">
                     <h3>{{ item.data.title }}</h3>
                     <ul class="multi-column-list">
                         {% for runner in collections.runners__by_weapon[ slug ] %}
