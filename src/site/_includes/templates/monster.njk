@@ -25,6 +25,11 @@ layout: layouts/base.njk
                 </dd>
             {% endif %}
         </dl>
+        {#
+        <img
+            src="{{ macros.monster_img(page.fileSlug) }}"
+            title="{{ title }}" />
+        #}
         {% if quests | length %}
             <h2>Quests</h2>
             <ul>
@@ -43,22 +48,4 @@ layout: layouts/base.njk
             {{ macros.video(video) }}
         {% endif %}
     </div>
-
-{#
-<p>List of quests that have this monster, with the best or most recent speedrun of above mentioned quests.</p>
-<p>Might be useful to make a distinction between, regular, tempered and arch-tempered variants</p>
-
---- need extra layer ---
-
-<div class="grid__column">
-    <h2>Runs</h2>
-    <ul>
-        {% for run in collections.runs__by_monster[page.fileSlug] %}
-            <li>
-                {% include "components/links/run-link.njk" %}
-            </li>
-        {% endfor %}
-    </ul>
-</div>
-#}
 </div>

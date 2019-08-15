@@ -1009,6 +1009,10 @@ a.button:focus {
 
 
 .quest-card {
+    // overflow-wrap: break-word;
+    // word-wrap: break-word;
+    // hyphens: auto;
+    overflow: hidden;
     background-color: white;
     display: flex;
     padding: 0.5em;
@@ -1039,6 +1043,10 @@ img.quest-card__image {
     margin-left: 1rem;
     display: block;
 }
+.quest-card__content a {
+    word-wrap: break-word;
+}
+
 .quest-card__content a:focus {
     background-color: transparent;
     outline: 0;
