@@ -1,11 +1,11 @@
 ---
-title   : Akkarin
-twitter : 
-youtube : 
-twitch  : 
-patreon : 
+title   : Akkarin (Febrie)
+twitter :
+youtube :
+twitch  :
+patreon :
+bilibili: https://space.bilibili.com/605751
 country : cn
 weapons :
     - insect-glaive
 ---
-bilibili: https://space.bilibili.com/605751
