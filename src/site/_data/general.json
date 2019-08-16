@@ -1,8 +1,9 @@
 {
     "site_name": "Monster Hunter World Leaderboards",
-    "meta_description": "Unofficial Monster Hunter World Iceborne Leaderboards.",
+    "meta_description": "Unofficial Monster Hunter World Leaderboards.",
     "repository": "https://github.com/shinseiken/mhw",
     "menu": {
+        "/leaderboards/" : "Leaderboards",
         "/runs/"         : "Runs",
         "/runners/"      : "Runners",
         "/quests/"       : "Quests",

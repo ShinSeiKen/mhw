@@ -93,223 +93,231 @@ layout: layouts/base.njk
                             </select>
                         </div>
                     </div>
-                    <table class="tablesort">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="no-sort" data-sort-method='none'>Runner</th>
-                                <th scope="col" data-sort-default>Time</th>
-                                <th scope="col" class="no-sort" data-sort-method='none'>Weapon</th>
-                                <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for run in runs %}
-                            {% if run.data.runners.length == 1 %}
-                                {% set count = count + 1 %}
-                                {% set runnerSlug = run.data.runners|first %}
-                                {%- set runner = collections.lookup.runner[ runnerSlug ] %}
-                                <tr
-                                    data-ruleset="{{ run.data.run_type }}"
-                                    data-weapon="{{ run.data.weapons|join(' ') }}"
-                                    data-platform="{{ run.data.platform }}"
-                                    >
-                                    <td class="tablesort__runner">
-                                        {%- include "components/links/runner-link.njk" %}
-                                    </td>
-                                    <td class="tablesort__time">
-                                        <a href="{{ run.url | url }}">{{ run.data.time }}</a>
-
-                                        {% if run.data.ta_wiki_link is defined and run.data.ta_wiki_link %}
-                                            <span class="small">
-                                                (<a href="{{ run.data.ta_wiki_link }}">TA</a>)
-                                            </span>
-                                        {% elseif run.data.run_type == 'ta-wiki-rules' %}
-                                            <span class="small">(TA)</span>
-                                        {% endif %}
-                                    </td>
-                                    <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
-                                        {% for weapon in run.data.weapons %}
-                                            {{ macros.weapon_icon(
-                                                slug = weapon,
-                                                title = collections.lookup.weapon[ weapon ].data.title
-                                            ) }}
-                                        {% endfor %}
-                                    </td>
-                                    <td class="tablesort__video">
-                                        {% set title   = run.data.title %}
-                                        {% if not title %}
-                                            {% set title = collections.lookup.quest[ run.data.quest ].data.title | safe %}
-                                        {% endif %}
-                                        {% set runners = run.data.runners %}
-                                        <button
-                                            style="margin: 0; overflow: visible; border: 0; padding: 0"
-                                            data-micromodal
-                                            data-micromodal-embed="{{ run.data.video }}"
-                                            data-micromodal-title="{%- include "components/run-title.njk" -%}"
-                                            >
-                                            <img
-                                                src="/assets/img/ui/next.png"
-                                                height="40px"
-                                                width="40px"
-                                                style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
-                                                alt="Play video"
-                                                />
-                                        </button>
-                                    </td>
+                    <div class="table-wrapper">
+                        <table class="tablesort">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="no-sort" data-sort-method='none'>Runner</th>
+                                    <th scope="col" data-sort-default>Time</th>
+                                    <th scope="col" class="no-sort" data-sort-method='none'>Weapon</th>
+                                    <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
                                 </tr>
-                            {% endif %}
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {% for run in runs %}
+                                {% if run.data.runners.length == 1 %}
+                                    {% set count = count + 1 %}
+                                    {% set runnerSlug = run.data.runners|first %}
+                                    {%- set runner = collections.lookup.runner[ runnerSlug ] %}
+                                    <tr
+                                        data-ruleset="{{ run.data.run_type }}"
+                                        data-weapon="{{ run.data.weapons|join(' ') }}"
+                                        data-platform="{{ run.data.platform }}"
+                                        >
+                                        <td class="tablesort__runner">
+                                            {%- include "components/links/runner-link.njk" %}
+                                        </td>
+                                        <td class="tablesort__time">
+                                            <a href="{{ run.url | url }}">{{ run.data.time }}</a>
+
+                                            {% if run.data.ta_wiki_link is defined and run.data.ta_wiki_link %}
+                                                <span class="small">
+                                                    (<a href="{{ run.data.ta_wiki_link }}">TA</a>)
+                                                </span>
+                                            {% elseif run.data.run_type == 'ta-wiki-rules' %}
+                                                <span class="small">(TA)</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
+                                            {% for weapon in run.data.weapons %}
+                                                {{ macros.weapon_icon(
+                                                    slug = weapon,
+                                                    title = collections.lookup.weapon[ weapon ].data.title
+                                                ) }}
+                                            {% endfor %}
+                                        </td>
+                                        <td class="tablesort__video">
+                                            {% set title   = run.data.title %}
+                                            {% if not title %}
+                                                {% set title = collections.lookup.quest[ run.data.quest ].data.title | safe %}
+                                            {% endif %}
+                                            {% set runners = run.data.runners %}
+                                            <button
+                                                style="margin: 0; overflow: visible; border: 0; padding: 0"
+                                                data-micromodal
+                                                data-micromodal-embed="{{ run.data.video }}"
+                                                data-micromodal-title="{%- include "components/run-title.njk" -%}"
+                                                >
+                                                <img
+                                                    src="/assets/img/ui/next.png"
+                                                    height="40px"
+                                                    width="40px"
+                                                    style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
+                                                    alt="Play video"
+                                                    />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </section>
                 {% if hasSummary %}
                 <section id="section-summary-freestyle">
                     <h3>Summary</h3>
-                    <table class="summary">
-                        <tr>
-                            <th style="width: 5%"></th>
-                            <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_1 }}" alt="Gold" />#}🥇</th>
-                            <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_2 }}" alt="Silver" />#}🥈</th>
-                            <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_3 }}" alt="Bronze" />#}🥉</th>
-                        </tr>
-                        {% for weaponSlug in global_weapons %}
+                    <div class="table-wrapper">
+                        <table class="summary">
                             <tr>
-                                <td>
-                                    {{ macros.weapon_icon(
-                                        slug = weaponSlug,
-                                        title = collections.lookup.weapon[ weaponSlug ].data.title
-                                    ) }}
-                                </td>
-                                {% for index in range(0, 3) %}
-                                    <td>
-                                        {% if collections.xxx2[page.fileSlug][weaponSlug][index] is defined %}
-                                            {% set run = collections.xxx2[page.fileSlug][weaponSlug][index] %}
-                                            {% set runnerSlug = run.data.runners | first %}
-                                            {% set runner = collections.lookup.runner[ runnerSlug ] %}
-                                                <a href="{{ run.url | url }}">
-                                                    <strong>{{ run.data.time }}</strong>
-                                                </a>
-                                                <br>
-                                                {% include "components/links/runner-link.njk" %}
-                                        {% else %}
-                                            &#10005;
-                                        {% endif %}
-                                    </td>
-                                {% endfor %}
+                                <th style="width: 5%"></th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_1 }}" alt="Gold" />#}🥇</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_2 }}" alt="Silver" />#}🥈</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_3 }}" alt="Bronze" />#}🥉</th>
                             </tr>
-                        {% endfor %}
-                        </tr>
-                    </table>
+                            {% for weaponSlug in global_weapons %}
+                                <tr>
+                                    <td>
+                                        {{ macros.weapon_icon(
+                                            slug = weaponSlug,
+                                            title = collections.lookup.weapon[ weaponSlug ].data.title
+                                        ) }}
+                                    </td>
+                                    {% for index in range(0, 3) %}
+                                        <td>
+                                            {% if collections.xxx2[page.fileSlug][weaponSlug][index] is defined %}
+                                                {% set run = collections.xxx2[page.fileSlug][weaponSlug][index] %}
+                                                {% set runnerSlug = run.data.runners | first %}
+                                                {% set runner = collections.lookup.runner[ runnerSlug ] %}
+                                                    <a href="{{ run.url | url }}">
+                                                        <strong>{{ run.data.time }}</strong>
+                                                    </a>
+                                                    <br>
+                                                    {% include "components/links/runner-link.njk" %}
+                                            {% else %}
+                                                &#10005;
+                                            {% endif %}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
                 </section>
                 <section id="section-summary-ta">
                     <h3>Summary (TA)</h3>
-                    <table class="summary">
-                        <tr>
-                            <th style="width: 5%"></th>
-                            <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_1 }}" alt="Gold" />#}🥇</th>
-                            <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_2 }}" alt="Silver" />#}🥈</th>
-                            <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_3 }}" alt="Bronze" />#}🥉</th>
-                        </tr>
-                        {% for weaponSlug in global_weapons %}
+                    <div class="table-wrapper">
+                        <table class="summary">
                             <tr>
-                                <td>
-                                    {{ macros.weapon_icon(
-                                        slug = weaponSlug,
-                                        title = collections.lookup.weapon[ weaponSlug ].data.title
-                                    ) }}
-                                </td>
-                                {% for index in range(0, 3) %}
-                                    <td>
-                                        {% if collections.xxx3[page.fileSlug][weaponSlug][index] is defined %}
-                                            {% set run = collections.xxx3[page.fileSlug][weaponSlug][index] %}
-                                            {% set runnerSlug = run.data.runners | first %}
-                                            {% set runner = collections.lookup.runner[ runnerSlug ] %}
-                                                <a href="{{ run.url | url }}">
-                                                    <strong>{{ run.data.time }}</strong>
-                                                </a>
-                                                <br>
-                                                {% include "components/links/runner-link.njk" %}
-                                        {% else %}
-                                            &#10005;
-                                        {% endif %}
-                                    </td>
-                                {% endfor %}
+                                <th style="width: 5%"></th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_1 }}" alt="Gold" />#}🥇</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_2 }}" alt="Silver" />#}🥈</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_3 }}" alt="Bronze" />#}🥉</th>
                             </tr>
-                        {% endfor %}
-                        </tr>
-                    </table>
+                            {% for weaponSlug in global_weapons %}
+                                <tr>
+                                    <td>
+                                        {{ macros.weapon_icon(
+                                            slug = weaponSlug,
+                                            title = collections.lookup.weapon[ weaponSlug ].data.title
+                                        ) }}
+                                    </td>
+                                    {% for index in range(0, 3) %}
+                                        <td>
+                                            {% if collections.xxx3[page.fileSlug][weaponSlug][index] is defined %}
+                                                {% set run = collections.xxx3[page.fileSlug][weaponSlug][index] %}
+                                                {% set runnerSlug = run.data.runners | first %}
+                                                {% set runner = collections.lookup.runner[ runnerSlug ] %}
+                                                    <a href="{{ run.url | url }}">
+                                                        <strong>{{ run.data.time }}</strong>
+                                                    </a>
+                                                    <br>
+                                                    {% include "components/links/runner-link.njk" %}
+                                            {% else %}
+                                                &#10005;
+                                            {% endif %}
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            </tr>
+                        </table>
+                    </div>
                 </section>
                 {% endif %}
                 {% if hasMultiplayer %}
                 <section id="section-multiplayer">
                     <h3>Multiplayer</h3>
                     {% if count < runs | length %}
-                    <table class="tablesort">
-                        <thead>
-                            <tr>
-                                <th scope="col" class="no-sort" data-sort-method='none'>Runners</th>
-                                <th scope="col" data-sort-default>Time</th>
-                                <th scope="col" class="no-sort" data-sort-method='none'>Weapon</th>
-                                <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        {% for run in runs %}
-                            {% if run.data.runners.length > 1 %}
-                                <tr
-                                    data-ruleset="{{ run.data.run_type }}"
-                                    data-weapon="{{ run.data.weapons|join(' ') }}"
-                                    data-platform="{{ run.data.platform }}"
-                                    >
-                                    <td class="tablesort__runner">
-                                        <strong>{{ run.data.runners.length }}P</strong><br>
-                                        {% for runnerSlug in run.data.runners %}
-                                            {%- set runner = collections.lookup.runner[ runnerSlug ] %}
-                                            {%- include "components/links/runner-link.njk" %}
-                                            {% if not loop.last %}
-                                            <br>
-                                            {% endif %}
-                                        {% endfor %}
-                                    </td>
-                                    <td class="tablesort__time">
-                                        <a href="{{ run.url | url }}">
-                                            {{ run.data.time }}
-                                        </a>
-                                    </td>
-                                    <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
-                                        {% for weapon in run.data.weapons %}
-                                            {{ macros.weapon_icon(
-                                                slug = weapon,
-                                                title = collections.lookup.weapon[ weapon ].data.title
-                                            ) }}
-                                        {% endfor %}
-                                    </td>
-                                    <td class="tablesort__video">
-                                        {% set title   = run.data.title %}
-                                        {% if not title %}
-                                            {% set title = collections.lookup.quest[ run.data.quest ].data.title | safe %}
-                                        {% endif %}
-                                        {% set runners = run.data.runners %}
-                                        <button
-                                            style="margin: 0; overflow: visible; border: 0; padding: 0"
-                                            data-micromodal
-                                            data-micromodal-embed="{{ run.data.video }}"
-                                            data-micromodal-title="{%- include "components/run-title.njk" -%}"
-                                            >
-                                            <img
-                                                src="/assets/img/ui/next.png"
-                                                height="40px"
-                                                width="40px"
-                                                style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
-                                                alt="Play video"
-                                                />
-                                        </button>
-                                    </td>
+                    <div class="table-wrapper">
+                        <table class="tablesort">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="no-sort" data-sort-method='none'>Runners</th>
+                                    <th scope="col" data-sort-default>Time</th>
+                                    <th scope="col" class="no-sort" data-sort-method='none'>Weapon</th>
+                                    <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
                                 </tr>
-                            {% endif %}
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {% for run in runs %}
+                                {% if run.data.runners.length > 1 %}
+                                    <tr
+                                        data-ruleset="{{ run.data.run_type }}"
+                                        data-weapon="{{ run.data.weapons|join(' ') }}"
+                                        data-platform="{{ run.data.platform }}"
+                                        >
+                                        <td class="tablesort__runner">
+                                            <strong>{{ run.data.runners.length }}P</strong><br>
+                                            {% for runnerSlug in run.data.runners %}
+                                                {%- set runner = collections.lookup.runner[ runnerSlug ] %}
+                                                {%- include "components/links/runner-link.njk" %}
+                                                {% if not loop.last %}
+                                                <br>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </td>
+                                        <td class="tablesort__time">
+                                            <a href="{{ run.url | url }}">
+                                                {{ run.data.time }}
+                                            </a>
+                                        </td>
+                                        <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
+                                            {% for weapon in run.data.weapons %}
+                                                {{ macros.weapon_icon(
+                                                    slug = weapon,
+                                                    title = collections.lookup.weapon[ weapon ].data.title
+                                                ) }}
+                                            {% endfor %}
+                                        </td>
+                                        <td class="tablesort__video">
+                                            {% set title   = run.data.title %}
+                                            {% if not title %}
+                                                {% set title = collections.lookup.quest[ run.data.quest ].data.title | safe %}
+                                            {% endif %}
+                                            {% set runners = run.data.runners %}
+                                            <button
+                                                style="margin: 0; overflow: visible; border: 0; padding: 0"
+                                                data-micromodal
+                                                data-micromodal-embed="{{ run.data.video }}"
+                                                data-micromodal-title="{%- include "components/run-title.njk" -%}"
+                                                >
+                                                <img
+                                                    src="/assets/img/ui/next.png"
+                                                    height="40px"
+                                                    width="40px"
+                                                    style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
+                                                    alt="Play video"
+                                                    />
+                                            </button>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                     {% else %}
                         <p>No runs yet!</p>
                     {% endif %}

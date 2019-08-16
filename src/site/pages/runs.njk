@@ -4,18 +4,19 @@ title: Runs
 {% import "components/macros.njk" as macros %}
 
 {% macro table_header() %}
-    <table class="tablesort">
-        <thead>
-            <tr>
-                {# <th scope="col" data-sort-default>Date</th> #}
-                <th scope="col">Quest</th>
-                <th scope="col" >Time</th>
-                <th scope="col" class="no-sort" data-sort-method='none'>Runner</th>
-                <th scope="col" class="no-sort" data-sort-method='none'>Weapon</th>
-                <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="table-wrapper">
+        <table class="tablesort">
+            <thead>
+                <tr>
+                    {# <th scope="col" data-sort-default>Date</th> #}
+                    <th scope="col">Quest</th>
+                    <th scope="col" >Time</th>
+                    <th scope="col" class="no-sort" data-sort-method='none'>Runner</th>
+                    <th scope="col" class="no-sort" data-sort-method='none'>Weapon</th>
+                    <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
+                </tr>
+            </thead>
+            <tbody>
 {% endmacro %}
 
 {% macro table_row(run, loop) %}
@@ -79,8 +80,9 @@ title: Runs
 {% endmacro %}
 
 {% macro table_footer() %}
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 {% endmacro %}
 
 {% set count = 0 %}

@@ -346,8 +346,8 @@ module.exports = function(config) {
             // '9★-undying-alpenglow',
             '9★-when-blue-dust-surpasses-red-lust'
 
-            // ,'9★-a-visitor-from-eorzea'
-            // ,'9★-a-visitor-from-eorzea-extreme'
+            ,'9★-a-visitor-from-eorzea'
+            ,'9★-a-visitor-from-eorzea-extreme'
         ];
 
         // lookup

@@ -1075,3 +1075,82 @@ img.quest-card__image {
         drop-shadow(0px -1px 0px #FF6000)
     ;
 }
+
+
+
+// Leaderboards
+// -----------------------
+
+.leaderboards {
+    tr.toggle-runs {
+        cursor: pointer;
+    }
+    tr.toggle-runs:hover {
+        background-color: #ffbf47;
+    }
+}
+
+// Note: leaderboards collapsed view on smaller devices
+//*
+@media (max-width: 700px) {
+    .leaderboards {
+        border: 0 !important;
+        border-collapse: collapse;
+
+        tr:nth-of-type(1) {
+            display: none;
+        }
+        tr {
+            display: flex;
+            text-align: left;
+        }
+        tr[hidden] {
+            display: none;
+        }
+        tr.toggle-runs + tr {
+            border-top: 1px dashed black;
+        }
+        tr {
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            border-bottom: 0;
+        }
+        tr:last-child {
+            border-bottom: 1px solid black;
+        }
+        td {
+            border: 0 !important;
+        }
+        td:nth-of-type(1),
+        td:nth-of-type(2) {
+            display: inline-block;
+            border: 0;
+        }
+        td:nth-of-type(2) {
+            margin-right: auto;
+        }
+        td:nth-of-type(3),
+        td:nth-of-type(4),
+        td:nth-of-type(5) {
+            display: inline-block;
+            border: 0;
+        }
+        td:nth-of-type(3):after { content: "🥇"; }
+        td:nth-of-type(4):after { content: "🥈"; }
+        td:nth-of-type(5):after { content: "🥉"; }
+
+        th { display: none; }
+        td:nth-of-type(6) { display: none; }
+    }
+}
+//*/
+
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+small, sub, sup { font-size: 80%; }
+sub             { vertical-align: sub; }
+sup             { vertical-align: super; }

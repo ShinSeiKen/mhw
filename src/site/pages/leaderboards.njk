@@ -1,5 +1,5 @@
 ---
-title: Arch-Tempered Leaderboards
+title: Leaderboards
 ---
 {% import "components/macros.njk" as macros %}
 
@@ -10,10 +10,15 @@ title: Arch-Tempered Leaderboards
     '9★-the-eye-of-the-storm',
     '9★-the-heralds-of-destruction-cry',
     '9★-the-scorn-of-the-sun',
-    '9★-when-blue-dust-surpasses-red-lust'
+    '9★-when-blue-dust-surpasses-red-lust',
+    '9★-a-visitor-from-eorzea',
+    '9★-a-visitor-from-eorzea-extreme'
 ] %}
 
-<h1>Arch-Tempered Leaderboards</h1>
+{% set numQuests = archTemperedQuests | length %}
+{% set maxTrophies = numQuests * 3 * 14 %}
+
+<h1>Leaderboards</h1>
 <dl>
     <dt>Quests</dt>
     <dd>
@@ -30,7 +35,7 @@ title: Arch-Tempered Leaderboards
     <dt>Notes</dt>
     <dd>
         <p>
-            For every quest (7), there are three trophies (3) per weapon (14) for a total of <strong>{{ 7*14*3 }}</strong> trophies!<br>
+            For every quest ({{ numQuests }}), there are three trophies (3) per weapon (14) for a total of <strong>{{ maxTrophies }}</strong> trophies!<br>
             A runner can only have one trophy per weapon and quest combination.<br>
             In case of multiple runs, only the fastest run is count.<br>
             <br>
@@ -39,95 +44,100 @@ title: Arch-Tempered Leaderboards
     </dd>
 </dl>
 
-<table class="summary">
-    <tr>
-        <th scope="col">Rank</th>
-        <th scope="col">Runner</th>
-        <th scope="col" class="summary__head--huge">🥇</th>
-        <th scope="col" class="summary__head--huge">🥈</th>
-        <th scope="col" class="summary__head--huge">🥉</th>
-        <th scope="col">Total</th>
-    </tr>
-    {% set previousTrophyHash   = false %}
-    {% set previousRank         = 1 %}
-    {% set totalTrophiesClaimed = 0 %}
-    {% for trophyCollection in collections.xxx %}
-        {% set runner = trophyCollection.runner %}
-        {% set totalTrophies = trophyCollection.gold + trophyCollection.silver + trophyCollection.bronze %}
-        {% set totalTrophiesClaimed = totalTrophiesClaimed + totalTrophies %}
-        {# -- Simple extra check for same amount of trophy holders to keep the same rank -- #}
-        {% set trophyHash = trophyCollection.gold + "--" + trophyCollection.silver + "--" + trophyCollection.bronze %}
-        {% if previousTrophyHash === trophyHash %}
-            {% set leaderboardRank = previousRank %}
-        {% else %}
-            {% set leaderboardRank    = loop.index %}
-            {% set previousTrophyHash = trophyHash %}
-            {% set previousRank       = loop.index %}
-        {% endif %}
-        {% if totalTrophies > 0 %}
-        <tr class="toggle-runs">
-            <td>
-                {% if leaderboardRank == 1 %}
-                    🥇
-                {% elseif leaderboardRank == 2 %}
-                    🥈
-                {% elseif leaderboardRank == 3 %}
-                    🥉
-                {% else %}
+<div class="table-wrapper">
+    <table class="summary leaderboards">
+        <tr>
+            <th scope="col">Rank</th>
+            <th scope="col">Runner</th>
+            <th scope="col" class="summary__head--huge">🥇</th>
+            <th scope="col" class="summary__head--huge">🥈</th>
+            <th scope="col" class="summary__head--huge">🥉</th>
+            <th scope="col">Total</th>
+        </tr>
+        {% set previousTrophyHash   = false %}
+        {% set previousRank         = 1 %}
+        {% set totalTrophiesClaimed = 0 %}
+        {% for trophyCollection in collections.xxx %}
+            {% set runner = trophyCollection.runner %}
+            {% set totalTrophies = trophyCollection.gold + trophyCollection.silver + trophyCollection.bronze %}
+            {% set totalTrophiesClaimed = totalTrophiesClaimed + totalTrophies %}
+            {# -- Simple extra check for same amount of trophy holders to keep the same rank -- #}
+            {% set trophyHash = trophyCollection.gold + "--" + trophyCollection.silver + "--" + trophyCollection.bronze %}
+            {% if previousTrophyHash === trophyHash %}
+                {% set leaderboardRank = previousRank %}
+            {% else %}
+                {% set leaderboardRank    = loop.index %}
+                {% set previousTrophyHash = trophyHash %}
+                {% set previousRank       = loop.index %}
+            {% endif %}
+            {% if totalTrophies > 0 %}
+            <tr class="toggle-runs">
+                <td>
+                    {#
+                    {% if leaderboardRank == 1 %}
+                        🥇
+                    {% elseif leaderboardRank == 2 %}
+                        🥈
+                    {% elseif leaderboardRank == 3 %}
+                        🥉
+                    {% else %}
+                        {{ leaderboardRank }}
+                    {% endif %}
+                    #}
                     {{ leaderboardRank }}
-                {% endif %}
-            </td>
-            <td scope="row">
-                <a href="{{ runner.url | url }}">{{- runner.data.title -}}</a>
-                {% if runner.data.country %}
-                    <span class="flag-icon flag-icon-{{ runner.data.country }}"></span>
-                {% endif %}
-                {#
-                {% if leaderboardRank == 1 %}
-                    🏆
-                {% endif %}
-                #}
-            </td>
-            <td>{{ trophyCollection.gold }}</td>
-            <td>{{ trophyCollection.silver }}</td>
-            <td>{{ trophyCollection.bronze }}</td>
-            <td>{{ totalTrophies }}</td>
-        </tr>
-        <tr hidden>
-            <td colspan=6 style="text-align: left;">
-                <p>
-                    {% for trophy in trophyCollection.trophies %}
-                        {% if trophy.rank == 1 or trophy.rank == 2 or trophy.rank == 3 %}
-                            {% set weaponSlug = trophy.run.data.weapons | first %}
-                            {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
-                                {% if trophy.rank == 1 %}
-                                    🥇
-                                {% elseif trophy.rank == 2 %}
-                                    🥈
-                                {% elseif trophy.rank == 3 %}
-                                    🥉
-                                {% else %}
-                                    [{{ trophy.rank }}]
+                </td>
+                <td scope="row">
+                    <a href="{{ runner.url | url }}">{{- runner.data.title -}}</a>
+                    {% if runner.data.country %}
+                        <span class="flag-icon flag-icon-{{ runner.data.country }}"></span>
+                    {% endif %}
+                    {#
+                    {% if leaderboardRank == 1 %}
+                        🏆
+                    {% endif %}
+                    #}
+                </td>
+                <td>{{ trophyCollection.gold }}</td>
+                <td>{{ trophyCollection.silver }}</td>
+                <td>{{ trophyCollection.bronze }}</td>
+                <td>{{ totalTrophies }}</td>
+            </tr>
+            <tr hidden class="">
+                <td colspan=6 style="text-align: left;">
+                    <p>
+                        {% for trophy in trophyCollection.trophies %}
+                            {% if trophy.rank == 1 or trophy.rank == 2 or trophy.rank == 3 %}
+                                {% set weaponSlug = trophy.run.data.weapons | first %}
+                                {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
+                                    {% if trophy.rank == 1 %}
+                                        🥇
+                                    {% elseif trophy.rank == 2 %}
+                                        🥈
+                                    {% elseif trophy.rank == 3 %}
+                                        🥉
+                                    {% else %}
+                                        [{{ trophy.rank }}]
+                                    {% endif %}
+                                    <a href="{{ trophy.run.url }}">
+                                        <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
+                                    </a>
+                                {% if not loop.last %}
+                                    <br>
                                 {% endif %}
-                                <a href="{{ trophy.run.url }}">
-                                    <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
-                                </a>
-                            {% if not loop.last %}
-                                <br>
                             {% endif %}
-                        {% endif %}
-                    {% endfor %}
-                </p>
+                        {% endfor %}
+                    </p>
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+        <tr>
+            <td colspan=5 style="text-align: left;">
+                Total trophies claimed so far:
+            </td>
+            <td>
+                {{ totalTrophiesClaimed }} / {{ maxTrophies }}
             </td>
         </tr>
-        {% endif %}
-    {% endfor %}
-    <tr>
-        <td colspan=5 style="text-align: left;">
-            Total trophies claimed so far:
-        </td>
-        <td>
-            {{ totalTrophiesClaimed }} / {{ 7*14*3 }}
-        </td>
-    </tr>
-</table>
+    </table>
+</div>

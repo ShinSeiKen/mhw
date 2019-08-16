@@ -1,9 +1,11 @@
 ---
 title          :
-video          : https://player.bilibili.com/player.html?aid=63719431
+video          : https://www.youtube.com/embed/Q1GYpGy6MnY
+videos         :
+    - https://player.bilibili.com/player.html?aid=63719431
 run_type       : ta-wiki-rules
 platform       : ps4
-patch_version  : 
+patch_version  :
 date           : 2019-08-14
 time           : 07'41"58
 quest          : 9★-like-a-moth-to-the-flame

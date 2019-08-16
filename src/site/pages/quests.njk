@@ -44,33 +44,35 @@ title: Quests
     </div>
 </div>
 
-<table class="tablesort">
-    <thead>
-        <tr>
-            <th scope="col" data-sort-default>Name</th>
-            <th scope="col">Type</th>
-            <th scope="col">Difficulty</th>
-            <th scope="col">Location</th>
-            <th scope="col">Expansion</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for quest in collections.quests %}
-        <tr
-            data-type="{{ quest.data.quest_type }}"
-            data-difficulty="{{ quest.data.difficulty }}"
-            data-expansion="{{ quest.data.expansion }}"
-            data-location="{{ quest.data.location }}"
-            >
-            <td class="tablesort__title"><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></td>
-            <td class="tablesort__type">{{ quest.data.quest_type | label }}</td>
-            <td class="tablesort__difficulty">{{ quest.data.difficulty }}</td>
-            <td class="tablesort__location">{{ collections.lookup.location[ quest.data.location ].data.title }}</td>
-            <td class="tablesort__expansion">{{ quest.data.expansion | label }}</td>
-        </tr>
-    {% endfor %}
-    </tbody>
-</table>
+<div class="table-wrapper">
+    <table class="tablesort">
+        <thead>
+            <tr>
+                <th scope="col" data-sort-default>Name</th>
+                <th scope="col">Type</th>
+                <th scope="col">Difficulty</th>
+                <th scope="col">Location</th>
+                <th scope="col">Expansion</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quest in collections.quests %}
+            <tr
+                data-type="{{ quest.data.quest_type }}"
+                data-difficulty="{{ quest.data.difficulty }}"
+                data-expansion="{{ quest.data.expansion }}"
+                data-location="{{ quest.data.location }}"
+                >
+                <td class="tablesort__title"><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></td>
+                <td class="tablesort__type">{{ quest.data.quest_type | label }}</td>
+                <td class="tablesort__difficulty">{{ quest.data.difficulty }}</td>
+                <td class="tablesort__location">{{ collections.lookup.location[ quest.data.location ].data.title }}</td>
+                <td class="tablesort__expansion">{{ quest.data.expansion | label }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 <hr>
 {# --- #}
