@@ -3,12 +3,13 @@
     "meta_description": "Unofficial Monster Hunter World Iceborne Leaderboards.",
     "repository": "https://github.com/shinseiken/mhw",
     "menu": {
-        "/runs/"      : "Runs",
-        "/runners/"   : "Runners",
-        "/quests/"    : "Quests",
-        "/weapons/"   : "Weapons",
-        "/monsters/"  : "Monsters",
-        "/locations/" : "Locations"
+        "/leaderboards/" : "Leaderboards",
+        "/runs/"         : "Runs",
+        "/runners/"      : "Runners",
+        "/quests/"       : "Quests",
+        "/weapons/"      : "Weapons",
+        "/monsters/"     : "Monsters",
+        "/locations/"    : "Locations"
     },
     "footer": {
         "/"           : "Home",
