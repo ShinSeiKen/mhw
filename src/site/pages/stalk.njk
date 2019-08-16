@@ -1,0 +1,66 @@
+---
+title: Stalk
+---
+{% import "components/macros.njk" as macros %}
+
+<style>
+    table.summary {
+        width: auto !important;
+    }
+    table.summary tr td:first-child,
+    table.summary tr th {
+        text-align: left !important;
+    }
+    table.summary tr td:nth-of-type(5) a:focus {
+        background-color: transparent;
+    }
+</style>
+<div class="grid grid--quadra">
+    <div class="grid__row">
+        <h1>{{ title }}</h1>
+        <div class="table-wrapper">
+            <table class="summary">
+                <tr>
+                    <th>Runner</th>
+                    <th>Twitter</th>
+                    <th>Youtube</th>
+                    <th>Twitch</th>
+                    <th>Bilibili</th>
+                </tr>
+                {% for runner in collections.runners %}
+                    <tr>
+                        <td>{% include "components/links/runner-link.njk" %}</td>
+                        <td>
+                            {% if runner.data.twitter %}
+                                <a href="{{ runner.data.twitter }}" target="_blank">
+                                    <img src="https://pagecdn.io/lib/super-tiny-icons/twitter.svg">
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if runner.data.youtube %}
+                                <a href="{{ runner.data.youtube }}" target="_blank">
+                                    <img src="https://pagecdn.io/lib/super-tiny-icons/youtube.svg">
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if runner.data.twitch %}
+                                <a href="{{ runner.data.twitch }}" target="_blank">
+                                    <img src="https://pagecdn.io/lib/super-tiny-icons/twitch.svg">
+                                </a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if runner.data.bilibili %}
+                                <a href="{{ runner.data.bilibili }}" target="_blank">
+                                    <img src="https://raw.githubusercontent.com/eli486/cdn/master/icon/bilibili.png">
+                                </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor  %}
+            </table>
+        </div>
+    </div>
+</div>
