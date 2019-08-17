@@ -1,8 +1,8 @@
 ---
 title: ShinSeiKen
 twitter: https://twitter.com/ShinSeiKenX
-youtube:
-twitch:
+youtube: https://www.youtube.com/channel/UCSJqDjStc582_aHGTbeohRw
+twitch: https://www.twitch.tv/ShinSeiKenX
 country: nl
 weapons: []
 #    - long-sword

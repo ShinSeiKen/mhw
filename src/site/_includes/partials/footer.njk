@@ -20,7 +20,8 @@
             <br>
             {# Made by <a href="https://github.com/shinseiken">ShinSeiKen</a> - <a href="{{ general.repository }}/tree/master/{{ page.inputPath }}">Edit this page on GitHub</a><br><br> #}
             Made by <a href="{{ '/runners/shinseiken' | url }}">ShinSeiKen</a>.<br>
-            Last build: <time datetime="{{ 'now' | currentDateTimeISO }}">{{ 'now' | currentDateTime }}</time>
+            {# --- Disable this, because it makes deploys significantly slower --- #}
+            {# Last build: <time datetime="{{ 'now' | currentDateTimeISO }}">{{ 'now' | currentDateTime }}</time> #}
         </p>
     </div>
 </footer>
