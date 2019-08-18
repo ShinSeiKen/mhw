@@ -1,11 +1,10 @@
 ---
-title   : QUEL
+title   : QUEL (クエル)
 twitter : https://twitter.com/trkn_zhzh
 youtube : https://www.youtube.com/channel/UCV2PuUubfg9IEC4k6Y2bU_Q
-twitch  : 
-patreon : 
+twitch  :
+patreon :
 country : jp
 weapons :
     - dual-blades
 ---
-

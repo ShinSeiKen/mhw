@@ -9,7 +9,7 @@ time           : 05'02"68
 quest          : 9★-the-deathly-quiet-curtain
 
 runners:
-    - elog
+    - eloy
 
 weapons:
     - dual-blades
