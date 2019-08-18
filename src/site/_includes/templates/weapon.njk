@@ -13,9 +13,16 @@ layout: layouts/base.njk
             <dt>Type</dt>
             <dd>{{ weapon_type }}</dd>
         </dl>
+    </div>
+    <div class="grid__media">
+        {% if video %}
+            {{ macros.video(video) }}
+        {% endif %}
+    </div>
+    <div class="grid__row">
         <h2>Runners</h2>
         {% if collections.runners__by_weapon[page.fileSlug] %}
-            <ul>
+            <ul class="multi-column-list">
                 {% for runner in collections.runners__by_weapon[ page.fileSlug ] %}
                     <li>
                         {% include "components/links/runner-link.njk" %}
@@ -24,12 +31,6 @@ layout: layouts/base.njk
             </ul>
         {% else %}
             <p>No runners found!</p>
-        {% endif %}
-    </div>
-
-    <div class="grid__media">
-        {% if video %}
-            {{ macros.video(video) }}
         {% endif %}
     </div>
 </div>
