@@ -1,6 +1,6 @@
 ---
 title   : Sazerou
-twitter :
+twitter : https://twitter.com/RoninMatignas
 youtube : https://www.youtube.com/channel/UCsoT-Wuu9cjkhKrmG7hrDSA
 twitch  :
 patreon :
