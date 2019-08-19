@@ -1,9 +1,11 @@
 ---
 title          :
-video          : https://www.bilibili.com/video/av64252998/
+video          : https://www.youtube.com/embed/s2wEFNHYBg4
+videos:
+    - https://www.bilibili.com/video/av64252998/
 run_type       : ta-wiki-rules
 platform       : pc
-patch_version  : 
+patch_version  :
 date           : 2019-08-18
 time           : 12'13"68
 quest          : 9★-a-visitor-from-eorzea-extreme

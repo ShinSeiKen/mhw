@@ -1,6 +1,8 @@
 ---
 title          :
-video          : https://player.bilibili.com/player.html?aid=61984548
+video          : https://www.youtube.com/embed/5gKFQoHNX58
+videos:
+    - https://player.bilibili.com/player.html?aid=61984548
 run_type       : freestyle
 platform       : pc
 patch_version  :
