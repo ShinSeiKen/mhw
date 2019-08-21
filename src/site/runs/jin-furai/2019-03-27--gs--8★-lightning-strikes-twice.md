@@ -1,6 +1,6 @@
 ---
 title          :
-video          : https://www.youtube.com/embed/H12TnhA3sxQ
+video          : https://www.youtube.com/embed/Gsm5o72aRxs
 video_type     : youtube
 run_type       : freestyle
 platform       : pc
