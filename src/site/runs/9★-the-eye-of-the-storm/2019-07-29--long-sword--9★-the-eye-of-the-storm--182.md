@@ -9,7 +9,7 @@ time           : 02'46"99
 quest          : 9★-the-eye-of-the-storm
 
 runners:
-    - 回复猫毛肚
+    - 毛肚
 
 weapons:
     - long-sword
