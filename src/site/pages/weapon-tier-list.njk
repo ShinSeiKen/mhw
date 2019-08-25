@@ -14,10 +14,8 @@ title: Weapon Speedrunning Tier List
 ] %}
 
 {#
-,
-    { slug: '9★-a-visitor-from-eorzea'             , variant: 'regular' },
-    { slug: '9★-a-visitor-from-eorzea-extreme'     , variant: 'tempered' }
-
+    ,{ slug: '9★-a-visitor-from-eorzea'             , variant: 'regular' }
+    ,{ slug: '9★-a-visitor-from-eorzea-extreme'     , variant: 'tempered' }
 #}
 
 {% set ranking = [] %}
@@ -38,10 +36,10 @@ title: Weapon Speedrunning Tier List
 
 <div class="grid">
     <div class="grid__content--wide">
-        <h1>Weapon Tier List</h1>
+        <h1>Weapon Speedrunning Tier List</h1>
         {% set runner = collections.lookup.runner[ 'tsc' ] %}
         <p>Fastest weapons based on Freestyle speedruns and arch-tempered event quests.</p>
-        <p>This is fun experiment based on {% include "components/links/runner-link.njk" %} video:</p>
+        <p>This is fun experiment based on {% include "components/links/runner-link.njk" %}'s video:</p>
 
         {{ macros.video('https://www.youtube.com/embed/GptqQedGTY4') }}
         <br>
@@ -58,7 +56,7 @@ title: Weapon Speedrunning Tier List
 
 <h2>World Records</h2>
 <div class="table-wrapper">
-    <table class="summary leaderboards">
+    <table class="summary">
         <tr>
             <th scope="col">Weapon</th>
             {% for hotquest in hotQuests %}
@@ -82,9 +80,9 @@ title: Weapon Speedrunning Tier List
                     {% set runnerSlug = data.run.data.runners | first %}
                     {% set runner     = collections.lookup.runner[ runnerSlug ] %}
                     <td>
-                        <strong>{{ data.rank }}</strong>
+                        <strong>№ {{ data.rank }}</strong>
                         <br>
-                        <a href="{{ run.url | url }}">
+                        <a href="{{ data.run.url | url }}">
                             {{ data.run.data.time }}
                         </a>
                         <br>
