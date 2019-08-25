@@ -89,7 +89,6 @@ title: Runs
 <div class="grid">
     <div class="grid__row">
         <h1>{{ title }}</h1>
-        <h2>Singleplayer</h2>
         {% set dateCheck = false %}
         {% for run in collections.runs %}
             {% if run.data.runners | length === 1 and run.date|dateDisplay('yyyy') == '2019' %}
@@ -101,7 +100,7 @@ title: Runs
                     {% if dateCheck !== false %}
                         {{ table_footer() }}
                     {% endif %}
-                    <h3>{{ dateNew }}</h3>
+                    <h2>{{ dateNew }}</h2>
                     {{ table_header() }}
                 {% endif %}
 
