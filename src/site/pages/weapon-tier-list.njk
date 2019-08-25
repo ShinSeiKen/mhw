@@ -1,0 +1,100 @@
+---
+title: Weapon Speedrunning Tier List
+---
+{% import "components/macros.njk" as macros %}
+
+{% set hotQuests = [
+    { slug: '9★-a-whisper-of-white-mane'           , variant: 'arch-tempered' },
+    { slug: '9★-the-deathly-quiet-curtain'         , variant: 'arch-tempered' },
+    { slug: '9★-like-a-moth-to-the-flame'          , variant: 'arch-tempered' },
+    { slug: '9★-the-eye-of-the-storm'              , variant: 'arch-tempered' },
+    { slug: '9★-the-heralds-of-destruction-cry'    , variant: 'arch-tempered' },
+    { slug: '9★-the-scorn-of-the-sun'              , variant: 'arch-tempered' },
+    { slug: '9★-when-blue-dust-surpasses-red-lust' , variant: 'arch-tempered' }
+] %}
+
+{#
+,
+    { slug: '9★-a-visitor-from-eorzea'             , variant: 'regular' },
+    { slug: '9★-a-visitor-from-eorzea-extreme'     , variant: 'tempered' }
+
+#}
+
+{% set ranking = [] %}
+{% for weapon_slug in global_weapons %}
+    {% set item = collections.lookup.weapon[ weapon_slug ] %}
+    {% set score = 0 %}
+    {% for hotquest in hotQuests %}
+        {% set data = collections.xxx4[hotquest.slug] | tierIndexOfWeapon(weapon_slug) %}
+        {% set score = score + (14 - data.rank) %}
+    {% endfor %}
+    {% set ranking = (ranking.push({
+        weapon_slug: weapon_slug,
+        weapon: item,
+        score: score
+    }), ranking) %}
+{% endfor %}
+{% set ranking = ranking | sortByScore %}
+
+<div class="grid">
+    <div class="grid__content--wide">
+        <h1>Weapon Tier List</h1>
+        {% set runner = collections.lookup.runner[ 'tsc' ] %}
+        <p>Fastest weapons based on Freestyle speedruns and arch-tempered event quests.</p>
+        <p>This is fun experiment based on {% include "components/links/runner-link.njk" %} video:</p>
+
+        {{ macros.video('https://www.youtube.com/embed/GptqQedGTY4') }}
+        <br>
+
+        <ol>
+        {% for rank in ranking %}
+            <li>
+                {{ rank.weapon.data.title }}: <strong>{{ rank.score }}</strong>&nbsp;/&nbsp;{{ 14 * hotQuests|length }}
+            </li>
+        {% endfor %}
+        </ol>
+    </div>
+</div>
+
+<h2>World Records</h2>
+<div class="table-wrapper">
+    <table class="summary leaderboards">
+        <tr>
+            <th scope="col">Weapon</th>
+            {% for hotquest in hotQuests %}
+                {% set quest = collections.lookup.quest[ hotquest.slug ] %}
+                <th>
+                    <img
+                        class="quest-card__image monster-icon variant--{{ hotquest.variant }}"
+                        src="/assets/img/monster-icons/{{ quest.data.monsters | first }}.png"
+                    />
+                </th>
+            {% endfor %}
+        </tr>
+        {% for weapon_slug in global_weapons %}
+            {% set item = collections.lookup.weapon[ weapon_slug ] %}
+            {% set score = 0 %}
+            <tr>
+                <td>{{ macros.weapon_icon(weapon_slug, item.data.title) }}</th>
+                {% for hotquest in hotQuests %}
+                    {% set quest      = collections.lookup.quest[ hotquest.slug ] %}
+                    {% set data       = collections.xxx4[hotquest.slug] | tierIndexOfWeapon(weapon_slug) %}
+                    {% set runnerSlug = data.run.data.runners | first %}
+                    {% set runner     = collections.lookup.runner[ runnerSlug ] %}
+                    <td>
+                        <strong>{{ data.rank }}</strong>
+                        <br>
+                        <a href="{{ run.url | url }}">
+                            {{ data.run.data.time }}
+                        </a>
+                        <br>
+                        <span class="small">
+                            {% include "components/links/runner-link.njk" %}
+                        </span>
+                    </td>
+                    {% set score = score + (14 - data.rank) %}
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+</div>
