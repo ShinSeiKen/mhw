@@ -545,6 +545,221 @@ module.exports = function(config) {
     });
 
     /**
+     * Track single-player leaderboards only "TA Wiki Rules"
+     */
+    config.addCollection('xxxta', collection => {
+        let all = collection.getAll();
+
+        // ARCH-TEMPERED LEADERBOARDS!
+        let archTemperedLeague = [
+            '9★-a-whisper-of-white-mane',
+            '9★-the-deathly-quiet-curtain',
+            '9★-like-a-moth-to-the-flame',
+            '9★-the-eye-of-the-storm',
+            '9★-the-heralds-of-destruction-cry',
+            '9★-the-scorn-of-the-sun',
+            // '9★-undying-alpenglow',
+            '9★-when-blue-dust-surpasses-red-lust'
+
+            ,'9★-a-visitor-from-eorzea'
+            ,'9★-a-visitor-from-eorzea-extreme'
+        ];
+
+        // lookup
+        let runners = [];
+        let runs    = [];
+        let quests  = [];
+        let weapons = [];
+
+        // leaderboard data
+        let top_runs__by_quest = [];
+        let top_runs__by_weapon__by_quest  = [];
+        let top_runs__by_runner__by_weapon = [];
+        let top_runs__by_runner = [];
+        let top_runners = [];
+        let top_runners_flat = [];
+
+        all.forEach(item => {
+
+            // (1) Collect all items for lookup first
+            switch (item.data.type) {
+                case 'runner':
+                    slug = item.fileSlug
+                    // troublesome
+                    if (troublesomeSlugs[ slug ]) {
+                        slug = troublesomeSlugs[ slug ];
+                    }
+                    runners[slug] = item;
+                    break;
+                case 'run':
+                    // Only count runs that have one runner, and a single weapon
+                    if (item.data.runners.length == 1 && item.data.weapons.length == 1 && item.data.run_type == 'ta-wiki-rules') {
+                        // NOTE: FILESLUG IS NOT UNIQUE
+                        if (archTemperedLeague.includes(item.data.quest)) {
+                            runs.push(item);
+                        }
+                    }
+                    break;
+                case 'quest':
+                    /*
+                    // todo: don't count all quests, or do we?
+                    if (item.data.track_for_leaderboards == 1) {
+                        quests[item.fileSlug] = item;
+                    }
+                    //*/
+                    if (archTemperedLeague.includes(item.fileSlug)) {
+                        quests[item.fileSlug] = item;
+                    }
+                    break;
+                case 'weapon':
+                    weapons[item.fileSlug] = item;
+                    break;
+            }
+
+        });
+
+        // (2) Prepare relationships between runs and quests
+        runs.forEach(item => {
+            let quest = item.data.quest;
+            // Check if the quest the run belongs to is eligible
+            if (quests[quest]) {
+                if (! top_runs__by_quest[quest]) {
+                    top_runs__by_quest[quest] = [];
+                }
+                top_runs__by_quest[quest].push(item);
+            }
+        });
+
+        // (3) Group runs per weapon per quest
+        Object.keys(top_runs__by_quest).forEach(questSlug => {
+            let runs = top_runs__by_quest[questSlug].sort(byTimeAscending);
+            top_runs__by_weapon__by_quest[questSlug] = [];
+
+            runs.forEach(run => {
+                let weaponSlug = run.data.weapons[0];
+                if (! top_runs__by_weapon__by_quest[questSlug][weaponSlug]) {
+                    top_runs__by_weapon__by_quest[questSlug][weaponSlug] = [];
+                }
+                top_runs__by_weapon__by_quest[questSlug][weaponSlug].push(run);
+            });
+        });
+
+        // AAA top_runs__by_weapon__by_quest
+
+        // (4) Group ranked runs (trophies) per runner per weapon
+        Object.keys(top_runs__by_weapon__by_quest).forEach(questSlug => {
+            let weapons = top_runs__by_weapon__by_quest[questSlug];
+            let weaponRunnerLookup = [];
+
+            Object.keys(weapons).forEach(weaponSlug => {
+                let runs = weapons[weaponSlug];
+                weaponRunnerLookup[weaponSlug] = new Set();
+
+                if (! top_runs__by_runner__by_weapon[weaponSlug]) {
+                    top_runs__by_runner__by_weapon[weaponSlug] = [];
+                }
+
+                let rank = 1;
+                runs.forEach((run) => {
+                    let runner = run.data.runners[0];
+
+                    if (! top_runs__by_runner__by_weapon[weaponSlug][runner]) {
+                        top_runs__by_runner__by_weapon[weaponSlug][runner] = []
+                    }
+
+                    // A person should not hold multiple trophies within the
+                    // the same category, that is, only the best run is counted.
+                    // Using `weaponRunnerLookup` for checking duplicates.
+
+                    if (! weaponRunnerLookup[weaponSlug].has(runner)) {
+                        top_runs__by_runner__by_weapon[weaponSlug][runner].push({
+                            // This is a trophy
+                            rank: rank,
+                            run: run,
+                            quest: quests[questSlug]
+                        });
+                        weaponRunnerLookup[weaponSlug].add(runner);
+                        rank++;
+                    }
+                })
+            });
+        });
+
+        // BBB: top_runs__by_runner__by_weapon
+
+        // (5) Group ranked runs (trophies) per runner
+        Object.keys(top_runs__by_runner__by_weapon).forEach(weaponSlug => {
+            let runners = top_runs__by_runner__by_weapon[weaponSlug];
+
+            Object.keys(runners).forEach(runnerSlug => {
+                let trophies = runners[runnerSlug];
+                trophies.forEach(trophy => {
+                    if (! top_runs__by_runner[runnerSlug]) {
+                        top_runs__by_runner[runnerSlug] = [];
+                    }
+                    top_runs__by_runner[runnerSlug].push(trophy);
+                });
+            });
+        });
+
+        // CCC: top_runs__by_runner
+
+        // (6) Calculate overall score
+        // For now, count the number of gold trophies
+        Object.keys(top_runs__by_runner).forEach(runnerSlug => {
+            let trophies = top_runs__by_runner[runnerSlug];
+            let gold   = 0;
+            let silver = 0;
+            let bronze = 0;
+
+            trophies.forEach(trophy => {
+                switch (trophy.rank) {
+                    case 1:
+                        gold++;
+                        break;
+                    case 2:
+                        silver++;
+                        break;
+                    case 3:
+                        bronze++;
+                        break;
+                }
+            });
+
+            top_runners[runnerSlug] = [];
+            top_runners[runnerSlug].push({
+                gold: gold,
+                silver: silver,
+                bronze: bronze,
+                trophies: trophies
+            });
+            top_runners_flat.push({
+                runner: runners[runnerSlug],
+                gold: gold,
+                silver: silver,
+                bronze: bronze,
+                trophies: trophies
+            });
+        });
+
+        // DDD: top_runners // doesn't work when looping in templates
+        // DDD: top_runners_flat
+
+        return top_runners_flat.sort((a, b) => {
+            if (a.gold === b.gold && a.silver === b.silver && a.bronze === b.bronze) {
+                return 0;
+            }
+            if (a.gold === b.gold && a.silver === b.silver) {
+                return b.bronze - a.bronze;
+            }
+            if (a.gold === b.gold) {
+                return b.silver - a.silver;
+            }
+            return b.gold - a.gold;
+        });
+    });
+
+    /**
      * Top 3 quests summaries
      */
     config.addCollection('xxx2', collection => {
