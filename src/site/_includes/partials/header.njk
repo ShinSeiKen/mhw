@@ -33,6 +33,17 @@
                     </a>
                 </li>
             {% endfor %}
+            {% for url, label in general.menu_extra %}
+                {% set active = '' %}
+                {% if page.url == url %}
+                    {% set active = 'active' %}
+                {% endif %}
+                <li class="header-links__item {{ active }}">
+                    <a class="header-links__link--ghost" href="{{ url | url }}">
+                        {{- label | safe -}}
+                    </a>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 </nav>

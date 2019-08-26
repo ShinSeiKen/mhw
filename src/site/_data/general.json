@@ -11,6 +11,10 @@
         "/monsters/"     : "Monsters",
         "/locations/"    : "Locations"
     },
+    "menu_extra": {
+        "/submit-runner": "Submit runner",
+        "/submit-run": "Submit run"
+    },
     "footer": {
         "/"           : "Home",
         "/about/"     : "About",

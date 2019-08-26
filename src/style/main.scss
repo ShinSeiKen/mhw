@@ -329,6 +329,23 @@ footer {
     background-color: var(--yellow);
 }
 
+.header-links__link--ghost {
+    outline: 1px solid black;
+    padding: 10px;
+    text-decoration: none;
+}
+.header-links__link--ghost:hover {
+    color: white;
+    background-color: black;
+}
+.header-links__link--ghost:focus,
+.header-links__link--ghost:active {
+    color: white;
+    outline: 1px solid var(--yellow);
+    background-color: var(--yellow);
+}
+
+
 .header-links,
 .footer-links {
     padding-left: 0;
@@ -982,13 +999,13 @@ a.button {
     display: inline-block;
     color: #fff;
     background-color: #000;
-    border-color: #000;
+    // border-color: #000;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
     user-select: none;
     border: 1px solid transparent;
-    padding: .375rem .75rem;
+    padding: .5rem 1rem;
     line-height: 1.5;
     transition:
         color .15s ease-in-out,
@@ -996,6 +1013,18 @@ a.button {
         border-color .15s ease-in-out,
         box-shadow .15s ease-in-out
     ;
+}
+
+a.button--ghost {
+    background-color: transparent;
+    border-color: #000;
+    color: #000;
+    text-decoration: none;
+}
+
+a.button--ghost:hover {
+    background-color: #000;
+    color: #fff;
 }
 
 a.button:focus {
