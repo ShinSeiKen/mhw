@@ -5,7 +5,7 @@ video_type     : youtube
 run_type       : freestyle
 platform       : ps4
 patch_version  :
-date           : 2018-09-27
+date           : 2018-10-02
 time           : 03'11"48
 quest          : 9★-a-whisper-of-white-mane
 
