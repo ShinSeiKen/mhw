@@ -1,11 +1,10 @@
 ---
 title   : Rkd
-twitter : 
+twitter :
 youtube : https://www.youtube.com/channel/UC-aNj4-rzW79UDxl-Ha0cPA
-twitch  : 
-patreon : 
-country : lt
+twitch  :
+patreon :
+country : it
 weapons :
     - hunting-horn
 ---
-
