@@ -1,6 +1,6 @@
 ---
 title   : delbuster
-twitter :
+twitter : https://twitter.com/delbuster
 youtube : https://www.youtube.com/user/delephantz
 twitch  :
 patreon :
