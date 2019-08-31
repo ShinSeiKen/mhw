@@ -24,7 +24,7 @@ title: Weapon Speedrunning Tier List
     {% set score = 0 %}
     {% for hotquest in hotQuests %}
         {% set data = collections.xxx4[hotquest.slug] | tierIndexOfWeapon(weapon_slug) %}
-        {% set score = score + (14 - data.rank) %}
+        {% set score = score + (15 - data.rank) %}
     {% endfor %}
     {% set ranking = (ranking.push({
         weapon_slug: weapon_slug,
@@ -75,24 +75,30 @@ title: Weapon Speedrunning Tier List
             <tr>
                 <td>{{ macros.weapon_icon(weapon_slug, item.data.title) }}</th>
                 {% for hotquest in hotQuests %}
-                    {% set quest      = collections.lookup.quest[ hotquest.slug ] %}
-                    {% set data       = collections.xxx4[hotquest.slug] | tierIndexOfWeapon(weapon_slug) %}
-                    {% set runnerSlug = data.run.data.runners | first %}
-                    {% set runner     = collections.lookup.runner[ runnerSlug ] %}
-                    <td>
-                        <strong>№ {{ data.rank }}</strong>
-                        <br>
-                        <a href="{{ data.run.url | url }}">
+                    {% set quest = collections.lookup.quest[ hotquest.slug ] %}
+                    {% set data  = collections.xxx4[hotquest.slug] | tierIndexOfWeapon(weapon_slug) %}
+                    {% if data.run %}
+                        {% set runnerSlug = data.run.data.runners | first %}
+                        {% set runner     = collections.lookup.runner[ runnerSlug ] %}
+                        <td>
+                            <strong>№ {{ data.rank }}</strong>
+                            <br>
+                            <a href="{{ data.run.url | url }}">
+                                <span class="small">
+                                    {{ data.run.data.time }}
+                                </span>
+                            </a>
+                            <br>
                             <span class="small">
-                                {{ data.run.data.time }}
+                                {% include "components/links/runner-link.njk" %}
                             </span>
-                        </a>
-                        <br>
-                        <span class="small">
-                            {% include "components/links/runner-link.njk" %}
-                        </span>
-                    </td>
-                    {% set score = score + (14 - data.rank) %}
+                        </td>
+                        {% set score = score + (15 - data.rank) %}
+                    {% else %}
+                        <td>
+                            &nbsp;
+                        </td>
+                    {% endif %}
                 {% endfor %}
             </tr>
         {% endfor %}

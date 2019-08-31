@@ -1067,6 +1067,10 @@ module.exports = function(config) {
                 }
             }
         }
+        return {
+            rank: 14,
+            run: false
+        }
     });
 
     config.addFilter("sortByScore", list => {
