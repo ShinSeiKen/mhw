@@ -13,7 +13,8 @@
     },
     "menu_extra": {
         "/submit-runner": "Submit runner",
-        "/submit-run": "Submit run"
+        "/submit-run": "Submit run",
+        "https://iceborne.seiken.io/": "Iceborne"
     },
     "footer": {
         "/"           : "Home",
