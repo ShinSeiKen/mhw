@@ -1,11 +1,10 @@
 ---
 title   : Taxman
-twitter : 
+twitter :
 youtube : https://www.youtube.com/channel/UCc3vATWTElRuWsv0y9s1kXA
-twitch  : 
-patreon : 
-country : 
+twitch  :
+patreon :
+country : ph
 weapons :
     - hunting-horn
 ---
-
