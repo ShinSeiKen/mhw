@@ -8,6 +8,7 @@ country : de
 weapons :
     - long-sword
     - hammer
+    - gunlance
     - charge-blade
     - light-bowgun
 ---
