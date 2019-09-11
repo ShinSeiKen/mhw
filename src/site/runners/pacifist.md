@@ -1,6 +1,6 @@
 ---
 title   : Pacifist
-twitter : https://twitter.com/pacific_256
+twitter : # NOTE: Does NOT want Twitter to be showm
 youtube : https://www.youtube.com/channel/UCA9qiU8zVGPAhsT8YlnrNLA
 twitch  :
 patreon :
