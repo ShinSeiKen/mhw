@@ -52,7 +52,7 @@ layout: layouts/base.njk
                         <a href="#section-summary-freestyle">Summary</a>
                     </li>
                     <li>
-                        <a href="#section-summary-ta">Summary (TA)</a>
+                        <a href="#section-summary-ta">Summary (TA Wiki)</a>
                     </li>
                     {% endif %}
                     {% if hasMultiplayer %}
@@ -125,7 +125,7 @@ layout: layouts/base.njk
                                                     (<a href="{{ run.data.ta_wiki_link }}">TA</a>)
                                                 </span>
                                             {% elseif run.data.run_type == 'ta-wiki-rules' %}
-                                                <span class="small">(TA)</span>
+                                                <span class="small">(TA Wiki)</span>
                                             {% endif %}
                                         </td>
                                         <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
@@ -206,7 +206,7 @@ layout: layouts/base.njk
                     </div>
                 </section>
                 <section id="section-summary-ta">
-                    <h3>Summary (TA)</h3>
+                    <h3>Summary (TA Wiki)</h3>
                     <div class="table-wrapper">
                         <table class="summary">
                             <tr>
