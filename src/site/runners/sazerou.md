@@ -2,9 +2,9 @@
 title   : Sazerou
 twitter : https://twitter.com/RoninMatignas
 youtube : https://www.youtube.com/channel/UCsoT-Wuu9cjkhKrmG7hrDSA
-twitch  :
+twitch  : https://www.twitch.tv/sazerou
 patreon :
-country : pr
+country : ph
 weapons :
     - great-sword
     - long-sword
