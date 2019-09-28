@@ -1,8 +1,8 @@
 ---
 title   : TheHeavenlyDao
-twitter :
+twitter : https://twitter.com/DaoHeavenly
 youtube : https://www.youtube.com/user/gamervagabondo
-twitch  :
+twitch  : https://www.twitch.tv/theheavenlydao
 patreon :
 country :
 weapons :
