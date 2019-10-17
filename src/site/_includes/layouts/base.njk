@@ -30,7 +30,6 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.3.0/css/flag-icon.min.css" integrity="sha256-NkXMfPcpoih3/xWDcrJcAX78pHpfwxkhNj0bAf8AMTs=" crossorigin="anonymous" />
         <link rel="stylesheet" href="{{ '/assets/style/main.css' | url }}" />
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({ google_ad_client: "ca-pub-1456489391618538", enable_page_level_ads: true });</script>
     </head>
     <body class="--show-base-grid --debug {% if page.url == '/' %}homepage{% else %}{{ type }}--{{ page.fileSlug }}{% endif %}">
 
@@ -39,6 +38,14 @@
         <main id="content"role="main">
             <div class="inner">
                 {{ content | safe }}
+
+            <!-- Horizontal Ad 1 -->
+            <ins class="adsbygoogle"
+                style="display:block"
+                data-ad-client="ca-pub-1456489391618538"
+                data-ad-slot="2174915629"
+                data-ad-format="auto"
+                data-full-width-responsive="true"></ins>
             </div>
         </main>
 
@@ -46,6 +53,6 @@
 
         <script src="{{ '/assets/script/main.js' | url }}"></script>
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-144639528-1"></script>
-        <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-144639528-1', { 'anonymize_ip': true });</script>
+        <script>window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-144639528-1', { 'anonymize_ip': true }); (adsbygoogle = window.adsbygoogle || []).push({});</script>
     </body>
 </html>
