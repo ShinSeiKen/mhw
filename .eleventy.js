@@ -329,6 +329,9 @@ module.exports = function(config) {
     // Collections: Leaderboards
     // --------------------------------------------------------------------------------
 
+    let top_3_runs    = [];
+    let top_3_runs_ta = [];
+
     /**
      * Track single-player leaderboards only!
      */
@@ -850,6 +853,16 @@ module.exports = function(config) {
             });
         });
 
+        // Extra lookup table for showing trophies on other pages
+        for (const questSlug in top_runs__by_weapon__by_quest) {
+            for (const weaponSlug in top_runs__by_weapon__by_quest[questSlug]) {
+                let runs = top_runs__by_weapon__by_quest[questSlug][weaponSlug]
+                    for (let i = 0; i < runs.length; i++) {
+                        top_3_runs[runs[i].url] = (i + 1);
+                }
+            }
+        }
+
         return top_runs__by_weapon__by_quest
     });
 
@@ -943,6 +956,16 @@ module.exports = function(config) {
                 duplicateCheck[weaponSlug][runnerSlug] = true;
             });
         });
+
+        // Extra lookup table for showing trophies on other pages
+        for (const questSlug in top_runs__by_weapon__by_quest) {
+            for (const weaponSlug in top_runs__by_weapon__by_quest[questSlug]) {
+                let runs = top_runs__by_weapon__by_quest[questSlug][weaponSlug]
+                    for (let i = 0; i < runs.length; i++) {
+                        top_3_runs_ta[runs[i].url] = (i + 1);
+                }
+            }
+        }
 
         return top_runs__by_weapon__by_quest
     });
@@ -1081,6 +1104,22 @@ module.exports = function(config) {
         });
     });
 
+    config.addFilter("freestyleRank", run => {
+
+        if (! top_3_runs[run.url]) {
+            return 0;
+        }
+
+        return top_3_runs[run.url];
+    })
+
+    config.addFilter("taWikiRank", run => {
+        if (! top_3_runs_ta[run.url]) {
+            return 0;
+        }
+
+        return top_3_runs_ta[run.url];
+    })
 
     // --------------------------------------------------------------------------------
     // Filters and Shortcodes

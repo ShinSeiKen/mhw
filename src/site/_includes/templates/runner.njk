@@ -34,6 +34,7 @@ layout: layouts/base.njk
                             <th scope="col" class="no-sort" data-sort-method='none'>Runners</th>
                             <th scope="col" class="no-sort" data-sort-method='none'>Weapons</th>
                             <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
+                            {# <th scope="col" class="no-sort" data-sort-method='none'>Ruleset</th> #}
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +49,16 @@ layout: layouts/base.njk
                                     {% set quest = collections.lookup.quest[ run.data.quest ] %}
                                     <a href="{{ quest.url | url }}">{{ quest.data.title }}</a>
                                 </td>
-                                <td class="tablesort__time">
+                                <td class="tablesort__time" data-sort='{{ run.data.time }}'>
+                                    {% set freestyleRank = run|freestyleRank %}
+                                    {% if freestyleRank == 1 %}
+                                        🥇
+                                    {% elseif freestyleRank == 2 %}
+                                        🥈
+                                    {% elseif freestyleRank == 3 %}
+                                        🥉
+                                    {% endif %}
+
                                     <a href="{{ run.url | url }}">
                                         {{ run.data.time }}
                                     </a>
@@ -92,6 +102,15 @@ layout: layouts/base.njk
                                             />
                                     </button>
                                 </td>
+                                {#
+                                <td>
+                                    {% if run.data.ta_wiki_link is defined and run.data.ta_wiki_link %}
+                                        <a href="{{ run.data.ta_wiki_link }}">{{ run.data.run_type | label }}</a>
+                                    {% else %}
+                                        {{ run.data.run_type | label }}
+                                    {% endif %}
+                                </td>
+                                #}
                             </tr>
                         {% endif %}
                     {% endfor %}

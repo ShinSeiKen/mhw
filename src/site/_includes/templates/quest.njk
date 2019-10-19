@@ -101,6 +101,7 @@ layout: layouts/base.njk
                                     <th scope="col" data-sort-default>Time</th>
                                     <th scope="col" class="no-sort" data-sort-method='none'>Weapon</th>
                                     <th scope="col" class="no-sort" data-sort-method='none'>Video</th>
+                                    <th scope="col" class="no-sort" data-sort-method='none'>Ruleset</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,16 +118,16 @@ layout: layouts/base.njk
                                         <td class="tablesort__runner">
                                             {%- include "components/links/runner-link.njk" %}
                                         </td>
-                                        <td class="tablesort__time">
-                                            <a href="{{ run.url | url }}">{{ run.data.time }}</a>
-
-                                            {% if run.data.ta_wiki_link is defined and run.data.ta_wiki_link %}
-                                                <span class="small">
-                                                    (<a href="{{ run.data.ta_wiki_link }}">TA Wiki</a>)
-                                                </span>
-                                            {% elseif run.data.run_type == 'ta-wiki-rules' %}
-                                                <span class="small">(TA Wiki)</span>
+                                        <td class="tablesort__time" data-sort='{{ run.data.time }}'>
+                                            {% set freestyleRank = run|freestyleRank %}
+                                            {% if freestyleRank == 1 %}
+                                                🥇
+                                            {% elseif freestyleRank == 2 %}
+                                                🥈
+                                            {% elseif freestyleRank == 3 %}
+                                                🥉
                                             {% endif %}
+                                            <a href="{{ run.url | url }}">{{ run.data.time }}</a>
                                         </td>
                                         <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
                                             {% for weapon in run.data.weapons %}
@@ -156,6 +157,13 @@ layout: layouts/base.njk
                                                     alt="Play video"
                                                     />
                                             </button>
+                                        </td>
+                                        <td>
+                                            {% if run.data.ta_wiki_link is defined and run.data.ta_wiki_link %}
+                                                <a href="{{ run.data.ta_wiki_link }}">{{ run.data.run_type | label }}</a>
+                                            {% else %}
+                                                {{ run.data.run_type | label }}
+                                            {% endif %}
                                         </td>
                                     </tr>
                                 {% endif %}
