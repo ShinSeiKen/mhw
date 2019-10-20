@@ -119,14 +119,7 @@ layout: layouts/base.njk
                                             {%- include "components/links/runner-link.njk" %}
                                         </td>
                                         <td class="tablesort__time" data-sort='{{ run.data.time }}'>
-                                            {% set freestyleRank = run|freestyleRank %}
-                                            {% if freestyleRank == 1 %}
-                                                🥇
-                                            {% elseif freestyleRank == 2 %}
-                                                🥈
-                                            {% elseif freestyleRank == 3 %}
-                                                🥉
-                                            {% endif %}
+                                            {{ macros.run_rank(run) }}
                                             <a href="{{ run.url | url }}">{{ run.data.time }}</a>
                                         </td>
                                         <td class="tablesort__weapon" data-sort='{{ run.data.weapons|first }}'>
@@ -179,9 +172,9 @@ layout: layouts/base.njk
                         <table class="summary">
                             <tr>
                                 <th style="width: 5%"></th>
-                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_1 }}" alt="Gold" />#}🥇</th>
-                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_2 }}" alt="Silver" />#}🥈</th>
-                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_3 }}" alt="Bronze" />#}🥉</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{{ macros.icon_svg('medal', 'gold') }}</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{{ macros.icon_svg('medal', 'silver') }}</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{{ macros.icon_svg('medal', 'bronze') }}</th>
                             </tr>
                             {% for weaponSlug in global_weapons %}
                                 <tr>
@@ -219,9 +212,9 @@ layout: layouts/base.njk
                         <table class="summary">
                             <tr>
                                 <th style="width: 5%"></th>
-                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_1 }}" alt="Gold" />#}🥇</th>
-                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_2 }}" alt="Silver" />#}🥈</th>
-                                <th style="width: 30%" scope="col" class="summary__head--huge">{#<img src="{{ crown_a_3 }}" alt="Bronze" />#}🥉</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{{ macros.icon_svg('award', 'gold') }}</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{{ macros.icon_svg('award', 'silver') }}</th>
+                                <th style="width: 30%" scope="col" class="summary__head--huge">{{ macros.icon_svg('award', 'bronze') }}</th>
                             </tr>
                             {% for weaponSlug in global_weapons %}
                                 <tr>

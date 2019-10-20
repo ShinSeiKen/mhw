@@ -34,25 +34,7 @@ title: Runs
             <a href="{{ quest.url | url }}">{{ quest.data.title }}</a>
         </td>
         <td class="tablesort__time" data-sort='{{ run.data.time }}'>
-            {% set freestyleRank = run|freestyleRank %}
-            {% if freestyleRank == 1 %}
-                🥇
-            {% elseif freestyleRank == 2 %}
-                🥈
-            {% elseif freestyleRank == 3 %}
-                🥉
-            {% endif %}
-            {#
-            {% set taWikiRank = run|taWikiRank %}
-            {% if taWikiRank == 1 %}
-                🥇
-            {% elseif taWikiRank == 2 %}
-                🥈
-            {% elseif taWikiRank == 3 %}
-                🥉
-            {% endif %}
-            #}
-
+            {{ macros.run_rank(run) }}
             <a href="{{ run.url | url }}">
                 {{ run.data.time }}
             </a>

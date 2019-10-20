@@ -53,3 +53,24 @@
 {% endmacro %}
 
 {% macro monster_img(slug) %}/assets/img/monster-icons/{{ slug }}.png{% endmacro %}
+
+{# --- type:
+- award
+- crown
+- medal
+- trophy
+--- #}
+{% macro icon_svg(type, variant) %}<svg class="icon icon--{{ variant }}"><use xlink:href="#{{ type }}"></use></svg>{% endmacro %}
+
+{% macro run_rank(run) %}
+    {% set freestyleRank = run|freestyleRank %}
+    {% set taWikiRank    = run|taWikiRank %}
+
+    {%     if taWikiRank    == 1 %} {{ icon_svg(type = 'award' , variant = 'gold') }}
+    {% elseif freestyleRank == 1 %} {{ icon_svg(type = 'medal' , variant = 'gold') }}
+    {% elseif taWikiRank    == 2 %} {{ icon_svg(type = 'award' , variant = 'silver') }}
+    {% elseif freestyleRank == 2 %} {{ icon_svg(type = 'medal' , variant = 'silver') }}
+    {% elseif taWikiRank    == 3 %} {{ icon_svg(type = 'award' , variant = 'bronze') }}
+    {% elseif freestyleRank == 3 %} {{ icon_svg(type = 'medal' , variant = 'bronze') }}
+    {% endif %}
+{% endmacro %}

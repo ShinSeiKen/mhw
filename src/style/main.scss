@@ -1185,3 +1185,57 @@ img.quest-card__image {
 small, sub, sup { font-size: 80%; }
 sub             { vertical-align: sub; }
 sup             { vertical-align: super; }
+
+
+
+/**
+Icons
+*/
+.icon {
+    height : 1rem;
+    width  : 1rem;
+    vertical-align: middle;
+    filter:
+        drop-shadow(1px 0px 0px #999)
+        drop-shadow(-1px 0px 0px #999)
+        drop-shadow(0px 1px 0px #999)
+        drop-shadow(0px -1px 0px #999)
+    ;
+}
+.summary__head--huge .icon {
+    height : 2rem;
+    width  : 2rem;
+}
+
+/*
+.icon--gold   { color: #8B7A41; }
+.icon--silver { color: #8B8B8A; }
+.icon--bronze { color: #865B44; }
+*/
+.icon--gold   {
+    color: #FEE101;
+    filter:
+        drop-shadow(1px 0px 0px #D6AF36)
+        drop-shadow(-1px 0px 0px #D6AF36)
+        drop-shadow(0px 1px 0px #D6AF36)
+        drop-shadow(0px -1px 0px #D6AF36)
+    ;
+}
+.icon--silver {
+    color: #D7D7D7;
+    filter:
+        drop-shadow(1px 0px 0px #A7A7AD)
+        drop-shadow(-1px 0px 0px #A7A7AD)
+        drop-shadow(0px 1px 0px #A7A7AD)
+        drop-shadow(0px -1px 0px #A7A7AD)
+    ;
+}
+.icon--bronze {
+    color: #A77044;
+    filter:
+        drop-shadow(1px 0px 0px #824A02)
+        drop-shadow(-1px 0px 0px #824A02)
+        drop-shadow(0px 1px 0px #824A02)
+        drop-shadow(0px -1px 0px #824A02)
+    ;
+}

@@ -54,9 +54,9 @@ title: Leaderboards
         <tr>
             <th scope="col">Rank</th>
             <th scope="col">Runner</th>
-            <th scope="col" class="summary__head--huge">🥇</th>
-            <th scope="col" class="summary__head--huge">🥈</th>
-            <th scope="col" class="summary__head--huge">🥉</th>
+            <th scope="col" class="summary__head--huge">{{ macros.icon_svg('award', 'gold') }}</th>
+            <th scope="col" class="summary__head--huge">{{ macros.icon_svg('award', 'silver') }}</th>
+            <th scope="col" class="summary__head--huge">{{ macros.icon_svg('award', 'bronze') }}</th>
             <th scope="col">Total</th>
         </tr>
         {% set previousTrophyHash   = false %}
@@ -115,11 +115,11 @@ title: Leaderboards
                                 {% set weaponSlug = trophy.run.data.weapons | first %}
                                 {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
                                     {% if trophy.rank == 1 %}
-                                        🥇
+                                        {{ macros.icon_svg('award', 'gold') }}
                                     {% elseif trophy.rank == 2 %}
-                                        🥈
+                                        {{ macros.icon_svg('award', 'silver') }}
                                     {% elseif trophy.rank == 3 %}
-                                        🥉
+                                        {{ macros.icon_svg('award', 'bronze') }}
                                     {% else %}
                                         [{{ trophy.rank }}]
                                     {% endif %}
