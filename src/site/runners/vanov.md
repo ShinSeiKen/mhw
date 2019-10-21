@@ -8,5 +8,6 @@ country : bg
 weapons :
     - long-sword
     - switch-axe
+    - charge-blade
     - light-bowgun
 ---
