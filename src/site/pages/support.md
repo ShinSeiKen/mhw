@@ -8,4 +8,4 @@ title: Support
 - Contact me on Discord @ `ShinSeiKen#1937`
 - Donate to my [Paypal](https://paypal.me/ShinSeiKen)
 - Donate to my [Ko-fi](https://ko-fi.com/shinseiken)
-<!--- Donate to my [Patreon](https://www.patreon.com/ShinSeiKen)-->
+- Support me on [Patreon](https://www.patreon.com/ShinSeiKen)
