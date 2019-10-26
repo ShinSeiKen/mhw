@@ -1,11 +1,10 @@
 ---
 title   : HKMH Archer
-twitter : 
+twitter :
 youtube : https://www.youtube.com/channel/UCLpRZTCPfWlUcNPmFjnUuwA
-twitch  : 
-patreon : 
-country : 
+twitch  :
+patreon :
+country : hk
 weapons :
     - bow
 ---
-

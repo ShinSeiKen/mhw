@@ -1,11 +1,10 @@
 ---
 title   : Crowoly
-twitter : 
+twitter : https://twitter.com/_Crowoly
 youtube : https://www.youtube.com/user/TheCuri21
-twitch  : 
-patreon : 
+twitch  :
+patreon :
 country : kr
 weapons :
     - dual-blades
 ---
-
