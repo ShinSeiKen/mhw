@@ -1,11 +1,10 @@
 ---
 title   : Suzi L.
-twitter : 
+twitter :
 youtube : https://www.youtube.com/channel/UCX1FLLm6Sie7dtGGlZT0R4g
 twitch  : https://www.twitch.tv/suzil
-patreon : 
-country : 
+patreon :
+country : us
 weapons :
     - long-sword
 ---
-
