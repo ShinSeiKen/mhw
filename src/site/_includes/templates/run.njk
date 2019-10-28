@@ -92,6 +92,8 @@ permalink: "/runs/{{ date | dateOnly }}/{% if title %}{{ title | slug }}{% else 
             <dd>
                 <time datetime="{{ page.date | dateTimeISO }}">{{ page.date | dateOnly }}</time>
             </dd>
+
+            {{ macros.ad_square() }}
         </dl>
     </aside>
 </div>
