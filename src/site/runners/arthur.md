@@ -1,6 +1,6 @@
 ---
 title   : Arthur (肉卷大大)
-twitter :
+twitter : https://twitter.com/BlastArthur
 youtube : https://www.youtube.com/channel/UCa577AZqQGfUFWTpXzuMqiA
 twitch  :
 patreon :

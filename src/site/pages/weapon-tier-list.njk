@@ -102,5 +102,17 @@ title: Weapon Speedrunning Tier List
                 {% endfor %}
             </tr>
         {% endfor %}
+        <tr>
+            <th scope="col">Weapon</th>
+            {% for hotquest in hotQuests %}
+                {% set quest = collections.lookup.quest[ hotquest.slug ] %}
+                <th>
+                    <img
+                        class="quest-card__image monster-icon variant--{{ hotquest.variant }}"
+                        src="/assets/img/monster-icons/{{ quest.data.monsters | first }}.png"
+                    />
+                </th>
+            {% endfor %}
+        </tr>
     </table>
 </div>
