@@ -12,5 +12,5 @@ runners:
     - 早餐奶
 
 weapons:
-    - dual-blades
+    - bow
 ---
