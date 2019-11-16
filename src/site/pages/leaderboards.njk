@@ -6,8 +6,8 @@ title: Leaderboards
 <h1>Leaderboards</h1>
 
 {% set leaderboards = {
-    "/leaderboards/master-hunter/"    : "Master Hunter",
-    "/leaderboards/master-hunter-ta/" : "Master Hunter (TA Wiki Rules)"
+    "/leaderboards/freestyle/master-hunter"    : "Master Hunter",
+    "/leaderboards/ta-wiki-rules/master-hunter" : "Master Hunter (TA Wiki Rules)"
 } %}
 
 <h2>Any weapon</h2>
@@ -25,7 +25,7 @@ title: Leaderboards
     {% for weaponSlug in global_weapons %}
         {% set weapon = collections.lookup.weapon[weaponSlug] %}
         <li>
-            <a href="/leaderboards/weapon/{{ weapon.fileSlug }}">{{ weapon.data.title }}</a>
+            <a href="/leaderboards/freestyle/weapon/{{ weapon.fileSlug }}">{{ weapon.data.title }}</a>
         </li>
     {% endfor %}
 </ul>

@@ -22,8 +22,8 @@ layout: layouts/base.njk
 
 <h1>{{ title }}</h1>
 
-{% if show_intro %}
 <dl>
+    {% if show_intro %}
     <dt>Quests</dt>
     <dd>
         <ul>
@@ -34,6 +34,8 @@ layout: layouts/base.njk
             {% endfor %}
         </ul>
     </dd>
+    {% endif %}
+
     <dt>Rules</dt>
     <dd>{{ ruleset | label }}</dd>
     {#
@@ -49,7 +51,6 @@ layout: layouts/base.njk
     </dd>
     #}
 </dl>
-{% endif %}
 
 <div class="table-wrapper">
     <table class="summary leaderboards">
