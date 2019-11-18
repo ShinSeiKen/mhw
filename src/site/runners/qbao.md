@@ -1,6 +1,6 @@
 ---
 title   : QBao
-twitter :
+twitter : # https://twitter.com/QBaOOOo
 youtube :
 twitch  :
 patreon :
