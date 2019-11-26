@@ -1239,3 +1239,41 @@ Icons
         drop-shadow(0px -1px 0px #824A02)
     ;
 }
+
+
+/*
+.hint
+*/
+
+.hint {
+    border-width: 1px 1px 1px 8px;
+    border-style: solid;
+    padding: 1em;
+    color: rgb(102, 102, 102);
+    background: rgb(249, 249, 249);
+    border-color: rgb(102, 102, 102);
+}
+
+.hint--info {
+    color: #0c5460;
+    background: #e3f1fc;
+    border-color: #80a8c6;
+}
+
+.hint--warning {
+    color: rgb(150, 105, 0);
+    background: rgb(255, 246, 221);
+    border-color: rgb(150, 105, 0);
+}
+
+.hint--error {
+    color: rgb(206, 55, 55);
+    background: rgb(255, 245, 245);
+    border-color:  rgb(206, 55, 55);
+}
+
+.hint--success {
+    color: rgb(29, 125, 63);
+    background: rgb(234, 250, 234);
+    border-color: rgb(29, 125, 63);
+}
