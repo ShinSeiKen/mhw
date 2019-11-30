@@ -1,5 +1,5 @@
 ---
-title   : Noel
+title   : NoeL
 twitter :
 youtube : https://www.youtube.com/channel/UCOiVuWc1pRuaGhUscsImEPA
 twitch  :
