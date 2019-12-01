@@ -9,4 +9,5 @@ weapons :
     - great-sword
     - hammer
     - charge-blade
+is_patron: true
 ---

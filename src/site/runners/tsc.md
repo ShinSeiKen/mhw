@@ -11,4 +11,5 @@ weapons:
     - hammer
     - hunting-horn
     - light-bowgun
+is_patron: true
 ---
