@@ -1,0 +1,17 @@
+<div class="grid">
+    <div class="grid__row">
+        <div class="navigation--secondary">
+            <ul>
+                {% for url, label in general.menu__quests %}
+                    {% set active = '' %}
+                    {% if page.url == url or (general.parent[ type ] is defined and url == general.parent[ type ].url) %}
+                        {% set active = 'active' %}
+                    {% endif %}
+                    <li {% if active %}class="{{ active }}"{% endif %}>
+                        <a href="{{ url }}">{{ label }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>

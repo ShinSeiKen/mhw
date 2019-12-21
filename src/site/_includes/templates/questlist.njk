@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+---
+{% import "components/macros.njk" as macros %}
+
+<h1>{{ title }}</h1>
+
+{% include "partials/menu__quests.njk" %}
+
+{{ content | safe }}
+
+<div class="grid">
+    <div class="grid__row" >
+        <div class="card-list" style="grid-auto-rows: unset;">
+            {% for quest in collections[collection] %}
+                {{ macros.quest_card(
+                    quest    = quest,
+                    subtitle = translationsQuests[quest.fileSlug]['jpn'],
+                    count    = collections.runs__by_quest[quest.fileSlug] | length | default(0)
+                ) }}
+            {% endfor %}
+        </div>
+    </div>
+</div>

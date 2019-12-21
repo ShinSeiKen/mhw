@@ -14,6 +14,7 @@ module.exports = function(config) {
      */
     const troublesomeSlugs = require('./src/site/_data/troublesomeSlugs.json');
     const labels           = require('./src/site/_data/labels.json');
+    const weapons          = require('./src/site/_data/global_weapons.json');
 
 
     // --------------------------------------------------------------------------------
@@ -25,6 +26,7 @@ module.exports = function(config) {
     config.addLayoutAlias('location'    , 'templates/location.njk');
     config.addLayoutAlias('weapon'      , 'templates/weapon.njk');
     config.addLayoutAlias('quest'       , 'templates/quest.njk');
+    config.addLayoutAlias('questlist'   , 'templates/questlist.njk');
     config.addLayoutAlias('run'         , 'templates/run.njk');
     config.addLayoutAlias('runner'      , 'templates/runner.njk');
     config.addLayoutAlias('leaderboard' , 'templates/leaderboard.njk');
@@ -329,8 +331,10 @@ module.exports = function(config) {
     // Collections: Leaderboards
     // --------------------------------------------------------------------------------
 
-    let top_3_runs    = [];
-    let top_3_runs_ta = [];
+    let top_3_runs        = [];
+    let top_3_runs_ta     = [];
+    let leaderboardLookup = []; // [ruleset][weapon] => leaderboard
+    let achievementLookup = []; // [runner] => achievements
 
     const league = require('./src/site/_data/topleaderboards.json');
 
@@ -339,6 +343,7 @@ module.exports = function(config) {
      */
     config.addCollection('xxx2', collection => {
         let all = collection.getAll();
+        top_3_runs = [];
 
         // lookup
         let runners = [];
@@ -443,6 +448,7 @@ module.exports = function(config) {
      */
     config.addCollection('xxx3', collection => {
         let all = collection.getAll();
+        top_3_runs_ta = [];
 
         // lookup
         let runners = [];
@@ -653,6 +659,55 @@ module.exports = function(config) {
         return tiers__by_weapon__by_quest;
     });
 
+    // Not the most efficient, but quite simple for now!
+    config.addCollection('leaderboardLookup', collection => {
+        let all = collection.getAll();
+        leaderboardLookup = [];
+        achievementLookup = [];
+
+        // Global Leaderboards first...
+        [ 'freestyle', 'ta-wiki-rules' ].forEach(ruleset => {
+            leaderboardLookup[ruleset] = [];
+
+            leaderboardLookup[ruleset]['master-hunter'] = createLeaderboards(all, league, [], ruleset);
+            // leaderboardLookup[ruleset]['elder-slayer'] = createLeaderboards(all, XXX, [], ruleset);
+            // leaderboardLookup[ruleset]['arena-master'] = createLeaderboards(all, YYY, [], ruleset);
+        });
+
+        // Then Weapon Leaderboards...
+        [ 'freestyle', 'ta-wiki-rules' ].forEach(ruleset => {
+            weapons.forEach(weapon => {
+                leaderboardLookup[ruleset][weapon] = createLeaderboards(all, league, weapon, ruleset);
+            })
+        });
+
+        /*
+        for (const ruleset in leaderboardLookup) {
+            let weaponLeaderboards = leaderboardLookup[ruleset];
+
+            for (const weapon in weaponLeaderboards) {
+                let weaponLeaderboard = weaponLeaderboards[weapon];
+
+                for (let i = 0; i < 3; i++) {
+                    if (weaponLeaderboard[i]) {
+                        let runner = weaponLeaderboard[i].runner.fileSlug;
+                        if (! achievementLookup[runner]) {
+                            achievementLookup[runner] = [];
+                        }
+                        achievementLookup[runner].push({
+                            "rank"   : (i+1),
+                            "ruleset": ruleset,
+                            "weapon" : weapon
+                        });
+                    }
+                }
+            }
+        }
+        //*/
+
+        return leaderboardLookup;
+    });
+
     config.addFilter("tierIndexOfWeapon", (runs, weaponSlug) => {
         for (let i = 0; i < runs.length; i++) {
             if (runs[i].data.weapons[0] === weaponSlug) {
@@ -693,7 +748,15 @@ module.exports = function(config) {
         return top_3_runs_ta[run.url];
     });
 
-    config.addFilter("createLeaderboards", (collection, questFilter, weaponFilter, ruleset) => {
+    config.addFilter("achievementLookup", runnerSlug => {
+        if (! achievementLookup[runnerSlug]) {
+            return [];
+        }
+
+        return achievementLookup[runnerSlug];
+    });
+
+    function createLeaderboards(collection, questFilter, weaponFilter, ruleset) {
         let all = collection;
 
         // if (questFilter.length == 0) {
@@ -906,8 +969,9 @@ module.exports = function(config) {
             }
             return b.gold - a.gold;
         });
+    }
 
-    });
+    config.addFilter("createLeaderboards", createLeaderboards);
 
     // --------------------------------------------------------------------------------
     // Filters and Shortcodes
@@ -928,6 +992,8 @@ module.exports = function(config) {
     config.addFilter("dateTimeISO" , date => date.toISOString());
     config.addFilter("dateOnly"    , date => formatDate(date));
     config.addFilter("dateTime"    , date => formatDateTime(date));
+
+    config.addFilter("toFixed"     , (num, digits)  => num.toFixed(digits));
 
     config.addFilter("currentDateTimeISO" , value => (new Date()).toISOString());
     config.addFilter("currentDateTime"    , value => formatDateTime(new Date()));

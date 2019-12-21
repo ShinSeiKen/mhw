@@ -8,3 +8,5 @@ _examples
 _draft
 _scrape
 src/site/assets/fonts
+
+*.bak
