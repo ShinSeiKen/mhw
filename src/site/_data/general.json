@@ -16,6 +16,14 @@
         "/submit-run": "Submit run",
         "https://iceborne.seiken.io/": "Iceborne"
     },
+    "menu__quests": {
+        "/quests/": "All",
+        "/quests/optional-quests/": "Optional Quests",
+        "/quests/arena-quests/": "Arena Quests",
+        "/quests/event-quests/": "Event Quests",
+        "/quests/challenge-quests/": "Challenge Quests",
+        "/quests/custom-quests/": "Custom Quests"
+    },
     "footer": {
         "/"           : "Home",
         "/about/"     : "About",
@@ -24,12 +32,14 @@
         "/privacy/"   : "Privacy"
     },
     "parent": {
-        "location" : { "url": "/locations/" , "title": "Locations" },
-        "monster"  : { "url": "/monsters/"  , "title": "Monsters" },
-        "news"     : { "url": "/news/"      , "title": "News" },
-        "quest"    : { "url": "/quests/"    , "title": "Quests" },
-        "runner"   : { "url": "/runners/"   , "title": "Runners" },
-        "run"      : { "url": "/runs/"      , "title": "Runs" },
-        "weapon"   : { "url": "/weapons/"   , "title": "Weapons" }
+        "location"    : { "url": "/locations/"    , "title": "Locations" },
+        "monster"     : { "url": "/monsters/"     , "title": "Monsters" },
+        "news"        : { "url": "/news/"         , "title": "News" },
+        "quest"       : { "url": "/quests/"       , "title": "Quests" },
+        "runner"      : { "url": "/runners/"      , "title": "Runners" },
+        "run"         : { "url": "/runs/"         , "title": "Runs" },
+        "weapon"      : { "url": "/weapons/"      , "title": "Weapons" },
+        "leaderboard" : { "url": "/leaderboards/" , "title": "Leaderboards" },
+        "questlist"   : { "url": "/quest/"        , "title": "Quests" }
     }
 }

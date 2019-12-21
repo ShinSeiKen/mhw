@@ -19,7 +19,6 @@
     </article>
 {% endmacro %}
 
-
 {% macro run_link(run) %}
     TODO
 {% endmacro %}
@@ -28,6 +27,91 @@
     TODO
 {% endmacro %}
 
+{% macro quest_card(quest, subtitle = false, count = 0, variant = 'regular') %}
+    <div class="quest-card" data-num="{{ quest.data.monsters|length }}">
+        {% for monster in quest.data.monsters %}
+            <img
+                class="quest-card__image monster-icon variant--{{ variant }}"
+                src="/assets/img/monster-icons/{{ monster }}.png"
+            />
+        {% endfor %}
+        <div class="quest-card__content">
+            <a href="{{ quest.url | url }}">
+                {{ quest.data.title }}
+                <span class="small">({{ count }})</span>
+            </a>
+            <br>
+            {{ subtitle }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro achievement_card(icon, url, title, subtitle, variant) %}
+    <div class="quest-card quest-card--{{ variant }}">
+        <img
+            class="quest-card__image"
+            src="/assets/img/{{ icon }}.png"
+        />
+        <div class="quest-card__content">
+            <a href="{{ url }}">
+                <strong>{{ title }}</strong>
+            </a>
+            <br>
+            {{ subtitle }}
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro achievement_patron(title, url = "https://www.patreon.com/ShinSeiKen") %}
+    {{ achievement_card(
+        'achievement/bosom-buddies',
+        url,
+        title ~" is a Patron!",
+        "Thanks for supporting",
+        "medium"
+    ) }}
+{% endmacro %}
+
+{# --- todo: rename weapon to category or something --- #}
+{% macro achievement_leaderboard(ruleset, category, rank) %}
+    {% set title    = "" %}
+    {% set rankText = "" %}
+    {% set icon     = "" %}
+
+    {% if rank == 1 %}     {% set rankText = "Top Rank" %}
+    {% elseif rank == 2 %} {% set rankText = "Rank 2" %}
+    {% elseif rank == 3 %} {% set rankText = "Rank 3" %}
+    {% endif %}
+
+    {% if category in [ 'master-hunter' ] %}
+        {% set title = "Master Hunter" %}
+        {% set url   = "/leaderboards/" ~ ruleset ~ "/" ~ category ~"/"|url %}
+
+        {% if rank == 1 %}     {% set icon = 'achievement/giant-crown-master' %}
+        {% elseif rank == 2 %} {% set icon = 'achievement/giant-crown-collector' %}
+        {% elseif rank == 3 %} {% set icon = 'achievement/giant-crown' %}
+        {% endif %}
+    {% elseif category in [ 'elder-slayer' ] %}{# --- todo! --- #}
+    {% elseif category in [ 'arena-master' ] %}{# --- todo! --- #}
+    {% else %}
+        {# --- weapon category --- #}
+        {% set title = category|label ~ " Master" %}
+        {% set url   = "/leaderboards/" ~ ruleset ~ "/weapon/" ~ category ~"/"|url %}
+
+        {% if rank == 1 %}     {% set icon = 'achievement/miniature-crown-master' %}
+        {% elseif rank == 2 %} {% set icon = 'achievement/miniature-crown-collector' %}
+        {% elseif rank == 3 %} {% set icon = 'achievement/miniature-crown' %}
+        {% endif %}
+    {% endif %}
+
+    {{ achievement_card(
+        icon,
+        url,
+        title,
+        rankText ~ " " ~ ruleset|label,
+        "medium"
+    ) }}
+{% endmacro %}
 
 {% macro video(video, lazyload = false) %}
     <div class='embed-container'>
@@ -42,7 +126,6 @@
         </iframe>
     </div>
 {% endmacro %}
-
 
 {% macro weapon_icon(slug, title) %}
     <img

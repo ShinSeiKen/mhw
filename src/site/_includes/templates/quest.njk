@@ -137,16 +137,16 @@ layout: layouts/base.njk
                                             {% endif %}
                                             {% set runners = run.data.runners %}
                                             <button
-                                                style="margin: 0; overflow: visible; border: 0; padding: 0"
+                                                class="button-video"
                                                 data-micromodal
                                                 data-micromodal-embed="{{ run.data.video }}"
                                                 data-micromodal-title="{%- include "components/run-title.njk" -%}"
                                                 >
                                                 <img
+                                                    class="button-video__icon"
                                                     src="/assets/img/ui/next.png"
                                                     height="40px"
                                                     width="40px"
-                                                    style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
                                                     alt="Play video"
                                                     />
                                             </button>
@@ -299,16 +299,16 @@ layout: layouts/base.njk
                                             {% endif %}
                                             {% set runners = run.data.runners %}
                                             <button
-                                                style="margin: 0; overflow: visible; border: 0; padding: 0"
+                                                class="button-video"
                                                 data-micromodal
                                                 data-micromodal-embed="{{ run.data.video }}"
                                                 data-micromodal-title="{%- include "components/run-title.njk" -%}"
                                                 >
                                                 <img
+                                                    class="button-video__icon"
                                                     src="/assets/img/ui/next.png"
                                                     height="40px"
                                                     width="40px"
-                                                    style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
                                                     alt="Play video"
                                                     />
                                             </button>

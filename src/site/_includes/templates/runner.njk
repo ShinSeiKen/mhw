@@ -51,7 +51,6 @@ layout: layouts/base.njk
                                 </td>
                                 <td class="tablesort__time" data-sort='{{ run.data.time }}'>
                                     {{ macros.run_rank(run) }}
-
                                     <a href="{{ run.url | url }}">
                                         {{ run.data.time }}
                                     </a>
@@ -81,16 +80,16 @@ layout: layouts/base.njk
                                     {% endif %}
                                     {% set runners = run.data.runners %}
                                     <button
-                                        style="margin: 0; overflow: visible; border: 0; padding: 0"
+                                        class="button-video"
                                         data-micromodal
                                         data-micromodal-embed="{{ run.data.video }}"
                                         data-micromodal-title="{%- include "components/run-title.njk" -%}"
                                         >
                                         <img
+                                            class="button-video__icon"
                                             src="/assets/img/ui/next.png"
                                             height="40px"
                                             width="40px"
-                                            style="display:inline-block; border: 1px solid black; padding: 5px; background-color: #fff;"
                                             alt="Play video"
                                             />
                                     </button>
@@ -124,7 +123,7 @@ layout: layouts/base.njk
         {% if weapons | length or youtube or bilibili or twitch or twitter or patreon or mixer %}
             <dl>
                 {% if youtube or bilibili or twitch or twitter or patreon or mixer %}
-                        <dt>Meta</dt>
+                        <dt>Social</dt>
                         <dd>
                             {% if youtube %}
                                 <a target="_blank" href="{{ youtube }}">YouTube</a><br>
@@ -154,12 +153,31 @@ layout: layouts/base.njk
                             <a href="{{ collections.lookup.weapon[item].url | url }}">
                                 {{- collections.lookup.weapon[item].data.title -}}
                             </a>
-                            {% if not loop.last %}<br>{% endif %}
+                        {% if not loop.last %}<br>{% endif %}
                         {% endfor %}
                     </dd>
                 {% endif %}
             </dl>
         {% endif %}
+
+        {#
+        {% set achievements = page.fileSlug|achievementLookup %}
+        {% if achievements|length or is_patron %}
+            <h2 class="h3">Achievements</h2>
+            <div class="card-list" style="grid-auto-rows: unset;">
+                {% if is_patron %}
+                    {{ macros.achievement_patron(title) }}
+                {% endif %}
+                {% for achievement in achievements %}
+                    {{ macros.achievement_leaderboard(
+                        achievement.ruleset,
+                        achievement.weapon,
+                        achievement.rank
+                    ) }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        #}
 
         {{ macros.ad_square() }}
     </aside>

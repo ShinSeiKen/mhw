@@ -3,12 +3,14 @@ Parameters:
     - runner
 #}
 {% if runner %}
-    <a href="{{ runner.url | url }}">
-        {{- runner.data.title -}}
-    </a>
-    {% if runner.data.country %}
-        <span class="flag-icon flag-icon-{{ runner.data.country }}"></span>
-    {% endif %}
+    <span class="runner">
+        <a href="{{ runner.url | url }}">
+            {{- runner.data.title -}}
+        </a>
+        {% if runner.data.country %}
+            <span class="flag-icon flag-icon-{{ runner.data.country }}"></span>
+        {% endif %}
+    </span>
 {% else %}
     {{ runnerSlug }}
 {% endif %}

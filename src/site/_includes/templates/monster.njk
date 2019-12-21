@@ -25,23 +25,6 @@ layout: layouts/base.njk
                 </dd>
             {% endif %}
         </dl>
-        {#
-        <img
-            src="{{ macros.monster_img(page.fileSlug) }}"
-            title="{{ title }}" />
-        #}
-        {% if quests | length %}
-            <h2>Quests</h2>
-            <ul>
-                {% for item in quests %}
-                    <li>
-                        <a href="{{ item.url }}">
-                            {{- item.data.title -}}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% endif %}
 
         {{ macros.ad_square() }}
     </div>
@@ -50,4 +33,18 @@ layout: layouts/base.njk
             {{ macros.video(video) }}
         {% endif %}
     </div>
+    {% if quests | length %}
+        <div class="grid__row" >
+            <h2>Quests</h2>
+            <div class="card-list" style="grid-auto-rows: unset;">
+                {% for quest in quests %}
+                    {{ macros.quest_card(
+                        quest    = quest,
+                        subtitle = translationsQuests[quest.fileSlug]['jpn'],
+                        count    = collections.runs__by_quest[quest.fileSlug] | length | default(0)
+                    ) }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
 </div>

@@ -1,5 +1,7 @@
 "use strict";
 
+document.getElementsByTagName("html")[0].className += " js";
+
 /**
  * Source: https://stackoverflow.com/questions/27078285/simple-throttle-in-js
  */
@@ -190,6 +192,8 @@ filters.forEach(select => {
 (function () {
     // Get relevant elements and collections
     const tabbed = document.querySelector('.tabbed');
+    if (tabbed == null) return;
+
     const tablist = tabbed.querySelector('ul');
     const tabs = tablist.querySelectorAll('a');
     const panels = tabbed.querySelectorAll('[id^="section"]');
@@ -260,3 +264,23 @@ filters.forEach(select => {
     tabs[0].setAttribute('aria-selected', 'true');
     panels[0].hidden = false;
 })();
+
+
+// --- Codyhouse ---
+
+(function() {
+	var menuBtns = document.getElementsByClassName('menu-btn');
+	if( menuBtns.length > 0 ) {
+		for(var i = 0; i < menuBtns.length; i++) {(function(i){
+			initMenuBtn(menuBtns[i]);
+		})(i);}
+
+		function initMenuBtn(btn) {
+			btn.addEventListener('click', function(event){
+                event.preventDefault();
+                const toggleState = 'menu-btn--state-b';
+                btn.classList.toggle(toggleState);
+            });
+		};
+	}
+}());

@@ -4,39 +4,86 @@ title: Leaderboards
 {% import "components/macros.njk" as macros %}
 
 <h1>Leaderboards</h1>
+<!--
+<div class="hint hint--error">
+    <p>Currently disabled because the build process is broken.</p>
+</div>
+-->
 
-{% set leaderboards = {
-    "/leaderboards/freestyle/master-hunter"    : "Master Hunter",
-    "/leaderboards/ta-wiki-rules/master-hunter" : "Master Hunter (TA Wiki Rules)"
-} %}
+{% set leaderboards = [
+    {
+        url      : "/leaderboards/freestyle/master-hunter",
+        title    : "Master Hunter",
+        subtitle : "Freestyle",
+        icon     : 'achievement/true-large-crown-collector'
+    }
+] %}
 
-<h2>Any weapon</h2>
-<ul>
-    {% for leaderboardLink, leaderboardTitle in leaderboards %}
-    <li>
-        <a href="{{ leaderboardLink }}">{{ leaderboardTitle }}</a>
-    </li>
-    {% endfor %}
-</ul>
+{% set leaderboardsTaWiki = [
+    {
+        url      : "/leaderboards/ta-wiki-rules/master-hunter",
+        title    : "Master Hunter",
+        subtitle : "TA Wiki Rules",
+        icon     : 'achievement/true-large-crown-collector'
+    }
+] %}
 
-<h2>Weapon Leaderboards</h2>
+<h2>General Leaderboards</h2>
+
 <h3>Freestyle</h3>
-<ul>
-    {% for weaponSlug in global_weapons %}
-        {% set weapon = collections.lookup.weapon[weaponSlug] %}
-        <li>
-            <a href="/leaderboards/freestyle/weapon/{{ weapon.fileSlug }}">{{ weapon.data.title }}</a>
-        </li>
-    {% endfor %}
-</ul>
 
+<div class="card-list" style="grid-auto-rows: unset;">
+    {% for leaderboard in leaderboards %}
+        {{ macros.achievement_card(
+            leaderboard.icon,
+            leaderboard.url,
+            leaderboard.title,
+            leaderboard.subtitle,
+            "achievement"
+        ) }}
+    {% endfor %}
+</div>
 
 <h3>TA Wiki Rules</h3>
-<ul>
+
+<div class="card-list" style="grid-auto-rows: unset;">
+    {% for leaderboard in leaderboardsTaWiki %}
+        {{ macros.achievement_card(
+            leaderboard.icon,
+            leaderboard.url,
+            leaderboard.title,
+            leaderboard.subtitle,
+            "achievement"
+        ) }}
+    {% endfor %}
+</div>
+
+<h2>Weapon Leaderboards</h2>
+
+<h3>Freestyle</h3>
+
+<div class="card-list" style="grid-auto-rows: unset;">
     {% for weaponSlug in global_weapons %}
         {% set weapon = collections.lookup.weapon[weaponSlug] %}
-        <li>
-            <a href="/leaderboards/ta-wiki-rules/weapon/{{ weapon.fileSlug }}">{{ weapon.data.title }}</a>
-        </li>
+        {{ macros.achievement_card(
+            "weapon-icon/" ~ weapon.fileSlug,
+            "/leaderboards/freestyle/weapon/" ~ weapon.fileSlug,
+            weapon.data.title ~ " Leaderboards",
+            "Freestyle"
+        ) }}
     {% endfor %}
-</ul>
+</div>
+
+<h3>TA Wiki Rules</h3>
+
+<div class="card-list" style="grid-auto-rows: unset;">
+    {% for weaponSlug in global_weapons %}
+        {% set weapon = collections.lookup.weapon[weaponSlug] %}
+        {{ macros.achievement_card(
+            "weapon-icon/" ~ weapon.fileSlug,
+            "/leaderboards/ta-wiki-rules/weapon/" ~ weapon.fileSlug,
+            weapon.data.title ~ " Leaderboards",
+            "TA Wiki Rules"
+        ) }}
+    {% endfor %}
+</div>

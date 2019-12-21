@@ -4,16 +4,28 @@ layout: layouts/base.njk
 
 {% import "components/macros.njk" as macros %}
 
+{% set useLookup = false %}
 {% if quests | length == 0 %}
+    {% set useLookup = true %}
     {% set quests = topleaderboards %}
 {% endif %}
 
-{% set numQuests         = quests | length %}
-{% set maxTrophies       = numQuests * 3 %}
+{% set numQuests   = quests | length %}
+{% set maxTrophies = numQuests * 3 %}
 {% if weapon.length == 0 %}
     {% set maxTrophies = maxTrophies * 14 %}
 {% endif %}
-{% set trophyCollections = collections.all | createLeaderboards(quests, weapon, ruleset) %}
+
+{% if useLookup %}
+    {% if weapon.length == 0 %}
+        {% set weaponLookup = 'master-hunter' %}
+    {% else %}
+        {% set weaponLookup = weapon %}
+    {% endif %}
+    {% set trophyCollections = collections.leaderboardLookup[ruleset][weaponLookup] %}
+{% else %}
+    {% set trophyCollections = collections.all | createLeaderboards(quests, weapon, ruleset) %}
+{% endif %}
 
 {% set icon = 'medal' %}
 {% if ruleset == 'ta-wiki-rules' %}
@@ -23,113 +35,113 @@ layout: layouts/base.njk
 <h1>{{ title }}</h1>
 
 <dl>
-    {% if show_intro %}
-    <dt>Quests</dt>
-    <dd>
-        <ul>
-            {# --- see .eleventy for `archTemperedLeague` --- #}
-            {% for questSlug in quests %}
-            {% set quest = collections.lookup.quest[ questSlug ] %}
-                <li><a href="{{ quest.url | url }}">{{ quest.data.title }}</a></li>
-            {% endfor %}
-        </ul>
-    </dd>
-    {% endif %}
-
     <dt>Rules</dt>
     <dd>{{ ruleset | label }}</dd>
-    {#
-    <dt>Notes</dt>
-    <dd>
-        <p>
-            For every quest ({{ numQuests }}), there are three trophies (3) per weapon (14) for a total of <strong>{{ maxTrophies }}</strong> trophies!<br>
-            A runner can only have one trophy per weapon and quest combination.<br>
-            In case of multiple runs, only the fastest run is count.<br>
-            <br>
-            Note: Click on a row to expand the collected trophies!
-        </p>
-    </dd>
-    #}
 </dl>
 
-<div class="table-wrapper">
-    <table class="summary leaderboards">
-        <tr>
-            <th scope="col">Rank</th>
-            <th scope="col">Runner</th>
-            <th scope="col" class="summary__head--huge">{{ macros.icon_svg(icon, 'gold') }}</th>
-            <th scope="col" class="summary__head--huge">{{ macros.icon_svg(icon, 'silver') }}</th>
-            <th scope="col" class="summary__head--huge">{{ macros.icon_svg(icon, 'bronze') }}</th>
-            <th scope="col">Total</th>
-        </tr>
-        {% set previousTrophyHash   = false %}
-        {% set previousRank         = 1 %}
-        {% set totalTrophiesClaimed = 0 %}
-        {% for trophyCollection in trophyCollections %}
-            {% set runner = trophyCollection.runner %}
-            {% set totalTrophies = trophyCollection.gold + trophyCollection.silver + trophyCollection.bronze %}
-            {% set totalTrophiesClaimed = totalTrophiesClaimed + totalTrophies %}
-            {# -- Simple extra check for same amount of trophy holders to keep the same rank -- #}
-            {% set trophyHash = trophyCollection.gold + "--" + trophyCollection.silver + "--" + trophyCollection.bronze %}
-            {% if previousTrophyHash === trophyHash %}
-                {% set leaderboardRank = previousRank %}
-            {% else %}
-                {% set leaderboardRank    = loop.index %}
-                {% set previousTrophyHash = trophyHash %}
-                {% set previousRank       = loop.index %}
-            {% endif %}
-            {% if totalTrophies > 0 %}
-            <tr class="toggle-runs">
-                <td>
-                    {{ leaderboardRank }}
-                </td>
-                <td scope="row">
-                    <a href="{{ runner.url | url }}">{{- runner.data.title -}}</a>
-                    {% if runner.data.country %}
-                        <span class="flag-icon flag-icon-{{ runner.data.country }}"></span>
-                    {% endif %}
-                </td>
-                <td>{{ trophyCollection.gold }}</td>
-                <td>{{ trophyCollection.silver }}</td>
-                <td>{{ trophyCollection.bronze }}</td>
-                <td>{{ totalTrophies }}</td>
-            </tr>
-            <tr hidden class="">
-                <td colspan=6 style="text-align: left;">
-                    <p>
-                        {% for trophy in trophyCollection.trophies %}
-                            {% if trophy.rank == 1 or trophy.rank == 2 or trophy.rank == 3 %}
-                                {% set weaponSlug = trophy.run.data.weapons | first %}
-                                {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
-                                    {% if trophy.rank == 1 %}
-                                        {{ macros.icon_svg(icon, 'gold') }}
-                                    {% elseif trophy.rank == 2 %}
-                                        {{ macros.icon_svg(icon, 'silver') }}
-                                    {% elseif trophy.rank == 3 %}
-                                        {{ macros.icon_svg(icon, 'bronze') }}
-                                    {% else %}
-                                        [{{ trophy.rank }}]
-                                    {% endif %}
-                                    <a href="{{ trophy.run.url }}">
-                                        <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
-                                    </a>
-                                {% if not loop.last %}
-                                    <br>
-                                {% endif %}
-                            {% endif %}
-                        {% endfor %}
-                    </p>
-                </td>
-            </tr>
-            {% endif %}
-        {% endfor %}
-        <tr>
-            <td colspan=5 style="text-align: left;">
-                Total trophies claimed so far:
-            </td>
-            <td>
-                {{ totalTrophiesClaimed }} / {{ maxTrophies }}
-            </td>
-        </tr>
-    </table>
+<div class="grid__row">
+    <div class="tabbed tabbed--wide">
+        <ul>
+            <li>
+                <a href="#section-rankings">Leaderboard</a>
+            </li>
+            <li>
+                <a href="#section-quests">Quests</a>
+            </li>
+        </ul>
+        <section id="section-rankings">
+            <h2 class="sr-only">Leaderboard</h2>
+            <div class="table-wrapper">
+                <table class="summary leaderboards">
+                    <tr>
+                        <th scope="col">Rank</th>
+                        <th scope="col">Runner</th>
+                        <th scope="col" class="summary__head--huge">{{ macros.icon_svg(icon, 'gold') }}</th>
+                        <th scope="col" class="summary__head--huge">{{ macros.icon_svg(icon, 'silver') }}</th>
+                        <th scope="col" class="summary__head--huge">{{ macros.icon_svg(icon, 'bronze') }}</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    {% set previousTrophyHash   = false %}
+                    {% set previousRank         = 1 %}
+                    {% set totalTrophiesClaimed = 0 %}
+                    {% for trophyCollection in trophyCollections %}
+                        {% set runner = trophyCollection.runner %}
+                        {% set totalTrophies = trophyCollection.gold + trophyCollection.silver + trophyCollection.bronze %}
+                        {% set totalTrophiesClaimed = totalTrophiesClaimed + totalTrophies %}
+                        {# -- Simple extra check for same amount of trophy holders to keep the same rank -- #}
+                        {% set trophyHash = trophyCollection.gold + "--" + trophyCollection.silver + "--" + trophyCollection.bronze %}
+                        {% if previousTrophyHash === trophyHash %}
+                            {% set leaderboardRank = previousRank %}
+                        {% else %}
+                            {% set leaderboardRank    = loop.index %}
+                            {% set previousTrophyHash = trophyHash %}
+                            {% set previousRank       = loop.index %}
+                        {% endif %}
+                        {% if totalTrophies > 0 %}
+                        <tr class="toggle-runs">
+                            <td>
+                                {{ leaderboardRank }}
+                            </td>
+                            <td scope="row">
+                                {%- include "components/links/runner-link.njk" %}
+                            </td>
+                            <td>{{ trophyCollection.gold }}</td>
+                            <td>{{ trophyCollection.silver }}</td>
+                            <td>{{ trophyCollection.bronze }}</td>
+                            <td>{{ totalTrophies }}</td>
+                        </tr>
+                        <tr hidden class="">
+                            <td colspan=6 style="text-align: left;">
+                                <p>
+                                    {% for trophy in trophyCollection.trophies %}
+                                        {% if trophy.rank == 1 or trophy.rank == 2 or trophy.rank == 3 %}
+                                            {% set weaponSlug = trophy.run.data.weapons | first %}
+                                            {% set weapon = collections.lookup.weapon[ weaponSlug ] %}
+                                                {% if trophy.rank == 1 %}
+                                                    {{ macros.icon_svg(icon, 'gold') }}
+                                                {% elseif trophy.rank == 2 %}
+                                                    {{ macros.icon_svg(icon, 'silver') }}
+                                                {% elseif trophy.rank == 3 %}
+                                                    {{ macros.icon_svg(icon, 'bronze') }}
+                                                {% else %}
+                                                    [{{ trophy.rank }}]
+                                                {% endif %}
+                                                <a href="{{ trophy.run.url }}">
+                                                    <strong>{{ trophy.quest.data.title }}</strong> with <strong>{{ weapon.data.title }}</strong>.
+                                                </a>
+                                            {% if not loop.last %}
+                                                <br>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                    <tr>
+                        <td colspan=5 style="text-align: left;">
+                            Total trophies claimed so far:
+                        </td>
+                        <td>
+                            {{ totalTrophiesClaimed }} / {{ maxTrophies }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </section>
+        <section id="section-quests">
+            <h2 class="sr-only">Quests</h2>
+            <div class="card-list" style="grid-auto-rows: unset;">
+                {% for questSlug in quests %}
+                    {% set quest = collections.lookup.quest[ questSlug ] %}
+                    {{ macros.quest_card(
+                        quest    = quest,
+                        subtitle = translationsQuests[quest.fileSlug]['jpn'],
+                        count    = collections.runs__by_quest[quest.fileSlug] | length | default(0)
+                    ) }}
+                {% endfor %}
+            </div>
+        </section>
+    </div>
 </div>

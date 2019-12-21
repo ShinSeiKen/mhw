@@ -23,7 +23,7 @@ title: Runners
             {% endfor  %}
         </ul>
     </div>
-
+{#
     <div class="grid__row">
         <hr>
         <h2>Weapon Masters</h2>
@@ -35,7 +35,7 @@ title: Runners
                     <li>
                         <a href="#section-{{ slug }}">
                             {{ macros.weapon_icon(slug, item.data.title) }}
-                            {# {{ item.data.title }} #}
+                            <!--{{ item.data.title }}-->
                         </a>
                     </li>
                 {% endfor %}
@@ -49,7 +49,6 @@ title: Runners
                             {% if loop.index0 < 100 %}
                                 <li>
                                     {% include "components/links/runner-link.njk" %}
-                                    {# --- count how many runs with this weapon --- #}
                                 </li>
                             {% endif %}
                         {% endfor %}
@@ -58,4 +57,5 @@ title: Runners
             {% endfor %}
         </div>
     </div>
+#}
 </div>

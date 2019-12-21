@@ -314,8 +314,8 @@ footer {
 // ------------
 
 .header-links {
-    margin-top: 0.5em;
-    line-height: calc(var(--lineHeight)*2);
+    margin-top: 1em;
+    line-height: calc(var(--lineHeight)*1.5);
 }
 
 .header-links__link:hover {
@@ -492,7 +492,7 @@ grid {
     grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
 
     @media only screen and (min-width: $breakpointS) {
-        grid-template-columns: repeat(auto-fit, minmax( calc(var(--lineHeight) * 16) , 1fr));
+        grid-template-columns: repeat(auto-fill, minmax( calc(var(--lineHeight) * 16) , 1fr));
     }
 
     grid-auto-rows: calc(var(--lineHeight) * 9);
@@ -674,7 +674,7 @@ grid {
     }
     // runs
     .tablesort__runner { text-align: left; }
-    .tablesort__time   { text-align: right; font-feature-settings: 'tnum' 1; }
+    .tablesort__time   { text-align: right; font-feature-settings: 'tnum' 1; white-space: nowrap; }
     .tablesort__weapon { text-align: center; }
     .tablesort__video  { text-align: center; }
 
@@ -723,6 +723,20 @@ grid {
         opacity: 1;
     }
 
+}
+
+.button-video {
+    margin: 0;
+    overflow: visible;
+    border: 0;
+    padding: 0;
+}
+
+.button-video__icon {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 5px;
+    background-color: #fff;
 }
 
 // Leaderboards Tables
@@ -806,6 +820,12 @@ grid {
 
     width: 1200px;
     z-index: 9999;
+
+    border-style: solid;
+    border-width: 4px 0px 0px 0px;
+    // border-image-source: linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66));
+    border-image-source: linear-gradient(45deg, #0195d9, #78c6ee); // #26749a
+    border-image-slice: 1;
 }
 
 .modal__header {
@@ -993,6 +1013,59 @@ display: block;
     }
 }
 
+// Secondary Navigation
+// For sub-navigation that have their own pages, but similar look and feel as the .tabbed
+.navigation--secondary {
+    border-bottom: 1px solid black;
+
+    ul {
+        padding: 0;
+        margin: 0;
+    }
+
+    li, a, img {
+        display: inline-block;
+    }
+
+    a {
+        text-decoration: none;
+        padding: 0.5rem 1em;
+        &:focus {
+            outline: none;
+            box-shadow: inset 0 0 0 4px #ffbf47;
+        }
+    }
+
+    li.active a {
+        border: 1px solid;
+        border-top: 4px solid;
+        background: #EEE;
+        border-bottom: 0;
+        position: relative;
+        top: 1px;
+    }
+}
+
+@media (max-width: 800px) {
+    .navigation--secondary {
+        a {
+            border: 1px solid #222 !important;
+        }
+        li, a {
+            display: block;
+            position: static;
+        }
+        li+li a {
+            border-top: 0 !important;
+        }
+        li.active {
+
+            a::after {
+                content: '\0020⟸';
+            }
+        }
+    }
+}
 
 // Buttons
 // -------
@@ -1043,6 +1116,7 @@ a.button:focus {
     // overflow-wrap: break-word;
     // word-wrap: break-word;
     // hyphens: auto;
+    min-height: 58px;
     overflow: hidden;
     background-color: white;
     display: flex;
@@ -1055,6 +1129,7 @@ a.button:focus {
         border-color .15s ease-in-out,
         box-shadow .15s ease-in-out
     ;
+    border: 1px solid #CCC;
 }
 .quest-card:hover,
 .quest-card:focus-within {
@@ -1070,9 +1145,24 @@ img.quest-card__image {
     display: inline-block;
     padding: 5px;
 }
+
+[data-num="2"] img.quest-card__image,
+[data-num="3"] img.quest-card__image {
+    width: 36px;
+    height: 36px;
+}
+
+[data-num="4"] img.quest-card__image,
+[data-num="5"] img.quest-card__image {
+    width: 24px;
+    height: 24px;
+}
+
 .quest-card__content {
     margin-left: 1rem;
     display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .quest-card__content a {
     word-wrap: break-word;
@@ -1107,7 +1197,27 @@ img.quest-card__image {
     ;
 }
 
+// Variants
 
+.quest-card--achievement:hover,
+.quest-card--achievement:focus-within {
+    box-shadow: 0 0 0 0.2rem rgba(0,0,0,.5);
+}
+
+.quest-card--achievement img.quest-card__image {
+    width: 96px;
+    height: 96px;
+}
+
+.quest-card--medium img.quest-card__image {
+    width: 72px;
+    height: 72px;
+}
+
+.quest-card--weapon img.quest-card__image {
+    width: 48px;
+    height: 48px;
+}
 
 // Leaderboards
 // -----------------------
@@ -1177,7 +1287,6 @@ img.quest-card__image {
 }
 //*/
 
-
 .table-wrapper {
     overflow-x: auto;
 }
@@ -1187,6 +1296,19 @@ sub             { vertical-align: sub; }
 sup             { vertical-align: super; }
 
 
+.full-width {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    .wrapper {
+        display: inline-block;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
 
 /**
 Icons
@@ -1276,4 +1398,86 @@ Icons
     color: rgb(29, 125, 63);
     background: rgb(234, 250, 234);
     border-color: rgb(29, 125, 63);
+}
+
+.runner {
+    white-space: nowrap;
+}
+
+
+/**
+ *Animated button
+*/
+
+:root {
+    --menu-btn-size: 48px;
+    --menu-btn-icon-size: 32px;
+    --menu-btn-icon-stroke: 2px;
+}
+
+.menu-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--menu-btn-size);
+    height: var(--menu-btn-size);
+}
+
+.menu-btn__icon {
+    position: relative;
+    display: block;
+    font-size: var(--menu-btn-icon-size);
+    width: 1em;
+    height: var(--menu-btn-icon-stroke);
+    color: inherit;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    transform: scale(1);
+
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-image: inherit;
+        border-radius: inherit;
+    }
+}
+
+// menu to 'X' close
+.menu-btn__icon {
+    background-size: 100% 100%;
+    will-change: transform, background-size;
+    transition: transform .2s, background-size .2s;
+
+    .menu-btn:active & {
+        transform: scale(0.9);
+    }
+
+    &::before, &::after {
+        will-change: inherit;
+        transition: inherit;
+    }
+
+    &::before { // line top
+        transform: translateY(-0.25em) rotate(0);
+    }
+
+    &::after { // line bottom
+        transform: translateY(0.25em) rotate(0);
+    }
+}
+
+.menu-btn--state-b {
+    .menu-btn__icon {
+        background-size: 0% 100%;
+        &::before {
+            transform: translateY(0) rotate(45deg);
+        }
+        &::after {
+            transform: translateY(0) rotate(-45deg);
+        }
+    }
 }
