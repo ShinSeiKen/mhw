@@ -1,5 +1,5 @@
 ---
-title          : 9★ A Visitor from Eorzea (2)
+title          :
 video          : https://www.youtube.com/embed/NIhgeEKwXf4 #https://youtu.be/NIhgeEKwXf4
 run_type       : ta-wiki-rules
 platform       : ps4
@@ -8,6 +8,7 @@ date           : 2019-07-11
 time           : 12'27"10
 quest          : 9★-a-visitor-from-eorzea
 ta_wiki_link   : http://mhw.wiki-db.com/solota/record/3233
+offset         : 2
 
 runners:
     - マサ

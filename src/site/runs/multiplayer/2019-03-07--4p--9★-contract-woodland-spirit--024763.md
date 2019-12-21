@@ -1,5 +1,5 @@
 ---
-title          : '9★ Contract: Woodland Spirit (2)'
+title          :
 video          : https://www.youtube.com/embed/BUr0ONfdxgg
 video_type     : youtube
 run_type       : freestyle
@@ -8,6 +8,7 @@ patch_version  :
 date           : 2019-03-07
 time           : 02'47"63
 quest          : 9★-contract-woodland-spirit
+offset         : 2
 
 runners:
     - jin-furai
