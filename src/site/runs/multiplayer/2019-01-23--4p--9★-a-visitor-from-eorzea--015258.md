@@ -13,7 +13,7 @@ runners:
     - jin-furai
     - phemeto
     - sazerou
-    - gun-gai
+    - gungai
 
 weapons:
     - heavy-bowgun
