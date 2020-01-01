@@ -12,8 +12,6 @@
         "/locations/"    : "Locations"
     },
     "menu_extra": {
-        "/submit-runner": "Submit runner",
-        "/submit-run": "Submit run",
         "https://iceborne.seiken.io/": "Iceborne"
     },
     "menu__quests": {
