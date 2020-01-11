@@ -100,7 +100,8 @@ title: Runs
         <h1>{{ title }}</h1>
         {% set dateCheck = false %}
         {% for run in collections.runs %}
-            {% if run.data.runners | length === 1 and run.date|dateDisplay('yyyy') == '2019' %}
+            {% set runYear = run.date|dateDisplay('yyyy') %}
+            {% if run.data.runners | length === 1 and runYear in ['2019', '2020'] %}
                 {% set count = count + 1 %}
 
                 {% set dateNew = run.date | dateDisplay('LLLL yyyy') %}
