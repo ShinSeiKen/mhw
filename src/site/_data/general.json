@@ -38,6 +38,6 @@
         "run"         : { "url": "/runs/"         , "title": "Runs" },
         "weapon"      : { "url": "/weapons/"      , "title": "Weapons" },
         "leaderboard" : { "url": "/leaderboards/" , "title": "Leaderboards" },
-        "questlist"   : { "url": "/quest/"        , "title": "Quests" }
+        "questlist"   : { "url": "/quests/"       , "title": "Quests" }
     }
 }
