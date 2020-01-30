@@ -4,7 +4,7 @@
             <ul>
                 {% for url, label in general.menu__quests %}
                     {% set active = '' %}
-                    {% if page.url == url or (general.parent[ type ] is defined and url == general.parent[ type ].url) %}
+                    {% if page.url == url %}
                         {% set active = 'active' %}
                     {% endif %}
                     <li {% if active %}class="{{ active }}"{% endif %}>
