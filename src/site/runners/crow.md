@@ -6,5 +6,6 @@ twitch  :
 patreon :
 country : jp
 weapons :
+    - long-sword
     - sword-and-shield
 ---

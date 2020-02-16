@@ -1,11 +1,10 @@
 ---
-title   : GALAHAD
-twitter : 
+title   : ガラハッド (GALAHAD)
+twitter :
 youtube : https://www.youtube.com/channel/UCbUZkynF7feW8KE9EQAwDZw
-twitch  : 
-patreon : 
+twitch  :
+patreon :
 country : jp
 weapons :
     - charge-blade
 ---
-
