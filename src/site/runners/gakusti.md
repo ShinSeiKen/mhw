@@ -3,9 +3,10 @@ title   : GAKUSTI
 twitter : https://twitter.com/game_gaku
 youtube : https://www.youtube.com/channel/UCNm-sZaCU4zKwh8dCmUK91w
 twitch  : https://www.twitch.tv/gakusti
-patreon : 
+patreon :
 country : jp
 weapons :
+    - long-sword
+    - dual-blades
     - heavy-bowgun
 ---
-
