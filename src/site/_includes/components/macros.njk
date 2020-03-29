@@ -117,7 +117,7 @@
     <div class='embed-container'>
         <iframe
             {% if lazyload|default(false) %}data-{% endif -%}
-            src='{{ video | replace("youtube.com", "youtube-nocookie.com") -}}
+            src='{{ video | replace("youtube.com", "youtube-nocookie.com") | safe -}}
             {%- if "youtube" in video and "?" in video %}&modestbranding=1&rel=0
             {%- elif "youtube" in video %}?modestbranding=1&rel=0{% endif %}'
             frameborder='0'
@@ -159,6 +159,8 @@
 {% endmacro %}
 
 {% macro ad_square() %}
+    <div id="placement-square"></div>
+
     <!-- Square Box 1 -->
     <ins class="adsbygoogle"
         style="display:block"
@@ -166,9 +168,12 @@
         data-ad-slot="5354626624"
         data-ad-format="auto"
         data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 {% endmacro %}
 
 {% macro ad_horizontal() %}
+    <div id="placement-horizontal"></div>
+
     <!-- Horizontal Ad 1 -->
     <ins class="adsbygoogle"
         style="display:block"
@@ -176,4 +181,5 @@
         data-ad-slot="2174915629"
         data-ad-format="auto"
         data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 {% endmacro %}

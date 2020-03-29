@@ -82,7 +82,7 @@ layout: layouts/base.njk
                                     <button
                                         class="button-video"
                                         data-micromodal
-                                        data-micromodal-embed="{{ run.data.video }}"
+                                        data-micromodal-embed="{{ run.data.video | safe }}"
                                         data-micromodal-title="{%- include "components/run-title.njk" -%}"
                                         >
                                         <img

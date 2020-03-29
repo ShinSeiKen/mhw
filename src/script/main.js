@@ -134,6 +134,12 @@ MicroModal.init({
 });
 //*/
 
+function createAd()
+{
+    let adString = '<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1456489391618538" data-ad-slot="5354626624" data-ad-format="auto" data-full-width-responsive="true"></ins>';
+    return document.createRange().createContextualFragment(adString);
+}
+
 document.querySelectorAll('[data-micromodal]').forEach(button => {
     let micromodal = document.getElementById('micromodal');
     let titleElem  = micromodal.getElementsByTagName('h3')[0];
@@ -150,6 +156,23 @@ document.querySelectorAll('[data-micromodal]').forEach(button => {
                 iframe.src = iframe.dataset['src'];
             }
         });
+
+        if (typeof ga !== 'undefined') {
+            // ga('send', 'event', 'Video', 'play', button.dataset['micromodalTitle']);
+            gtag('event', 'play', {
+                'event_category': 'Video',
+                'event_label': button.dataset['micromodalTitle']
+              });
+
+            let container = micromodal.getElementsByClassName('modal__container')[0];
+
+            for (let item of container.getElementsByTagName('ins')) {
+                item.remove()
+            }
+            let ad = createAd();
+            container.append(ad);
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
     });
 
 });
@@ -265,22 +288,67 @@ filters.forEach(select => {
     panels[0].hidden = false;
 })();
 
+// --------------------------------------------------------------------------------
 
-// --- Codyhouse ---
+// Google Analytics
+window.dataLayer = window.dataLayer || [];
 
-(function() {
-	var menuBtns = document.getElementsByClassName('menu-btn');
-	if( menuBtns.length > 0 ) {
-		for(var i = 0; i < menuBtns.length; i++) {(function(i){
-			initMenuBtn(menuBtns[i]);
-		})(i);}
+function gtag(){
+    dataLayer.push(arguments);
+}
+gtag('js', new Date());
+gtag('config', 'UA-144639528-1', { 'anonymize_ip': true });
 
-		function initMenuBtn(btn) {
-			btn.addEventListener('click', function(event){
-                event.preventDefault();
-                const toggleState = 'menu-btn--state-b';
-                btn.classList.toggle(toggleState);
-            });
-		};
-	}
-}());
+// Google Ads
+// (adsbygoogle = window.adsbygoogle || []).push({});
+
+
+// NitroAds
+window["nitroAds"] = window["nitroAds"] || {
+    createAd: function() {
+        window.nitroAds.queue.push(["createAd", arguments]);
+    },
+    queue: []
+};
+
+// GDPR
+if (window["nitroAds"] && window["nitroAds"].loaded) {
+    document.getElementById("consent-box").style.display = window["__cmp"] ? "" : "none";
+} else {
+    document.addEventListener("nitroAds.loaded", () =>
+        (document.getElementById("consent-box").style.display = window["__cmp"] ? "" : "none")
+    );
+}
+
+window['nitroAds'].createAd('placement-horizontal', {
+    "refreshLimit": 10,
+    "refreshTime": 90,
+    "renderVisibleOnly": false,
+    "refreshVisibleOnly": true,
+    "sizes": [
+        [ 970, 90 ]
+    ],
+    "report": {
+        "enabled": true,
+        "wording": "Report Ad",
+        "position": "top-right"
+    }
+});
+
+window['nitroAds'].createAd('placement-square', {
+    "refreshLimit": 10,
+    "refreshTime": 90,
+    "renderVisibleOnly": false,
+    "refreshVisibleOnly": true,
+    "sizes": [
+        [ 300, 250 ]
+    ],
+    "report": {
+        "enabled": true,
+        "wording": "Report Ad",
+        "position": "top-right"
+    }
+});
+
+window['nitroAds'].createAd('placement-horizontal-1', { "refreshLimit": 10, "refreshTime": 90, "renderVisibleOnly": false, "refreshVisibleOnly": true, "sizes": [ [ 970, 90 ] ], "report": { "enabled": true, "wording": "Report Ad", "position": "top-right" } });
+window['nitroAds'].createAd('placement-horizontal-2', { "refreshLimit": 10, "refreshTime": 90, "renderVisibleOnly": false, "refreshVisibleOnly": true, "sizes": [ [ 970, 90 ] ], "report": { "enabled": true, "wording": "Report Ad", "position": "top-right" } });

@@ -139,7 +139,7 @@ layout: layouts/base.njk
                                             <button
                                                 class="button-video"
                                                 data-micromodal
-                                                data-micromodal-embed="{{ run.data.video }}"
+                                                data-micromodal-embed="{{ run.data.video | safe }}"
                                                 data-micromodal-title="{%- include "components/run-title.njk" -%}"
                                                 >
                                                 <img
@@ -208,6 +208,7 @@ layout: layouts/base.njk
                 </section>
                 <section id="section-summary-ta">
                     <h3>Summary (TA Wiki)</h3>
+                    <p>Please check <a href="http://mhw.wiki-db.com/">Official TA Wiki</a> for rules.</p>
                     <div class="table-wrapper">
                         <table class="summary">
                             <tr>
@@ -301,7 +302,7 @@ layout: layouts/base.njk
                                             <button
                                                 class="button-video"
                                                 data-micromodal
-                                                data-micromodal-embed="{{ run.data.video }}"
+                                                data-micromodal-embed="{{ run.data.video | safe }}"
                                                 data-micromodal-title="{%- include "components/run-title.njk" -%}"
                                                 >
                                                 <img
