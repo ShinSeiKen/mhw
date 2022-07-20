@@ -35,6 +35,6 @@
     "micromodal": "^0.4.6",
     "pretty": "^2.0.0",
     "tablesort": "^5.2.0",
-    "terser": "^4.6.12"
+    "terser": "^4.8.1"
   }
 }
